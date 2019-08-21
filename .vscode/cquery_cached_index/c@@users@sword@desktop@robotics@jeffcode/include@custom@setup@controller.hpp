@@ -20,6 +20,7 @@ namespace intake{
 //   extern okapi::ControllerButton BtnOpen;
 //   extern okapi::ControllerButton BtnClose;
 // }
+//clamp does not exist right now, im keeping the code for it thats in here for if one gets added
 namespace tilter
 {
   extern okapi::ControllerButton BtnTiltF;

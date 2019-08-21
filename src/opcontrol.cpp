@@ -20,7 +20,7 @@
 */
 void opcontrol()
 {
-//runs all the code
+	//runs all the code
 	while (true)
 	{
 		pros::delay(20);

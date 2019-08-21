@@ -34,7 +34,7 @@ namespace drive{
 		}
 		right_motor.moveVelocity(rightVel);
 		left_motor.moveVelocity(leftVel);
-//sets variable to make setting drive speeds take less words, or in other words to help me be lazy
+		//sets variable to make setting drive speeds take less words, or in other words to help me be lazy
 	}
 
 

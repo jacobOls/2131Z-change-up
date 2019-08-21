@@ -1,7 +1,9 @@
 #include "main.h"
 #include "custom/setup/controller.hpp"
 okapi::Controller myController;
+//declares controllers
 
+//sets controller buttons
 namespace drive
 {
   okapi::ControllerButton BtnBrake = myController[okapi::ControllerDigital::X];

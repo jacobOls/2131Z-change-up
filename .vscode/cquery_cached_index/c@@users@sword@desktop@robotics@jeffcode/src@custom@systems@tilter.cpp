@@ -3,7 +3,7 @@
 #include "custom/setup/motors.hpp"
 #include "custom/setup/controller.hpp"
 #include "custom/setup/ramping.hpp"
-
+//moves the cubes forwards to stack them
 namespace tilter
 {
   void tilter()
@@ -38,6 +38,7 @@ namespace tilter
     tilt.calculate();
     pros::Task::delay_until(&start, tilt.get_changeMsec());
   }
+  //adds ramping to the tilter
   void taskInit(){
     pros::Task rampingTask(ramping, (void*) "test", TASK_PRIORITY_DEFAULT,
     TASK_STACK_DEPTH_DEFAULT,"tilt");

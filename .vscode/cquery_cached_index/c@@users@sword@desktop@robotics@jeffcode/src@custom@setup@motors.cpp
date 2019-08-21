@@ -1,6 +1,7 @@
 #include "main.h"
 #include "custom/setup/motors.hpp"
 #include "custom/setup/ramping.hpp"
+//sets motors
 namespace drive
 {
   okapi::Motor right_motor(1,true,okapi::AbstractMotor::gearset::red,

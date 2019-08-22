@@ -19,7 +19,6 @@ namespace drive{
 		if(std::abs(myController.getAnalog(okapi::ControllerAnalog::rightY))<0.05) rightVel=0;
 		//if input is not great enough, do not move motor so there is no accidetnal input
 		else	rightVel=(myController.getAnalog(ControllerAnalog::rightY)*100);
-		//
 
 	}
 

@@ -8,9 +8,10 @@
 namespace drive{
 	int rightVel; //right side velocity
 	int leftVel; //left side velocity
-	double liftPos;
-	bool isBraked = false;
+	double liftPos;//gets lift position
+	bool isBraked = false;//checks if the bot is braked
 	void tankDrive()
+	//drive code
 	{
 		if(std::abs(myController.getAnalog(okapi::ControllerAnalog::leftY))<0.05) leftVel=0;
 		//if input is not great enough, do not move motor so there is no accidetnal input
@@ -23,6 +24,7 @@ namespace drive{
 	}
 
 	void execute()
+	//slows drive when lift goes up
 	{
 		if(lift::group2.getPosition() <= -550)
 		{
@@ -42,7 +44,7 @@ namespace drive{
 
 
 	void brakeMode()
-	//sets brake for easier time stacking
+	//brakes the bot
 	{
 		if(BtnBrake.isPressed())
 		{

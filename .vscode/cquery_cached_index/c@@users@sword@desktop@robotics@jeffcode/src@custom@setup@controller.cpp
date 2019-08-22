@@ -35,3 +35,8 @@ namespace tilter
   okapi::ControllerButton BtnTiltB = myController[okapi::ControllerDigital::left];
   //moves tilter backwards
 }
+namespace clamp
+{
+  okapi::ControllerButton BtnToggle = myController[okapi::ControllerDigital::right];
+  //toggles clamp open or closed
+}

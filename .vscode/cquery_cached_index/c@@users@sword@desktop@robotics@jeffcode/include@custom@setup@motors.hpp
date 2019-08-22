@@ -38,4 +38,9 @@ namespace tilter
   extern Ramping tilt;
 
 }
+namespace clamp
+{
+extern okapi::Motor clampMotor;
+
+}
 #endif /* end of include guard: MOTORS_HPP */

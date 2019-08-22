@@ -5,6 +5,7 @@
 #include "custom/systems/lift.hpp"
 #include "custom/systems/intake.hpp"
 #include "custom/systems/tilter.hpp"
+#include "custom/systems/clamp.hpp"
 /**
 * Runs the operator control code. This function will be started in its own task
 * with the default priority and stack size whenever the robot is enabled via
@@ -30,5 +31,6 @@ void opcontrol()
 		drive::execute();
 		tilter::tilter();
 		lift::lift();
+		clamp::clampdump();
 	}
 }

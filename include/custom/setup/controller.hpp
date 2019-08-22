@@ -16,11 +16,9 @@ namespace intake{
   extern okapi::ControllerButton BtnRight;
   extern okapi::ControllerButton BtnLeft;
 }
-// namespace clamp{
-//   extern okapi::ControllerButton BtnOpen;
-//   extern okapi::ControllerButton BtnClose;
-// }
-//clamp does not exist right now, im keeping the code for it thats in here for if one gets added
+namespace clamp{
+  extern okapi::ControllerButton BtnToggle;
+}
 namespace tilter
 {
   extern okapi::ControllerButton BtnTiltF;

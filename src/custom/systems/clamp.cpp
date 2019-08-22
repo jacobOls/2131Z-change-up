@@ -5,7 +5,6 @@
 bool clampOpen = false;
 namespace clamp{
   void clampdump(){
-
     if(!clampOpen)
     {
       if(BtnToggle.isPressed())
@@ -13,16 +12,13 @@ namespace clamp{
         clampOpen = true;
         clampMotor.moveAbsolute(180,100);
       }
-
     }
     else
     {
       if(BtnToggle.isPressed())
       {
-
         clampOpen = false;
         clampMotor.moveAbsolute(0,-100);
-
       }
     }
   }

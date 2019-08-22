@@ -4,19 +4,26 @@
 #include "custom/setup/motors.hpp"
 bool clampOpen = false;
 namespace clamp{
-void clampdump(){
-  if(clampOpen == false){
-if(BtnToggle.isPressed())
-{
-  clampOpen = true;
-  clampMotor.moveAbsolute(180,100);
+  void clampdump(){
 
-}
-}
-if(clampOpen == true)
-{
-  clampOpen = false;
-  clampMotor.moveAbsolute(0,-100);
-}
-}
+    if(!clampOpen)
+    {
+      if(BtnToggle.isPressed())
+      {
+        clampOpen = true;
+        clampMotor.moveAbsolute(180,100);
+      }
+
+    }
+    else
+    {
+      if(BtnToggle.isPressed())
+      {
+
+        clampOpen = false;
+        clampMotor.moveAbsolute(0,-100);
+
+      }
+    }
+  }
 }

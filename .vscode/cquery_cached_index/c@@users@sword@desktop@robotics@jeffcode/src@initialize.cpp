@@ -3,7 +3,8 @@
 #include "custom/systems/lift.hpp"
 #include "custom/setup/motors.hpp"
 #include "custom/auton/selection.hpp"
-
+#include "custom/systems/clamp.hpp"
+#include "custom/systems/tilter.hpp"
 // void on_center_button() {
 // 	static bool pressed = false;
 // 	pressed = !pressed;
@@ -23,7 +24,8 @@
 void initialize() {
 	lift::group2.tarePosition();
 	auton::selection::screenInit();
-
+	clamp::clampMotor.tarePosition();
+	tilter::tiltmotor.tarePosition();
 	// pros::lcd::initialize();
 	// pros::lcd::set_text(1, "lets see if it worked");
 	//

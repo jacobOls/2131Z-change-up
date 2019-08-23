@@ -6,7 +6,7 @@
 bool clampOpen = false; //is the clamp open or closed
 namespace clamp{
   void clampdump(){
-    if(clampMotor.getPosition() >= 250){
+    if(tilter::tiltmotor.getPosition() >= 250){ //checks position of tilter to run first block
       if(!clampOpen)//if its closed run this next code
       {
         if(BtnToggle.isPressed())
@@ -24,7 +24,7 @@ namespace clamp{
         }
       }
     }
-    else
+    else //if the tilter is in a different position do this
     {
       if(!clampOpen)//if its closed run this next code
       {

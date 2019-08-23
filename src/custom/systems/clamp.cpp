@@ -33,15 +33,65 @@ namespace clamp{
           clampOpen = true;
           clampMotor.moveAbsolute(15,100);
         }
+
+        else//if open do this
+        {
+          if(BtnToggle.isPressed())
+          {
+            clampOpen = false;
+            clampMotor.moveAbsolute(0,-100);
+          }
+        }
       }
-      else//if open do this
+    }
+  }
+
+
+
+
+
+  void clampAgain()
+  {
+    if(tilter::tiltmotor.getPosition() >= 700){ //checks position of tilter to run first block
+      if(!clampOpen){
+        if(BtnToggle.isPressed())
+        {
+          clampOpen = true;
+          clampMotor.moveAbsolute(70,100);
+        }
+        else
+        {
+          if(BtnToggle.isPressed())
+          {
+            clampOpen = false;
+            clampMotor.moveAbsolute(0,-100);
+          }
+        }
+      }
+    }
+    else if(tilter::tiltmotor.getPosition() < 700)
+    {
+      if(!clampOpen){
+        if(BtnToggle.isPressed())
+        {
+          clampOpen = true;
+          clampMotor.moveAbsolute(70,100);
+        }
+      }
+      else
       {
         if(BtnToggle.isPressed())
         {
           clampOpen = false;
           clampMotor.moveAbsolute(0,-100);
         }
+
+
+
       }
     }
+
   }
+
+
 }

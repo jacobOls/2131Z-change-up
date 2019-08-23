@@ -31,6 +31,7 @@ void opcontrol()
 		drive::execute();
 		tilter::tilter();
 		lift::lift();
-		clamp::clampdump();
+		// clamp::clampdump();
+		clamp::clampAgain();
 	}
 }

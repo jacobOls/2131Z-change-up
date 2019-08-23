@@ -10,11 +10,11 @@ namespace tilter
   {
     if(BtnTiltF.isPressed())
     {
-      tiltmotor.moveVelocity(25);
+      tiltmotor.moveVelocity(75);
     }
     else if(BtnTiltB.isPressed())
     {
-      tiltmotor.moveVelocity(-25);
+      tiltmotor.moveVelocity(-75);
 
     }
     else

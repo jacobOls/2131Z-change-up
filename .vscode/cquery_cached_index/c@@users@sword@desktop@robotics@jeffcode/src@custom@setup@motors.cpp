@@ -24,7 +24,7 @@ namespace drive
 
         namespace intake
         {
-          okapi::Motor motor(2,true,okapi::AbstractMotor::gearset::green, //left
+          okapi::Motor motor(12,true,okapi::AbstractMotor::gearset::green, //left
             okapi::AbstractMotor::encoderUnits::degrees);
             okapi::Motor motor2(9,false,okapi::AbstractMotor::gearset::green, //right
               okapi::AbstractMotor::encoderUnits::degrees);
@@ -41,7 +41,7 @@ namespace drive
               }
               namespace clamp
               {
-                okapi::Motor clampMotor(5,false,okapi::AbstractMotor::gearset::red,
+                okapi::Motor clampMotor(2,false,okapi::AbstractMotor::gearset::red,
                   okapi::AbstractMotor::encoderUnits::degrees);
 
 

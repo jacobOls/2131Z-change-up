@@ -41,7 +41,7 @@ namespace drive
               }
               namespace clamp
               {
-                okapi::Motor clampMotor(5,false,okapi::AbstractMotor::gearset::red,
+                okapi::Motor clampMotor(5,true,okapi::AbstractMotor::gearset::green,
                   okapi::AbstractMotor::encoderUnits::degrees);
 
 

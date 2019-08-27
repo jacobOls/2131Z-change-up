@@ -5,93 +5,61 @@
 #include "custom/systems/tilter.hpp"
 bool clampOpen = false; //is the clamp open or closed
 namespace clamp{
-  void clampdump(){
-    if(tilter::tiltmotor.getPosition() >= 700){ //checks position of tilter to run first block
-      if(!clampOpen)//if its closed run this next code
-      {
-        if(BtnToggle.isPressed())
-        {
-          clampOpen = true;
-          clampMotor.moveAbsolute(70,100);
-        }
-      }
-      else//if open do this
-      {
-        if(BtnToggle.isPressed())
-        {
-          clampOpen = false;
-          clampMotor.moveAbsolute(0,-100);
-        }
-      }
-    }
-    else //if the tilter is in a different position do this
-    {
-      if(!clampOpen)//if its closed run this next code
-      {
-        if(BtnToggle.isPressed())
-        {
-          clampOpen = true;
-          clampMotor.moveAbsolute(15,100);
-        }
+  //
+  // void clampthings()
+  // {
+  //
+  //     if(!clampOpen){
+  //       if(BtnToggle.isPressed())
+  //       {
+  //         clampOpen = true;
+  //         clampMotor.moveAbsolute(60,100);
+  //       }
+  //     }
+  //     else
+  //       if(BtnToggle.isPressed())
+  //       {
+  //         clampOpen = false;
+  //         clampMotor.moveAbsolute(0,-100);
+  //     }
+  //   }
+  //
+  double targetPos;
+  void changer(){
+    if(targetPos==60){targetPos=0;}
+    else if(targetPos==0){targetPos=60;}
+    clampMotor.moveAbsolute(targetPos,200);
+  }
+  void control(){
+    static bool btnwas;
+    if(BtnToggle.isPressed() && !btnwas)
+    {//init
+      btnwas=true;
 
-        else//if open do this
-        {
-          if(BtnToggle.isPressed())
-          {
-            clampOpen = false;
-            clampMotor.moveAbsolute(0,-100);
-          }
-        }
-      }
+      changer();
+
+    }
+    if(!BtnToggle.isPressed() && btnwas)
+    {//deinit
+      btnwas=false;
     }
   }
-
-
-
-
-
-  void clampAgain()
+  // void clampclose()
+  // {
+  //   static bool btnwas;
+  //
+  //   if(BtnToggle.isPressed() && btnwas)
+  //   {
+  //     clampMotor.moveAbsolute(0,100);
+  //
+  //   }
+  //   if(BtnToggle.isPressed() && !btnwas)
+  //   {
+  //   }
+  //   btnwas = BtnToggle.isPressed();
+  // }
+  void clamptoggle()
   {
-    if(tilter::tiltmotor.getPosition() >= 700){ //checks position of tilter to run first block
-      if(!clampOpen){
-        if(BtnToggle.isPressed())
-        {
-          clampOpen = true;
-          clampMotor.moveAbsolute(70,100);
-        }
-        else
-        {
-          if(BtnToggle.isPressed())
-          {
-            clampOpen = false;
-            clampMotor.moveAbsolute(0,-100);
-          }
-        }
-      }
-    }
-    else if(tilter::tiltmotor.getPosition() < 700)
-    {
-      if(!clampOpen){
-        if(BtnToggle.isPressed())
-        {
-          clampOpen = true;
-          clampMotor.moveAbsolute(70,100);
-        }
-      }
-      else
-      {
-        if(BtnToggle.isPressed())
-        {
-          clampOpen = false;
-          clampMotor.moveAbsolute(0,-100);
-        }
-
-
-
-      }
-    }
-
+    control();
   }
-
-
 }

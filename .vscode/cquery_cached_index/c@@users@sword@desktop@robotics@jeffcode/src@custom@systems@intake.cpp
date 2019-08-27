@@ -2,20 +2,15 @@
 #include "custom/systems/intake.hpp"
 #include "custom/setup/motors.hpp"
 #include "custom/setup/controller.hpp"
+#include "custom/systems/clamp.hpp"
 //intakes cubes
-bool infeed = false;
 namespace intake
 {
-
   void intake()
   {
-
-
     if(BtnLeft.isPressed() && BtnRight.isPressed())
     {
-
       intakegroup.moveVelocity(-200);
-
     }
     else if(BtnOn.isPressed())
     {
@@ -23,6 +18,7 @@ namespace intake
       // infeed = true;
       // {
       intakegroup.moveVelocity(200);
+      clamp::clampMotor.moveAbsolute(60,200);
       // if(BtnOn.isPressed()){
       // infeed = false;
       // }

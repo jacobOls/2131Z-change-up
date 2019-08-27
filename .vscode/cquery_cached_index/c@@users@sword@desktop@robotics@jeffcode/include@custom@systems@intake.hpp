@@ -4,6 +4,10 @@
 namespace intake
 {
   void intake(void);
+  void intakein(void);
+  void outake(void);
+  void spin(void);
+  void intakecontrol(void);
 }
 
 

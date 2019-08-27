@@ -25,7 +25,7 @@ void opcontrol()
 	while (true)
 	{
 		pros::delay(20);
-		intake::intake();
+		intake::intakecontrol();
 		drive::tankDrive();
 		drive::brakeMode();
 		drive::execute();

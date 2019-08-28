@@ -5,7 +5,7 @@
 #include "custom/systems/tilter.hpp"
 #include "custom/systems/intake.hpp"
 bool clampOpen = false; //is the clamp open or closed
-enum clampingState {any, open, close};
+enum clampingState {any, open, close};//
 clampingState overrideState = clampingState::any;
 namespace clamp{
 

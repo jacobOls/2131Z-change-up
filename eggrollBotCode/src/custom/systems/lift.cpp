@@ -24,7 +24,7 @@ namespace lift
   {
     void autonLift(double position, double targetVelocity)
     {
-      motor.movePosition(position, targetVelocity);
+      motor.moveAbsolute(position, targetVelocity);
     }
     void popOpen()
     {

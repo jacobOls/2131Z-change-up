@@ -8,7 +8,12 @@ namespace intake
   void spin(void);
   void intakecontrol(void);
   void stopIfNothingIsPressed(void);
+  namespace auton
+  {
+    void intakeOn(double targetVelocity);
+    void intakeOff(void);
 
+  }
 }
 
 

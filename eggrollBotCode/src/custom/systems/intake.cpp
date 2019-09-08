@@ -53,18 +53,17 @@ namespace intake
   }
   namespace auton
   {
-    bool intakeRunning = false
-      void intakeOn(double targetVelocity)
-      {
-        intakeRunning = true;
-        while(intakeRunning){
-        motor.moveVelocity(targetVelocity);
+    bool intakeRunning = false;
+    void intakeOn(double targetVelocity)
+    {
+      intakeRunning = true;
+      while(intakeRunning){
+        intakegroup.moveVelocity(targetVelocity);
       }
-      }
-      void intakeOff()
-      {
-        intakeRunning = false
-      }
-      }
+    }
+    void intakeOff()
+    {
+      intakeRunning = false;
+    }
   }
 }

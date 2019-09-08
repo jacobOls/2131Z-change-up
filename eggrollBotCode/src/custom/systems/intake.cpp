@@ -64,6 +64,8 @@ namespace intake
     void intakeOff()
     {
       intakeRunning = false;
+      intakegroup.moveVelocity(0);
+      
     }
   }
 }

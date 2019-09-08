@@ -9,14 +9,10 @@ namespace auton
 {
 void driveTest()
 {
-drive::auton::autonDrive(3000, 40);
-pros::delay(1000);
 intake::auton::intakeOn(100);
 pros::delay(1000);
-drive::auton::turn(400,50);
-pros::delay(1000);
 intake::auton::intakeOff();
-pros::delay(1000);
+pros::delay(10000);
 }
 
 

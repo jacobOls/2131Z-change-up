@@ -57,7 +57,7 @@ namespace intake
     void intakeOn(double targetVelocity)
     {
       intakeRunning = true;
-      while(intakeRunning){
+      if(intakeRunning){
         intakegroup.moveVelocity(targetVelocity);
       }
     }
@@ -65,7 +65,7 @@ namespace intake
     {
       intakeRunning = false;
       intakegroup.moveVelocity(0);
-      
+
     }
   }
 }

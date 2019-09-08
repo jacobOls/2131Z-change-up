@@ -28,8 +28,11 @@ namespace lift
     }
     void popOpen()
     {
-      motor.moveVelocity(50);
-      tray::motor.moveVelocity(50);
+      motor.moveAbsolute(100,20);
+      tray::motor.moveAbsolute(100,20);
+      pros::delay(100);
+      motor.moveAbsolute(0,20);
+      tray::motor.moveAbsolute(0,20);
     }
   }
 }

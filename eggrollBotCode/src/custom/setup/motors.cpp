@@ -1,6 +1,6 @@
 #include "main.h"
 #include "motors.hpp"
-
+#include "custom/setup/ramping.hpp"
 
 namespace drive
 {
@@ -14,6 +14,8 @@ namespace drive
           okapi::AbstractMotor::encoderUnits::degrees);
           okapi::MotorGroup left_drive({left_back, left_front});
           okapi::MotorGroup right_drive({right_back, right_front});
+          Ramping drive(1, 5, 200, -200); //need to keep change msec the same; for now ... tasks
+
         }
         namespace tray
         {

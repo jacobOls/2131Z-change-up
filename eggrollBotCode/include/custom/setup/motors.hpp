@@ -1,6 +1,7 @@
 #ifndef MOTORS_HPP
 #define MOTORS_HPP
 #include "main.h"
+#include "custom/setup/ramping.hpp"
 namespace drive
 {
   extern okapi::Motor left_back;
@@ -9,6 +10,8 @@ namespace drive
   extern okapi::Motor right_front;
   extern okapi::MotorGroup left_drive;
   extern okapi::MotorGroup right_drive;
+  extern Ramping drive;
+
 }
 namespace tray
 {

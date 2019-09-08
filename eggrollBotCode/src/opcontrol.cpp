@@ -28,7 +28,7 @@ void opcontrol() {
 		lift::lift();
 		tray::tray();
 		tray::execute();
-		auton::driveTest();
+		// auton::driveTest();
 		pros::delay(20);
 	}
 }

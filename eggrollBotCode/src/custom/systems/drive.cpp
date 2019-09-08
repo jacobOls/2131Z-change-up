@@ -2,6 +2,7 @@
 #include "custom/setup/motors.hpp"
 #include "custom/setup/controller.hpp"
 #include "custom/systems/drive.hpp"
+#include "custom/setup/ramping.hpp"
 namespace drive{
   int rightVel; //right side velocity
   int leftVel; //left side velocity
@@ -48,6 +49,7 @@ namespace drive{
   {
 
     #define wheelCircumfrance 12.56;
+
     void resetPositions()
     {
       left_drive.tarePosition();
@@ -56,37 +58,37 @@ namespace drive{
     }
     void autonDrive(double distance, double targetVelocity)
     {
+
       double Deg = distance*365 /wheelCircumfrance;
       if(left_front.getPosition() < distance || right_front.getPosition() < distance)
       {
         left_drive.moveVelocity(targetVelocity);
         right_drive.moveVelocity(targetVelocity);
+        pros::delay(1);
       }
-      else if(left_front.getPosition() > distance || right_front.getPosition() > distance)
+      else if(left_front.getPosition() >= distance && right_front.getPosition() >= distance)
 
-      {
-        left_drive.moveVelocity(-targetVelocity/2);
-        right_drive.moveVelocity(-targetVelocity/2);
-      }
-      else
       {
         left_drive.moveVelocity(0);
         right_drive.moveVelocity(0);
         resetPositions();
       }
+
     }
     void turn(double amount, double targetVelocity)
     {
-      if(left_front.getPosition() < amount || right_front.getPosition() < amount)
+      if(left_front.getPosition() < amount)
       {
         left_drive.moveVelocity(targetVelocity);
         right_drive.moveVelocity(-targetVelocity);
+        pros::delay(1);
       }
-      else if(left_front.getPosition() > amount || right_front.getPosition() > amount)
+      else if(left_front.getPosition() > amount)
 
       {
-        left_drive.moveVelocity(-targetVelocity/2);
-        right_drive.moveVelocity(targetVelocity/2);
+        left_drive.moveVelocity(-targetVelocity/5);
+        right_drive.moveVelocity(targetVelocity/5);
+        pros::delay(1);
       }
       else
       {
@@ -95,5 +97,17 @@ namespace drive{
         resetPositions();
       }
     }
+    void ramping(void*)
+{
+  static uint32_t start;
+
+  drive.calculate();
+  pros::Task::delay_until(&start, drive.get_changeMsec());
+}
+//adds ramping to the tilter
+void taskInit(){
+  pros::Task rampingTask(ramping, (void*) "test", TASK_PRIORITY_DEFAULT,
+  TASK_STACK_DEPTH_DEFAULT,"drive");
   }
+}
 }

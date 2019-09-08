@@ -7,13 +7,16 @@
 #include "main.h"
 namespace auton
 {
-void driveTest()
-{
-intake::auton::intakeOn(100);
-pros::delay(1000);
-intake::auton::intakeOff();
-pros::delay(10000);
-}
+  void wait(double waitTime)
+  {
+    pros::delay(waitTime);
+
+//autonomous routines start here
+  }
+  void driveTest()
+  {
+    drive::auton::autonDrive(500,50);
+  }
 
 
 

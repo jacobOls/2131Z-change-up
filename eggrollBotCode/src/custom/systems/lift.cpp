@@ -3,31 +3,26 @@
 #include "custom/setup/controller.hpp"
 #include "custom/systems/lift.hpp"
 #include "custom/systems/tray.hpp"
-namespace lift
-{
-  void lift()
-  {
+namespace lift{
+  void lift(){
     if(BtnUp.isPressed()){
       motor.moveVelocity(100);
     }
     else if(BtnDown.isPressed()){
       motor.moveVelocity(-100);
     }
-    else
-    {
+    else{
       motor.moveVelocity(0);
       motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
 
     }
   }
-  namespace auton
-  {
+  namespace auton{
     void autonLift(double position, double targetVelocity)
     {
       motor.moveAbsolute(position, targetVelocity);
     }
-    void popOpen()
-    {
+    void popOpen(){
       motor.moveAbsolute(100,20);
       tray::motor.moveAbsolute(100,20);
       pros::delay(100);

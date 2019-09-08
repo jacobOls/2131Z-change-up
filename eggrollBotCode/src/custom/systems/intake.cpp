@@ -22,8 +22,7 @@ namespace intake
     intakegroup.moveVelocity(0);
   }
 
-  void intake()
-  {
+  void intake(){
     if (BothLeftAndRightButtonsPressed())
     {
       intakegroup.moveVelocity(-200);
@@ -32,8 +31,7 @@ namespace intake
     {
       intakegroup.moveVelocity(200);
     }
-    else if(BtnOut.isPressed())
-    {
+    else if(BtnOut.isPressed()){
       intakegroup.moveVelocity(-50);
     }
     else if(BtnLeft.isPressed())
@@ -41,18 +39,15 @@ namespace intake
       spinLeft();
 
     }
-    else if(BtnRight.isPressed())
-    {
+    else if(BtnRight.isPressed()){
       spinRight();
 
     }
-    else
-    {
+    else{
       stopIntake();
     }
   }
-  namespace auton
-  {
+  namespace auton{
     bool intakeRunning = false;
     void intakeOn(double targetVelocity)
     {
@@ -61,8 +56,7 @@ namespace intake
         intakegroup.moveVelocity(targetVelocity);
       }
     }
-    void intakeOff()
-    {
+    void intakeOff(){
       intakeRunning = false;
       intakegroup.moveVelocity(0);
 

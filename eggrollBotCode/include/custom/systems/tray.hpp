@@ -6,6 +6,7 @@ namespace tray
   enum class Contollers{FORWARD,BACKWARD,DEINT,NONE};
   void tray(void);
   void execute(void);
+  void tilter(void);
   namespace auton
   {
     void stack(double tiltPosition, double targetVelocity, double delay);

@@ -51,4 +51,20 @@ namespace intake
       stopIntake();
     }
   }
+  namespace auton
+  {
+    bool intakeRunning = false
+      void intakeOn(double targetVelocity)
+      {
+        intakeRunning = true;
+        while(intakeRunning){
+        motor.moveVelocity(targetVelocity);
+      }
+      }
+      void intakeOff()
+      {
+        intakeRunning = false
+      }
+      }
+  }
 }

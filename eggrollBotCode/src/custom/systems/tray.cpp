@@ -4,7 +4,7 @@
 #include "custom/setup/motors.hpp"
 bool trayMove = false;
 const double traySpeed = 35.0;
-const double position =  475.0;
+const double position =  400.0;
 namespace tray{
   // Contollers controller = Contollers::NONE;
   bool motorCanTravel() {
@@ -48,7 +48,7 @@ namespace tray{
     void stack(double tiltPosition, double targetVelocity)
     {
       motor.moveAbsolute(tiltPosition, targetVelocity);
-      pros::delay(3);
+      pros::delay(3000);
       motor.moveAbsolute(0, targetVelocity);
     }
   }

@@ -3,8 +3,7 @@
 #include "custom/setup/controller.hpp"
 #include "custom/setup/motors.hpp"
 bool trayMove = false;
-#define traySpeed 35
-//#define position 100
+const double traySpeed = 35.0;
 const double position =  350.0;
 namespace tray
 {

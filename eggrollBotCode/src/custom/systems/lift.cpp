@@ -4,19 +4,38 @@
 #include "custom/systems/lift.hpp"
 #include "custom/systems/tray.hpp"
 namespace lift{
-  void lift(){
+  const double position = 10;
+  const double velocity = 50;
+  bool liftUp(){
+    return motor.getPosition() > position;
+  }
+  bool buttonsPressed(){
+    return  BtnUp.isPressed() && BtnDown.isPressed();
+  }
+  void up(){
     if(BtnUp.isPressed()){
-      motor.moveVelocity(100);
+      motor.moveVelocity(velocity);
     }
-    else if(BtnDown.isPressed()){
-      motor.moveVelocity(-100);
-    }
-    else{
-      motor.moveVelocity(0);
-      motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-
+    if(liftUp()){
+      tray::motor.moveAbsolute(50,velocity);
     }
   }
+  void down(){
+    if(BtnDown.isPressed()){
+      motor.moveVelocity(-velocity);
+    }
+  }
+  void nothing(){
+    if (!buttonsPressed()) {
+      motor.moveVelocity(0);
+    }
+  }
+  void lift(){
+    up();
+    down();
+    nothing();
+  }
+
   namespace auton{
     void autonLift(double position, double targetVelocity)
     {

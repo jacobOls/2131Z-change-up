@@ -16,6 +16,7 @@ void initialize() {
 	drive::left_drive.tarePosition();
 	drive::right_drive.tarePosition();
 	intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	lift::motor.tarePosition();
 }
 
 /**

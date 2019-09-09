@@ -4,15 +4,19 @@
 #include "custom/setup/motors.hpp"
 bool trayMove = false;
 #define traySpeed 35
-#define position -150
+//#define position 100
+const double position =  350.0;
 namespace tray
 {
-  Contollers controller = Contollers::NONE;
-
+  // Contollers controller = Contollers::NONE;
+  bool motorCanTravel() {
+    return motor.getPosition() < position;
+  }
   void forward(){
-    if(BtnF.isPressed() && motor.getPosition() > -150){
-      motor.moveVelocity(traySpeed);
-      pros::delay(1);
+    if (motorCanTravel()){
+      if( BtnF.isPressed()){
+        motor.moveVelocity(traySpeed);
+      }
     }
   }
   void back(){
@@ -21,23 +25,25 @@ namespace tray
     }
   }
   void nothing(){
+    if (!motorCanTravel()) {
+      if (!BtnB.isPressed()) {
+        motor.moveVelocity(0);
+      }
+    }
     if(!BtnB.isPressed() && !BtnF.isPressed()){
       motor.moveVelocity(0);
     }
   }
   void tilter(){
-    if(motor.getPosition() > -150){
+    if(motorCanTravel()){
       forward();
       back();
       nothing();
-      pros::delay(1);
     }
-    else if(motor.getPosition() <= -150){
+    else {
       back();
       nothing();
-      pros::delay(1);
     }
-
   }
   // void tray(){
   //   if(motor.getPosition() > position)
@@ -89,10 +95,10 @@ namespace tray
   //   }
   // }
   namespace auton{
-    void stack(double tiltPosition, double targetVelocity, double delay)
+    void stack(double tiltPosition, double targetVelocity)
     {
       motor.moveAbsolute(tiltPosition, targetVelocity);
-      pros::delay(delay);
+      pros::delay(3);
       motor.moveAbsolute(0, targetVelocity);
     }
   }

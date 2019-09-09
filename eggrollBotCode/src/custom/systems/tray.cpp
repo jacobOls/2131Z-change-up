@@ -45,55 +45,7 @@ namespace tray
       nothing();
     }
   }
-  // void tray(){
-  //   if(motor.getPosition() > position)
-  //   {
-  //     if(BtnF.isPressed())
-  //     {
-  //       controller=Contollers::FORWARD;
-  //       motor.moveVelocity(traySpeed);
-  //     }
-  //     else if(BtnB.isPressed())
-  //     {
-  //       controller=Contollers::BACKWARD;
-  //
-  //       motor.moveVelocity(-traySpeed);
-  //     }
-  //     else
-  //     {
-  //       controller=Contollers::DEINT;
-  //
-  //
-  //     }
-  //   }
-  //   else{//zone 2
-  //     if(BtnB.isPressed())
-  //     {
-  //       controller=Contollers::BACKWARD;
-  //       motor.moveVelocity(-traySpeed);
-  //     }
-  //     else{
-  //       controller=Contollers::DEINT;
-  //
-  //     }
-  //   }
-  // }
-  // void execute(){
-  //   switch (controller) {
-  //     case Contollers::FORWARD:
-  //     motor.moveVelocity(traySpeed);
-  //     break;
-  //     case Contollers::BACKWARD:
-  //     motor.moveVelocity(-traySpeed);
-  //     break;
-  //     case Contollers::DEINT:
-  //     motor.moveVelocity(0);
-  //     controller = Contollers::NONE;
-  //     break;
-  //     case Contollers::NONE:
-  //     break;
-  //   }
-  // }
+
   namespace auton{
     void stack(double tiltPosition, double targetVelocity)
     {

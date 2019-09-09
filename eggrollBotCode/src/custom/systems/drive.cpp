@@ -64,7 +64,6 @@ namespace drive{
       {
         left_drive.moveVelocity(targetVelocity);
         right_drive.moveVelocity(targetVelocity);
-        pros::delay(1);
       }
       else if(left_front.getPosition() >= distance && right_front.getPosition() >= distance)
 

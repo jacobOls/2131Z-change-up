@@ -6,6 +6,8 @@
 namespace lift{
   const double position = 10;
   const double velocity = 50;
+  const double trayVelocity = 35;
+
   bool liftUp(){
     return motor.getPosition() > position;
   }
@@ -16,8 +18,11 @@ namespace lift{
     if(BtnUp.isPressed()){
       motor.moveVelocity(velocity);
     }
+
+  }
+  void moveTray(){
     if(liftUp()){
-      tray::motor.moveAbsolute(50,velocity);
+      tray::motor.moveAbsolute(50,trayVelocity);
     }
   }
   void down(){
@@ -32,6 +37,7 @@ namespace lift{
   }
   void lift(){
     up();
+    moveTray();
     down();
     nothing();
   }

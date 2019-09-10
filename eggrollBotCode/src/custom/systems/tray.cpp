@@ -2,13 +2,17 @@
 #include "custom/systems/tray.hpp"
 #include "custom/setup/controller.hpp"
 #include "custom/setup/motors.hpp"
+#include "custom/systems/lift.hpp"
 bool trayMove = false;
-const double traySpeed = 35.0;
+const double traySpeed = 25.0;
 const double position =  450.0;
 namespace tray{
   // Contollers controller = Contollers::NONE;
   bool motorCanTravel() {
     return motor.getPosition() < position;
+  }
+  bool liftUp(){
+    return lift::motor.getPosition() > position;
   }
   void forward(){
     if (motorCanTravel()){
@@ -21,6 +25,13 @@ namespace tray{
     if(BtnB.isPressed()){
       motor.moveVelocity(-traySpeed);
     }
+  }
+  void isLiftUp(){
+    if(liftUp()){
+      motor.moveAbsolute(100,50);
+    }
+    else if(!BtnB.isPressed() && !BtnF.isPressed())
+    motor.moveVelocity(0);
   }
   void nothing(){
     if (!motorCanTravel()) {
@@ -36,7 +47,6 @@ namespace tray{
     if(motorCanTravel()){
       forward();
       back();
-      nothing();
     }
     else {
       back();

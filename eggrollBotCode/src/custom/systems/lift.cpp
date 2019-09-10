@@ -14,77 +14,54 @@ namespace lift{
   bool buttonsPressed(){
     return  BtnUp.isPressed() && BtnDown.isPressed();
   }
-  // void up(){
-  //   if(BtnUp.isPressed()){
-  //     motor.moveVelocity(velocity);
-  //   }
-  //
-  // }
-  // void moveTray(){
+  // void getOutOfTheWay(){
   //   if(liftUp()){
-  //     tray::motor.moveAbsolute(50,trayVelocity);
+  //     tray::motor.moveAbsolute(100,100);
+  //     pros::lcd::set_text(1,"lift is up");
   //   }
-  // }
-  // void down(){
-  //   if(BtnDown.isPressed()){
-  //     motor.moveVelocity(-velocity);
-  //   }
-  // }
-  // void nothing(){
-  //   if (!buttonsPressed()) {
-  //     motor.moveVelocity(0);
-  //   }
-  // }
-  // void lift(){
-  //   up();
-  //   moveTray();
-  //   down();
-  //   nothing();
   // }
   void lift(){
     if(BtnUp.isPressed()){
       motor.moveVelocity(100);
+      // getOutOfTheWay();
     }
     else if(BtnDown.isPressed()){
       motor.moveVelocity(-100);
+      // getOutOfTheWay();
     }
     else if(!buttonsPressed()){
       motor.moveVelocity(0);
-    }
-    else{
-      if(motor.getPosition() >= position){
-        tray::motor.moveAbsolute(100, trayVelocity);
-      }
+      // getOutOfTheWay();
     }
   }
-  namespace auton{
-    const double absolutePosition = 25;
-    const double epsilon = 5;
-    bool isMotorWithinRange() {
-      double position = motor.getPosition();
-      if (position > absolutePosition - epsilon) {
-        return true;
-      }
-      if (position < absolutePosition + epsilon) {
-        return true;
-      }
-      return false;
+namespace auton{
+  const double absolutePosition = 25;
+  const double epsilon = 5;
+  bool isMotorWithinRange() {
+    double position = motor.getPosition();
+    if (position > absolutePosition - epsilon) {
+      return true;
     }
-    void autonLift(double position, double targetVelocity)
-    {
-      while(!isMotorWithinRange()){
-        motor.moveVelocity(targetVelocity);
-      }
-      if(isMotorWithinRange()){
-        motor.moveVelocity(0);
-      }
+    if (position < absolutePosition + epsilon) {
+      return true;
     }
-    void popOpen(){
-      motor.moveAbsolute(100,20);
-      tray::motor.moveAbsolute(100,20);
-      pros::delay(100);
-      motor.moveAbsolute(0,20);
-      tray::motor.moveAbsolute(0,20);
+    return false;
+  }
+  void autonLift(double position, double targetVelocity)
+  {
+    while(!isMotorWithinRange()){
+      motor.moveVelocity(targetVelocity);
+    }
+    if(isMotorWithinRange()){
+      motor.moveVelocity(0);
     }
   }
+  void popOpen(){
+    motor.moveAbsolute(100,20);
+    tray::motor.moveAbsolute(100,20);
+    pros::delay(100);
+    motor.moveAbsolute(0,20);
+    tray::motor.moveAbsolute(0,20);
+  }
+}
 }

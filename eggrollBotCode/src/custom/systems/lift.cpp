@@ -4,7 +4,7 @@
 #include "custom/systems/lift.hpp"
 #include "custom/systems/tray.hpp"
 namespace lift{
-  const double position = 10;
+  const double position = 25;
   const double velocity = 50;
   const double trayVelocity = 35;
 
@@ -44,21 +44,39 @@ namespace lift{
   void lift(){
     if(BtnUp.isPressed()){
       motor.moveVelocity(100);
-      if(liftUp()){
-        tray::motor.moveAbsolute(50,50);
-      }
+    }
+    if(motor.getPosition() >= position){
+      tray::motor.moveAbsolute(150, trayVelocity);
     }
     else if(BtnDown.isPressed()){
       motor.moveVelocity(-100);
     }
     else{
+      motor.moveVelocity(0);
       motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
     }
   }
   namespace auton{
+    const double absolutePosition = 25;
+    const double epsilon = 5;
+    bool isMotorWithinRange() {
+      double position = motor.getPosition();
+      if (position > absolutePosition - epsilon) {
+        return true;
+      }
+      if (position < absolutePosition + epsilon) {
+        return true;
+      }
+      return false;
+    }
     void autonLift(double position, double targetVelocity)
     {
-      motor.moveAbsolute(position, targetVelocity);
+      while(!isMotorWithinRange()){
+        motor.moveVelocity(targetVelocity);
+      }
+      if(isMotorWithinRange()){
+        motor.moveVelocity(0);
+      }
     }
     void popOpen(){
       motor.moveAbsolute(100,20);

@@ -4,7 +4,7 @@
 #include "custom/setup/motors.hpp"
 bool trayMove = false;
 const double traySpeed = 35.0;
-const double position =  400.0;
+const double position =  450.0;
 namespace tray{
   // Contollers controller = Contollers::NONE;
   bool motorCanTravel() {

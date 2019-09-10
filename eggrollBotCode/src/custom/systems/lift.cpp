@@ -14,34 +14,47 @@ namespace lift{
   bool buttonsPressed(){
     return  BtnUp.isPressed() && BtnDown.isPressed();
   }
-  void up(){
-    if(BtnUp.isPressed()){
-      motor.moveVelocity(velocity);
-    }
-
-  }
-  void moveTray(){
-    if(liftUp()){
-      tray::motor.moveAbsolute(50,trayVelocity);
-    }
-  }
-  void down(){
-    if(BtnDown.isPressed()){
-      motor.moveVelocity(-velocity);
-    }
-  }
-  void nothing(){
-    if (!buttonsPressed()) {
-      motor.moveVelocity(0);
-    }
-  }
+  // void up(){
+  //   if(BtnUp.isPressed()){
+  //     motor.moveVelocity(velocity);
+  //   }
+  //
+  // }
+  // void moveTray(){
+  //   if(liftUp()){
+  //     tray::motor.moveAbsolute(50,trayVelocity);
+  //   }
+  // }
+  // void down(){
+  //   if(BtnDown.isPressed()){
+  //     motor.moveVelocity(-velocity);
+  //   }
+  // }
+  // void nothing(){
+  //   if (!buttonsPressed()) {
+  //     motor.moveVelocity(0);
+  //   }
+  // }
+  // void lift(){
+  //   up();
+  //   moveTray();
+  //   down();
+  //   nothing();
+  // }
   void lift(){
-    up();
-    moveTray();
-    down();
-    nothing();
+    if(BtnUp.isPressed()){
+      motor.moveVelocity(100);
+      if(liftUp()){
+        tray::motor.moveAbsolute(50,50);
+      }
+    }
+    else if(BtnDown.isPressed()){
+      motor.moveVelocity(-100);
+    }
+    else{
+      motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+    }
   }
-
   namespace auton{
     void autonLift(double position, double targetVelocity)
     {

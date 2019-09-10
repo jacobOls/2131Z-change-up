@@ -50,6 +50,18 @@ namespace drive{
 
     #define wheelCircumfrance 12.56;
     // double Deg = distance*365 /wheelCircumfrance;
+    const double distance = 25;
+    const double epsilon = 5;
+    bool isMotorWithinRange() {
+      double currentPosition = left_drive.getPosition() || right_drive.getPosition();
+      if (currentPosition > distance - epsilon) {
+        return true;
+      }
+      if (currentPosition < distance + epsilon) {
+        return true;
+      }
+      return false;
+    }
 
     void resetPositions()
     {
@@ -60,13 +72,13 @@ namespace drive{
     void autonDrive(double distance, double targetVelocity)
     {
 
-      while(left_front.getPosition() < distance || right_front.getPosition() < distance)
+      while(!isMotorWithinRange())
       {
         left_drive.moveVelocity(targetVelocity);
         right_drive.moveVelocity(targetVelocity);
         pros::delay(20);
       }
-      if(left_front.getPosition() >= distance && right_front.getPosition() >= distance)
+      if(isMotorWithinRange())
       {
         left_drive.moveVelocity(0);
         right_drive.moveVelocity(0);

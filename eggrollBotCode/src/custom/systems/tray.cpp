@@ -45,11 +45,27 @@ namespace tray{
   }
 
   namespace auton{
-    void stack(double tiltPosition, double targetVelocity)
-    {
-      motor.moveAbsolute(tiltPosition, targetVelocity);
-      pros::delay(3000);
-      motor.moveAbsolute(0, targetVelocity);
+    const double absolutePosition = 25;
+    const double epsilon = 5;
+    bool isMotorWithinRange() {
+      double currentPosition = motor.getPosition();
+      if (currentPosition > absolutePosition - epsilon) {
+        return true;
+      }
+      if (currentPosition < absolutePosition + epsilon) {
+        return true;
+      }
+      return false;
+    }
+    void stack(double currentPosition, double targetVelocity){
+
+      while(!isMotorWithinRange())
+      {
+        motor.moveVelocity(targetVelocity);
+        pros::delay(20);
+      }
+      if(isMotorWithinRange())
+      motor.moveVelocity(0);
     }
   }
 }

@@ -18,11 +18,8 @@ namespace auton
     lift::auton::popOpen();
     intake::auton::intakeOn(200);
     drive::auton::autonDrive(1000,200);
-    wait(1000);
     drive::auton::turn(20,50);
-    wait(500);
     drive::auton::autonDrive(1200,200);
-    wait(1000);
     tray::auton::stack(475, 35);
   }
 

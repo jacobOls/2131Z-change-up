@@ -378,11 +378,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/custom/systems/tray.cpp.o",
-            "src\\custom\\systems\\tray.cpp"
+            "bin/custom/systems/lift.cpp.o",
+            "src\\custom\\systems\\lift.cpp"
         ],
         "directory": "C:\\Users\\sword\\Desktop\\robotics\\git\\eggrollBotCode",
-        "file": "src\\custom\\systems\\tray.cpp"
+        "file": "src\\custom\\systems\\lift.cpp"
     },
     {
         "arguments": [
@@ -413,10 +413,10 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/custom/systems/lift.cpp.o",
-            "src\\custom\\systems\\lift.cpp"
+            "bin/custom/systems/tray.cpp.o",
+            "src\\custom\\systems\\tray.cpp"
         ],
         "directory": "C:\\Users\\sword\\Desktop\\robotics\\git\\eggrollBotCode",
-        "file": "src\\custom\\systems\\lift.cpp"
+        "file": "src\\custom\\systems\\tray.cpp"
     }
 ]

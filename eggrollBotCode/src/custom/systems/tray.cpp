@@ -61,7 +61,7 @@ namespace tray{
       // nothing();
     }
   void execute(){
-if(lift::getPosition()<25 && motor.getPosition()<150) controller= Controllers::LIFT;
+if(lift::getPosition()>25 && motor.getPosition()<150) controller= Controllers::LIFT;
     if(!motorCanTravel() && controller== Controllers::FORWARD) controller= Controllers::DEINT;
     switch (controller) {
       case Controllers::FORWARD:

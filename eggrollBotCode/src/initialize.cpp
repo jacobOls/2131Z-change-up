@@ -12,7 +12,7 @@
 void initialize() {
 	pros::lcd::initialize();
 	tray::motor.tarePosition();
-	tray::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+	tray::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	drive::left_drive.tarePosition();
 	drive::right_drive.tarePosition();
 	intake::right_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);

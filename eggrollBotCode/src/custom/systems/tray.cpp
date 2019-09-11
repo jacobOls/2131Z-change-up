@@ -5,6 +5,9 @@
 #include "custom/systems/lift.hpp"
 
 namespace tray{
+  const double epsilon = 5;
+  const double upPosition = 150;
+  const double liftPosition = 25;
   // bool trayMove = false;
   const double traySpeed = 25.0;
   const double position =  585.0;
@@ -50,18 +53,18 @@ namespace tray{
   // }
   void tilter(){
     // if(motorCanTravel()){
-      forward();
-      back();
-      execute();
-      // nothing();
+    forward();
+    back();
+    execute();
+    // nothing();
 
     // }
     // else {
-      // back();
-      // nothing();
-    }
+    // back();
+    // nothing();
+  }
   void execute(){
-if(lift::getPosition()>25 && motor.getPosition()<150) controller= Controllers::LIFT;
+    if(lift::getPosition()>liftPosition && motor.getPosition()<upPosition) controller= Controllers::LIFT;
     if(!motorCanTravel() && controller== Controllers::FORWARD) controller= Controllers::DEINT;
     switch (controller) {
       case Controllers::FORWARD:
@@ -76,15 +79,21 @@ if(lift::getPosition()>25 && motor.getPosition()<150) controller= Controllers::L
       break;
       case Controllers::NONE:
       break;
-      case Controllers::LIFT:
-      motor.moveAbsolute(150+25, traySpeed);
+      case Controllers::RETURN:
+      pros::lcd::set_text(1,"RETURN" );
+      motor.moveAbsolute(0,75);
       if(motor.isStopped()) controller = Controllers::DEINT;
+      case Controllers::LIFT:
+      pros::lcd::set_text(2,std::to_string(lift::getPosition()));
+      // std::cout<<std::to_string(lift::getPosition()<<std::endl;
+      motor.moveAbsolute(upPosition +25, 75);
+      if(lift::getPosition()<25) controller = Controllers::RETURN;
+      pros::lcd::set_text(3,"after Return ran");
       break;
     }
   }
   namespace auton{
     const double absolutePosition = 25;
-    const double epsilon = 5;
     bool isMotorWithinRange() {
       double currentPosition = motor.getPosition();
       if (currentPosition > absolutePosition - epsilon) {

@@ -8,7 +8,7 @@ namespace lift{
   const double velocity = 50;
   const double trayVelocity = 35;
   double getPosition(){
-    return motor.getPosition();
+    return lift::motor.getPosition();
   }
 
   bool liftUp(){

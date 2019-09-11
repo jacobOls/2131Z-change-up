@@ -32,7 +32,7 @@ namespace intake
       intakegroup.moveVelocity(200);
     }
     else if(BtnOut.isPressed()){
-      intakegroup.moveVelocity(-50);
+      intakegroup.moveVelocity(-200);
     }
     else if(BtnLeft.isPressed())
     {

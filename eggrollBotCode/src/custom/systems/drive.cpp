@@ -7,9 +7,8 @@ namespace drive{
   int rightVel; //right side velocity
   int leftVel; //left side velocity
   bool isBraked = false;//checks if the bot is braked
-  void tankDrive()
-  //drive code
-  {
+  void tankDrive(){
+    //drive code
     if(std::abs(master.getAnalog(okapi::ControllerAnalog::leftY))<0.05) leftVel=0;
     //if input is not great enough, do not move motor so there is no accidetnal input
     else	leftVel=(master.getAnalog(ControllerAnalog::leftY)*200);
@@ -22,18 +21,14 @@ namespace drive{
 
   }
 
-  void brakeMode()
-  //brakes the bot
-  {
-    if(BtnBrake.isPressed())
-    {
+  void brakeMode(){
+    //brakes the bot
+    if(BtnBrake.isPressed()){
       isBraked = true;
-      while (isBraked)
-      {
+      while (isBraked){
         right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
         left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-        if(BtnBrake.isPressed())
-        {
+        if(BtnBrake.isPressed()){
           isBraked = false;
           right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
           left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
@@ -52,7 +47,7 @@ namespace drive{
     // double Deg = distance*365 /wheelCircumfrance;
     const double distance = 25;
     const double epsilon = 5;
-    bool isMotorWithinRange() {
+    bool isMotorWithinRange(){
       double currentPosition = left_drive.getPosition() || right_drive.getPosition();
       if (currentPosition > distance - epsilon) {
         return true;
@@ -63,33 +58,26 @@ namespace drive{
       return false;
     }
 
-    void resetPositions()
-    {
+    void resetPositions(){
       left_drive.tarePosition();
       right_drive.tarePosition();
 
     }
-    void autonDrive(double distance, double targetVelocity)
-    {
+    void autonDrive(double distance, double targetVelocity){
 
-      while(!isMotorWithinRange())
-      {
+      while(!isMotorWithinRange()){
         left_drive.moveVelocity(targetVelocity);
         right_drive.moveVelocity(targetVelocity);
         pros::delay(20);
       }
-      if(isMotorWithinRange())
-      {
+      if(isMotorWithinRange()){
         left_drive.moveVelocity(0);
         right_drive.moveVelocity(0);
         resetPositions();
       }
-
     }
-    void turn(double amount, double targetVelocity)
-    {
-      while(left_front.getPosition() < amount)
-      {
+    void turn(double amount, double targetVelocity){
+      while(left_front.getPosition() < amount){
         left_drive.moveVelocity(targetVelocity);
         right_drive.moveVelocity(-targetVelocity);
         pros::delay(20);

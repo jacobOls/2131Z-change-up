@@ -5,16 +5,13 @@
 #include "custom/systems/lift.hpp"
 #include "custom/systems/intake.hpp"
 #include "main.h"
-namespace auton
-{
-  void wait(double waitTime)
-  {
+namespace auton{
+  void wait(double waitTime){
     pros::delay(waitTime);
+  }
 
 //autonomous routines start here
-  }
-  void firstAuton()
-  {
+  void firstAuton(){
     lift::auton::popOpen();
     intake::auton::intakeOn(200);
     drive::auton::autonDrive(1000,200);

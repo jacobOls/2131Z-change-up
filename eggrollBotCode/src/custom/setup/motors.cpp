@@ -2,8 +2,7 @@
 #include "motors.hpp"
 #include "custom/setup/ramping.hpp"
 
-namespace drive
-{
+namespace drive{
   okapi::Motor left_back(19,true,okapi::AbstractMotor::gearset::green,
     okapi::AbstractMotor::encoderUnits::degrees);
     okapi::Motor left_front(17,false,okapi::AbstractMotor::gearset::green,
@@ -17,15 +16,13 @@ namespace drive
           Ramping drive(1, 5, 200, -200); //need to keep change msec the same; for now ... tasks
 
         }
-        namespace tray
-        {
+        namespace tray{
           okapi::Motor motor(8,true,okapi::AbstractMotor::gearset::red,
             okapi::AbstractMotor::encoderUnits::degrees);
 
           }
 
-          namespace intake
-          {
+          namespace intake{
             okapi::Motor left_motor(1,false,okapi::AbstractMotor::gearset::green, //left
               okapi::AbstractMotor::encoderUnits::degrees);
               okapi::Motor right_motor(3,true,okapi::AbstractMotor::gearset::green, //right
@@ -33,8 +30,7 @@ namespace drive
 
                 okapi::MotorGroup intakegroup({left_motor, right_motor});
               }
-              namespace lift
-              {
+              namespace lift{
                 okapi::Motor motor(2,false,okapi::AbstractMotor::gearset::red,
                   okapi::AbstractMotor::encoderUnits::degrees);
 

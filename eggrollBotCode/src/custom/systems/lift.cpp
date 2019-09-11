@@ -34,34 +34,33 @@ namespace lift{
       // getOutOfTheWay();
     }
   }
-namespace auton{
-  const double absolutePosition = 25;
-  const double epsilon = 5;
-  bool isMotorWithinRange() {
-    double position = motor.getPosition();
-    if (position > absolutePosition - epsilon) {
-      return true;
+  namespace auton{
+    const double absolutePosition = 25;
+    const double epsilon = 5;
+    bool isMotorWithinRange() {
+      double position = motor.getPosition();
+      if (position > absolutePosition - epsilon) {
+        return true;
+      }
+      if (position < absolutePosition + epsilon) {
+        return true;
+      }
+      return false;
     }
-    if (position < absolutePosition + epsilon) {
-      return true;
+    void autonLift(double position, double targetVelocity){
+      while(!isMotorWithinRange()){
+        motor.moveVelocity(targetVelocity);
+      }
+      if(isMotorWithinRange()){
+        motor.moveVelocity(0);
+      }
     }
-    return false;
+    void popOpen(){
+      motor.moveAbsolute(100,20);
+      tray::motor.moveAbsolute(100,20);
+      pros::delay(100);
+      motor.moveAbsolute(0,20);
+      tray::motor.moveAbsolute(0,20);
+    }
   }
-  void autonLift(double position, double targetVelocity)
-  {
-    while(!isMotorWithinRange()){
-      motor.moveVelocity(targetVelocity);
-    }
-    if(isMotorWithinRange()){
-      motor.moveVelocity(0);
-    }
-  }
-  void popOpen(){
-    motor.moveAbsolute(100,20);
-    tray::motor.moveAbsolute(100,20);
-    pros::delay(100);
-    motor.moveAbsolute(0,20);
-    tray::motor.moveAbsolute(0,20);
-  }
-}
 }

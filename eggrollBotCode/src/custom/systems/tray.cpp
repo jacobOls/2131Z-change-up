@@ -25,7 +25,7 @@ namespace tray{
     if( BtnF.isPressed()){
       controller = Controllers::FORWARD;
     }
-    else{
+    else if (controller==Controllers::FORWARD){
       controller = Controllers::DEINT;
     }
   }
@@ -35,7 +35,7 @@ namespace tray{
     if(BtnB.isPressed()){
       controller = Controllers::BACKWARD;
     }
-    else if(!BtnB.isPressed() && !BtnF.isPressed()){
+    else if(controller == Controllers::BACKWARD){
       controller = Controllers::DEINT;
     }
   }
@@ -67,6 +67,8 @@ namespace tray{
     if(lift::getPosition()>liftPosition && motor.getPosition()<upPosition) controller= Controllers::LIFT;
     if(!motorCanTravel() && controller== Controllers::FORWARD) controller= Controllers::DEINT;
     switch (controller) {
+      // pros::lcd::set_text(3,std::to_string((controller)));
+
       case Controllers::FORWARD:
       motor.moveVelocity(traySpeed);
       break;
@@ -84,11 +86,11 @@ namespace tray{
       motor.moveAbsolute(0,75);
       if(motor.isStopped()) controller = Controllers::DEINT;
       case Controllers::LIFT:
-      pros::lcd::set_text(2,std::to_string(lift::getPosition()));
-      // std::cout<<std::to_string(lift::getPosition()<<std::endl;
+      static int i;
+      i++;
+      pros::lcd::set_text(2,std::to_string(i));
       motor.moveAbsolute(upPosition +25, 75);
       if(lift::getPosition()<25) controller = Controllers::RETURN;
-      pros::lcd::set_text(3,"after Return ran");
       break;
     }
   }

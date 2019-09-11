@@ -22,6 +22,7 @@
 void opcontrol() {
 
 	while (true) {
+		pros::lcd::clear_line(3);
 		drive::tankDrive();
 		drive::brakeMode();
 		intake::intake();

@@ -14,6 +14,9 @@ namespace tray{
   bool liftUp(){
     return lift::motor.getPosition() > position;
   }
+  bool liftButtons(){
+    return lift::BtnUp.isPressed() && lift::BtnDown.isPressed();
+  }
   void forward(){
     if (motorCanTravel()){
       if( BtnF.isPressed()){
@@ -36,7 +39,9 @@ namespace tray{
   void nothing(){
     if (!motorCanTravel()) {
       if (!BtnB.isPressed()) {
-        motor.moveVelocity(0);
+        if(!liftButtons()){
+          motor.moveVelocity(0);
+        }
       }
     }
     if(!BtnB.isPressed() && !BtnF.isPressed()){
@@ -47,10 +52,13 @@ namespace tray{
     if(motorCanTravel()){
       forward();
       back();
+      nothing();
+      isLiftUp();
     }
     else {
       back();
       nothing();
+      isLiftUp();
     }
   }
 

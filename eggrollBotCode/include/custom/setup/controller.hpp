@@ -6,8 +6,7 @@ extern okapi::Controller master;
 namespace drive{
   extern okapi::ControllerButton BtnBrake;
 }
-namespace tray
-{
+namespace tray{
   extern okapi::ControllerButton BtnF;
   extern okapi::ControllerButton BtnB;
 }
@@ -17,8 +16,7 @@ namespace intake{
   extern okapi::ControllerButton BtnRight;
   extern okapi::ControllerButton BtnLeft;
 }
-namespace lift
-{
+namespace lift{
   extern okapi::ControllerButton BtnUp;
   extern okapi::ControllerButton BtnDown;
 }

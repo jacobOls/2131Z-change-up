@@ -1,15 +1,13 @@
 #ifndef INTAKE_HPP
 #define INTAKE_HPP
-namespace intake
-{
+namespace intake{
 
   void intake(void);
   void outake(void);
   void spin(void);
   void intakecontrol(void);
   void stopIfNothingIsPressed(void);
-  namespace auton
-  {
+  namespace auton{
     void intakeOn(double targetVelocity);
     void intakeOff(void);
 

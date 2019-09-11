@@ -1,10 +1,8 @@
 #ifndef LIFT_HPP
 #define LIFT_HPP
-namespace lift
-{
+namespace lift{
   void lift(void);
-  namespace auton
-  {
+  namespace auton{
 
     void autonLift(double position, double targetVelocity);
     void popOpen(void);

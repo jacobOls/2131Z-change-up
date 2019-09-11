@@ -1,8 +1,7 @@
 #ifndef ROUTINES_HPP
 #define ROUTINES_HPP
-namespace auton
-{
-void driveTest(void);
+namespace auton{
+  void driveTest(void);
 
 }
 

@@ -2,7 +2,7 @@
 #define TRAY_HPP
 
 namespace tray{
-  enum class Contollers{FORWARD,BACKWARD,DEINT,NONE,LIFT};
+  enum class Controllers{FORWARD,BACKWARD,DEINT,NONE,LIFT};
   void tray(void);
   void execute(void);
   void tilter(void);

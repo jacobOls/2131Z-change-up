@@ -8,7 +8,7 @@ namespace tray{
   // bool trayMove = false;
   const double traySpeed = 25.0;
   const double position =  585.0;
-  Contollers controller = Contollers::NONE;
+  Controllers controller = Controllers::NONE;
   bool motorCanTravel() {
     return motor.getPosition() < position;
   }
@@ -20,20 +20,20 @@ namespace tray{
   }
   void forward(){
     if( BtnF.isPressed()){
-      controller = Contollers::FORWARD;
+      controller = Controllers::FORWARD;
     }
     else{
-      controller = Contollers::DEINT;
+      controller = Controllers::DEINT;
     }
   }
 
 
   void back(){
     if(BtnB.isPressed()){
-      controller = Contollers::BACKWARD;
+      controller = Controllers::BACKWARD;
     }
     else if(!BtnB.isPressed() && !BtnF.isPressed()){
-      controller = Contollers::DEINT;
+      controller = Controllers::DEINT;
     }
   }
   // void nothing(){
@@ -61,26 +61,24 @@ namespace tray{
       // nothing();
     }
   void execute(){
-if(lift::getPosition()<25 && motor.getPosition()<150) controller= Contollers::LIFT;
-
-
-    if(!motorCanTravel() && controller== Contollers::FORWARD) controller= Contollers::DEINT;
+if(lift::getPosition()<25 && motor.getPosition()<150) controller= Controllers::LIFT;
+    if(!motorCanTravel() && controller== Controllers::FORWARD) controller= Controllers::DEINT;
     switch (controller) {
-      case Contollers::FORWARD:
+      case Controllers::FORWARD:
       motor.moveVelocity(traySpeed);
       break;
-      case Contollers::BACKWARD:
+      case Controllers::BACKWARD:
       motor.moveVelocity(-traySpeed);
       break;
-      case Contollers::DEINT:
+      case Controllers::DEINT:
       motor.moveVelocity(0);
-      controller = Contollers::NONE;
+      controller = Controllers::NONE;
       break;
-      case Contollers::NONE:
+      case Controllers::NONE:
       break;
-      case Contollers::LIFT:
+      case Controllers::LIFT:
       motor.moveAbsolute(150+25, traySpeed);
-      if(motor.isStopped()) controller = Contollers::DEINT;
+      if(motor.isStopped()) controller = Controllers::DEINT;
       break;
     }
   }

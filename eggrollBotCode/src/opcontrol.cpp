@@ -28,8 +28,6 @@ void opcontrol() {
 		intake::intake();
 		lift::lift();
 		tray::tilter();
-		pros::lcd::set_text(4,std::to_string(lift::getPosition()));
-
 		// auton::driveTest();
 		pros::delay(20);
 	}

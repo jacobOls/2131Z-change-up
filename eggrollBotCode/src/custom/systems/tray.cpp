@@ -39,29 +39,12 @@ namespace tray{
       controller = Controllers::DEINT;
     }
   }
-  // void nothing(){
-  //   if (!motorCanTravel()) {
-  //     if (!BtnB.isPressed()) {
-  //       if(!liftButtons()){
-  //         motor.moveVelocity(0);
-  //       }
-  //     }
-  //   }
-  //   if(!BtnB.isPressed() && !BtnF.isPressed()){
-  //     motor.moveVelocity(0);
-  //   }
-  // }
+
   void tilter(){
-    // if(motorCanTravel()){
     forward();
     back();
     execute();
-    // nothing();
 
-    // }
-    // else {
-    // back();
-    // nothing();
   }
   void execute(){
     if(lift::getPosition()>liftPosition && motor.getPosition()<upPosition) controller= Controllers::LIFT;

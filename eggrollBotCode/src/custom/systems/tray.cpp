@@ -26,7 +26,7 @@ namespace tray{
       controller = Controllers::FORWARD;
     }
     else if (controller==Controllers::FORWARD){
-      controller = Controllers::DEINT;
+      controller = Controllers::DEINIT;
     }
   }
 
@@ -36,7 +36,7 @@ namespace tray{
       controller = Controllers::BACKWARD;
     }
     else if(controller == Controllers::BACKWARD){
-      controller = Controllers::DEINT;
+      controller = Controllers::DEINIT;
     }
   }
 
@@ -48,7 +48,7 @@ namespace tray{
   }
   void execute(){
     if(lift::getPosition()>liftPosition && motor.getPosition()<upPosition) controller= Controllers::LIFT;
-    if(!motorCanTravel() && controller== Controllers::FORWARD) controller= Controllers::DEINT;
+    if(!motorCanTravel() && controller== Controllers::FORWARD) controller= Controllers::DEINIT;
     switch (controller) {
       // pros::lcd::set_text(3,std::to_string(static_cast<int>(controller));
       case Controllers::FORWARD:
@@ -59,7 +59,7 @@ namespace tray{
       motor.moveVelocity(-traySpeed);
       break;
 
-      case Controllers::DEINT:
+      case Controllers::DEINIT:
       motor.moveVelocity(0);
       controller = Controllers::NONE;
       break;
@@ -70,7 +70,7 @@ namespace tray{
       case Controllers::RETURN:
       // pros::lcd::set_text(1,"RETURN" );
       motor.moveAbsolute(0,75);
-      if(motor.isStopped()) controller = Controllers::DEINT;
+      if(motor.isStopped()) controller = Controllers::DEINIT;
       break;
 
       case Controllers::LIFT:

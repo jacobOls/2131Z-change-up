@@ -67,8 +67,7 @@ namespace tray{
     if(lift::getPosition()>liftPosition && motor.getPosition()<upPosition) controller= Controllers::LIFT;
     if(!motorCanTravel() && controller== Controllers::FORWARD) controller= Controllers::DEINT;
     switch (controller) {
-      // pros::lcd::set_text(3,std::to_string((controller)));
-
+      // pros::lcd::set_text(3,std::to_string(static_cast<int>(controller));
       case Controllers::FORWARD:
       motor.moveVelocity(traySpeed);
       break;

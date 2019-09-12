@@ -71,23 +71,29 @@ namespace tray{
       case Controllers::FORWARD:
       motor.moveVelocity(traySpeed);
       break;
+
       case Controllers::BACKWARD:
       motor.moveVelocity(-traySpeed);
       break;
+
       case Controllers::DEINT:
       motor.moveVelocity(0);
       controller = Controllers::NONE;
       break;
+
       case Controllers::NONE:
       break;
+
       case Controllers::RETURN:
-      pros::lcd::set_text(1,"RETURN" );
+      // pros::lcd::set_text(1,"RETURN" );
       motor.moveAbsolute(0,75);
       if(motor.isStopped()) controller = Controllers::DEINT;
+      break;
+
       case Controllers::LIFT:
-      static int i;
-      i++;
-      pros::lcd::set_text(2,std::to_string(i));
+      // static int i;
+      // i++;
+      // pros::lcd::set_text(2,std::to_string(i));
       motor.moveAbsolute(upPosition +25, 75);
       if(lift::getPosition()<25) controller = Controllers::RETURN;
       break;

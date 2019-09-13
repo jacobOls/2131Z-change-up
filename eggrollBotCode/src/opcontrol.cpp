@@ -28,7 +28,6 @@ void opcontrol() {
 		intake::intake();
 		lift::lift();
 		tray::tilter();
-		// auton::driveTest();
 		pros::delay(20);
 	}
 }

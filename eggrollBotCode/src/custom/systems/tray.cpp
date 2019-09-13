@@ -5,8 +5,8 @@
 #include "custom/systems/lift.hpp"
 
 namespace tray{
-  const double epsilon = 5;
-  const double upPosition = 150;
+  const double epsilon = 10;
+  const double upPosition = 400;
   const double liftPosition = 25;
   // bool trayMove = false;
   const double traySpeed = 25.0;
@@ -14,6 +14,18 @@ namespace tray{
   Controllers controller = Controllers::NONE;
   bool motorCanTravel() {
     return motor.getPosition() < position;
+  }
+  const double finalPosition = 0;
+
+  bool isLiftDown() {
+    double liftPosition = lift::motor.getPosition();
+    if (liftPosition > finalPosition - epsilon) {
+      return true;
+    }
+    if (liftPosition < finalPosition + epsilon) {
+      return true;
+    }
+    return false;
   }
   bool liftUp(){
     return lift::motor.getPosition() >= 10;
@@ -68,15 +80,17 @@ namespace tray{
       break;
 
       case Controllers::RETURN:
-      // pros::lcd::set_text(1,"RETURN" );
       motor.moveAbsolute(0,75);
+      if(motor.getActualVelocity() >= 60){
+        pros::delay(motor.isStopped());}
+      pros::lcd::set_text(1,"RETURN" );
       if(motor.isStopped()) controller = Controllers::DEINIT;
       break;
 
       case Controllers::LIFT:
-      // static int i;
-      // i++;
-      // pros::lcd::set_text(2,std::to_string(i));
+      static int i;
+      i++;
+      pros::lcd::set_text(2,std::to_string(i));
       motor.moveAbsolute(upPosition +25, 75);
       if(lift::getPosition()<25) controller = Controllers::RETURN;
       break;

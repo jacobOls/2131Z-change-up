@@ -82,7 +82,8 @@ namespace tray{
       case Controllers::RETURN:
       motor.moveAbsolute(0,75);
       if(motor.getActualVelocity() >= 60){
-        pros::delay(motor.isStopped());}
+        pros::delay(motor.isStopped());
+      }
       pros::lcd::set_text(1,"RETURN" );
       if(motor.isStopped()) controller = Controllers::DEINIT;
       break;

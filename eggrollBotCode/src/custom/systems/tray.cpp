@@ -6,7 +6,7 @@
 
 namespace tray{
   const double epsilon = 10;
-  const double upPosition = 400;
+  const double upPosition = 200;
   const double liftPosition = 25;
   // bool trayMove = false;
   const double traySpeed = 25.0;

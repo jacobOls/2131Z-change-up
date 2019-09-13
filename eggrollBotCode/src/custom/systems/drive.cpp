@@ -3,6 +3,7 @@
 #include "custom/setup/controller.hpp"
 #include "custom/systems/drive.hpp"
 #include "custom/setup/ramping.hpp"
+#include "custom/systems/intake.hpp"
 namespace drive{
   int rightVel; //right side velocity
   int leftVel; //left side velocity
@@ -21,24 +22,31 @@ namespace drive{
 
   }
 
-  void brakeMode(){
-    //brakes the bot
-    if(BtnBrake.isPressed()){
-      isBraked = true;
-      while (isBraked){
-        right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-        left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-        if(BtnBrake.isPressed()){
-          isBraked = false;
-          right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-          left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-        }
-      }
+  // void brakeMode(){
+  //   //brakes the bot
+  //   if(BtnBrake.isPressed()){
+  //     isBraked = true;
+  //     while (isBraked){
+  //       right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  //       left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  //       if(BtnBrake.isPressed()){
+  //         isBraked = false;
+  //         right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+  //         left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+  //       }
+  //     }
 
 
+  // }
+  // }
+
+  void stackMacro(){
+    if(macro.isPressed()){
+      intake::auton::intakeOn(-25);
+      auton::autonDrive(-400, 25);
+      intake::auton::intakeOff();
     }
   }
-
 
   namespace auton
   {

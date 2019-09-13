@@ -5,7 +5,9 @@
 namespace drive{
 
   void tankDrive(void);
-  void brakeMode(void);
+  void stackMacro(void);
+  // void brakeMode(void);
+  //25 outake and drive
   namespace auton{
 
     void autonDrive(double distance, double targetVelocity);

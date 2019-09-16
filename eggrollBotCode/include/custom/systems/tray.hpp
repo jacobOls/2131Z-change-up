@@ -7,7 +7,7 @@ namespace tray{
   void execute(void);
   void tilter(void);
   namespace auton{
-    void stack(double tiltPosition, double targetVelocity);
+    void stack(double targetPosition, double targetVelocity);
   }
 }
 

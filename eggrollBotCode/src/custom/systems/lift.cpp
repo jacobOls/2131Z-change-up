@@ -38,19 +38,19 @@ namespace lift{
     }
   }
   namespace auton{
-    const double absolutePosition = 25;
+    const double targetPosition = 25;
     const double epsilon = 5;
     bool isMotorWithinRange() {
       double position = motor.getPosition();
-      if (position > absolutePosition - epsilon) {
+      if (position > targetPosition - epsilon) {
         return true;
       }
-      if (position < absolutePosition + epsilon) {
+      if (position < targetPosition + epsilon) {
         return true;
       }
       return false;
     }
-    void autonLift(double position, double targetVelocity){
+    void autonLift(double targetPosition, double targetVelocity){
       while(!isMotorWithinRange()){
         motor.moveVelocity(targetVelocity);
       }

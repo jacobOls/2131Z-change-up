@@ -4,7 +4,7 @@ okapi::Controller master;
 namespace drive{
   // okapi::ControllerButton BtnBrake = master[okapi::ControllerDigital::X];
   //toggles the brake
-  okapi::ControllerButton macro = master[okapi::ControllerDigital::Y];
+  okapi::ControllerButton BtnMacro = master[okapi::ControllerDigital::Y];
 }
 namespace tray{
   okapi::ControllerButton BtnF = master[okapi::ControllerDigital::up];

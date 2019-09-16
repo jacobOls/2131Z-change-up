@@ -46,7 +46,7 @@ namespace drive{
 
     #define wheelCircumfrance 12.56;
     // double Deg = distance*365 /wheelCircumfrance;
-    const double distance = 25;
+    double distance = 25;
     const double epsilon = 5;
     bool isMotorWithinRange(){
       double currentPosition = left_drive.getPosition() || right_drive.getPosition();
@@ -96,7 +96,7 @@ namespace drive{
     }
 
     void stackMacro(){
-      if(macro.isPressed()){
+      if(BtnMacro.isPressed()){
         intake::auton::intakeOn(-25);
         autonDrive(-400, 25);
         intake::auton::intakeOff();

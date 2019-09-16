@@ -104,18 +104,18 @@ namespace tray{
     }
   }
   namespace auton{
-    const double absolutePosition = 25;
+    double targetPosition = 25;
     bool isMotorWithinRange() {
       double currentPosition = motor.getPosition();
-      if (currentPosition > absolutePosition - epsilon) {
+      if (currentPosition > targetPosition - epsilon) {
         return true;
       }
-      if (currentPosition < absolutePosition + epsilon) {
+      if (currentPosition < targetPosition + epsilon) {
         return true;
       }
       return false;
     }
-    void stack(double currentPosition, double targetVelocity){
+    void stack(double targetPosition, double targetVelocity){
 
       while(!isMotorWithinRange())
       {

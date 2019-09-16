@@ -5,7 +5,7 @@ extern okapi::Controller master;
 
 namespace drive{
   // extern okapi::ControllerButton BtnBrake;
-  extern okapi:: ControllerButton macro;
+  extern okapi:: ControllerButton BtnMacro;
 }
 namespace tray{
   extern okapi::ControllerButton BtnF;

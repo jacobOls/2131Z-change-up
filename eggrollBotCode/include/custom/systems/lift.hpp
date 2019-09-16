@@ -7,7 +7,7 @@ namespace lift{
 
   namespace auton{
 
-    void autonLift(double position, double targetVelocity);
+    void autonLift(double targetPosition, double targetVelocity);
     void popOpen(void);
   }
 }

@@ -73,7 +73,7 @@ namespace tray{
 
       case Controllers::DEINIT:
       motor.moveVelocity(0);
-      pros::lcd::set_text(4,"DEINIT" );
+      //pros::lcd::set_text(4,"DEINIT" );
       controller = Controllers::NONE;
       break;
 
@@ -82,10 +82,14 @@ namespace tray{
       break;
 
       case Controllers::RETURN:
-      motor.moveAbsolute(0,75);
-      if(motor.getActualVelocity() >= 60){
-        pros::delay(motor.isStopped());
-        if(motor.isStopped()) controller = Controllers::DEINIT;
+      motor.moveAbsolute(0,-75);
+      // if(motor.getActualVelocity() >= 60){
+      // }
+      // pros::delay(motor.isStopped());
+      if(motor.isStopped())
+      {
+        controller = Controllers::DEINIT;
+        pros::lcd::set_text(4,"DERETURN" );
       }
       pros::lcd::set_text(1,"RETURN" );
       break;

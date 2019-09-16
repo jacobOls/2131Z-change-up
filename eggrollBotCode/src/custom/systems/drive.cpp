@@ -40,13 +40,6 @@ namespace drive{
   // }
   // }
 
-  void stackMacro(){
-    if(macro.isPressed()){
-      intake::auton::intakeOn(-25);
-      auton::autonDrive(-400, 25);
-      intake::auton::intakeOff();
-    }
-  }
 
   namespace auton
   {
@@ -101,6 +94,15 @@ namespace drive{
         resetPositions();
       }
     }
+
+    void stackMacro(){
+      if(macro.isPressed()){
+        intake::auton::intakeOn(-25);
+        autonDrive(-400, 25);
+        intake::auton::intakeOff();
+      }
+    }
+
     void ramping(void*){
       static uint32_t start;
 

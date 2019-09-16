@@ -100,9 +100,10 @@ namespace drive{
         // intake::auton::intakeOn(-25);
         // autonDrive(-400, 25);
         // intake::auton::intakeOff();
-        leftVel = -25;
-        rightVel = -25;
-        intake::intakegroup.moveVelocity(-25);
+        right_drive.moveVelocity(-25);
+        left_drive.moveVelocity(-25);
+        intake::right_motor.moveVelocity(-25);
+        intake::left_motor.moveVelocity(-25);
       }
     }
 

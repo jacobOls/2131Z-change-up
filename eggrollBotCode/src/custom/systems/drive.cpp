@@ -97,9 +97,12 @@ namespace drive{
 
     void stackMacro(){
       if(BtnMacro.isPressed()){
-        intake::auton::intakeOn(-25);
-        autonDrive(-400, 25);
-        intake::auton::intakeOff();
+        // intake::auton::intakeOn(-25);
+        // autonDrive(-400, 25);
+        // intake::auton::intakeOff();
+        leftVel = -25;
+        rightVel = -25;
+        intake::intakegroup.moveVelocity(-25);
       }
     }
 

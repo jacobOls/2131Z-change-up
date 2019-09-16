@@ -73,19 +73,21 @@ namespace tray{
 
       case Controllers::DEINIT:
       motor.moveVelocity(0);
+      pros::lcd::set_text(4,"DEINIT" );
       controller = Controllers::NONE;
       break;
 
       case Controllers::NONE:
+      pros::lcd::set_text(5,"NONE" );
       break;
 
       case Controllers::RETURN:
       motor.moveAbsolute(0,75);
       if(motor.getActualVelocity() >= 60){
         pros::delay(motor.isStopped());
+        if(motor.isStopped()) controller = Controllers::DEINIT;
       }
       pros::lcd::set_text(1,"RETURN" );
-      if(motor.isStopped()) controller = Controllers::DEINIT;
       break;
 
       case Controllers::LIFT:

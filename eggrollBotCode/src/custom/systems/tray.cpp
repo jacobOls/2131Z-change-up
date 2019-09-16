@@ -71,10 +71,10 @@ namespace tray{
       break;
 
       case Controllers::DEINIT:
-      motor.moveVelocity(0);
-      pros::lcd::set_text(4,"DEINIT" );
-      controller = Controllers::NONE;
-      break;
+        motor.moveVelocity(0);
+        pros::lcd::set_text(4,"DEINIT" );
+        controller = Controllers::NONE;
+        break;
 
       case Controllers::NONE:
       pros::lcd::set_text(5,"NONE" );

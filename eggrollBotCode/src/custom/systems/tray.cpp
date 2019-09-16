@@ -3,7 +3,6 @@
 #include "custom/setup/controller.hpp"
 #include "custom/setup/motors.hpp"
 #include "custom/systems/lift.hpp"
-
 namespace tray{
   const double epsilon = 10;
   const double upPosition = 200;
@@ -73,7 +72,7 @@ namespace tray{
 
       case Controllers::DEINIT:
       motor.moveVelocity(0);
-      //pros::lcd::set_text(4,"DEINIT" );
+      pros::lcd::set_text(4,"DEINIT" );
       controller = Controllers::NONE;
       break;
 
@@ -86,10 +85,12 @@ namespace tray{
       // if(motor.getActualVelocity() >= 60){
       // }
       // pros::delay(motor.isStopped());
-      if(motor.isStopped())
-      {
-        controller = Controllers::DEINIT;
-        pros::lcd::set_text(4,"DERETURN" );
+      if (motor.getPosition()<25){
+        if(motor.isStopped())
+        {
+          controller = Controllers::DEINIT;
+          pros::lcd::set_text(4,"DERETURN" );
+        }
       }
       pros::lcd::set_text(1,"RETURN" );
       break;

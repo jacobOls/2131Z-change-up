@@ -21,7 +21,7 @@ void initialize() {
 	intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
 	lift::motor.tarePosition();
-	auton::selection::screenInit();
+	// auton::selection::screenInit();
 
 
 }

@@ -9,7 +9,9 @@ namespace drive{
 namespace tray{
   okapi::ControllerButton BtnF = master[okapi::ControllerDigital::Y];
   okapi::ControllerButton BtnB = master[okapi::ControllerDigital::right];
-
+  okapi::ControllerButton BtnLowTower = master[okapi::ControllerDigital::left];
+  okapi::ControllerButton BtnMidTower = master[okapi::ControllerDigital::up];
+  //left and up for towers
 }
 namespace intake{
   okapi::ControllerButton BtnOn = master[okapi::ControllerDigital::R1];
@@ -25,7 +27,5 @@ namespace intake{
 namespace lift{
 okapi::ControllerButton BtnUp = master[okapi::ControllerDigital::L1];
 okapi::ControllerButton BtnDown = master[okapi::ControllerDigital::L2];
-okapi::ControllerButton BtnLowTower = master[okapi::ControllerDigital::left];
-okapi::ControllerButton BtnMidTower = master[okapi::ControllerDigital::up];
-//left and up for towers
+
 }

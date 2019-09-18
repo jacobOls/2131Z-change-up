@@ -18,9 +18,11 @@ namespace config{
         lift::motor.moveVelocity(-5);
         calabrated = true;
       }
-      else{
-        calabrated = false;
-      }
+
+    }
+    if(calabrated){
+      tareMotors();
+      calabrated = false;
     }
   }
 }

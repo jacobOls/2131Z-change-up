@@ -11,7 +11,7 @@ namespace auton{
   }
 
 //autonomous routines start here
-  void firstAuton(){
+  void initalAuton(){
     lift::auton::popOpen();
     intake::auton::intakeOn(200);
     drive::auton::autonDrive(1000,200);

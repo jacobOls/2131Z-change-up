@@ -10,6 +10,8 @@ namespace drive{
 namespace tray{
   extern okapi::ControllerButton BtnF;
   extern okapi::ControllerButton BtnB;
+  extern okapi::ControllerButton BtnLowTower;
+  extern okapi::ControllerButton BtnMidTower;
 }
 namespace intake{
   extern okapi::ControllerButton BtnOn;

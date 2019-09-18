@@ -54,11 +54,24 @@ namespace tray{
     }
   }
 
+  void middleTower(){
+    if(BtnMidTower.isPressed()){
+      controller = Controllers::MID;
+    }
+  }
+
+  void lowestTower(){
+    if(BtnLowTower.isPressed()){
+      controller = Controllers::LOWER;
+    }
+  }
+
   void tilter(){
     forward();
     back();
     execute();
-
+    middleTower();
+    lowestTower();
   }
   void execute(){
     if(lift::getPosition()>liftPosition && motor.getPosition()<upPosition) controller= Controllers::LIFT;
@@ -75,10 +88,10 @@ namespace tray{
       break;
 
       case Controllers::DEINIT:
-        motor.moveVelocity(0);
-        pros::lcd::set_text(4,"DEINIT" );
-        controller = Controllers::NONE;
-        break;
+      motor.moveVelocity(0);
+      pros::lcd::set_text(4,"DEINIT" );
+      controller = Controllers::NONE;
+      break;
 
       case Controllers::NONE:
       pros::lcd::set_text(5,"NONE" );
@@ -93,10 +106,8 @@ namespace tray{
         if(motor.isStopped())
         {
           controller = Controllers::DEINIT;
-          pros::lcd::set_text(4,"DERETURN" );
         }
       }
-      pros::lcd::set_text(1,"RETURN" );
       break;
 
       case Controllers::LIFT:
@@ -105,6 +116,26 @@ namespace tray{
       pros::lcd::set_text(2,std::to_string(i));
       motor.moveAbsolute(upPosition +25, 75);
       if(lift::getPosition()<25) controller = Controllers::RETURN;
+      break;
+
+      case Controllers::LOWER:
+      motor.moveAbsolute(150,25);
+      if(motor.getPosition() >145 || motor.getPosition() < 155){
+        if(motor.isStopped())
+        {
+          controller = Controllers::DEINIT;
+        }
+      }
+      break;
+
+      case Controllers::MID:
+      motor.moveAbsolute(300,25);
+      if(motor.getPosition() >295 || motor.getPosition() < 305){
+        if(motor.isStopped())
+        {
+          controller = Controllers::DEINIT;
+        }
+      }
       break;
     }
   }

@@ -4,11 +4,11 @@ okapi::Controller master;
 namespace drive{
   // okapi::ControllerButton BtnBrake = master[okapi::ControllerDigital::X];
   //toggles the brake
-  okapi::ControllerButton BtnMacro = master[okapi::ControllerDigital::Y];
+  okapi::ControllerButton BtnMacro = master[okapi::ControllerDigital::X];
 }
 namespace tray{
-  okapi::ControllerButton BtnF = master[okapi::ControllerDigital::up];
-  okapi::ControllerButton BtnB = master[okapi::ControllerDigital::left];
+  okapi::ControllerButton BtnF = master[okapi::ControllerDigital::Y];
+  okapi::ControllerButton BtnB = master[okapi::ControllerDigital::right];
 
 }
 namespace intake{
@@ -25,5 +25,7 @@ namespace intake{
 namespace lift{
 okapi::ControllerButton BtnUp = master[okapi::ControllerDigital::L1];
 okapi::ControllerButton BtnDown = master[okapi::ControllerDigital::L2];
-
+okapi::ControllerButton BtnLowTower = master[okapi::ControllerDigital::left];
+okapi::ControllerButton BtnMidTower = master[okapi::ControllerDigital::up];
+//left and up for towers
 }

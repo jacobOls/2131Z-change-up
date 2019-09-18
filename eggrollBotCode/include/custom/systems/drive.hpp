@@ -8,8 +8,8 @@ namespace drive{
   // void brakeMode(void);
   //25 outake and drive
   namespace auton{
-
-    void stackMacro(void);
+    void resetPositions(void);
+    void stackMacro(double backup, double speed);
     void autonDrive(double distance, double targetVelocity);
     void turn(double amount, double targetVelocity);
   }

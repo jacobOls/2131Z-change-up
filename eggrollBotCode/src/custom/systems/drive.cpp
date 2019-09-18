@@ -22,25 +22,6 @@ namespace drive{
 
   }
 
-  // void brakeMode(){
-  //   //brakes the bot
-  //   if(BtnBrake.isPressed()){
-  //     isBraked = true;
-  //     while (isBraked){
-  //       right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  //       left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  //       if(BtnBrake.isPressed()){
-  //         isBraked = false;
-  //         right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-  //         left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-  //       }
-  //     }
-
-
-  // }
-  // }
-
-
   namespace auton
   {
 
@@ -95,17 +76,13 @@ namespace drive{
       }
     }
 
-    void stackMacro(){
-      if(BtnMacro.isPressed()){
-        // intake::auton::intakeOn(-25);
-        // autonDrive(-400, 25);
-        // intake::auton::intakeOff();
-        right_drive.moveVelocity(-25);
-        left_drive.moveVelocity(-25);
-        intake::right_motor.moveVelocity(-25);
-        intake::left_motor.moveVelocity(-25);
-      }
-    }
+    // void stackMacro(){
+    //   if(BtnMacro.isPressed()){
+    // intake::auton::intakeOn(-25);
+    // autonDrive(-250,25);
+    // intake::auton::intakeOff();
+    //   }
+    // }
 
     void ramping(void*){
       static uint32_t start;
@@ -117,6 +94,15 @@ namespace drive{
     void taskInit(){
       pros::Task rampingTask(ramping, (void*) "test", TASK_PRIORITY_DEFAULT,
       TASK_STACK_DEPTH_DEFAULT,"drive");
+    }
+    void stackMacro(double backup, double speed){
+      while(BtnMacro.isPressed()){
+        if(left_front.getPosition() < backup){
+          left_drive.moveVelocity(speed);
+          right_drive.moveVelocity(speed);
+        }
+        resetPositions();
+      }
     }
   }
 }

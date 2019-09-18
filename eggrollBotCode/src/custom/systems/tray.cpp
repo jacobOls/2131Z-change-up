@@ -14,6 +14,9 @@ namespace tray{
   bool motorCanTravel() {
     return motor.getPosition() < position;
   }
+  bool trayDown(){
+    return motor.getPosition() < 25;
+  }
   const double finalPosition = 0;
 
   bool isLiftDown() {
@@ -60,6 +63,7 @@ namespace tray{
   void execute(){
     if(lift::getPosition()>liftPosition && motor.getPosition()<upPosition) controller= Controllers::LIFT;
     if(!motorCanTravel() && controller== Controllers::FORWARD) controller= Controllers::DEINIT;
+    if(trayDown() && controller== Controllers::BACKWARD) controller= Controllers::DEINIT;
     switch (controller) {
       // pros::lcd::set_text(3,std::to_string(static_cast<int>(controller));
       case Controllers::FORWARD:

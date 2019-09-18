@@ -2,7 +2,8 @@
 #include "custom/systems/tray.hpp"
 #include "custom/setup/motors.hpp"
 #include "custom/auton/routines.hpp"
-
+#include "custom/systems/drive.hpp"
+#include "custom/auton/selection.hpp"
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -20,6 +21,8 @@ void initialize() {
 	intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
 	lift::motor.tarePosition();
+	auton::selection::screenInit();
+
 
 }
 

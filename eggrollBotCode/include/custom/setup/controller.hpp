@@ -13,6 +13,9 @@ namespace tray{
   extern okapi::ControllerButton BtnLowTower;
   extern okapi::ControllerButton BtnMidTower;
 }
+namespace config{
+  extern okapi::ControllerButton BtnCalabrate;
+}
 namespace intake{
   extern okapi::ControllerButton BtnOn;
   extern okapi::ControllerButton BtnOut;

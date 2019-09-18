@@ -13,6 +13,9 @@ namespace tray{
   okapi::ControllerButton BtnMidTower = master[okapi::ControllerDigital::up];
   //left and up for towers
 }
+namespace config{
+  okapi::ControllerButton BtnCalabrate = master[okapi::ControllerDigital::left];
+}
 namespace intake{
   okapi::ControllerButton BtnOn = master[okapi::ControllerDigital::R1];
   //when held turns on intake

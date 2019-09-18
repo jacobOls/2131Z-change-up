@@ -21,7 +21,23 @@ namespace drive{
     left_drive.moveVelocity(leftVel);
 
   }
-
+  bool intakeRunning = false;
+  void stackReverse(){
+    if(BtnMacro.isPressed()){
+      if(!intakeRunning){
+        intake::intakegroup.moveVelocity(-25);
+        intakeRunning = true;
+      }
+      if(intakeRunning){
+        right_drive.moveVelocity(-25);
+        left_drive.moveVelocity(-25);
+      }
+    }
+    if(!BtnMacro.isPressed())
+    if(intakeRunning){
+      intakeRunning = false;
+    }
+  }
   namespace auton
   {
 
@@ -95,14 +111,6 @@ namespace drive{
       pros::Task rampingTask(ramping, (void*) "test", TASK_PRIORITY_DEFAULT,
       TASK_STACK_DEPTH_DEFAULT,"drive");
     }
-    void stackMacro(double backup, double speed){
-      while(BtnMacro.isPressed()){
-        if(left_front.getPosition() < backup){
-          left_drive.moveVelocity(speed);
-          right_drive.moveVelocity(speed);
-        }
-        resetPositions();
-      }
-    }
+
   }
 }

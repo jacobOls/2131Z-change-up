@@ -120,7 +120,7 @@ namespace tray{
 
       case Controllers::LOWER:
       motor.moveAbsolute(150,25);
-      if(motor.getPosition() >145 || motor.getPosition() < 155){
+      if(motor.getPosition() >145 && motor.getPosition() < 155){
         if(motor.isStopped())
         {
           controller = Controllers::DEINIT;
@@ -130,7 +130,7 @@ namespace tray{
 
       case Controllers::MID:
       motor.moveAbsolute(300,25);
-      if(motor.getPosition() >295 || motor.getPosition() < 305){
+      if(motor.getPosition() >295 && motor.getPosition() < 305){
         if(motor.isStopped())
         {
           controller = Controllers::DEINIT;

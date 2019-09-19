@@ -5,48 +5,87 @@
 
 namespace intake
 {
+  Controllers controller = Controllers::NONE;
   #define spinSpeed 25
   bool BothLeftAndRightButtonsPressed() {
     return BtnLeft.isPressed() && BtnRight.isPressed();
   }
-  void spinLeft() {
-    left_motor.moveVelocity(spinSpeed);
-    right_motor.moveVelocity(-spinSpeed);
-  }
   void spinRight() {
-    left_motor.moveVelocity(-spinSpeed);
-    right_motor.moveVelocity(spinSpeed);
+    if(BtnRight.isPressed()){
+      controller = Controllers::SPINNINGRIGHT;
+    }
+    else if(controller == Controllers::SPINNINGRIGHT){
+      controller = Controllers::DEINIT;
+    }
   }
-  //
-  void stopIntake() {
-    intakegroup.moveVelocity(0);
+
+  void spinLeft(){
+    if(BtnLeft.isPressed()){
+      controller = Controllers::SPINNINGLEFT;
+    }
+    else if(controller == Controllers::SPINNINGLEFT){
+      controller = Controllers::DEINIT;
+    }
+  }
+  void intaking(){
+    if(BtnOn.isPressed()){
+      controller = Controllers::INTAKING;
+    }
+    else if(controller == Controllers::INTAKING){
+      controller = Controllers::DEINIT;
+    }
+  }
+
+  void outaking(){
+    if(BtnOut.isPressed()){
+      controller = Controllers::OUTTAKING;
+    }
+    else if(BothLeftAndRightButtonsPressed()){
+      controller = Controllers::OUTTAKING;
+    }
+    else if(controller == Controllers::SPINNINGRIGHT){
+      controller = Controllers::DEINIT;
+    }
+  }
+
+  void execute(){
+    switch(controller){
+      case Controllers::INTAKING:
+      intakegroup.moveVelocity(200);
+      break;
+
+      case Controllers::OUTTAKING:
+      intakegroup.moveVelocity(-200);
+      break;
+
+      case Controllers::SPINNINGRIGHT:
+      left_motor.moveVelocity(-spinSpeed);
+      right_motor.moveVelocity(spinSpeed);
+      break;
+
+      case Controllers::SPINNINGLEFT:
+      left_motor.moveVelocity(spinSpeed);
+      right_motor.moveVelocity(-spinSpeed);
+      break;
+
+      case Controllers::DEINIT:
+      intakegroup.moveVelocity(0);
+      controller = Controllers::NONE;
+      break;
+
+      case Controllers::NONE:
+      break;
+    }
   }
 
   void intake(){
-    if (BothLeftAndRightButtonsPressed())
-    {
-      intakegroup.moveVelocity(-200);
-    }
-    else if(BtnOn.isPressed())
-    {
-      intakegroup.moveVelocity(200);
-    }
-    else if(BtnOut.isPressed()){
-      intakegroup.moveVelocity(-200);
-    }
-    else if(BtnLeft.isPressed())
-    {
-      spinLeft();
-
-    }
-    else if(BtnRight.isPressed()){
-      spinRight();
-
-    }
-    else{
-      stopIntake();
-    }
+    intaking();
+    outaking();
+    spinLeft();
+    spinRight();
+    execute();
   }
+
   namespace auton{
     bool intakeRunning = false;
     void intakeOn(double targetVelocity)

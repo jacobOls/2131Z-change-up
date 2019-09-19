@@ -18,7 +18,16 @@ namespace intake
       controller = Controllers::DEINIT;
     }
   }
-
+  void stackReverse(){
+    if(drive::BtnBackUp.isPressed()){
+      drive::left_drive.moveVelocity(-25);
+      drive::right_drive.moveVelocity(-25);
+      controller = Controllers::MACRO;
+    }
+    else if(controller == Controllers::MACRO){
+      controller = Controllers::DEINIT;
+    }
+  }
   void spinLeft(){
     if(BtnLeft.isPressed()){
       controller = Controllers::SPINNINGLEFT;
@@ -43,7 +52,7 @@ namespace intake
     else if(BothLeftAndRightButtonsPressed()){
       controller = Controllers::OUTTAKING;
     }
-    else if(controller == Controllers::SPINNINGRIGHT){
+    else if(controller == Controllers::OUTTAKING){
       controller = Controllers::DEINIT;
     }
   }
@@ -56,6 +65,10 @@ namespace intake
 
       case Controllers::OUTTAKING:
       intakegroup.moveVelocity(-200);
+      break;
+
+      case Controllers::MACRO:
+      intakegroup.moveVelocity(-25);
       break;
 
       case Controllers::SPINNINGRIGHT:

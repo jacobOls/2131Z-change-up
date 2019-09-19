@@ -5,7 +5,6 @@
 namespace drive{
 
   void tankDrive(void);
-  void stackReverse();
   // void brakeMode(void);
   //25 outake and drive
   namespace auton{

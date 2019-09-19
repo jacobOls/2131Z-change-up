@@ -22,16 +22,7 @@ namespace drive{
     left_drive.moveVelocity(leftVel);
 
   }
-  void stackReverse(){
-    if(BtnBackUp.isPressed()){
-      left_drive.moveVelocity(-25);
-      right_drive.moveVelocity(-25);
-      //if(left_front.getActualVelocity() < -20){
-        intake::left_motor.moveVelocity(-25);
-        intake::right_motor.moveVelocity(-25);
-      //}
-    }
-  }
+
   namespace auton
   {
 

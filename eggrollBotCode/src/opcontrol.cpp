@@ -25,7 +25,7 @@ void opcontrol() {
 		pros::lcd::clear_line(3);
 		drive::tankDrive();
 		// drive::brakeMode();
-		drive::stackReverse();
+		intake::stackReverse();
 		intake::intake();
 		lift::lift();
 		tray::tilter();

@@ -54,17 +54,13 @@ namespace lift{
     }
   }
 
-  void lift(){
-    void liftMovingUp();
-    void LiftMovingDown();
-    void MidTower();
-    void LowTower();
-  }
+
 
   void execute(){
 
     switch (controller){
       case Controllers::UP:
+      motor.moveVelocity(100);
       break;
 
       case Controllers::DOWN:
@@ -80,8 +76,8 @@ namespace lift{
       break;
 
       case Controllers::MIDTOWER:
-      motor.moveAbsolute(250,25);
-      if (motor.getPosition() < 255 && motor.getPosition() > 245){
+      motor.moveAbsolute(350,25);
+      if (motor.getPosition() < 355 && motor.getPosition() > 345){
         if(motor.isStopped())
         {
           controller = Controllers::DEINIT;
@@ -90,8 +86,8 @@ namespace lift{
       break;
 
       case Controllers::LOWTOWER:
-      motor.moveAbsolute(150,25);
-      if (motor.getPosition() < 155 && motor.getPosition() > 145){
+      motor.moveAbsolute(250,25);
+      if (motor.getPosition() < 255 && motor.getPosition() > 245){
         if(motor.isStopped())
         {
           controller = Controllers::DEINIT;
@@ -100,6 +96,15 @@ namespace lift{
       break;
     }
   }
+
+  void lift(){
+    liftMovingUp();
+    liftMovingDown();
+    MidTower();
+    lowTower();
+    execute();
+  }
+
   namespace auton{
     const double targetPosition = 25;
     const double epsilon = 5;

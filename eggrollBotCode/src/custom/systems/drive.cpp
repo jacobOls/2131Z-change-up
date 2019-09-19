@@ -23,24 +23,19 @@ namespace drive{
   }
   bool intakeRunning = false;
   void stackReverse(){
-    if(BtnMacro.isPressed()){
-      // intake::auton::intakeOn(-25);
-      // if(intake::left_motor.getActualVelocity() < -20){
-      //   right_drive.moveVelocity(-25);
-      //   left_drive.moveVelocity(-25);
-      // }
-        if(!intakeRunning){
-          intake::auton::intakeOn(-25);
-          intakeRunning = true;
-        }
-        if(intakeRunning){
-          right_drive.moveVelocity(-25);
-          left_drive.moveVelocity(-25);
-        }
-      }
-      if(!BtnMacro.isPressed())
+    if(!intakeRunning){
+      intake::auton::intakeOn(-25);
+      intakeRunning = true;
+    }
+    if(intakeRunning){
+      right_drive.moveVelocity(-25);
+      left_drive.moveVelocity(-25);
+    }
+
+    if(!BtnMacro.isPressed()){
       if(intakeRunning){
         intakeRunning = false;
+      }
     }
   }
   namespace auton

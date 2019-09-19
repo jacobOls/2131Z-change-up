@@ -24,7 +24,7 @@ namespace drive{
   }
   bool intakeRunning = false;
   void stackReverse(){
-    if(BtnMacro.isPressed()){
+    if(BtnBackUp.isPressed()){
       if(!intakeRunning){
         intake::auton::intakeOn(-25);
         intakeRunning = true;
@@ -34,7 +34,7 @@ namespace drive{
         left_drive.moveVelocity(-25);
       }
     }
-    if(!BtnMacro.isPressed()){
+    if(!BtnBackUp.isPressed()){
       if(intakeRunning){
         intakeRunning = false;
       }

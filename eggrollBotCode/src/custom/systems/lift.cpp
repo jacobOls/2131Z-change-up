@@ -7,6 +7,7 @@ namespace lift{
   const double position = 30;
   const double velocity = 50;
   const double trayVelocity = 35;
+  Controllers controller = Controllers::NONE;
   double getPosition(){
     return lift::motor.getPosition();
   }
@@ -23,18 +24,80 @@ namespace lift{
   //     pros::lcd::set_text(1,"lift is up");
   //   }
   // }
-  void lift(){
+  void liftMovingUp(){
     if(BtnUp.isPressed()){
-      motor.moveVelocity(100);
-      // getOutOfTheWay();
+      controller = Controllers::UP;
     }
-    else if(BtnDown.isPressed()){
+    else if(controller == Controllers::UP){
+      controller = Controllers::DEINIT;
+    }
+  }
+
+  void liftMovingDown(){
+    if(BtnDown.isPressed()){
+      controller = Controllers::DOWN;
+    }
+    else if(controller == Controllers::DOWN){
+      controller = Controllers::DEINIT;
+    }
+  }
+
+  void MidTower(){
+    if(BtnMidTower.isPressed()){
+      controller = Controllers::MIDTOWER;
+    }
+  }
+
+  void lowTower(){
+    if(BtnLowTower.isPressed()){
+      controller = Controllers::LOWTOWER;
+    }
+  }
+
+  void lift(){
+    void liftMovingUp();
+    void LiftMovingDown();
+    void MidTower();
+    void LowTower();
+  }
+
+  void execute(){
+
+    switch (controller){
+      case Controllers::UP:
+      break;
+
+      case Controllers::DOWN:
       motor.moveVelocity(-100);
-      // getOutOfTheWay();
-    }
-    else if(!buttonsPressed()){
+      break;
+
+      case Controllers::NONE:
+      break;
+
+      case Controllers::DEINIT:
       motor.moveVelocity(0);
-      // getOutOfTheWay();
+      controller = Controllers::NONE;
+      break;
+
+      case Controllers::MIDTOWER:
+      motor.moveAbsolute(250,25);
+      if (motor.getPosition() < 255 && motor.getPosition() > 245){
+        if(motor.isStopped())
+        {
+          controller = Controllers::DEINIT;
+        }
+      }
+      break;
+
+      case Controllers::LOWTOWER:
+      motor.moveAbsolute(150,25);
+      if (motor.getPosition() < 155 && motor.getPosition() > 145){
+        if(motor.isStopped())
+        {
+          controller = Controllers::DEINIT;
+        }
+      }
+      break;
     }
   }
   namespace auton{

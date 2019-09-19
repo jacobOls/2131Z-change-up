@@ -54,24 +54,12 @@ namespace tray{
     }
   }
 
-  void middleTower(){
-    if(BtnMidTower.isPressed()){
-      controller = Controllers::MID;
-    }
-  }
-
-  void lowestTower(){
-    if(BtnLowTower.isPressed()){
-      controller = Controllers::LOWER;
-    }
-  }
 
   void tilter(){
     forward();
     back();
     execute();
-    middleTower();
-    lowestTower();
+
   }
   void execute(){
     if(lift::getPosition()>liftPosition && motor.getPosition()<upPosition) controller= Controllers::LIFT;
@@ -118,25 +106,6 @@ namespace tray{
       if(lift::getPosition()<25) controller = Controllers::RETURN;
       break;
 
-      case Controllers::LOWER:
-      motor.moveAbsolute(150,25);
-      if(motor.getPosition() >145 && motor.getPosition() < 155){
-        if(motor.isStopped())
-        {
-          controller = Controllers::DEINIT;
-        }
-      }
-      break;
-
-      case Controllers::MID:
-      motor.moveAbsolute(300,25);
-      if(motor.getPosition() >295 && motor.getPosition() < 305){
-        if(motor.isStopped())
-        {
-          controller = Controllers::DEINIT;
-        }
-      }
-      break;
     }
   }
   namespace auton{

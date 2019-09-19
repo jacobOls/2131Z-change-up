@@ -10,8 +10,7 @@ namespace drive{
 namespace tray{
   extern okapi::ControllerButton BtnF;
   extern okapi::ControllerButton BtnB;
-  extern okapi::ControllerButton BtnLowTower;
-  extern okapi::ControllerButton BtnMidTower;
+
 }
 namespace config{
   extern okapi::ControllerButton BtnCalabrate;
@@ -25,5 +24,7 @@ namespace intake{
 namespace lift{
   extern okapi::ControllerButton BtnUp;
   extern okapi::ControllerButton BtnDown;
+  extern okapi::ControllerButton BtnLowTower;
+  extern okapi::ControllerButton BtnMidTower;
 }
 #endif /* end of include guard: CONTROLLER_HPP */

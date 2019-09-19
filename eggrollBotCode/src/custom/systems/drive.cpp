@@ -8,6 +8,7 @@ namespace drive{
   int rightVel; //right side velocity
   int leftVel; //left side velocity
   bool isBraked = false;//checks if the bot is braked
+
   void tankDrive(){
     //drive code
     if(std::abs(master.getAnalog(okapi::ControllerAnalog::leftY))<0.05) leftVel=0;
@@ -23,15 +24,16 @@ namespace drive{
   }
   bool intakeRunning = false;
   void stackReverse(){
-    if(!intakeRunning){
-      intake::auton::intakeOn(-25);
-      intakeRunning = true;
+    if(BtnMacro.isPressed()){
+      if(!intakeRunning){
+        intake::auton::intakeOn(-25);
+        intakeRunning = true;
+      }
+      if(intakeRunning){
+        right_drive.moveVelocity(-25);
+        left_drive.moveVelocity(-25);
+      }
     }
-    if(intakeRunning){
-      right_drive.moveVelocity(-25);
-      left_drive.moveVelocity(-25);
-    }
-
     if(!BtnMacro.isPressed()){
       if(intakeRunning){
         intakeRunning = false;
@@ -61,6 +63,7 @@ namespace drive{
       right_drive.tarePosition();
 
     }
+
     void autonDrive(double distance, double targetVelocity){
 
       while(!isMotorWithinRange()){
@@ -92,13 +95,7 @@ namespace drive{
       }
     }
 
-    // void stackMacro(){
-    //   if(BtnMacro.isPressed()){
-    // intake::auton::intakeOn(-25);
-    // autonDrive(-250,25);
-    // intake::auton::intakeOff();
-    //   }
-    // }
+
 
     void ramping(void*){
       static uint32_t start;

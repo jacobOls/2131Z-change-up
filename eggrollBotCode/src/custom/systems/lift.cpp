@@ -64,10 +64,18 @@ namespace lift{
       break;
 
       case Controllers::DOWN:
+      if(motor.getPosition() > 25){
       motor.moveVelocity(-100);
+    }
+    else if(motor.getPosition() <25){
+      motor.moveVelocity(-25);
+    }
       break;
 
       case Controllers::NONE:
+      if(motor.getPosition() < 25){
+        motor.moveVelocity(-10);
+      }
       break;
 
       case Controllers::DEINIT:

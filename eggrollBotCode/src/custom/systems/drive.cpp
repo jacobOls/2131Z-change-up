@@ -25,19 +25,8 @@ namespace drive{
   bool intakeRunning = false;
   void stackReverse(){
     if(BtnBackUp.isPressed()){
-      if(!intakeRunning){
-        intake::auton::intakeOn(-25);
-        intakeRunning = true;
-      }
-      if(intakeRunning){
-        right_drive.moveVelocity(-25);
-        left_drive.moveVelocity(-25);
-      }
-    }
-    if(!BtnBackUp.isPressed()){
-      if(intakeRunning){
-        intakeRunning = false;
-      }
+
+
     }
   }
   namespace auton

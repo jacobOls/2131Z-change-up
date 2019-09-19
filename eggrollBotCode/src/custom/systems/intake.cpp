@@ -103,15 +103,10 @@ namespace intake
     bool intakeRunning = false;
     void intakeOn(double targetVelocity)
     {
-      intakeRunning = true;
-      if(intakeRunning){
-        intakegroup.moveVelocity(targetVelocity);
-      }
+      intakegroup.moveVelocity(targetVelocity);
     }
-    void intakeOff(){
-      intakeRunning = false;
-      intakegroup.moveVelocity(0);
-
-    }
+  }
+  void intakeOff(){
+    intakegroup.moveVelocity(0);
   }
 }

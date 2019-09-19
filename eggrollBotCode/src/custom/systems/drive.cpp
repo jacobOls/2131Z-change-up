@@ -25,17 +25,33 @@ namespace drive{
 
   namespace auton
   {
+    Controllers controller = Controllers::STOPPED;
+    void execute(){
+      switch(controller){
+        case Controllers::RUNNING:
+        break;
 
+        case Controllers::DEINIT:
+        left_drive.moveVelocity(0);
+        right_drive.moveVelocity(0);
+        resetPositions();
+        controller = Controllers::STOPPED;
+        break;
+
+        case Controllers::STOPPED:
+        break;
+      }
+    }
     #define wheelCircumfrance 12.56;
     // double Deg = distance*365 /wheelCircumfrance;
-    double distance = 25;
+    double distances = 25;
     const double epsilon = 5;
     bool isMotorWithinRange(){
       double currentPosition = left_drive.getPosition() || right_drive.getPosition();
-      if (currentPosition > distance - epsilon) {
+      if (currentPosition > distances - epsilon) {
         return true;
       }
-      if (currentPosition < distance + epsilon) {
+      if (currentPosition < distances + epsilon) {
         return true;
       }
       return false;
@@ -47,19 +63,42 @@ namespace drive{
 
     }
 
-    void autonDrive(double distance, double targetVelocity){
-
-      while(!isMotorWithinRange()){
-        left_drive.moveVelocity(targetVelocity);
-        right_drive.moveVelocity(targetVelocity);
-        pros::delay(20);
-      }
-      if(isMotorWithinRange()){
-        left_drive.moveVelocity(0);
-        right_drive.moveVelocity(0);
-        resetPositions();
-      }
+    bool motorsInPosition(){
+      return left_front.getPosition() || right_front.getPosition();
     }
+
+    // void autonDrive(double distance, double targetVelocity){
+    //   if(motorsInPosition() < distance){
+    //     controller = Controllers::RUNNING;
+    //     left_drive.moveVelocity(targetVelocity);
+    //     right_drive.moveVelocity(targetVelocity);
+    //     pros::delay(5);
+    //   }
+    //   else  if(motorsInPosition() >= distance){
+    //     controller = Controllers::DEINIT;
+    //   }
+    // }
+
+void autonDrive(double distance, double targetVelocity){
+
+
+  while(left_front.getPosition() < distance || right_front.getPosition() < distance)
+   {
+     left_drive.moveVelocity(targetVelocity);
+     right_drive.moveVelocity(targetVelocity);
+   }
+   if(left_front.getPosition() >= distance && right_front.getPosition() >= distance)
+   {
+     left_drive.moveVelocity(0);
+     right_drive.moveVelocity(0);
+     resetPositions();
+   }
+
+
+
+
+}
+
     void turn(double amount, double targetVelocity){
       while(left_front.getPosition() < amount){
         left_drive.moveVelocity(targetVelocity);
@@ -72,9 +111,7 @@ namespace drive{
         pros::delay(1);
       }
       else{
-        left_drive.moveVelocity(0);
-        right_drive.moveVelocity(0);
-        resetPositions();
+
       }
     }
 

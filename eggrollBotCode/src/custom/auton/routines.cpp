@@ -9,15 +9,17 @@ namespace auton{
   void wait(double waitTime){
     pros::delay(waitTime);
   }
-
+//about 300 for 90 degree turn
 //autonomous routines start here
   void initalAuton(){
-    lift::auton::popOpen();
+    // lift::auton::popOpen();
     intake::auton::intakeOn(200);
-    drive::auton::autonDrive(1000,200);
-    drive::auton::turn(20,50);
-    drive::auton::autonDrive(1200,200);
-    tray::auton::stack(475, 35);
+    drive::auton::autonDrive(1200,50);
+    drive::auton::turn(-150,50);
+    drive::auton::autonDrive(200,50);
+    drive::auton::autonDrive(-100,50);
+    drive::auton::turn(100,50);
+    drive::auton::autonDrive(200,50);
   }
 
 

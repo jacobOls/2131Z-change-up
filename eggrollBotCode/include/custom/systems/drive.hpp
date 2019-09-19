@@ -3,11 +3,11 @@
 #include "okapi/api.hpp"
 
 namespace drive{
-
   void tankDrive(void);
   // void brakeMode(void);
   //25 outake and drive
   namespace auton{
+    enum class Controllers{RUNNING,STOPPED,DEINIT};
     void resetPositions(void);
     void autonDrive(double distance, double targetVelocity);
     void turn(double amount, double targetVelocity);

@@ -100,12 +100,12 @@ void autonDrive(double distance, double targetVelocity){
 }
 
     void turn(double amount, double targetVelocity){
-      while(left_front.getPosition() || right_front.getPosition() < amount){
+      while(left_front.getPosition() < amount || right_front.getPosition() < amount){
         left_drive.moveVelocity(targetVelocity);
         right_drive.moveVelocity(-targetVelocity);
         pros::delay(20);
       }
-      if(left_front.getPosition() > amount){
+      if(left_front.getPosition() > amount || right_front.getPosition() > amount){
         left_drive.moveVelocity(0);
         right_drive.moveVelocity(0);
         pros::delay(1);

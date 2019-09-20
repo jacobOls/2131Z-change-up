@@ -22,6 +22,9 @@ namespace drive{
     left_drive.moveVelocity(leftVel);
 
   }
+  
+
+
 
   namespace auton{
 
@@ -53,13 +56,11 @@ namespace drive{
     void autonDrive(double distance, double targetVelocity){
 
 
-      while(left_front.getPosition() < distance || right_front.getPosition() < distance)
-      {
+      while(left_front.getPosition() < distance || right_front.getPosition() < distance){
         left_drive.moveVelocity(targetVelocity);
         right_drive.moveVelocity(targetVelocity);
       }
-      if(left_front.getPosition() >= distance && right_front.getPosition() >= distance)
-      {
+      if(left_front.getPosition() >= distance && right_front.getPosition() >= distance){
         left_drive.moveVelocity(0);
         right_drive.moveVelocity(0);
         resetPositions();

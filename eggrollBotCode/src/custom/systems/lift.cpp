@@ -15,6 +15,7 @@ namespace lift{
   bool liftUp(){
     return motor.getPosition() > position;
   }
+  
   bool buttonsPressed(){
     return  BtnUp.isPressed() && BtnDown.isPressed();
   }

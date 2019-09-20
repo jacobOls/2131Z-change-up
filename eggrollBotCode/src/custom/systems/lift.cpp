@@ -15,16 +15,11 @@ namespace lift{
   bool liftUp(){
     return motor.getPosition() > position;
   }
-  
+
   bool buttonsPressed(){
     return  BtnUp.isPressed() && BtnDown.isPressed();
   }
-  // void getOutOfTheWay(){
-  //   if(liftUp()){
-  //     tray::motor.moveAbsolute(100,100);
-  //     pros::lcd::set_text(1,"lift is up");
-  //   }
-  // }
+
   void liftMovingUp(){
     if(BtnUp.isPressed()){
       controller = Controllers::UP;

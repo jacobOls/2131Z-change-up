@@ -413,11 +413,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/custom/systems/drive.cpp.o",
-            "src\\custom\\systems\\drive.cpp"
+            "bin/custom/systems/lift.cpp.o",
+            "src\\custom\\systems\\lift.cpp"
         ],
         "directory": "C:\\Users\\sword\\Desktop\\robotics\\git\\eggrollBotCode",
-        "file": "src\\custom\\systems\\drive.cpp"
+        "file": "src\\custom\\systems\\lift.cpp"
     },
     {
         "arguments": [
@@ -448,10 +448,10 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/custom/systems/lift.cpp.o",
-            "src\\custom\\systems\\lift.cpp"
+            "bin/custom/systems/drive.cpp.o",
+            "src\\custom\\systems\\drive.cpp"
         ],
         "directory": "C:\\Users\\sword\\Desktop\\robotics\\git\\eggrollBotCode",
-        "file": "src\\custom\\systems\\lift.cpp"
+        "file": "src\\custom\\systems\\drive.cpp"
     }
 ]

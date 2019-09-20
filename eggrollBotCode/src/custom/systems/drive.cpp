@@ -67,37 +67,25 @@ namespace drive{
       return left_front.getPosition() || right_front.getPosition();
     }
 
-    // void autonDrive(double distance, double targetVelocity){
-    //   if(motorsInPosition() < distance){
-    //     controller = Controllers::RUNNING;
-    //     left_drive.moveVelocity(targetVelocity);
-    //     right_drive.moveVelocity(targetVelocity);
-    //     pros::delay(5);
-    //   }
-    //   else  if(motorsInPosition() >= distance){
-    //     controller = Controllers::DEINIT;
-    //   }
-    // }
-
-void autonDrive(double distance, double targetVelocity){
+    void autonDrive(double distance, double targetVelocity){
 
 
-  while(left_front.getPosition() < distance || right_front.getPosition() < distance)
-   {
-     left_drive.moveVelocity(targetVelocity);
-     right_drive.moveVelocity(targetVelocity);
-   }
-   if(left_front.getPosition() >= distance && right_front.getPosition() >= distance)
-   {
-     left_drive.moveVelocity(0);
-     right_drive.moveVelocity(0);
-     resetPositions();
-   }
+      while(left_front.getPosition() < distance || right_front.getPosition() < distance)
+      {
+        left_drive.moveVelocity(targetVelocity);
+        right_drive.moveVelocity(targetVelocity);
+      }
+      if(left_front.getPosition() >= distance && right_front.getPosition() >= distance)
+      {
+        left_drive.moveVelocity(0);
+        right_drive.moveVelocity(0);
+        resetPositions();
+      }
 
 
 
 
-}
+    }
 
     void turn(double amount, double targetVelocity){
       while(left_front.getPosition() < amount || right_front.getPosition() < amount){
@@ -110,10 +98,7 @@ void autonDrive(double distance, double targetVelocity){
         right_drive.moveVelocity(0);
         pros::delay(1);
       }
-
     }
-
-
 
     void ramping(void*){
       static uint32_t start;

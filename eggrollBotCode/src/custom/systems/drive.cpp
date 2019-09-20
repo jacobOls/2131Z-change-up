@@ -23,25 +23,8 @@ namespace drive{
 
   }
 
-  namespace auton
-  {
-    Controllers controller = Controllers::STOPPED;
-    void execute(){
-      switch(controller){
-        case Controllers::RUNNING:
-        break;
+  namespace auton{
 
-        case Controllers::DEINIT:
-        left_drive.moveVelocity(0);
-        right_drive.moveVelocity(0);
-        resetPositions();
-        controller = Controllers::STOPPED;
-        break;
-
-        case Controllers::STOPPED:
-        break;
-      }
-    }
     #define wheelCircumfrance 12.56;
     // double Deg = distance*365 /wheelCircumfrance;
     double distances = 25;

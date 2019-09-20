@@ -57,7 +57,8 @@ namespace lift{
 
 
   void execute(){
-
+    if(motor.getPosition() < 3 && controller== Controllers::DOWN) controller= Controllers::DEINIT;
+    if(motor.getPosition() > 500 && controller== Controllers::UP) controller= Controllers::DEINIT;
     switch (controller){
       case Controllers::UP:
       motor.moveVelocity(100);

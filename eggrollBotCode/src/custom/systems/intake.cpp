@@ -18,16 +18,7 @@ namespace intake
       controller = Controllers::DEINIT;
     }
   }
-  void stackReverse(){
-    if(drive::BtnBackUp.isPressed()){
-      drive::left_drive.moveVelocity(-25);
-      drive::right_drive.moveVelocity(-25);
-      controller = Controllers::MACRO;
-    }
-    else if(controller == Controllers::MACRO){
-      controller = Controllers::DEINIT;
-    }
-  }
+
   void spinLeft(){
     if(BtnLeft.isPressed()){
       controller = Controllers::SPINNINGLEFT;
@@ -97,6 +88,17 @@ namespace intake
     spinLeft();
     spinRight();
     execute();
+  }
+
+  void stackReverse(){
+    if(drive::BtnBackUp.isPressed()){
+      drive::left_drive.moveVelocity(-25);
+      drive::right_drive.moveVelocity(-25);
+      controller = Controllers::MACRO;
+    }
+    else if(controller == Controllers::MACRO){
+      controller = Controllers::DEINIT;
+    }
   }
 
   namespace auton{

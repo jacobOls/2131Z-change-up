@@ -2,7 +2,6 @@
 #define CONFIG_HPP
 namespace config{
   void tareMotors(void);
-  void calabrate(void);
 }
 
 

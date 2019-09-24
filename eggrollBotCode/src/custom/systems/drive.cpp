@@ -7,7 +7,6 @@
 namespace drive{
   int rightVel; //right side velocity
   int leftVel; //left side velocity
-  bool isBraked = false;//checks if the bot is braked
 
   void tankDrive(){
     //drive code
@@ -22,7 +21,7 @@ namespace drive{
     left_drive.moveVelocity(leftVel);
 
   }
-  
+
 
 
 

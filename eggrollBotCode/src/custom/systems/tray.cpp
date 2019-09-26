@@ -11,6 +11,9 @@ namespace tray{
   const double traySpeed = 25.0;
   const double position =  585.0;
   Controllers controller = Controllers::NONE;
+  double encoder(){
+  return lift::liftSensor.get_value();
+  }
   bool motorCanTravel() {
     return motor.getPosition() < position;
   }
@@ -62,7 +65,7 @@ namespace tray{
 
   }
   void execute(){
-    if(lift::getPosition()>liftPosition && motor.getPosition()<upPosition) controller= Controllers::LIFT;
+    if(encoder()>2300 && motor.getPosition()<upPosition) controller= Controllers::LIFT;
     if(!motorCanTravel() && controller== Controllers::FORWARD) controller= Controllers::DEINIT;
     if(trayDown() && controller== Controllers::BACKWARD) controller= Controllers::DEINIT;
     switch (controller) {

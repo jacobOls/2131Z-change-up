@@ -15,7 +15,7 @@ namespace auton{
     // lift::auton::popOpen();
     intake::auton::intakeOn(200);
     drive::auton::autonDrive(900,50);
-    drive::auton::turn(450,-50);
+    drive::auton::turn(-450,-50);
     drive::auton::autonDrive(100,50);
     drive::auton::autonDrive(-100,50);
     drive::auton::turn(100,50);

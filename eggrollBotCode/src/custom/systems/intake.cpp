@@ -7,8 +7,12 @@ namespace intake
 {
   Controllers controller = Controllers::NONE;
   #define spinSpeed 25
+  double intakeSpeed = 200;
   bool BothLeftAndRightButtonsPressed() {
     return BtnLeft.isPressed() && BtnRight.isPressed();
+  }
+  double cubeSense(){
+    return cubeSensor.get_value();
   }
   void spinRight() {
     if(BtnRight.isPressed()){
@@ -37,6 +41,7 @@ namespace intake
   }
 
   void outaking(){
+
     if(BtnOut.isPressed()){
       controller = Controllers::OUTTAKING;
     }
@@ -51,11 +56,14 @@ namespace intake
   void execute(){
     switch(controller){
       case Controllers::INTAKING:
-      intakegroup.moveVelocity(200);
+      intakegroup.moveVelocity(intakeSpeed);
       break;
 
       case Controllers::OUTTAKING:
-      intakegroup.moveVelocity(-200);
+      if(cubeSensor.get_value() >= 2500){
+        intakeSpeed = intakeSpeed/2;
+      }
+      intakegroup.moveVelocity(-intakeSpeed);
       break;
 
       case Controllers::MACRO:

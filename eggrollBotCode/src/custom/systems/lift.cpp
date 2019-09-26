@@ -11,7 +11,9 @@ namespace lift{
   double getPosition(){
     return lift::motor.getPosition();
   }
-
+double encoder(){
+return liftSensor.get_value();
+}
   bool liftUp(){
     return motor.getPosition() > position;
   }
@@ -50,39 +52,48 @@ namespace lift{
     }
   }
 
+/* pot positions
+down  2380
+tray pop 2300
+up  1000
+MidTower 1200
+lowTower 1630
+the lower the number the higher it is
+*/
 
 
   void execute(){
-    if(motor.getPosition() < 3 && controller== Controllers::DOWN) controller= Controllers::DEINIT;
-    if(motor.getPosition() > 500 && controller== Controllers::UP) controller= Controllers::DEINIT;
+    if(encoder() > 2380 && controller== Controllers::DOWN) controller= Controllers::DEINIT;
+    if(encoder() < 800 && controller== Controllers::UP) controller= Controllers::DEINIT;
     switch (controller){
       case Controllers::UP:
       motor.moveVelocity(100);
       break;
 
       case Controllers::DOWN:
-      if(motor.getPosition() > 25){
+      if(encoder() <= 2300){
       motor.moveVelocity(-100);
     }
-    else if(motor.getPosition() <25){
+    else if(encoder() > 2300){
       motor.moveVelocity(-25);
     }
       break;
 
       case Controllers::NONE:
-      if(motor.getPosition() < 25){
-        motor.moveVelocity(-10);
-      }
+
       break;
 
       case Controllers::DEINIT:
       motor.moveVelocity(0);
+      if(encoder() > 2360){
+        motor.moveVelocity(-5);
+      }
       controller = Controllers::NONE;
       break;
 
       case Controllers::MIDTOWER:
       motor.moveAbsolute(350,25);
-      if (motor.getPosition() < 355 && motor.getPosition() > 345){
+      if (encoder() < 1835 && encoder() > 1825){
         if(motor.isStopped())
         {
           controller = Controllers::DEINIT;
@@ -92,7 +103,7 @@ namespace lift{
 
       case Controllers::LOWTOWER:
       motor.moveAbsolute(250,25);
-      if (motor.getPosition() < 255 && motor.getPosition() > 245){
+      if (encoder() < 1405 && encoder() > 1395){
         if(motor.isStopped())
         {
           controller = Controllers::DEINIT;

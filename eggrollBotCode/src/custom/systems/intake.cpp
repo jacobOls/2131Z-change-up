@@ -14,6 +14,9 @@ namespace intake
   double cubeSense(){
     return cubeSensor.get_value();
   }
+  double encoder(){
+    return lift::liftSensor.get_value();
+  }
   void spinRight() {
     if(BtnRight.isPressed()){
       controller = Controllers::SPINNINGRIGHT;
@@ -56,7 +59,9 @@ namespace intake
   void execute(){
     switch(controller){
       case Controllers::INTAKING:
+      if(encoder() < 2370 && cubeSensor.get_value() <= 2700){
       intakegroup.moveVelocity(200);
+    }
       break;
 
       case Controllers::OUTTAKING:
@@ -67,7 +72,7 @@ namespace intake
         intakegroup.moveVelocity(-200);
       }
       break;
-      
+
       case Controllers::MACRO:
       intakegroup.moveVelocity(-25);
       break;

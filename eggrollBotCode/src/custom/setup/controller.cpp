@@ -9,8 +9,8 @@ namespace drive{
 namespace tray{
   okapi::ControllerButton BtnF = master[okapi::ControllerDigital::Y];
   okapi::ControllerButton BtnB = master[okapi::ControllerDigital::right];
-
-  //left and up for towers
+  okapi::ControllerButton travelBack =master[okapi::ControllerDigital::A];
+//a goes down as far as possible
 }
 namespace config{
   okapi::ControllerButton BtnCalabrate = master[okapi::ControllerDigital::left];

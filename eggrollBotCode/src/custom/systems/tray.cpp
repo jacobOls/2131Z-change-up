@@ -12,7 +12,7 @@ namespace tray{
   const double position =  600.0;
   Controllers controller = Controllers::NONE;
   double encoder(){
-  return lift::liftSensor.get_value();
+    return lift::liftSensor.get_value();
   }
   bool motorCanTravel() {
     return motor.getPosition() < position;
@@ -57,10 +57,21 @@ namespace tray{
     }
   }
 
+  void travel(){
+    if(travelBack.isPressed()){
+      controller = Controllers::TRAVELBACK;
+    }
+    else if(controller == Controllers::BACKWARD){
+      controller = Controllers::DEINIT;
+    }
+
+  }
+
 
   void tilter(){
     forward();
     back();
+    travel();
     execute();
 
   }
@@ -84,7 +95,6 @@ namespace tray{
       break;
 
       case Controllers::NONE:
-      pros::lcd::set_text(5,"NONE" );
       break;
 
       case Controllers::RETURN:
@@ -108,6 +118,17 @@ namespace tray{
       if(encoder() > 2290) controller = Controllers::RETURN;
       break;
 
+      case Controllers::TRAVELBACK:
+      if(encoder()  <  2350 && motor.getPosition()<upPosition){
+        motor.moveAbsolute(upPosition, -100);
+
+      }
+      else{
+        motor.moveAbsolute(0,-100);
+      }
+
+      break;
+      
     }
   }
   namespace auton{

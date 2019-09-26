@@ -60,12 +60,14 @@ namespace intake
       break;
 
       case Controllers::OUTTAKING:
-      // if(cubeSensor.get_value() >= 2500){
-      //   intakeSpeed = intakeSpeed/2;
-      // }
-      intakegroup.moveVelocity(-200);
+      if(cubeSensor.get_value() <= 2700){
+        intakegroup.moveVelocity(-100);
+      }
+      else{
+        intakegroup.moveVelocity(-200);
+      }
       break;
-
+      
       case Controllers::MACRO:
       intakegroup.moveVelocity(-25);
       break;

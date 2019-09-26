@@ -1,7 +1,7 @@
 #ifndef LIFT_HPP
 #define LIFT_HPP
 namespace lift{
-  enum class Controllers{UP,DOWN,NONE,DEINIT,MIDTOWER,LOWTOWER,STILL};
+  enum class Controllers{UP,DOWN,NONE,DEINIT,MIDTOWER,LOWTOWER,BOTTOM};
   void lift(void);
 
   double getPosition();

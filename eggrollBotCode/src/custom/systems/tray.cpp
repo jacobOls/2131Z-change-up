@@ -5,11 +5,11 @@
 #include "custom/systems/lift.hpp"
 namespace tray{
   const double epsilon = 10;
-  const double upPosition = 200;
+  const double upPosition = 250;
   const double liftPosition = 25;
   // bool trayMove = false;
   const double traySpeed = 25.0;
-  const double position =  585.0;
+  const double position =  600.0;
   Controllers controller = Controllers::NONE;
   double encoder(){
   return lift::liftSensor.get_value();
@@ -65,7 +65,7 @@ namespace tray{
 
   }
   void execute(){
-    if(encoder()<2370 && motor.getPosition()<upPosition) controller= Controllers::LIFT;
+    if(encoder() < 2370 && motor.getPosition()<upPosition) controller= Controllers::LIFT;
     if(!motorCanTravel() && controller== Controllers::FORWARD) controller= Controllers::DEINIT;
     if(trayDown() && controller== Controllers::BACKWARD) controller= Controllers::DEINIT;
     switch (controller) {
@@ -75,12 +75,11 @@ namespace tray{
       break;
 
       case Controllers::BACKWARD:
-      motor.moveVelocity(-traySpeed);
+      motor.moveVelocity(-100);
       break;
 
       case Controllers::DEINIT:
       motor.moveVelocity(0);
-      pros::lcd::set_text(4,"DEINIT" );
       controller = Controllers::NONE;
       break;
 
@@ -106,7 +105,7 @@ namespace tray{
       i++;
       pros::lcd::set_text(2,std::to_string(i));
       motor.moveAbsolute(upPosition +25, 75);
-      if(encoder()>2300) controller = Controllers::RETURN;
+      if(encoder() > 2290) controller = Controllers::RETURN;
       break;
 
     }

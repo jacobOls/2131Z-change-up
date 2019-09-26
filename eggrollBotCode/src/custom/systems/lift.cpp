@@ -80,21 +80,23 @@ namespace lift{
       break;
 
       case Controllers::NONE:
-
+      // pros::lcd::set_text(4,"NONE" );
       break;
 
       case Controllers::DEINIT:
       motor.moveVelocity(0);
-      controller = Controllers::STILL;
+      controller = Controllers::BOTTOM;
       break;
 
-      case Controllers::STILL:
-      if(encoder() > 2372){
-        motor.moveVelocity(-10);
+      case Controllers::BOTTOM:
+      if(!buttonsPressed()){
+      if(encoder() > 2200 && encoder() < 2398){
+          motor.moveVelocity(-50);
+        }
+      else{
+        motor.moveVelocity(0);
         controller = Controllers::NONE;
       }
-      else{
-      controller = Controllers::NONE;
     }
       break;
 

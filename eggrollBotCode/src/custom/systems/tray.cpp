@@ -65,7 +65,7 @@ namespace tray{
 
   }
   void execute(){
-    if(encoder()>2300 && motor.getPosition()<upPosition) controller= Controllers::LIFT;
+    if(encoder()<2360 && motor.getPosition()<upPosition) controller= Controllers::LIFT;
     if(!motorCanTravel() && controller== Controllers::FORWARD) controller= Controllers::DEINIT;
     if(trayDown() && controller== Controllers::BACKWARD) controller= Controllers::DEINIT;
     switch (controller) {
@@ -106,7 +106,7 @@ namespace tray{
       i++;
       pros::lcd::set_text(2,std::to_string(i));
       motor.moveAbsolute(upPosition +25, 75);
-      if(lift::getPosition()<25) controller = Controllers::RETURN;
+      if(encoder()>2300) controller = Controllers::RETURN;
       break;
 
     }

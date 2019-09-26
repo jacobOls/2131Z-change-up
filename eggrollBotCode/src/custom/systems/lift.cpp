@@ -11,9 +11,9 @@ namespace lift{
   double getPosition(){
     return lift::motor.getPosition();
   }
-double encoder(){
-return liftSensor.get_value();
-}
+  double encoder(){
+    return liftSensor.get_value();
+  }
   bool liftUp(){
     return motor.getPosition() > position;
   }
@@ -52,14 +52,14 @@ return liftSensor.get_value();
     }
   }
 
-/* pot positions
-down  2380
-tray pop 2300
-up  1000
-MidTower 1200
-lowTower 1630
-the lower the number the higher it is
-*/
+  /* pot positions
+  down  2380
+  tray pop 2300
+  up  1000
+  MidTower 1200
+  lowTower 1630
+  the lower the number the higher it is
+  */
 
 
   void execute(){
@@ -72,11 +72,11 @@ the lower the number the higher it is
 
       case Controllers::DOWN:
       if(encoder() <= 2300){
-      motor.moveVelocity(-100);
-    }
-    else if(encoder() > 2300){
-      motor.moveVelocity(-25);
-    }
+        motor.moveVelocity(-100);
+      }
+      else if(encoder() > 2300){
+        motor.moveVelocity(-25);
+      }
       break;
 
       case Controllers::NONE:
@@ -85,11 +85,19 @@ the lower the number the higher it is
 
       case Controllers::DEINIT:
       motor.moveVelocity(0);
-      if(encoder() > 2360){
-        motor.moveVelocity(-5);
-      }
-      controller = Controllers::NONE;
+      controller = Controllers::STILL;
       break;
+
+      case Controllers::STILL:
+      if(encoder() > 2372){
+        motor.moveVelocity(-10);
+        controller = Controllers::NONE;
+      }
+      else{
+      controller = Controllers::NONE;
+    }
+      break;
+
 
       case Controllers::MIDTOWER:
       motor.moveAbsolute(350,25);

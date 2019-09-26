@@ -65,7 +65,7 @@ namespace tray{
 
   }
   void execute(){
-    if(encoder()<2360 && motor.getPosition()<upPosition) controller= Controllers::LIFT;
+    if(encoder()<2370 && motor.getPosition()<upPosition) controller= Controllers::LIFT;
     if(!motorCanTravel() && controller== Controllers::FORWARD) controller= Controllers::DEINIT;
     if(trayDown() && controller== Controllers::BACKWARD) controller= Controllers::DEINIT;
     switch (controller) {

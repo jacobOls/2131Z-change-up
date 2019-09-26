@@ -56,14 +56,14 @@ namespace intake
   void execute(){
     switch(controller){
       case Controllers::INTAKING:
-      intakegroup.moveVelocity(intakeSpeed);
+      intakegroup.moveVelocity(200);
       break;
 
       case Controllers::OUTTAKING:
-      if(cubeSensor.get_value() >= 2500){
-        intakeSpeed = intakeSpeed/2;
-      }
-      intakegroup.moveVelocity(-intakeSpeed);
+      // if(cubeSensor.get_value() >= 2500){
+      //   intakeSpeed = intakeSpeed/2;
+      // }
+      intakegroup.moveVelocity(-200);
       break;
 
       case Controllers::MACRO:

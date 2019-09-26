@@ -60,10 +60,13 @@ namespace intake
     switch(controller){
       case Controllers::INTAKING:
       if(encoder() < 2370 && cubeSensor.get_value() <= 2700){
-      intakegroup.moveVelocity(200);
-    }
+        intakegroup.moveVelocity(0);
+      }
+      else{
+        intakegroup.moveVelocity(200);
+      }
       break;
-
+      
       case Controllers::OUTTAKING:
       if(cubeSensor.get_value() <= 2700){
         intakegroup.moveVelocity(-100);

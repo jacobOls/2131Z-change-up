@@ -11,6 +11,9 @@ namespace intake
   bool BothLeftAndRightButtonsPressed() {
     return BtnLeft.isPressed() && BtnRight.isPressed();
   }
+
+  bool slowOutake = false;
+
   double cubeSense(){
     return cubeSensor.get_value();
   }
@@ -26,6 +29,7 @@ namespace intake
     }
   }
 
+  //second sprocket beneath main one on intake.
   void spinLeft(){
     if(BtnLeft.isPressed()){
       controller = Controllers::SPINNINGLEFT;
@@ -68,11 +72,30 @@ namespace intake
       break;
 
       case Controllers::OUTTAKING:
-      if(cubeSensor.get_value() <= 2700){
-        intakegroup.moveVelocity(-100);
+      // if(cubeSensor.get_value() <= 2700){
+      //   intakegroup.moveVelocity(-100);
+      // }
+      // else{
+      //   intakegroup.moveVelocity(-200);
+      // }
+      if(cubeSensor.get_value() < 2700 && encoder() < 2370){
+        if(BtnOut.isPressed()){
+          slowOutake = true;
+          if(slowOutake){
+            intakegroup.moveVelocity(-100);
+          }
+        }
+
       }
+      else if(encoder() >= 2370 || cubeSensor.get_value() > 2600){
+        if(!BtnOut.isPressed()){
+          if(slowOutake){
+            slowOutake = false;
+          }
+        }
+      }    
       else{
-        intakegroup.moveVelocity(-200);
+        intakegroup.moveVelocity(200);
       }
       break;
 

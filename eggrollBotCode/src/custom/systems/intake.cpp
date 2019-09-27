@@ -62,11 +62,11 @@ namespace intake
       if(encoder() < 2370 && cubeSensor.get_value() <= 2700){
         intakegroup.moveVelocity(0);
       }
-      else{
+      else if(encoder() >= 2370) {
         intakegroup.moveVelocity(200);
       }
       break;
-      
+
       case Controllers::OUTTAKING:
       if(cubeSensor.get_value() <= 2700){
         intakegroup.moveVelocity(-100);

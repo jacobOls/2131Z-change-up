@@ -19,7 +19,7 @@ namespace drive{
         namespace tray{
           okapi::Motor motor(8,true,okapi::AbstractMotor::gearset::red,
             okapi::AbstractMotor::encoderUnits::degrees);
-
+    Ramping tilt(1, 5, 50, -50);
           }
 
           namespace intake{

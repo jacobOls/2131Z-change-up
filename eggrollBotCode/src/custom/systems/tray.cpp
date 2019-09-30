@@ -128,9 +128,21 @@ namespace tray{
       }
 
       break;
-      
+
     }
   }
+
+  void ramping(void*)
+  {
+    static uint32_t start;
+    tilt.calculate();
+    pros::Task::delay_until(&start, tilt.get_changeMsec());
+  }
+  void taskInit(){
+    pros::Task rampingTask(ramping, (void*) "test", TASK_PRIORITY_DEFAULT,
+    TASK_STACK_DEPTH_DEFAULT,"tilt");
+}
+
   namespace auton{
     double targetPosition = 25;
     bool isMotorWithinRange() {

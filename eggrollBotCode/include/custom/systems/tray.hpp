@@ -6,6 +6,7 @@ namespace tray{
   void tray(void);
   void execute(void);
   void tilter(void);
+  void ramping(void);
   namespace auton{
     void stack(double targetPosition, double targetVelocity);
   }

@@ -9,6 +9,7 @@ namespace drive{
   namespace auton{
     void resetPositions(void);
     void autonDrive(double distance, double targetVelocity);
+    void autonDriveBack(double distance, double targetVelocity);
     void turn(double amount, double targetVelocity);
   }
 }

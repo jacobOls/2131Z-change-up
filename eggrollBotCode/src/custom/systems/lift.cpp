@@ -90,14 +90,14 @@ namespace lift{
 
       case Controllers::BOTTOM:
       if(!buttonsPressed()){
-      if(encoder() > 2200 && encoder() < 2398){
+        if(encoder() > 2200 && encoder() < 2398){
           motor.moveVelocity(-50);
         }
-      else{
-        motor.moveVelocity(0);
-        controller = Controllers::NONE;
+        else{
+          motor.moveVelocity(0);
+          controller = Controllers::NONE;
+        }
       }
-    }
       break;
 
 
@@ -132,6 +132,8 @@ namespace lift{
   }
 
   namespace auton{
+    bool unpopped = true;
+    bool popped = false;
     const double targetPosition = 25;
     const double epsilon = 5;
     bool isMotorWithinRange() {
@@ -153,11 +155,19 @@ namespace lift{
       }
     }
     void popOpen(){
-      motor.moveAbsolute(100,20);
-      tray::motor.moveAbsolute(100,20);
-      pros::delay(100);
-      motor.moveAbsolute(0,20);
-      tray::motor.moveAbsolute(0,20);
+      while(encoder() >= 2100 && unpopped){
+        motor.moveVelocity(100);
+        popped = true;
+      }
+      while(popped){
+        if(encoder() <= 2360){
+          motor.moveVelocity(-100);
+          unpopped = true;
+        }
+        if(encoder() >= 2360){
+          popped = false;
+        }
+      }
     }
   }
 }

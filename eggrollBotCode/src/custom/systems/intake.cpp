@@ -79,23 +79,13 @@ namespace intake
       //   intakegroup.moveVelocity(-200);
       // }
       if(cubeSensor.get_value() < 2700 && encoder() < 2370){
-        if(BtnOut.isPressed()){
-          slowOutake = true;
-          if(slowOutake){
-            intakegroup.moveVelocity(-100);
-          }
+        slowOutake = true;
+        if(slowOutake){
+          intakegroup.moveVelocity(-100);
         }
-
       }
-      else if(encoder() >= 2370 || cubeSensor.get_value() > 2600){
-        if(!BtnOut.isPressed()){
-          if(slowOutake){
-            slowOutake = false;
-          }
-        }
-      }    
-      else{
-        intakegroup.moveVelocity(200);
+      else if(!slowOutake){
+        intakegroup.moveVelocity(-200);
       }
       break;
 
@@ -114,6 +104,11 @@ namespace intake
       break;
 
       case Controllers::DEINIT:
+      if(encoder() >= 2370 || cubeSensor.get_value() > 2600){
+        if(slowOutake){
+          slowOutake = false;
+        }
+      }
       intakegroup.moveVelocity(0);
       controller = Controllers::NONE;
       break;

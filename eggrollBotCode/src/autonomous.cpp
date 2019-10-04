@@ -12,5 +12,5 @@
  * from where it left off.
  */
 void autonomous() {
-auton::initalAuton();
+auton::skillsAuton();
 }

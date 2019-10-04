@@ -11,7 +11,7 @@ namespace auton{
   }
 //about 300 for 90 degree turn
 //autonomous routines start here
-  void initalAuton(){
+  void skillsAuton(){
     drive::auton::autonDrive(300,50);
     drive::auton::autonDriveBack(-300,-50);
     lift::auton::popOpen();
@@ -19,7 +19,7 @@ namespace auton{
     // tray::auton::stack(10, -100);
     intake::auton::intakeOn(200);
     drive::auton::autonDrive(900,50);
-    drive::auton::turn(-450,-50);
+    drive::auton::turn(450,-50);
     drive::auton::autonDrive(100,50);
     drive::auton::autonDrive(-100,50);
     drive::auton::turn(100,50);

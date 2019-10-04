@@ -10,7 +10,8 @@ namespace drive{
     void resetPositions(void);
     void autonDrive(double distance, double targetVelocity);
     void autonDriveBack(double distance, double targetVelocity);
-    void turn(double amount, double targetVelocity);
+    void leftTurn(double amount, double targetVelocity);
+    void rightTurn(double amount, double targetVelocity);
   }
 }
 #endif

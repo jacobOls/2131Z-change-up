@@ -90,18 +90,33 @@ namespace drive{
 
 
 
-    void turn(double amount, double targetVelocity){
-      while(left_front.getPosition() < amount || right_front.getPosition() < amount){
+    void rightTurn(double amount, double targetVelocity){
+      while(left_front.getPosition() < amount){
         left_drive.moveVelocity(targetVelocity);
         right_drive.moveVelocity(-targetVelocity);
         pros::delay(20);
       }
-      if(left_front.getPosition() > amount || right_front.getPosition() > amount){
+      if(left_front.getPosition() > amount){
         left_drive.moveVelocity(0);
         right_drive.moveVelocity(0);
         pros::delay(1);
       }
     }
+
+    void leftTurn(double amount, double targetVelocity){
+      while(right_front.getPosition() < amount){
+        left_drive.moveVelocity(-targetVelocity);
+        right_drive.moveVelocity(targetVelocity);
+        pros::delay(20);
+      }
+      if(right_front.getPosition() > amount){
+        left_drive.moveVelocity(0);
+        right_drive.moveVelocity(0);
+        pros::delay(1);
+      }
+    }
+
+
 
     void ramping(void*){
       static uint32_t start;

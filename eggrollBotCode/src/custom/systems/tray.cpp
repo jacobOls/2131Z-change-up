@@ -155,7 +155,18 @@ namespace tray{
       }
       return false;
     }
-    void stack(double targetPosition, double targetVelocity){
+
+      void trayDown(double targetPosition, double targetVelocity){
+        while(motor.getPosition() >= targetPosition){
+          motor.moveVelocity(targetVelocity);
+        }
+        if(motor.getPosition() <= targetPosition){
+          motor.moveVelocity(0);
+        }
+      }
+
+
+      void stack(double targetPosition, double targetVelocity){
 
       while(!isMotorWithinRange())
       {

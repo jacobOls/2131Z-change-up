@@ -146,18 +146,34 @@ namespace lift{
       }
       return false;
     }
-    void autonLift(double targetPosition, double targetVelocity){
-      while(!isMotorWithinRange()){
+    void autonLiftUp(double targetPosition, double targetVelocity){
+      while(encoder() <= targetPosition){
         motor.moveVelocity(targetVelocity);
       }
-      if(isMotorWithinRange()){
+      if(encoder() >= targetPosition){
         motor.moveVelocity(0);
       }
     }
+
+    void autonLiftDown(double targetPosition, double targetVelocity){
+      while(encoder() >= targetPosition){
+        motor.moveVelocity(targetVelocity);
+      }
+      if(encoder() <= targetPosition){
+        motor.moveVelocity(0);
+      }
+    }
+
+
+
+
+
     void popOpen(){
-      while(encoder() >= 2100 && unpopped){
+      while(!popped){
         motor.moveVelocity(100);
-        popped = true;
+        if(encoder() <= 2000 && unpopped){
+          popped = true;
+        }
       }
       while(popped){
         if(encoder() <= 2360){

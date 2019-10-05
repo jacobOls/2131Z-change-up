@@ -94,12 +94,11 @@ namespace drive{
       while(left_front.getPosition() < amount){
         left_drive.moveVelocity(targetVelocity);
         right_drive.moveVelocity(-targetVelocity);
-        pros::delay(20);
       }
       if(left_front.getPosition() > amount){
         left_drive.moveVelocity(0);
         right_drive.moveVelocity(0);
-        pros::delay(1);
+        resetPositions();
       }
     }
 
@@ -107,12 +106,11 @@ namespace drive{
       while(right_front.getPosition() < amount){
         left_drive.moveVelocity(-targetVelocity);
         right_drive.moveVelocity(targetVelocity);
-        pros::delay(20);
       }
       if(right_front.getPosition() > amount){
         left_drive.moveVelocity(0);
         right_drive.moveVelocity(0);
-        pros::delay(1);
+        resetPositions();
       }
     }
 

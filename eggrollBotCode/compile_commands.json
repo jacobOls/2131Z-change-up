@@ -365,7 +365,7 @@
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
-            "-iquote./include/custom/auton/",
+            "-iquote./include/custom/systems/",
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
             "-mfloat-abi=softfp",
@@ -378,11 +378,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/custom/auton/routines.cpp.o",
-            "src\\custom\\auton\\routines.cpp"
+            "bin/custom/systems/lift.cpp.o",
+            "src\\custom\\systems\\lift.cpp"
         ],
         "directory": "C:\\Users\\sword\\Desktop\\robotics\\git\\eggrollBotCode",
-        "file": "src\\custom\\auton\\routines.cpp"
+        "file": "src\\custom\\systems\\lift.cpp"
     },
     {
         "arguments": [
@@ -435,7 +435,7 @@
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
-            "-iquote./include/custom/systems/",
+            "-iquote./include/custom/auton/",
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
             "-mfloat-abi=softfp",
@@ -448,10 +448,10 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/custom/systems/lift.cpp.o",
-            "src\\custom\\systems\\lift.cpp"
+            "bin/custom/auton/routines.cpp.o",
+            "src\\custom\\auton\\routines.cpp"
         ],
         "directory": "C:\\Users\\sword\\Desktop\\robotics\\git\\eggrollBotCode",
-        "file": "src\\custom\\systems\\lift.cpp"
+        "file": "src\\custom\\auton\\routines.cpp"
     }
 ]

@@ -156,10 +156,10 @@ namespace lift{
     }
 
     void autonLiftDown(double wantedPosition, double targetVelocity){
-      while(encoder() >= wantedPosition){
-        motor.moveVelocity(wantedPosition);
+      while(encoder() <= wantedPosition){
+        motor.moveVelocity(targetVelocity);
       }
-      if(encoder() <= wantedPosition){
+      if(encoder() >= wantedPosition){
         motor.moveVelocity(0);
       }
     }

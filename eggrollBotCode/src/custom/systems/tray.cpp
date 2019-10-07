@@ -61,10 +61,10 @@ namespace tray{
     if(travelBack.isPressed()){
       controller = Controllers::TRAVELBACK;
     }
-    else if(controller == Controllers::TRAVELBACK){
+    else if(controller == Controllers::TRAVELBACK && motor.getActualVelocity() < 10){
       controller = Controllers::DEINIT;
     }
-
+    
   }
 
 
@@ -121,12 +121,10 @@ namespace tray{
       case Controllers::TRAVELBACK:
       if(encoder()  <  2350 && motor.getPosition()<upPosition){
         motor.moveAbsolute(upPosition, -100);
-
       }
       else{
         motor.moveAbsolute(0,-100);
       }
-
       break;
 
     }
@@ -141,7 +139,7 @@ namespace tray{
   void taskInit(){
     pros::Task rampingTask(ramping, (void*) "test", TASK_PRIORITY_DEFAULT,
     TASK_STACK_DEPTH_DEFAULT,"tilt");
-}
+  }
 
   namespace auton{
     double targetPosition = 25;
@@ -156,17 +154,17 @@ namespace tray{
       return false;
     }
 
-      void trayDown(double wantedPosition, double targetVelocity){
-        while(motor.getPosition() < wantedPosition){
-          motor.moveVelocity(targetVelocity);
-        }
-        if(motor.getPosition() >= wantedPosition){
-          motor.moveVelocity(0);
-        }
+    void trayDown(double wantedPosition, double targetVelocity){
+      while(motor.getPosition() < wantedPosition){
+        motor.moveVelocity(targetVelocity);
       }
+      if(motor.getPosition() >= wantedPosition){
+        motor.moveVelocity(0);
+      }
+    }
 
 
-      void stack(double targetPosition, double targetVelocity){
+    void stack(double targetPosition, double targetVelocity){
 
       while(!isMotorWithinRange())
       {

@@ -9,13 +9,13 @@ namespace tray{
   const double liftPosition = 25;
   // bool trayMove = false;
   const double traySpeed = 25.0;
-  const double position =  600.0;
+  const double position =  -500.0;
   Controllers controller = Controllers::NONE;
   double encoder(){
     return lift::liftSensor.get_value();
   }
   bool motorCanTravel() {
-    return motor.getPosition() < position;
+    return motor.getPosition() > position;
   }
   bool trayDown(){
     return motor.getPosition() < 25;
@@ -61,7 +61,7 @@ namespace tray{
     if(travelBack.isPressed()){
       controller = Controllers::TRAVELBACK;
     }
-    else if(controller == Controllers::BACKWARD){
+    else if(controller == Controllers::TRAVELBACK){
       controller = Controllers::DEINIT;
     }
 
@@ -156,11 +156,11 @@ namespace tray{
       return false;
     }
 
-      void trayDown(double targetPosition, double targetVelocity){
-        while(motor.getPosition() >= targetPosition){
+      void trayDown(double wantedPosition, double targetVelocity){
+        while(motor.getPosition() < wantedPosition){
           motor.moveVelocity(targetVelocity);
         }
-        if(motor.getPosition() <= targetPosition){
+        if(motor.getPosition() >= wantedPosition){
           motor.moveVelocity(0);
         }
       }

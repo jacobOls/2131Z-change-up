@@ -155,11 +155,11 @@ namespace lift{
       }
     }
 
-    void autonLiftDown(double targetPosition, double targetVelocity){
-      while(encoder() >= targetPosition){
-        motor.moveVelocity(targetVelocity);
+    void autonLiftDown(double wantedPosition, double targetVelocity){
+      while(encoder() >= wantedPosition){
+        motor.moveVelocity(wantedPosition);
       }
-      if(encoder() <= targetPosition){
+      if(encoder() <= wantedPosition){
         motor.moveVelocity(0);
       }
     }

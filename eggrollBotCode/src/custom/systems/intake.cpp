@@ -143,8 +143,8 @@ namespace intake
     {
       intakegroup.moveVelocity(targetVelocity);
     }
-  }
-  void intakeOff(){
-    intakegroup.moveVelocity(0);
+    void intakeOff(){
+      intakegroup.moveVelocity(0);
+    }
   }
 }

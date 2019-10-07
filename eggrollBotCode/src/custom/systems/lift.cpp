@@ -169,21 +169,14 @@ namespace lift{
 
 
     void popOpen(){
-      while(!popped){
+      while(encoder() > 2000){
         motor.moveVelocity(100);
-        if(encoder() <= 2000 && unpopped){
-          popped = true;
-        }
+        // tray::motor.moveAbsolute(-30,100);
       }
-      while(popped){
-        if(encoder() <= 2360){
-          motor.moveVelocity(-100);
-          unpopped = true;
+        if(encoder() <= 2000){
+          // motor.moveVelocity(0);
+          tray::motor.moveVelocity(0);
         }
-        if(encoder() >= 2360){
-          popped = false;
-        }
-      }
-    }
   }
+}
 }

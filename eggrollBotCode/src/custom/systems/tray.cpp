@@ -61,10 +61,10 @@ namespace tray{
     if(travelBack.isPressed()){
       controller = Controllers::TRAVELBACK;
     }
-    else if(controller == Controllers::TRAVELBACK && motor.getActualVelocity() < 10){
+    else if(controller == Controllers::TRAVELBACK && motor.getActualVelocity() > -10){
       controller = Controllers::DEINIT;
     }
-    
+
   }
 
 

@@ -168,8 +168,10 @@ namespace tray{
       while(motor.getPosition() > wantedPosition){
         motor.moveVelocity(targetVelocity);
       }
-      motor.moveVelocity(0);
-
+      if(motor.getPosition() <= wantedPosition){
+        pros::lcd::set_text(4,"stopping motor" );
+        motor.moveVelocity(0);
+      }
     }
   }
 }

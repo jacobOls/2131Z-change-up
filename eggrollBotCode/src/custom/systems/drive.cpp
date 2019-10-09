@@ -71,8 +71,6 @@ namespace drive{
     }
 
     void autonDriveBack(double distance, double targetVelocity){
-
-
       while(left_front.getPosition() > distance || right_front.getPosition() > distance){
         left_drive.moveVelocity(targetVelocity);
         right_drive.moveVelocity(targetVelocity);

@@ -8,7 +8,7 @@ namespace tray{
   void tilter(void);
   void ramping(void);
   namespace auton{
-    void trayDown(double targetPosition, double targetVelocity);
+    void trayDown(double wantedPosition, double targetVelocity);
     void stack(double wantedPosition, double targetVelocity);
   }
 }

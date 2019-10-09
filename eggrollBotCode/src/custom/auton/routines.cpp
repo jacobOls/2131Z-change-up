@@ -35,6 +35,6 @@ namespace auton{
     // drive::auton::autonDriveBack(-850,-100);
     // drive::auton::rightTurn(300,50);
     // drive::auton::autonDrive(200,50);
-    tray::auton::stack(-600,50);
+    tray::auton::stack(-300,25);
   }
 }

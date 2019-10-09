@@ -164,14 +164,14 @@ namespace tray{
     }
 
 
-    void stack(double targetPosition, double targetVelocity){
+    void stack(double wantedPosition, double targetVelocity){
 
-      while(!isMotorWithinRange())
+      while(motor.getPosition() > wantedPosition)
       {
         motor.moveVelocity(targetVelocity);
         pros::delay(20);
       }
-      if(isMotorWithinRange())
+      if(motor.getPosition() <= wantedPosition)
       motor.moveVelocity(0);
     }
   }

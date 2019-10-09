@@ -19,7 +19,7 @@ namespace auton{
     // drive::auton::autonDriveBack(-310,-50);
     // lift::auton::popOpen();
     // lift::auton::autonLiftDown(2380,-100);
-    // tray::auton::trayDown(-22,-100);
+    // tray::auton::trayDown(0,-100);
     // intake::auton::intakeOn(200);
     // drive::auton::autonDriveBack(-30,-50);
     // drive::auton::autonDrive(1100,50);

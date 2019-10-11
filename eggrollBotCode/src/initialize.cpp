@@ -5,6 +5,8 @@
 #include "custom/systems/drive.hpp"
 #include "custom/auton/selection.hpp"
 #include "custom/setup/config.hpp"
+#include "custom/auton/selection.hpp"
+#include "custom/auton/auton.hpp"
 /**
 * Runs initialization code. This occurs as soon as the program is started.
 *
@@ -19,7 +21,6 @@ void initialize() {
 	intake::left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-	// auton::selection::screenInit();
 
 
 }
@@ -29,7 +30,10 @@ void initialize() {
 * the VEX Competition Switch, following either autonomous or opcontrol. When
 * the robot is enabled, this task will exit.
 */
-void disabled() {}
+void disabled() {
+// 	auton::autonTask.suspend();
+// auton::set_auton(false);
+}
 
 /**
 * Runs after initialize(), and before autonomous when connected to the Field
@@ -48,4 +52,5 @@ void competition_initialize() {
 	intake::left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+
 }

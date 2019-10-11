@@ -54,23 +54,26 @@ namespace auton {
         {"BacK Blue", "Mid", ""},
         {"Front Blue", "Park", ""},
     };
-    // void execute() {
-    //   switch (positon) {
-    //   case Positons::FR:
-    //     // auton::routines::red::front::all(shoot, flag, option);
-    //     break;
-    //   case Positons::BR:
-    //     // auton::routines::red::back::skills();
-    //     // auton::routines::red::back::all(shoot, flag, option);
-    //     break;
-    //   case Positons::BB:
-    //     // auton::routines::blue::back::all(shoot, flag, option);
-    //     break;
-    //   case Positons::FB:
-    //     // auton::routines::blue::front::all(shoot, flag, option);
-    //     break;
-    //   }
-    // }
+    void execute() {
+      switch (positon) {
+      case Positons::FR:
+        // auton::routines::red::front::all(shoot, flag, option);
+        break;
+      case Positons::BR:
+        // auton::routines::red::back::skills();
+        // auton::routines::red::back::all(shoot, flag, option);
+        break;
+      case Positons::BB:
+        // auton::routines::blue::back::all(shoot, flag, option);
+        break;
+      case Positons::FB:
+        // auton::routines::blue::front::all(shoot, flag, option);
+        break;
+
+        case Positons::NONE:
+        break;
+      }
+    }
     void screenInit() {
       StyleInit();
 

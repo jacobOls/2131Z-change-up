@@ -6,7 +6,6 @@
 #include "custom/auton/selection.hpp"
 #include "custom/setup/config.hpp"
 #include "custom/auton/selection.hpp"
-#include "custom/auton/auton.hpp"
 /**
 * Runs initialization code. This occurs as soon as the program is started.
 *
@@ -14,7 +13,6 @@
 * to keep execution time for this mode under a few seconds.
 */
 void initialize() {
-	pros::lcd::initialize();
 	config::tareMotors();
 	tray::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	intake::right_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
@@ -45,7 +43,6 @@ void disabled() {
 * starts.
 */
 void competition_initialize() {
-	pros::lcd::initialize();
 	config::tareMotors();
 	tray::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	intake::right_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);

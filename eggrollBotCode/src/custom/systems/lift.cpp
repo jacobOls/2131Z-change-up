@@ -63,7 +63,7 @@ namespace lift{
 
 
   void execute(){
-     if(encoder() > 2380 && controller== Controllers::DOWN) controller= Controllers::DEINIT;
+    if(encoder() > 2380 && controller== Controllers::DOWN) controller= Controllers::DEINIT;
     if(encoder() < 800 && controller== Controllers::UP) controller= Controllers::DEINIT;
     switch (controller){
       case Controllers::UP:
@@ -173,10 +173,9 @@ namespace lift{
         motor.moveVelocity(100);
         // tray::motor.moveAbsolute(-30,100);
       }
-        if(encoder() <= 2000){
-          // motor.moveVelocity(0);
-          tray::motor.moveVelocity(0);
-        }
+      if(encoder() <= 2000){
+        // motor.moveVelocity(0);
+      }
+    }
   }
-}
 }

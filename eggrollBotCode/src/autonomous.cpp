@@ -1,7 +1,6 @@
 #include "main.h"
 #include "custom/auton/routines.hpp"
 #include "custom/auton/selection.hpp"
-#include "custom/auton/auton.hpp"
 /**
  * Runs the user autonomous code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -23,4 +22,5 @@ void autonomous() {
    // auton::set_auton(true);
    // auton::autonTask.resume();
    // auton::selection::execute();
+   auton::redRight();
  }

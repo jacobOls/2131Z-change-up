@@ -2,6 +2,7 @@
 #define ROUTINES_HPP
 namespace auton{
   void skillsAuton(void);
+  void redRight(void);
 
 }
 

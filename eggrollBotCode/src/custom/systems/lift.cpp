@@ -174,7 +174,7 @@ namespace lift{
         // tray::motor.moveAbsolute(-30,100);
       }
       if(encoder() <= 2000){
-        // motor.moveVelocity(0);
+        motor.moveVelocity(0);
       }
     }
   }

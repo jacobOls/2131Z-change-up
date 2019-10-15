@@ -17,7 +17,7 @@ namespace auton {
     std::string RoutsToString(int one, int two);
     void ControllerScreen();
     void testBtnPos(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Positons Positon);
-    void testBtnSho(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Stacks Shoot);
+    void testBtnSta(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Stacks Stack);
     void testBtnOpt(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Options Option);
 
     static lv_res_t OnClickPos(_lv_obj_t *pressedBtn);
@@ -49,10 +49,10 @@ namespace auton {
     Options option = Options::GREEDY;
 
     std::string screenText[4][3] = {
-        {"Front Red", "Mid", "Far"},
-        {"Back Red", "Top", ""},
-        {"BacK Blue", "Mid", ""},
-        {"Front Blue", "Park", ""},
+        {"Front Red", "", ""},
+        {"Back Red", "", ""},
+        {"Back Blue", "", ""},
+        {"Front Blue", "", ""},
     };
     void execute() {
       switch (positon) {
@@ -89,6 +89,7 @@ namespace auton {
       BtnInit(Btn0_2, &style_config, 0, 2);
       lv_btn_set_action(Btn0_1, LV_BTN_ACTION_CLICK, OnClickSta);
       lv_btn_set_action(Btn0_2, LV_BTN_ACTION_CLICK, OnClickSta);
+
 
       BtnInit(Btn1_1, &style_config, 1, 1);
       BtnInit(Btn2_1, &style_config, 2, 1);
@@ -149,7 +150,7 @@ namespace auton {
         lv_btn_set_state(Btn, LV_BTN_STATE_REL);
       }
     }
-    void testBtnSho(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Stacks Stack) {
+    void testBtnSta(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Stacks Stack) {
       if (pressedBtn == Btn) {
         stack = Stack;
       } else {
@@ -183,9 +184,9 @@ namespace auton {
       std::cout << "pos: " << static_cast<int>(positon) << " sta: " << static_cast<int>(stack) << " fla: "  << " opt: " << static_cast<int>(option) << std::endl;
       return LV_RES_OK;
     }
-    static lv_res_t OnClickSho(_lv_obj_t *pressedBtn) {
-      testBtnSho(pressedBtn, Btn0_1, Stacks::LEFT);
-      testBtnSho(pressedBtn, Btn0_2, Stacks::RIGHT);
+    static lv_res_t OnClickSta(_lv_obj_t *pressedBtn) {
+      testBtnSta(pressedBtn, Btn0_1, Stacks::LEFT);
+      testBtnSta(pressedBtn, Btn0_2, Stacks::RIGHT);
       ControllerScreen();
       std::cout << "pos: " << static_cast<int>(positon) << " sta: " << static_cast<int>(stack) << " fla: "  << " opt: " << static_cast<int>(option) << std::endl;
       return LV_RES_OK;
@@ -252,7 +253,7 @@ namespace auton {
       int beg=pros::millis();
       while (1) {
         if (inAuton) {
-          drive::auton::ramping();
+          // drive::auton::ramping();
           intake::execute();
           lift::execute();
           tray::execute();
@@ -261,7 +262,5 @@ namespace auton {
         pros::Task::delay_until(&test, 5); //delay for 5 millis exact
       }
     }
-    pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
-                         TASK_STACK_DEPTH_DEFAULT, "AutonTask");
 
 } // namespace auton

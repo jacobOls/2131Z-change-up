@@ -2,6 +2,7 @@
 #include "custom/auton/routines.hpp"
 #include "custom/auton/selection.hpp"
 #include "custom/auton/auto.hpp"
+#include "custom/systems/drive.hpp"
 
 /**
 * Runs the user autonomous code. This function will be started in its own task

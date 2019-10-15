@@ -1,6 +1,8 @@
 #include "main.h"
 #include "custom/auton/routines.hpp"
 #include "custom/auton/selection.hpp"
+#include "custom/auton/auto.hpp"
+
 /**
 * Runs the user autonomous code. This function will be started in its own task
 * with the default priority and stack size whenever the robot is enabled via
@@ -12,16 +14,15 @@
 * will be stopped. Re-enabling the robot will restart the task, not re-start it
 * from where it left off.
 */
-// namespace auton {
-// pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
-//                      TASK_STACK_DEPTH_DEFAULT, "AutonTask");
-// }
+namespace auton {
+pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
+                     TASK_STACK_DEPTH_DEFAULT, "AutonTask");
+}
 
 void autonomous() {
-  // auton::selection::screenInit();
-  // auton::set_auton(true);
-  // auton::autonTask.resume();
-  // auton::selection::execute();
-  auton::redRight();
+  auton::screenInit();
+  auton::set_auton(true);
+  auton::autonTask.resume();
+  auton::execute();
   // auton::skillsAuton();
 }

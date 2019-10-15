@@ -6,6 +6,7 @@
 #include "custom/auton/selection.hpp"
 #include "custom/setup/config.hpp"
 #include "custom/auton/selection.hpp"
+#include "custom/auton/auto.hpp"
 /**
 * Runs initialization code. This occurs as soon as the program is started.
 *
@@ -19,7 +20,8 @@ void initialize() {
 	intake::left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-
+	std::cout << "initialize " << std::endl;
+  auton::screenInit();
 
 }
 
@@ -29,8 +31,8 @@ void initialize() {
 * the robot is enabled, this task will exit.
 */
 void disabled() {
-// 	auton::autonTask.suspend();
-// auton::set_auton(false);
+	auton::autonTask.suspend();
+auton::set_auton(false);
 }
 
 /**
@@ -49,5 +51,4 @@ void competition_initialize() {
 	intake::left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-
 }

@@ -3,7 +3,7 @@
 namespace lift{
   enum class Controllers{UP,DOWN,NONE,DEINIT,MIDTOWER,LOWTOWER,BOTTOM};
   void lift(void);
-
+void execute();
   double getPosition();
 
   namespace auton{

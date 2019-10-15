@@ -12,6 +12,7 @@ namespace drive{
     void autonDriveBack(double distance, double targetVelocity);
     void leftTurn(double amount, double targetVelocity);
     void rightTurn(double amount, double targetVelocity);
+    void ramping();
   }
 }
 #endif

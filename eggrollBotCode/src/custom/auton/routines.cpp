@@ -51,10 +51,13 @@ namespace auton{
     drive::auton::autonDrive(1100,50);
     drive::auton::autonDriveBack(-300,-50);
     drive::auton::leftTurn(8,50);
-    drive::auton::autonDrive(250,50);
-    drive::auton::autonDriveBack(-200,-50);
-    drive::auton::rightTurn(25,50);
     drive::auton::autonDrive(450,50);
-    drive::auton::autonDriveBack(-500, -50);
+    drive::auton::autonDriveBack(-200,-50);
+    drive::auton::rightTurn(120,50);
+    drive::auton::autonDrive(420,50);
+    wait(1000);
+    intake::auton::intakeOff();
+    drive::auton::autonDriveBack(-800, -50);
+    drive::auton::rightTurn(300,50);
   }
 }

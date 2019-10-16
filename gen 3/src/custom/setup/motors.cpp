@@ -3,9 +3,9 @@
 #include "custom/setup/ramping.hpp"
 
 namespace drive{
-  okapi::Motor left_back(15,true,okapi::AbstractMotor::gearset::green,
+  okapi::Motor left_back(15,false,okapi::AbstractMotor::gearset::green,
     okapi::AbstractMotor::encoderUnits::degrees);
-    okapi::Motor left_front(14,false,okapi::AbstractMotor::gearset::green,
+    okapi::Motor left_front(14,true,okapi::AbstractMotor::gearset::green,
       okapi::AbstractMotor::encoderUnits::degrees);
       okapi::Motor right_back(11,true,okapi::AbstractMotor::gearset::green,
         okapi::AbstractMotor::encoderUnits::degrees);

@@ -44,9 +44,9 @@ namespace auton {
     lv_style_t style_config;
     // lv_style_t style_btn;
 
-    Positons positon = Positons::BACKRED;
-    Stacks stack = Stacks::LEFT;
-    Options option = Options::GREEDY;
+    Positons positon = Positons::FRONTRED;
+    Stacks stack = Stacks::NONE;
+    Options option = Options::NONE;
 
     std::string screenText[4][3] = {
         {"Front Red", "", ""},
@@ -57,6 +57,7 @@ namespace auton {
     void execute() {
       switch (positon) {
       case Positons::FRONTRED:
+      redRight();
         break;
 
       case Positons::BACKRED:

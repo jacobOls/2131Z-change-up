@@ -48,16 +48,20 @@ namespace auton{
     tray::auton::trayDown(0,-100);
     intake::auton::intakeOn(200);
     drive::auton::autonDriveBack(-50,-50);
-    drive::auton::autonDrive(1100,50);
-    drive::auton::autonDriveBack(-300,-50);
-    drive::auton::leftTurn(8,50);
-    drive::auton::autonDrive(450,50);
+    drive::auton::autonDrive(1000,50);
     drive::auton::autonDriveBack(-200,-50);
-    drive::auton::rightTurn(120,50);
-    drive::auton::autonDrive(420,50);
+    drive::auton::leftTurn(8,50);
+    drive::auton::autonDrive(500,50);
+    drive::auton::autonDriveBack(-200,-50);
+    drive::auton::rightTurn(130,50);
+    drive::auton::autonDrive(390,50);
     wait(1000);
     intake::auton::intakeOff();
     drive::auton::autonDriveBack(-800, -50);
-    drive::auton::rightTurn(300,50);
+    drive::auton::rightTurn(280,50);
+    drive::auton::autonDrive(475, 50);
+    tray::auton::stack(450,25);
+    wait(1000);
+    intake::auton::stackReverseAuton(-200, 25, 25);
   }
 }

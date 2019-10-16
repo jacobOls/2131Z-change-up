@@ -53,28 +53,27 @@ namespace lift{
   }
 
   /* pot positions
-  down  2380
-  tray pop 2300
-  up  1000
-  MidTower 1200
-  lowTower 1630
-  the lower the number the higher it is
+  down  1300
+  tray pop 1450
+  up  3000
+  MidTower 2200
+  lowTower 1930
   */
 
 
   void execute(){
-    if(encoder() > 2380 && controller== Controllers::DOWN) controller= Controllers::DEINIT;
-    if(encoder() < 800 && controller== Controllers::UP) controller= Controllers::DEINIT;
+    if(encoder() < 1310 && controller== Controllers::DOWN) controller= Controllers::DEINIT;
+    if(encoder() >3000 && controller== Controllers::UP) controller= Controllers::DEINIT;
     switch (controller){
       case Controllers::UP:
       motor.moveVelocity(100);
       break;
 
       case Controllers::DOWN:
-      if(encoder() <= 2300){
+      if(encoder() > 1500){
         motor.moveVelocity(-100);
       }
-      else if(encoder() > 2300){
+      else if(encoder() <= 1500){
         motor.moveVelocity(-25);
       }
       break;
@@ -90,7 +89,7 @@ namespace lift{
 
       case Controllers::BOTTOM:
       if(!buttonsPressed()){
-        if(encoder() > 2200 && encoder() < 2398){
+        if(encoder() <= 1450 && encoder() > 1300){
           motor.moveVelocity(-50);
         }
         else{
@@ -103,7 +102,7 @@ namespace lift{
 
       case Controllers::MIDTOWER:
       motor.moveAbsolute(350,25);
-      if (encoder() < 1835 && encoder() > 1825){
+      if (encoder() < 2205 && encoder() > 1995){
         if(motor.isStopped())
         {
           controller = Controllers::DEINIT;
@@ -113,7 +112,7 @@ namespace lift{
 
       case Controllers::LOWTOWER:
       motor.moveAbsolute(250,25);
-      if (encoder() < 1405 && encoder() > 1395){
+      if (encoder() < 1905 && encoder() > 1900){
         if(motor.isStopped())
         {
           controller = Controllers::DEINIT;

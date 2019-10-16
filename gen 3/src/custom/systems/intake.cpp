@@ -64,10 +64,10 @@ namespace intake
   void execute(){
     switch(controller){
       case Controllers::INTAKING:
-      if(encoder() < 2370 && cubeSensor.get_value() <= 2700){
+      if(encoder() > 1400 && cubeSensor.get_value() <= 2700){
         intakegroup.moveVelocity(0);
       }
-      else if(encoder() >= 2370) {
+      else if(encoder() <= 1400) {
         intakegroup.moveVelocity(200);
       }
       break;
@@ -79,7 +79,7 @@ namespace intake
       // else{
       //   intakegroup.moveVelocity(-200);
       // }
-      if(cubeSensor.get_value() < 2700 && encoder() < 2370){
+      if(cubeSensor.get_value() < 2700 && encoder() > 1400){
         slowOutake = true;
         if(slowOutake){
           intakegroup.moveVelocity(-100);
@@ -105,7 +105,7 @@ namespace intake
       break;
 
       case Controllers::DEINIT:
-      if(encoder() >= 2370 || cubeSensor.get_value() > 2600){
+      if(encoder() <= 1400 || cubeSensor.get_value() > 2600){
         if(slowOutake){
           slowOutake = false;
         }

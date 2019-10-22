@@ -41,27 +41,31 @@ namespace auton{
   void redRight(){
     tray::motor.tarePosition();
     drive::auton::resetPositions();
-    drive::auton::autonDrive(300,50);
-    drive::auton::autonDriveBack(-290,-50);
+    drive::auton::autonDrive(300,75);
+    drive::auton::autonDriveBack(-290,-125);
     lift::auton::popOpen();
     lift::auton::autonLiftDown(2380,-100);
     tray::auton::trayDown(0,-100);
     intake::auton::intakeOn(200);
     drive::auton::autonDriveBack(-50,-50);
-    drive::auton::autonDrive(1000,50);
-    drive::auton::autonDriveBack(-200,-50);
-    drive::auton::leftTurn(8,50);
-    drive::auton::autonDrive(500,50);
-    drive::auton::autonDriveBack(-200,-50);
+    drive::auton::autonDrive(1000,70);
+    drive::auton::autonDriveBack(-200,-125);
+    drive::auton::leftTurn(4,50);
+    drive::auton::autonDrive(500,75);
+    drive::auton::autonDriveBack(-200,-125);
     drive::auton::rightTurn(110,50);
-    drive::auton::autonDrive(380,50);
+    drive::auton::autonDrive(400,50);
     wait(1000);
     intake::auton::intakeOff();
-    drive::auton::autonDriveBack(-900, -50);
-    drive::auton::rightTurn(270,50);
-    drive::auton::autonDrive(500, 50);
+    drive::auton::autonDriveBack(-920, -150);
+    drive::auton::rightTurn(200,50);
+    drive::auton::autonDrive(500, 100);
+    intake::auton::intakeOn(-25);
+    wait(750);
+    intake::auton::intakeOff();
     tray::auton::stack(425,25);
     wait(1000);
-    intake::auton::stackReverseAuton(-200, 25, 25);
+    intake::auton::stackReverseAuton(-500, 25, 25);
+    tray::auton::trayDown(0,-100);
   }
 }

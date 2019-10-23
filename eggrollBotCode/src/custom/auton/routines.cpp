@@ -57,7 +57,7 @@ namespace auton{
     drive::auton::autonDrive(1000,70);
     drive::auton::autonDriveBack(-175,-125);
     drive::auton::leftTurn(3,25);
-    drive::auton::autonDrive(450,60);
+    drive::auton::autonDrive(475,60);
     wait(200);
     drive::auton::autonDriveBack(-250,-150);
     drive::auton::rightTurn(95,50);

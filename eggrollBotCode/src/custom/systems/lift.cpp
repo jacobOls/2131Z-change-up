@@ -90,8 +90,8 @@ namespace lift{
 
       case Controllers::BOTTOM:
       if(!buttonsPressed()){
-        if(encoder() > 2200 && encoder() < 2398){
-          motor.moveVelocity(-50);
+        if(encoder() > 2200 && encoder() < 2350){
+          motor.moveVelocity(-25);
         }
         else{
           motor.moveVelocity(0);

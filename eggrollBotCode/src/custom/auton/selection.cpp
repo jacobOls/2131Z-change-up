@@ -162,14 +162,14 @@ namespace auton {
     void testBtnOpt(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Options Option) {
       if (pressedBtn == Btn) {
         switch (option) {
-        case Options::GREEDY:
-          option = Options::NOTGREEDY;
+        case Options::SKILLS:
+          option = Options::NOTSKILLS;
           break;
-        case Options::NOTGREEDY:
-          option = Options::GREEDY;
+        case Options::NOTSKILLS:
+          option = Options::SKILLS;
           break;
         case Options::NONE:
-          option = Options::GREEDY;
+          option = Options::SKILLS;
           break;
         }
       } else {
@@ -194,7 +194,7 @@ namespace auton {
     }
 
     static lv_res_t OnClickOpt(_lv_obj_t *pressedBtn) {
-      testBtnOpt(pressedBtn, Btn3_1, Options::GREEDY);
+      testBtnOpt(pressedBtn, Btn3_1, Options::SKILLS);
       ControllerScreen();
       std::cout << "pos: " << static_cast<int>(positon) << " sta: " << static_cast<int>(stack) << " fla: "  << " opt: " << static_cast<int>(option) << std::endl;
       return LV_RES_OK;
@@ -233,10 +233,10 @@ namespace auton {
       }
 
       switch (option) {
-      case Options::GREEDY:
+      case Options::SKILLS:
         lv_btn_set_state(Btn3_1, LV_BTN_STATE_TGL_PR); //park
         break;
-      case Options::NOTGREEDY:
+      case Options::NOTSKILLS:
         break;
 
         case Options::NONE:

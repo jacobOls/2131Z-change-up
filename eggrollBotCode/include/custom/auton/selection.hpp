@@ -15,8 +15,8 @@ namespace auton {
       RIGHT,
       NONE };
 
-      enum class Options { GREEDY,
-        NOTGREEDY,
+      enum class Options { SKILLS,
+        NOTSKILLS,
         NONE };
 
         void screenInit();

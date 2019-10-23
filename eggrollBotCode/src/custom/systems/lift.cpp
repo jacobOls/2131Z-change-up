@@ -156,7 +156,7 @@ namespace lift{
     }
 
     void autonLiftDown(double wantedPosition, double targetVelocity){
-      while(encoder() <= wantedPosition){
+      if(encoder() <= wantedPosition){
         motor.moveVelocity(targetVelocity);
       }
       if(encoder() >= wantedPosition){
@@ -169,7 +169,7 @@ namespace lift{
 
 
     void popOpen(){
-      while(encoder() > 2000){
+      if(encoder() > 2000){
         motor.moveVelocity(100);
         tray::motor.moveVelocity(50);
       }

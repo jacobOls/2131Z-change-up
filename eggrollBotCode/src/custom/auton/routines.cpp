@@ -21,11 +21,11 @@ namespace auton{
     lift::auton::autonLiftDown(2380,-100);
     tray::auton::trayDown(0,-100);
     intake::auton::intakeOn(200);
-    drive::auton::autonDriveBack(-10, -50);
+    drive::auton::autonDriveBack(-20, -50);
     drive::auton::autonDrive(1000,70);
     drive::auton::autonDriveBack(-175,-125);
-    drive::auton::leftTurn(3,25);
-    drive::auton::autonDrive(480,60);
+    drive::auton::leftTurn(3,20);
+    drive::auton::autonDrive(480,50);
     wait(200);
     drive::auton::autonDriveBack(-250,-150);
     drive::auton::rightTurn(90,50);
@@ -33,7 +33,7 @@ namespace auton{
     wait(1100);
     intake::auton::intakeOff();
     drive::auton::autonDriveBack(-930, -150);
-    drive::auton::rightTurn(180,60);
+    drive::auton::rightTurn(155,60);
     drive::auton::autonDrive(500, 125);
     intake::auton::intakeOn(-25);
     wait(1000);

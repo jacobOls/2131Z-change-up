@@ -5,7 +5,7 @@
 #include "custom/systems/lift.hpp"
 namespace tray{
   const double epsilon = 10;
-  const double upPosition = 900;
+  const double upPosition = 400;
   const double liftPosition = 100;
   // bool trayMove = false;
   const double traySpeed = 75.0;
@@ -76,7 +76,7 @@ namespace tray{
 
   }
   void execute(){
-    if(encoder() > 1450 && motor.getPosition() < upPosition) controller= Controllers::LIFT;
+    if(encoder() > 1300 && motor.getPosition() < upPosition) controller= Controllers::LIFT;
     if(!motorCanTravel() && controller== Controllers::FORWARD) controller= Controllers::DEINIT;
     if(trayDown() && controller== Controllers::BACKWARD) controller= Controllers::DEINIT;
     switch (controller) {

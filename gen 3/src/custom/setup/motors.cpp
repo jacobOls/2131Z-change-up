@@ -19,7 +19,7 @@ namespace drive{
         namespace tray{
           okapi::Motor motor(15,true,okapi::AbstractMotor::gearset::red,
             okapi::AbstractMotor::encoderUnits::degrees);
-            pros::ADIAnalogIn tilter(3);
+            pros::ADIAnalogIn tilterP(3);
     Ramping tilt(1, 5, 50, -50);
           }
 

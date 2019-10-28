@@ -62,7 +62,7 @@ namespace lift{
 
 
   void execute(){
-    if(encoder() < 1290 && controller== Controllers::DOWN) controller= Controllers::DEINIT;
+    if(encoder() < 1225 && controller== Controllers::DOWN) controller= Controllers::DEINIT;
     if(encoder() >3000 && controller== Controllers::UP) controller= Controllers::DEINIT;
     switch (controller){
       case Controllers::UP:

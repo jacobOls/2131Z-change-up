@@ -15,7 +15,7 @@ namespace drive{
 namespace tray{
   extern okapi::Motor motor;
   extern Ramping tilt;
-
+  extern pros::ADIAnalogIn tilterP;
 }
 namespace intake{
 

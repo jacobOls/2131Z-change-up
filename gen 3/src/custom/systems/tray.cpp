@@ -5,20 +5,23 @@
 #include "custom/systems/lift.hpp"
 namespace tray{
   const double epsilon = 10;
-  const double upPosition = 400;
+  const double upPosition = 2200;
   const double liftPosition = 100;
   // bool trayMove = false;
   const double traySpeed = 75.0;
-  const double position =  1700.0;
+  const double position =  1500.0;
   Controllers controller = Controllers::NONE;
   double encoder(){
     return lift::liftSensor.get_value();
   }
+  double tilterPos(){
+    return tilterP.get_value();
+  }
   bool motorCanTravel() {
-    return motor.getPosition() <= position;
+    return tilterPos() >= position;
   }
   bool trayDown(){
-    return motor.getPosition() < 25;
+    return tilterPos() >= 2795 ;
   }
   const double finalPosition = 0;
 
@@ -76,7 +79,7 @@ namespace tray{
 
   }
   void execute(){
-    if(encoder() > 1300 && motor.getPosition() < upPosition) controller= Controllers::LIFT;
+    if(encoder() > 1350 && tilterPos() > upPosition) controller= Controllers::LIFT;
     if(!motorCanTravel() && controller== Controllers::FORWARD) controller= Controllers::DEINIT;
     if(trayDown() && controller== Controllers::BACKWARD) controller= Controllers::DEINIT;
     switch (controller) {
@@ -98,11 +101,12 @@ namespace tray{
       break;
 
       case Controllers::RETURN:
-      motor.moveAbsolute(0,-100);
+      if(tilterPos() < 2790)
+      motor.moveVelocity(-100);
       // if(motor.getActualVelocity() >= 60){
       // }
       // pros::delay(motor.isStopped());
-      if (motor.getPosition()<25){
+      if (tilterPos() > 2790){
         if(motor.isStopped())
         {
           controller = Controllers::DEINIT;
@@ -114,13 +118,22 @@ namespace tray{
       static int i;
       i++;
       pros::lcd::set_text(2,std::to_string(i));
-      motor.moveAbsolute(upPosition +25, 100);
-      if(encoder() < 1450 ) controller = Controllers::RETURN;
+      if (tilterPos() > upPosition){
+        motor.moveVelocity(100);
+      }
+      else if (tilterPos() < upPosition){
+        motor.moveVelocity(0);
+      }
+      if(encoder() < 1250 ) controller = Controllers::RETURN;
+      // (upPosition +25, 100);
       break;
 
       case Controllers::TRAVELBACK:
-      if(encoder()  > 1450 && motor.getPosition() < upPosition){
+      if(encoder()  > 1450 && tilterPos() > upPosition){
         motor.moveAbsolute(upPosition, -100);
+        if(tilterPos() < upPosition){
+          motor.moveVelocity(-100);
+        }
       }
       else{
         motor.moveAbsolute(0,-100);

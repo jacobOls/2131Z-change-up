@@ -155,7 +155,7 @@ namespace tray{
     }
 
     void trayDown(double wantedPosition, double targetVelocity){
-      while(motor.getPosition() > wantedPosition){
+      if(motor.getPosition() > wantedPosition){
         motor.moveVelocity(targetVelocity);
       }
       if(motor.getPosition() <= wantedPosition){
@@ -165,7 +165,7 @@ namespace tray{
 
 
     void stack(double wantedPosition, double targetVelocity){
-      if(motor.getPosition() < wantedPosition){
+      while(motor.getPosition() < wantedPosition){
         motor.moveVelocity(targetVelocity);
         // pros::lcd::set_text(2,std::to_string(motor.getPosition()));
       }

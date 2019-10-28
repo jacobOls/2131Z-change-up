@@ -86,6 +86,7 @@ namespace tray{
       // pros::lcd::set_text(3,std::to_string(static_cast<int>(controller));
       case Controllers::FORWARD:
       motor.moveVelocity(75);
+      intake::intakegroup.moveVelocity(-25);
       break;
 
       case Controllers::BACKWARD:

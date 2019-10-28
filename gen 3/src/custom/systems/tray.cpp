@@ -76,7 +76,12 @@ namespace tray{
     back();
     travel();
     execute();
-
+    if(encoder() < 1500 && tilterPos() < 2350 ){
+      intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    }
+    else {
+      intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+    }
   }
   void execute(){
     if(encoder() > 1350 && tilterPos() > upPosition) controller= Controllers::LIFT;
@@ -86,7 +91,7 @@ namespace tray{
       // pros::lcd::set_text(3,std::to_string(static_cast<int>(controller));
       case Controllers::FORWARD:
       motor.moveVelocity(75);
-      intake::intakegroup.moveVelocity(-25);
+      // intake::intakegroup.moveVelocity(-25);
       break;
 
       case Controllers::BACKWARD:

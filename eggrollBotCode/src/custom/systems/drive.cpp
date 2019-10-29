@@ -69,28 +69,6 @@ namespace drive{
         resetPositions();
     }
 
-    void ramping(void*){
-      static uint32_t start;
-      { //x.accel
-      //
-      //       if (std::abs(DRIVE.output()) > 100) {
-      //         DRIVE.update_changeVal(5);
-      //       } else if (std::abs(DRIVE.output()) > 50) {
-      //         DRIVE.update_changeVal(3);
-      //       } else {
-      //         DRIVE.update_changeVal(1.75);
-      //       }
-          }
-      // DRIVE.calculate();
-      // pros::Task::delay_until(&start, DRIVE.get_changeMsec());
-    }
-    void taskInit(){
-      pros::Task rampingTask(ramping, (void*) "test", TASK_PRIORITY_DEFAULT,
-      TASK_STACK_DEPTH_DEFAULT,"drive");
-    }
-
-
-
 
     void autonDriveBack(double distance, double targetVelocity){
       while(left_front.getPosition() > distance || right_front.getPosition() > distance){

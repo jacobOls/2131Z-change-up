@@ -9,8 +9,8 @@ namespace drive{
   extern okapi::Motor right_front;
   extern okapi::MotorGroup left_drive;
   extern okapi::MotorGroup right_drive;
-  extern Ramping drive;
-
+  extern Ramping LEFT_DRIVE;
+  extern Ramping RIGHT_DRIVE;
 }
 namespace tray{
   extern okapi::Motor motor;

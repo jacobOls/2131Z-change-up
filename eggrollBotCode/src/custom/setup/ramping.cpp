@@ -21,7 +21,7 @@ double Ramping::calculate() {
   return valOutput;
 }
 double Ramping::calculate(double cv) {
-  changeVal = cv;
+  request(cv);
   return calculate();
 }
 

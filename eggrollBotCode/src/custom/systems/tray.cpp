@@ -155,7 +155,7 @@ namespace tray{
     }
 
     void trayDown(double wantedPosition, double targetVelocity){
-      if(motor.getPosition() > wantedPosition){
+      while(motor.getPosition() > wantedPosition){
         motor.moveVelocity(targetVelocity);
       }
       if(motor.getPosition() <= wantedPosition){

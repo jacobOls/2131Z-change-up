@@ -53,18 +53,44 @@ namespace drive{
     }
 
     void autonDrive(double distance, double targetVelocity){
-
-
       while(left_front.getPosition() < distance || right_front.getPosition() < distance){
-        left_drive.moveVelocity(targetVelocity);
-        right_drive.moveVelocity(targetVelocity);
+        left_drive.moveVelocity(LEFT_DRIVE.calculate(targetVelocity));
+        right_drive.moveVelocity(RIGHT_DRIVE.calculate(targetVelocity));
+        // LEFT_DRIVE.calculate(targetVelocity);
+        // RIGHT_DRIVE.calculate(targetVelocity);
+        pros::delay(LEFT_DRIVE.get_changeMsec());
+
       }
-        left_drive.moveVelocity(0);
-        right_drive.moveVelocity(0);
-        resetPositions();
-
-
+      while(LEFT_DRIVE.output() != 0){
+      left_drive.moveVelocity(LEFT_DRIVE.calculate(0));
+      right_drive.moveVelocity(RIGHT_DRIVE.calculate(0));
+      pros::delay(LEFT_DRIVE.get_changeMsec());
     }
+        resetPositions();
+    }
+
+    void ramping(void*){
+      static uint32_t start;
+      { //x.accel
+      //
+      //       if (std::abs(DRIVE.output()) > 100) {
+      //         DRIVE.update_changeVal(5);
+      //       } else if (std::abs(DRIVE.output()) > 50) {
+      //         DRIVE.update_changeVal(3);
+      //       } else {
+      //         DRIVE.update_changeVal(1.75);
+      //       }
+          }
+      // DRIVE.calculate();
+      // pros::Task::delay_until(&start, DRIVE.get_changeMsec());
+    }
+    void taskInit(){
+      pros::Task rampingTask(ramping, (void*) "test", TASK_PRIORITY_DEFAULT,
+      TASK_STACK_DEPTH_DEFAULT,"drive");
+    }
+
+
+
 
     void autonDriveBack(double distance, double targetVelocity){
       while(left_front.getPosition() > distance || right_front.getPosition() > distance){
@@ -105,17 +131,7 @@ namespace drive{
 
 
 
-    void ramping(void*){
-      static uint32_t start;
 
-      drive.calculate();
-      pros::Task::delay_until(&start, drive.get_changeMsec());
-    }
-    //adds ramping to the tilter
-    void taskInit(){
-      pros::Task rampingTask(ramping, (void*) "test", TASK_PRIORITY_DEFAULT,
-      TASK_STACK_DEPTH_DEFAULT,"drive");
-    }
 
   }
 }

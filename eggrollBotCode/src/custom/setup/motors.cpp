@@ -13,8 +13,8 @@ namespace drive{
           okapi::AbstractMotor::encoderUnits::degrees);
           okapi::MotorGroup left_drive({left_back, left_front});
           okapi::MotorGroup right_drive({right_back, right_front});
-          Ramping drive(1, -5,- 200, 200); //need to keep change msec the same; for now ... tasks
-
+          Ramping LEFT_DRIVE(1.75, 5,200,-200); //need to keep change msec the same; for now ... tasks
+          Ramping RIGHT_DRIVE(1.75,5,200,-200);
         }
         namespace tray{
           okapi::Motor motor(8,true,okapi::AbstractMotor::gearset::red,

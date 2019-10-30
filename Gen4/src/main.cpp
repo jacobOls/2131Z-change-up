@@ -1,5 +1,8 @@
 #include "main.h"
-
+#include "custom/systems/drive.hpp"
+#include "custom/systems/intake.hpp"
+#include "custom/systems/tilter.hpp"
+#include "custom/systems/lift.hpp"
 /**
  * A callback function for LLEMU's center button.
  *
@@ -23,7 +26,9 @@ void initialize() {
  * the VEX Competition Switch, following either autonomous or opcontrol. When
  * the robot is enabled, this task will exit.
  */
-void disabled() {}
+void disabled() {
+
+}
 
 /**
  * Runs after initialize(), and before autonomous when connected to the Field
@@ -34,7 +39,9 @@ void disabled() {}
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
-void competition_initialize() {}
+void competition_initialize() {
+
+}
 
 /**
  * Runs the user autonomous code. This function will be started in its own task
@@ -47,7 +54,9 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() {
+
+}
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -65,7 +74,9 @@ void autonomous() {}
 void opcontrol() {
 
 	while (true) {
-
+		drive::drive();
+		intake::init();
+		tilter::init();
 		pros::delay(20);
 	}
 }

@@ -7,8 +7,9 @@ namespace drive{
 
 }
 
-namespace tray{
-
+namespace tilter{
+extern okapi::ControllerButton BtnUp;
+extern okapi::ControllerButton BtnDown;
 }
 
 namespace config{

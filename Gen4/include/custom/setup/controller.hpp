@@ -15,7 +15,10 @@ namespace config{
 }
 
 namespace intake{
-
+  extern okapi::ControllerButton BtnIn;
+  extern okapi::ControllerButton BtnOut;
+  extern okapi::ControllerButton BtnRight;
+  extern okapi::ControllerButton BtnLeft;
 }
 
 namespace lift{

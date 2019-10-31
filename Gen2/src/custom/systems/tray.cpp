@@ -14,6 +14,9 @@ namespace tray{
   double encoder(){
     return lift::liftSensor.get_value();
   }
+  double sensor(){
+    return traySensor.get_value();
+  }
   bool motorCanTravel() {
     return motor.getPosition() < position;
   }

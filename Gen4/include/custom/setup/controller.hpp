@@ -23,6 +23,10 @@ namespace intake{
 }
 
 namespace lift{
+  extern okapi::ControllerButton BtnUp;
+  extern okapi::ControllerButton BtnDown;
+  extern okapi::ControllerButton BtnL;
+  extern okapi::ControllerButton BtnM;
 
 }
 #endif /* end of include guard: CONTROLLER_HPP */

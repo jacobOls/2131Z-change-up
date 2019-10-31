@@ -14,14 +14,17 @@ namespace intake{
   extern okapi::Motor left_motor;
   extern okapi::Motor right_motor;
   extern okapi::MotorGroup intakegroup;
+  extern pros::ADIAnalogIn cubeSensor;
 }
 
 namespace tilter{
   extern okapi::Motor motor;
+  extern pros::ADIAnalogIn tilterSensor;
 }
 
 namespace lift{
   extern okapi::Motor motor;
+  extern pros::ADIAnalogIn liftSensor;
 }
 
 

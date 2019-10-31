@@ -21,15 +21,20 @@ namespace intake{
               okapi::AbstractMotor::encoderUnits::degrees);
 
               okapi::MotorGroup intakegroup({left_motor, right_motor});
+              pros::ADIAnalogIn cubeSensor(3);
+
 }
 
 namespace tilter{
   okapi::Motor motor(8,true,okapi::AbstractMotor::gearset::red,
             okapi::AbstractMotor::encoderUnits::degrees);
+            pros::ADIAnalogIn tiltSensor(3);
+
 }
 
 namespace lift{
   okapi::Motor motor(2,false,okapi::AbstractMotor::gearset::red,
                   okapi::AbstractMotor::encoderUnits::degrees);
+                  pros::ADIAnalogIn liftSensor(3);
 
 }

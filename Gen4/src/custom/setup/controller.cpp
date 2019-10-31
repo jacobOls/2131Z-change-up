@@ -21,5 +21,8 @@ namespace intake{
 }
 
 namespace lift{
-
+okapi::ControllerButton BtnUp = master[okapi::ControllerDigital::L1];
+okapi::ControllerButton BtnDown = master[okapi::ControllerDigital::L2];
+okapi::ControllerButton BtnL = master[okapi::ControllerDigital::left];
+okapi::ControllerButton BtnM = master[okapi::ControllerDigital::up];
 }

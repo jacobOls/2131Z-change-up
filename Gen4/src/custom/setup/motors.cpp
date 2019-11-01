@@ -3,11 +3,11 @@
 
 namespace drive
 {
-okapi::Motor left_back(19, true, okapi::AbstractMotor::gearset::green,
+okapi::Motor left_back(11, true, okapi::AbstractMotor::gearset::green,
                        okapi::AbstractMotor::encoderUnits::degrees);
-okapi::Motor left_front(17, false, okapi::AbstractMotor::gearset::green,
+okapi::Motor left_front(13, false, okapi::AbstractMotor::gearset::green,
                         okapi::AbstractMotor::encoderUnits::degrees);
-okapi::Motor right_back(16, true, okapi::AbstractMotor::gearset::green,
+okapi::Motor right_back(19, true, okapi::AbstractMotor::gearset::green,
                         okapi::AbstractMotor::encoderUnits::degrees);
 okapi::Motor right_front(18, false, okapi::AbstractMotor::gearset::green,
                          okapi::AbstractMotor::encoderUnits::degrees);
@@ -17,9 +17,9 @@ okapi::MotorGroup right_drive({right_back, right_front});
 
 namespace intake
 {
-okapi::Motor left_motor(1, false, okapi::AbstractMotor::gearset::green, //left
+okapi::Motor left_motor(9, false, okapi::AbstractMotor::gearset::green, //left
                         okapi::AbstractMotor::encoderUnits::degrees);
-okapi::Motor right_motor(3, true, okapi::AbstractMotor::gearset::green, //right
+okapi::Motor right_motor(10, true, okapi::AbstractMotor::gearset::green, //right
                          okapi::AbstractMotor::encoderUnits::degrees);
 
 okapi::MotorGroup intakegroup({left_motor, right_motor});
@@ -29,16 +29,16 @@ pros::ADIAnalogIn cubeSensor(3);
 
 namespace tilter
 {
-okapi::Motor motor(8, true, okapi::AbstractMotor::gearset::red,
+okapi::Motor motor(15, true, okapi::AbstractMotor::gearset::red,
                    okapi::AbstractMotor::encoderUnits::degrees);
-pros::ADIAnalogIn tilterSensor(3);
+pros::ADIAnalogIn tilterSensor(2);
 
 } // namespace tilter
 
 namespace lift
 {
-okapi::Motor motor(2, false, okapi::AbstractMotor::gearset::red,
+okapi::Motor motor(1, false, okapi::AbstractMotor::gearset::red,
                    okapi::AbstractMotor::encoderUnits::degrees);
-pros::ADIAnalogIn liftSensor(3);
+pros::ADIAnalogIn liftSensor(1);
 
 } // namespace lift

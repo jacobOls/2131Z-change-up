@@ -10,6 +10,7 @@ namespace tray{
   // bool trayMove = false;
   const double traySpeed = 25.0;
   const double position =  500.0;
+  int forwardPos;
   Controllers controller = Controllers::NONE;
   double encoder(){
     return lift::liftSensor.get_value();
@@ -79,7 +80,6 @@ namespace tray{
 
   }
   void execute(){
-    if(encoder() < 2370 && motor.getPosition()<upPosition) controller= Controllers::LIFT;
     if(motor.getPosition() > position && controller== Controllers::FORWARD) controller= Controllers::DEINIT;
     if(trayDown() && controller== Controllers::BACKWARD) controller= Controllers::DEINIT;
     switch (controller) {
@@ -101,28 +101,28 @@ namespace tray{
       break;
 
       case Controllers::RETURN:
-      motor.moveAbsolute(0,-75);
-      // if(motor.getActualVelocity() >= 60){
+      // motor.moveAbsolute(0,-75);
+      // // if(motor.getActualVelocity() >= 60){
+      // // }
+      // // pros::delay(motor.isStopped());
+      // if (motor.getPosition()<25){
+      //   if(motor.isStopped())
+      //   {
+      //     controller = Controllers::DEINIT;
+      //   }
       // }
-      // pros::delay(motor.isStopped());
-      if (motor.getPosition()<25){
-        if(motor.isStopped())
-        {
-          controller = Controllers::DEINIT;
-        }
-      }
       break;
 
       case Controllers::LIFT:
-      static int i;
-      i++;
-      pros::lcd::set_text(2,std::to_string(i));
-      motor.moveAbsolute(upPosition +25, 75);
-      if(encoder() >= 2290) controller = Controllers::RETURN;
+      // static int i;
+      // i++;
+      // pros::lcd::set_text(2,std::to_string(i));
+      // motor.moveAbsolute(upPosition +25, 75);
+      // if(encoder() >= 2290) controller = Controllers::RETURN;
       break;
 
       case Controllers::TRAVELBACK:
-      if(encoder()  <  2350 && motor.getPosition()<upPosition){
+      if(encoder()  <  2350 && sensor() > upPosition){
         motor.moveAbsolute(upPosition, -100);
       }
       else{

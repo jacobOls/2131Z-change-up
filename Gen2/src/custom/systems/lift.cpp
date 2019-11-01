@@ -7,12 +7,16 @@ namespace lift{
   const double position = 30;
   const double velocity = 50;
   const double trayVelocity = 35;
+  int forwardPos;
   Controllers controller = Controllers::NONE;
   double getPosition(){
     return lift::motor.getPosition();
   }
   double encoder(){
     return liftSensor.get_value();
+  }
+  double sensor(){
+    return tray::traySensor.get_value();
   }
   bool liftUp(){
     return motor.getPosition() > position;
@@ -68,15 +72,25 @@ namespace lift{
     switch (controller){
       case Controllers::UP:
       motor.moveVelocity(100);
+      if(sensor() > forwardPos ){
+        tray::motor.moveVelocity(75);
+      }
       break;
 
       case Controllers::DOWN:
       if(encoder() <= 2300){
         motor.moveVelocity(-100);
+        if(sensor() <= forwardPos){
+          motor.moveVelocity(-100);
+        }
       }
       else if(encoder() > 2300){
         motor.moveVelocity(-25);
+        if(sensor() <= forwardPos){
+          motor.moveVelocity(-25);
+        }
       }
+
       break;
 
       case Controllers::NONE:

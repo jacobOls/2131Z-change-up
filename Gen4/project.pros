@@ -274,7 +274,7 @@
         },
         "upload_options": {
             "compress_bin": true,
-            "description": "Created with PROS",
+            "description": "",
             "remote_name": "Gen4",
             "slot": 2
         }

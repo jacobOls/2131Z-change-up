@@ -5,7 +5,9 @@
 
 namespace tilter{
   Controllers controller = Controllers::NONE;
-
+double sensor(){
+  return  tilterSensor.get_value();
+}
   void up(){
     if(BtnUp.isPressed()){
       controller = Controllers::UP;
@@ -29,6 +31,16 @@ namespace tilter{
 
 
   void execute(){
+    if(controller == Controllers::UP){
+      if(sensor() > 2200){
+        controller = Controllers::DEINIT;
+      }
+    }
+    if(controller == Controllers::DOWN){
+      if(sensor() < 1000){
+        controller = Controllers::DEINIT;
+      }
+    }
     switch(controller){
 
       case Controllers::UP:

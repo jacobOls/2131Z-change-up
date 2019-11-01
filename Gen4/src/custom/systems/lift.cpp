@@ -60,12 +60,12 @@ namespace lift{
 
   void execute(){
     if(controller == Controllers::UP){
-      if(sensor() < 2200){
+      if(sensor() > 2200){
         controller = Controllers::DEINIT;
       }
     }
     if(controller == Controllers::DOWN){
-      if(sensor() > 1000){
+      if(sensor() < 1000){
         controller = Controllers::DEINIT;
       }
     }

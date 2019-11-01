@@ -6,47 +6,47 @@
 
 namespace intake{
   Controllers controller = Controllers::NONE;
-int liftUp;
-bool bothButtonsPressed(){
-  return BtnLeft.isPressed() && BtnRight.isPressed();
-}
+  int liftUp;
+  bool bothButtonsPressed(){
+    return BtnLeft.isPressed() && BtnRight.isPressed();
+  }
 
-bool slowOut = false;
-void intake(){
-  if(BtnIn.isPressed()){
-    controller = Controllers::IN;
+  bool slowOut = false;
+  void intake(){
+    if(BtnIn.isPressed()){
+      controller = Controllers::IN;
+    }
+    else if(controller == Controllers::IN){
+      controller = Controllers::DEINIT;
+    }
   }
-  else if(controller == Controllers::IN){
-    controller = Controllers::DEINIT;
+  
+  void outake(){
+    if(BtnOut.isPressed() || bothButtonsPressed()){
+      controller = Controllers::OUT;
+    }
+    else if(controller == Controllers::OUT){
+      controller = Controllers::DEINIT;
+    }
   }
-}
 
-void outake(){
-  if(BtnOut.isPressed() || bothButtonsPressed()){
-    controller = Controllers::OUT;
+  void spinR(){
+    if(BtnRight.isPressed()){
+      controller = Controllers::SPINR;
+    }
+    else if(controller == Controllers::SPINR){
+      controller = Controllers::DEINIT;
+    }
   }
-  else if(controller == Controllers::OUT){
-    controller = Controllers::DEINIT;
-  }
-}
 
-void spinR(){
-  if(BtnRight.isPressed()){
-    controller = Controllers::SPINR;
+  void spinL(){
+    if(BtnRight.isPressed()){
+      controller = Controllers::SPINL;
+    }
+    else if(controller == Controllers::SPINL){
+      controller = Controllers::DEINIT;
+    }
   }
-  else if(controller == Controllers::SPINR){
-    controller = Controllers::DEINIT;
-  }
-}
-
-void spinL(){
-  if(BtnRight.isPressed()){
-    controller = Controllers::SPINL;
-  }
-  else if(controller == Controllers::SPINL){
-    controller = Controllers::DEINIT;
-  }
-}
 
 
   void execute(){
@@ -57,8 +57,8 @@ void spinL(){
         intakegroup.moveVelocity(0);
       }
       else{
-      intakegroup.moveVelocity(200);
-    }
+        intakegroup.moveVelocity(200);
+      }
       break;
 
       case Controllers::OUT:
@@ -69,8 +69,8 @@ void spinL(){
         intakegroup.moveVelocity(-25);
       }
       else{
-      intakegroup.moveVelocity(-200);
-    }
+        intakegroup.moveVelocity(-200);
+      }
       break;
 
       case Controllers::SPINL:

@@ -13,8 +13,8 @@ namespace tilter{
     return lift::liftSensor.get_value();
   }
 
-int halfDown;
-int allDown;
+  int halfDown;
+  int allDown;
 
   void up(){
     if(BtnUp.isPressed()){

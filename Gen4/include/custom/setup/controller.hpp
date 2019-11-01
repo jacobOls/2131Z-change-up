@@ -10,6 +10,7 @@ namespace drive{
 namespace tilter{
 extern okapi::ControllerButton BtnUp;
 extern okapi::ControllerButton BtnDown;
+extern okapi::ControllerButton BtnR;
 }
 
 namespace config{

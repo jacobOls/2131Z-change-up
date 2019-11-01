@@ -2,7 +2,7 @@
 #define TILTER_HPP
 
 namespace tilter{
-enum class Controllers{UP,DOWN,DEINIT,NONE};
+enum class Controllers{UP,DOWN,RETURN,DEINIT,NONE};
 void init(void);
 }
 

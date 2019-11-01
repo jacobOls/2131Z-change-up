@@ -2,12 +2,20 @@
 #include "custom/setup/motors.hpp"
 #include "custom/setup/controller.hpp"
 #include "custom/systems/tilter.hpp"
+#include "custom/systems/lift.hpp"
 
 namespace tilter{
   Controllers controller = Controllers::NONE;
-double sensor(){
-  return  tilterSensor.get_value();
-}
+  double sensor(){
+    return  tilterSensor.get_value();
+  }
+  double lSensor(){
+    return lift::liftSensor.get_value();
+  }
+
+int halfDown;
+int allDown;
+
   void up(){
     if(BtnUp.isPressed()){
       controller = Controllers::UP;
@@ -26,7 +34,14 @@ double sensor(){
     }
   }
 
-
+  void returnDown(){
+    if(BtnDown.isPressed()){
+      controller = Controllers::RETURN;
+    }
+    else if(controller == Controllers::RETURN){
+      controller = Controllers::DEINIT;
+    }
+  }
 
 
 
@@ -49,6 +64,17 @@ double sensor(){
 
       case Controllers::DOWN:
       motor.moveVelocity(75);
+      break;
+
+      case Controllers::RETURN:
+      if(lSensor() > 1200){
+        if(sensor() >= halfDown){
+          motor.moveVelocity(-100);
+        }
+      }
+      else if(sensor() >= allDown){
+        motor.moveVelocity(-100);
+      }
       break;
 
       case Controllers::DEINIT:

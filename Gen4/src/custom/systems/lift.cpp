@@ -15,6 +15,7 @@ namespace lift{
   int upPlace;
   int sensorPlace;
   int fastSpeedSpot;
+  int startUp;
 
   void up(){
     if(BtnUp.isPressed()){
@@ -72,11 +73,15 @@ namespace lift{
     switch(controller){
 
       case Controllers::UP:
-      motor.moveVelocity(75);
-      if(tilter() < upPlace){
+      if(tilter() < startUp){
         tilter::motor.moveVelocity(75);
       }
-
+      else{
+        motor.moveVelocity(75);
+        if(tilter() < upPlace){
+          tilter::motor.moveVelocity(75);
+        }
+      }
       break;
 
       case Controllers::DOWN:

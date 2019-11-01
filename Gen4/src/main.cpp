@@ -3,6 +3,9 @@
 #include "custom/systems/intake.hpp"
 #include "custom/systems/tilter.hpp"
 #include "custom/systems/lift.hpp"
+#include "custom/auton/selection.hpp"
+#include "custom/auton.hpp"
+#include "custom/setup/motors.hpp"
 /**
  * A callback function for LLEMU's center button.
  *
@@ -18,7 +21,13 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-
+	tilter::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	intake::right_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	intake::left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+	std::cout << "initialize " << std::endl;
+  auton::screenInit();
 }
 
 /**
@@ -27,7 +36,8 @@ void initialize() {
  * the robot is enabled, this task will exit.
  */
 void disabled() {
-
+	auton::autonTask.suspend();
+auton::set_auton(false);
 }
 
 /**
@@ -40,7 +50,11 @@ void disabled() {
  * starts.
  */
 void competition_initialize() {
-
+	tilter::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	intake::right_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	intake::left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
 }
 
 /**
@@ -53,9 +67,16 @@ void competition_initialize() {
  * If the robot is disabled or communications is lost, the autonomous task
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
- */
-void autonomous() {
+ */namespace auton {
+pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
+                     TASK_STACK_DEPTH_DEFAULT, "AutonTask");
+}
 
+void autonomous() {
+	auton::screenInit();
+  auton::set_auton(true);
+  auton::autonTask.resume();
+  auton::execute();
 }
 
 /**

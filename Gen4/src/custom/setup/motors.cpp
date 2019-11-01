@@ -28,7 +28,7 @@ namespace intake{
 namespace tilter{
   okapi::Motor motor(8,true,okapi::AbstractMotor::gearset::red,
             okapi::AbstractMotor::encoderUnits::degrees);
-            pros::ADIAnalogIn tiltSensor(3);
+            pros::ADIAnalogIn tilterSensor(3);
 
 }
 

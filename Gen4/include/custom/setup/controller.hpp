@@ -13,8 +13,6 @@ extern okapi::ControllerButton BtnDown;
 extern okapi::ControllerButton BtnR;
 }
 
-namespace config{
-}
 
 namespace intake{
   extern okapi::ControllerButton BtnIn;

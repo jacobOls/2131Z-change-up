@@ -10,8 +10,6 @@ okapi::ControllerButton BtnUp = master[okapi::ControllerDigital::Y];
 okapi::ControllerButton BtnDown = master[okapi::ControllerDigital::right];
 }
 
-namespace config{
-}
 
 namespace intake{
   okapi::ControllerButton BtnIn = master[okapi::ControllerDigital::R1];

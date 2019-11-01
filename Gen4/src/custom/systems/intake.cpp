@@ -13,6 +13,7 @@ namespace intake{
 
   bool slowOut = false;
   void intake(){
+
     if(BtnIn.isPressed()){
       controller = Controllers::IN;
     }
@@ -20,7 +21,7 @@ namespace intake{
       controller = Controllers::DEINIT;
     }
   }
-  
+
   void outake(){
     if(BtnOut.isPressed() || bothButtonsPressed()){
       controller = Controllers::OUT;

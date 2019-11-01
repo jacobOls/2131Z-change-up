@@ -122,11 +122,11 @@ namespace tray{
       break;
 
       case Controllers::TRAVELBACK:
-      if(encoder()  <  2350 && sensor() > upPosition){
-        motor.moveAbsolute(upPosition, -100);
+      if(encoder()  <  2350 && sensor() <= upPosition){
+        motor.moveVelocity(-100);
       }
-      else{
-        motor.moveAbsolute(0,-100);
+      else if(sensor() <= 2400){
+        motor.moveVelocity(-100);
       }
       break;
 

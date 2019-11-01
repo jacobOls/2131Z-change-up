@@ -2,15 +2,16 @@
 #include "custom/setup/motors.hpp"
 #include "custom/setup/controller.hpp"
 #include "custom/systems/intake.hpp"
+#include "custom/systems/lift.hpp"
 
 namespace intake{
   Controllers controller = Controllers::NONE;
-
+int liftUp;
 bool bothButtonsPressed(){
   return BtnLeft.isPressed() && BtnRight.isPressed();
 }
 
-
+bool slowOut = false;
 void intake(){
   if(BtnIn.isPressed()){
     controller = Controllers::IN;
@@ -52,11 +53,24 @@ void spinL(){
     switch (controller){
 
       case Controllers::IN:
+      if(lift::liftSensor.get_value() > liftUp){
+        intakegroup.moveVelocity(0);
+      }
+      else{
       intakegroup.moveVelocity(200);
+    }
       break;
 
       case Controllers::OUT:
+      if(lift::liftSensor.get_value() > liftUp && cubeSensor.get_value() < 2700){
+        slowOut = true;
+      }
+      if(slowOut){
+        intakegroup.moveVelocity(-25);
+      }
+      else{
       intakegroup.moveVelocity(-200);
+    }
       break;
 
       case Controllers::SPINL:
@@ -68,9 +82,10 @@ void spinL(){
       left_motor.moveVelocity(-50);
       right_motor.moveVelocity(50);
       break;
-      
+
       case Controllers::DEINIT:
       intakegroup.moveVelocity(0);
+      slowOut = false;
       controller = Controllers::NONE;
       break;
 

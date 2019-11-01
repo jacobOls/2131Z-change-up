@@ -1,7 +1,8 @@
 #ifndef RAMPING_HPP
 #define RAMPING_HPP
 //needs to remove gate
-class Ramping {
+class Ramping
+{
 protected:
   double changeVal = 1; //the amout of Val change per execute
   int changeMsec = 5;   //the amount of time inbetween executes

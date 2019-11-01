@@ -4,105 +4,124 @@
 #include "custom/systems/intake.hpp"
 #include "custom/systems/lift.hpp"
 
-namespace intake{
-  Controllers controller = Controllers::NONE;
-  int liftUp;
-  bool bothButtonsPressed(){
-    return BtnLeft.isPressed() && BtnRight.isPressed();
-  }
-
-  bool slowOut = false;
-  void intake(){
-
-    if(BtnIn.isPressed()){
-      controller = Controllers::IN;
-    }
-    else if(controller == Controllers::IN){
-      controller = Controllers::DEINIT;
-    }
-  }
-
-  void outake(){
-    if(BtnOut.isPressed() || bothButtonsPressed()){
-      controller = Controllers::OUT;
-    }
-    else if(controller == Controllers::OUT){
-      controller = Controllers::DEINIT;
-    }
-  }
-
-  void spinR(){
-    if(BtnRight.isPressed()){
-      controller = Controllers::SPINR;
-    }
-    else if(controller == Controllers::SPINR){
-      controller = Controllers::DEINIT;
-    }
-  }
-
-  void spinL(){
-    if(BtnRight.isPressed()){
-      controller = Controllers::SPINL;
-    }
-    else if(controller == Controllers::SPINL){
-      controller = Controllers::DEINIT;
-    }
-  }
-
-
-  void execute(){
-    switch (controller){
-
-      case Controllers::IN:
-      if(lift::liftSensor.get_value() > liftUp){
-        intakegroup.moveVelocity(0);
-      }
-      else{
-        intakegroup.moveVelocity(200);
-      }
-      break;
-
-      case Controllers::OUT:
-      if(lift::liftSensor.get_value() > liftUp && cubeSensor.get_value() < 2700){
-        slowOut = true;
-      }
-      if(slowOut){
-        intakegroup.moveVelocity(-25);
-      }
-      else{
-        intakegroup.moveVelocity(-200);
-      }
-      break;
-
-      case Controllers::SPINL:
-      left_motor.moveVelocity(50);
-      right_motor.moveVelocity(-50);
-      break;
-
-      case Controllers::SPINR:
-      left_motor.moveVelocity(-50);
-      right_motor.moveVelocity(50);
-      break;
-
-      case Controllers::DEINIT:
-      intakegroup.moveVelocity(0);
-      slowOut = false;
-      controller = Controllers::NONE;
-      break;
-
-      case Controllers::NONE:
-      break;
-
-    }
-
-  }
-
-  void init(){
-    intake();
-    outake();
-    spinR();
-    spinL();
-    execute();
-  }
-
+namespace intake
+{
+Controllers controller = Controllers::NONE;
+int liftUp;
+bool bothButtonsPressed()
+{
+  return BtnLeft.isPressed() && BtnRight.isPressed();
 }
+
+bool slowOut = false;
+void intake()
+{
+
+  if (BtnIn.isPressed())
+  {
+    controller = Controllers::IN;
+  }
+  else if (controller == Controllers::IN)
+  {
+    controller = Controllers::DEINIT;
+  }
+}
+
+void outake()
+{
+  if (BtnOut.isPressed() || bothButtonsPressed())
+  {
+    controller = Controllers::OUT;
+  }
+  else if (controller == Controllers::OUT)
+  {
+    controller = Controllers::DEINIT;
+  }
+}
+
+void spinR()
+{
+  if (BtnRight.isPressed())
+  {
+    controller = Controllers::SPINR;
+  }
+  else if (controller == Controllers::SPINR)
+  {
+    controller = Controllers::DEINIT;
+  }
+}
+
+void spinL()
+{
+  if (BtnRight.isPressed())
+  {
+    controller = Controllers::SPINL;
+  }
+  else if (controller == Controllers::SPINL)
+  {
+    controller = Controllers::DEINIT;
+  }
+}
+
+void execute()
+{
+  switch (controller)
+  {
+
+  case Controllers::IN:
+    if (lift::liftSensor.get_value() > liftUp)
+    {
+      intakegroup.moveVelocity(0);
+    }
+    else
+    {
+      intakegroup.moveVelocity(200);
+    }
+    break;
+
+  case Controllers::OUT:
+    if (lift::liftSensor.get_value() > liftUp && cubeSensor.get_value() < 2700)
+    {
+      slowOut = true;
+    }
+    if (slowOut)
+    {
+      intakegroup.moveVelocity(-25);
+    }
+    else
+    {
+      intakegroup.moveVelocity(-200);
+    }
+    break;
+
+  case Controllers::SPINL:
+    left_motor.moveVelocity(50);
+    right_motor.moveVelocity(-50);
+    break;
+
+  case Controllers::SPINR:
+    left_motor.moveVelocity(-50);
+    right_motor.moveVelocity(50);
+    break;
+
+  case Controllers::DEINIT:
+    intakegroup.moveVelocity(0);
+    slowOut = false;
+    controller = Controllers::NONE;
+    break;
+
+  case Controllers::NONE:
+    break;
+  }
+}
+
+void init()
+{
+  intake();
+  outake();
+  spinR();
+  spinL();
+  execute();
+}
+
+} // namespace intake

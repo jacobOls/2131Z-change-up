@@ -93,6 +93,7 @@ int allDown;
     up();
     down();
     execute();
+    returnDown();
   }
 
 }

@@ -15,8 +15,8 @@ double tilter()
 {
   return tilter::tilterSensor.get_value();
 }
-int upPlace;
-int sensorPlace;
+int upPlace = 1850;
+int sensorPlace = 1350;
 int fastSpeedSpot = 1200;
 int startUp = 1500;
 
@@ -91,7 +91,7 @@ void execute()
     }
     if (sensor() < sensorPlace)
     {
-      if (tilter() >= upPlace)
+      if (tilter() <= upPlace)
       {
         tilter::motor.moveVelocity(-75);
       }

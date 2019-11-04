@@ -18,7 +18,7 @@ double lSensor()
 
 int halfDown;
 int allDown;
-int upPlace;
+int upPlace = 1850;
 
 void up()
 {

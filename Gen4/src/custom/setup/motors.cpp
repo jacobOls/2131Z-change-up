@@ -1,5 +1,6 @@
 #include "main.h"
 #include "custom/setup/motors.hpp"
+#include "custom/setup/ramping.hpp"
 
 namespace drive
 {
@@ -13,6 +14,8 @@ okapi::Motor right_front(18, false, okapi::AbstractMotor::gearset::green,
                          okapi::AbstractMotor::encoderUnits::degrees);
 okapi::MotorGroup left_drive({left_back, left_front});
 okapi::MotorGroup right_drive({right_back, right_front});
+Ramping LEFT_DRIVE(1, 5,200,-200);
+    Ramping RIGHT_DRIVE(1,5,200,-200);
 } // namespace drive
 
 namespace intake

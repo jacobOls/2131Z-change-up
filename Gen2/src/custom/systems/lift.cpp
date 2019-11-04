@@ -4,18 +4,22 @@
 #include "custom/systems/lift.hpp"
 #include "custom/systems/tray.hpp"
 namespace lift{
-  const double position = 30;
-  const double velocity = 50;
-  const double trayVelocity = 35;
+  double position = 30;
+  double velocity = 50;
+  double trayVelocity = 35;
+  int startUp = 2150;
+  int upPlace = 2000;
   int forwardPos;
+  int fastSpeedSpot = 2200;
+  int sensorPlace = 2020;
   Controllers controller = Controllers::NONE;
   double getPosition(){
     return lift::motor.getPosition();
   }
-  double encoder(){
+  double sensor(){
     return liftSensor.get_value();
   }
-  double sensor(){
+  double tilter(){
     return tray::traySensor.get_value();
   }
   bool liftUp(){
@@ -44,17 +48,7 @@ namespace lift{
     }
   }
 
-  void MidTower(){
-    if(BtnMidTower.isPressed()){
-      controller = Controllers::MIDTOWER;
-    }
-  }
 
-  void lowTower(){
-    if(BtnLowTower.isPressed()){
-      controller = Controllers::LOWTOWER;
-    }
-  }
 
   /* pot positions
   down  2380
@@ -67,30 +61,60 @@ namespace lift{
 
 
   void execute(){
-    if(encoder() > 2380 && controller== Controllers::DOWN) controller= Controllers::DEINIT;
-    if(encoder() < 800 && controller== Controllers::UP) controller= Controllers::DEINIT;
+    if(sensor() > 2380 && controller== Controllers::DOWN) controller= Controllers::DEINIT;
+    if(sensor() < 800 && controller== Controllers::UP) controller= Controllers::DEINIT;
     switch (controller){
       case Controllers::UP:
+      // motor.moveVelocity(100);
+      // if(sensor() > forwardPos ){
+      //   tray::motor.moveVelocity(75);
+      // }
+      if (tilter() > startUp)
+  {
+    tray::motor.moveVelocity(40);
+  }
+  else if(tilter() <= startUp)
+  {
+    if (tilter() > upPlace)
+    {
+    motor.moveVelocity(100);
+      tray::motor.moveVelocity(40);
+    }
+    else{
       motor.moveVelocity(100);
-      if(sensor() > forwardPos ){
-        tray::motor.moveVelocity(75);
-      }
+      tray::motor.moveVelocity(0);
+    }
+  }
       break;
 
       case Controllers::DOWN:
-      if(encoder() <= 2300){
-        motor.moveVelocity(-100);
-        if(sensor() <= forwardPos){
-          motor.moveVelocity(-100);
+      // if(encoder() <= 2300){
+      //   motor.moveVelocity(-100);
+      //   if(tilter() <= forwardPos){
+      //     motor.moveVelocity(-100);
+      //   }
+      // }
+      // else if(encoder() > 2300){
+      //   motor.moveVelocity(-25);
+      //   if(tilter() <= forwardPos){
+      //     motor.moveVelocity(-25);
+      //   }
+      // }
+      if (sensor() < fastSpeedSpot)
+        {
+          motor.moveVelocity(-75);
         }
-      }
-      else if(encoder() > 2300){
-        motor.moveVelocity(-25);
-        if(sensor() <= forwardPos){
+        else
+        {
           motor.moveVelocity(-25);
         }
-      }
-
+        if (sensor() > sensorPlace)
+        {
+          if (tilter() <= upPlace)
+          {
+            tray::motor.moveVelocity(-75);
+          }
+        }
       break;
 
       case Controllers::NONE:
@@ -99,52 +123,31 @@ namespace lift{
 
       case Controllers::DEINIT:
       motor.moveVelocity(0);
+      tray::motor.moveVelocity(0);
       controller = Controllers::BOTTOM;
       break;
 
       case Controllers::BOTTOM:
-      if(!buttonsPressed()){
-        if(encoder() > 2200 && encoder() < 2350){
-          motor.moveVelocity(-25);
-        }
-        else{
-          motor.moveVelocity(0);
-          controller = Controllers::NONE;
-        }
-      }
+      // if(!buttonsPressed()){
+      //   if(encoder() > 2200 && encoder() < 2350){
+      //     motor.moveVelocity(-25);
+      //   }
+      //   else{
+      //     motor.moveVelocity(0);
+      //     controller = Controllers::NONE;
+      //   }
+      // }
       break;
 
 
-      case Controllers::MIDTOWER:
-      motor.moveAbsolute(350,25);
-      if (encoder() < 1835 && encoder() > 1825){
-        if(motor.isStopped())
-        {
-          controller = Controllers::DEINIT;
-        }
-      }
-      break;
-
-      case Controllers::LOWTOWER:
-      motor.moveAbsolute(250,25);
-      if (encoder() < 1405 && encoder() > 1395){
-        if(motor.isStopped())
-        {
-          controller = Controllers::DEINIT;
-        }
-      }
-      break;
-    }
-  }
+}
+}
 
   void lift(){
     liftMovingUp();
     liftMovingDown();
-    MidTower();
-    lowTower();
     execute();
   }
-
   namespace auton{
     bool unpopped = true;
     bool popped = false;
@@ -161,19 +164,19 @@ namespace lift{
       return false;
     }
     void autonLiftUp(double targetPosition, double targetVelocity){
-      while(encoder() <= targetPosition){
+      while(sensor() <= targetPosition){
         motor.moveVelocity(targetVelocity);
       }
-      if(encoder() >= targetPosition){
+      if(sensor() >= targetPosition){
         motor.moveVelocity(0);
       }
     }
 
     void autonLiftDown(double wantedPosition, double targetVelocity){
-      if(encoder() <= wantedPosition){
+      if(sensor() <= wantedPosition){
         motor.moveVelocity(targetVelocity);
       }
-      if(encoder() >= wantedPosition){
+      if(sensor() >= wantedPosition){
         motor.moveVelocity(0);
       }
     }
@@ -183,11 +186,11 @@ namespace lift{
 
 
     void popOpen(){
-      if(encoder() > 2000){
+      if(sensor() > 2000){
         motor.moveVelocity(90);
         tray::motor.moveVelocity(60);
       }
-      if(encoder() <= 2000){
+      if(sensor() <= 2000){
         motor.moveVelocity(0);
         tray::motor.moveVelocity(0);
       }

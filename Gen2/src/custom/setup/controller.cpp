@@ -10,6 +10,7 @@ namespace tray{
   okapi::ControllerButton BtnF = master[okapi::ControllerDigital::Y];
   okapi::ControllerButton BtnB = master[okapi::ControllerDigital::right];
   okapi::ControllerButton travelBack =master[okapi::ControllerDigital::A];
+  okapi::ControllerButton btnGoUp = master[okapi::ControllerDigital::up];
 //a goes down as far as possible
 }
 namespace config{
@@ -29,6 +30,5 @@ namespace intake{
 namespace lift{
 okapi::ControllerButton BtnUp = master[okapi::ControllerDigital::L1];
 okapi::ControllerButton BtnDown = master[okapi::ControllerDigital::L2];
-okapi::ControllerButton BtnLowTower = master[okapi::ControllerDigital::left];
-okapi::ControllerButton BtnMidTower = master[okapi::ControllerDigital::up];
+
 }

@@ -11,7 +11,7 @@ namespace tray{
   extern okapi::ControllerButton BtnF;
   extern okapi::ControllerButton BtnB;
   extern okapi::ControllerButton travelBack;
-
+extern okapi::ControllerButton btnGoUp;
 
 }
 namespace config{
@@ -26,7 +26,6 @@ namespace intake{
 namespace lift{
   extern okapi::ControllerButton BtnUp;
   extern okapi::ControllerButton BtnDown;
-  extern okapi::ControllerButton BtnLowTower;
-  extern okapi::ControllerButton BtnMidTower;
+
 }
 #endif /* end of include guard: CONTROLLER_HPP */

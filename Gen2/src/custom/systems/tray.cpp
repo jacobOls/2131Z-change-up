@@ -10,6 +10,7 @@ namespace tray{
   // bool trayMove = false;
   const double traySpeed = 25.0;
   const double position =  500.0;
+  int upPlace = 2000;
   int forwardPos;
   Controllers controller = Controllers::NONE;
   double encoder(){
@@ -61,6 +62,15 @@ namespace tray{
     }
   }
 
+  void goUp(){
+    if(btnGoUp.isPressed()){
+controller = Controllers::TOUP;
+    }
+    else if(controller == Controllers::TOUP && motor.getActualVelocity() < 10){
+      controller = Controllers::DEINIT;
+    }
+  }
+
   void travel(){
     if(travelBack.isPressed()){
       controller = Controllers::TRAVELBACK;
@@ -77,6 +87,7 @@ namespace tray{
     back();
     travel();
     execute();
+    goUp();
 
   }
   void execute(){
@@ -98,6 +109,14 @@ namespace tray{
       break;
 
       case Controllers::NONE:
+      break;
+
+
+      case Controllers::TOUP:
+      if(sensor() > upPlace){
+        motor.moveVelocity(100);
+      }
+      else motor.moveVelocity(0);
       break;
 
       case Controllers::RETURN:

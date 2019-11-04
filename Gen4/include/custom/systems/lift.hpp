@@ -13,6 +13,10 @@ enum class Controllers
     NONE
 };
 void init(void);
+namespace auton{
+  void popOpen();
+  void autonLiftDown(double wantedPosition, double targetVelocity);
+}
 } // namespace lift
 
 #endif /* end of include guard: LIFT_HPP */

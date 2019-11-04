@@ -114,4 +114,26 @@ void init()
   returnDown();
 }
 
+namespace auton{
+
+  void trayDown(double wantedPosition, double targetVelocity){
+    while(sensor() > wantedPosition){
+      motor.moveVelocity(targetVelocity);
+    }
+    if(motor.getPosition() <= wantedPosition){
+      motor.moveVelocity(0);
+    }
+  }
+
+
+  void stack(double wantedPosition, double targetVelocity){
+    while(sensor() < wantedPosition){
+      motor.moveVelocity(targetVelocity);
+    }
+    if(sensor() >= wantedPosition){
+      motor.moveVelocity(0);
+    }
+  }
+}
+
 } // namespace tilter

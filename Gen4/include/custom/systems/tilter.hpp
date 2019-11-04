@@ -12,10 +12,11 @@ enum class Controllers
     NONE
 };
 void init(void);
-namespace auton{
- void trayDown(double wantedPosition, double targetVelocity);
- void stack(double wantedPosition, double targetVelocity);
-}
+namespace auton
+{
+void trayDown(double wantedPosition, double targetVelocity);
+void stack(double wantedPosition, double targetVelocity);
+} // namespace auton
 } // namespace tilter
 
 #endif /* end of include guard: TILTER_HPP */

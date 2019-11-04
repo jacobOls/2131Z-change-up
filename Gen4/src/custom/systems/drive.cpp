@@ -25,17 +25,14 @@ void drive()
   left_drive.moveVelocity(leftVel);
 }
 
-namespace auton{
-  void resetPositions(){
+namespace auton
+{
+void resetPositions()
+{
   left_drive.tarePosition();
   right_drive.tarePosition();
-
 }
 
-
-
-
-
-}
+} // namespace auton
 
 } // namespace drive

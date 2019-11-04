@@ -5,9 +5,9 @@ namespace drive
 {
 void drive(void);
 
-namespace auton{
-
+namespace auton
+{
 }
-}
+} // namespace drive
 
 #endif /* end of include guard: DRIVE_HPP */

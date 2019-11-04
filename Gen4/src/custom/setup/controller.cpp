@@ -9,6 +9,7 @@ namespace tilter
 {
 okapi::ControllerButton BtnUp = master[okapi::ControllerDigital::Y];
 okapi::ControllerButton BtnDown = master[okapi::ControllerDigital::right];
+okapi::ControllerButton BtnGoUp = master[okapi::ControllerDigital::up];
 } // namespace tilter
 
 namespace intake
@@ -24,6 +25,5 @@ namespace lift
 {
 okapi::ControllerButton BtnUp = master[okapi::ControllerDigital::L1];
 okapi::ControllerButton BtnDown = master[okapi::ControllerDigital::L2];
-okapi::ControllerButton BtnL = master[okapi::ControllerDigital::left];
-okapi::ControllerButton BtnM = master[okapi::ControllerDigital::up];
+
 } // namespace lift

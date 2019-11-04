@@ -18,6 +18,7 @@ double lSensor()
 
 int halfDown;
 int allDown;
+int upPlace;
 
 void up()
 {
@@ -30,6 +31,16 @@ void up()
     controller = Controllers::DEINIT;
   }
 }
+
+void goUp(){
+  if(BtnGoUp.isPressed()){
+controller = Controllers::TOUP;
+  }
+  else if(controller == Controllers::TOUP && motor.getActualVelocity() < 10){
+    controller = Controllers::DEINIT;
+  }
+}
+
 
 void down()
 {
@@ -81,6 +92,13 @@ void execute()
   case Controllers::DOWN:
     motor.moveVelocity(75);
     break;
+
+    case Controllers::TOUP:
+          if(sensor() < upPlace){
+            motor.moveVelocity(100);
+          }
+          else motor.moveVelocity(0);
+          break;
 
   case Controllers::RETURN:
     if (lSensor() > 1200)

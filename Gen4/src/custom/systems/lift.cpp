@@ -17,8 +17,8 @@ double tilter()
 }
 int upPlace;
 int sensorPlace;
-int fastSpeedSpot;
-int startUp;
+int fastSpeedSpot = 1200;
+int startUp = 1500;
 
 void up()
 {
@@ -44,29 +44,7 @@ void down()
   }
 }
 
-void lowT()
-{
-  if (BtnL.isPressed())
-  {
-    controller = Controllers::LOWT;
-  }
-  else if (controller == Controllers::LOWT)
-  {
-    controller = Controllers::DEINIT;
-  }
-}
 
-void midT()
-{
-  if (BtnM.isPressed())
-  {
-    controller = Controllers::MIDT;
-  }
-  else if (controller == Controllers::MIDT)
-  {
-    controller = Controllers::DEINIT;
-  }
-}
 
 void execute()
 {
@@ -120,19 +98,6 @@ void execute()
     }
     break;
 
-  case Controllers::LOWT:
-    if (sensor() < 1800)
-    {
-      motor.moveVelocity(100);
-    }
-    break;
-
-  case Controllers::MIDT:
-    if (sensor() < 2500)
-    {
-      motor.moveVelocity(100);
-    }
-    break;
 
   case Controllers::DEINIT:
     motor.moveVelocity(0);
@@ -149,8 +114,6 @@ void init()
 {
   up();
   down();
-  lowT();
-  midT();
   execute();
 }
 namespace auton

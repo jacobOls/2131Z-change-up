@@ -9,6 +9,7 @@ enum class Controllers
     DOWN,
     RETURN,
     DEINIT,
+    TOUP,
     NONE
 };
 void init(void);

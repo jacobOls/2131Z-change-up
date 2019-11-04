@@ -7,8 +7,6 @@ enum class Controllers
 {
   UP,
   DOWN,
-  LOWT,
-  MIDT,
   DEINIT,
   NONE
 };

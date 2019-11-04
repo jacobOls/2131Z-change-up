@@ -186,11 +186,11 @@ namespace lift{
 
 
     void popOpen(){
-      if(sensor() > 2000){
+      if(sensor() > 1600){
         motor.moveVelocity(90);
         tray::motor.moveVelocity(60);
       }
-      if(sensor() <= 2000){
+      if(sensor() <= 1600){
         motor.moveVelocity(0);
         tray::motor.moveVelocity(0);
       }

@@ -75,4 +75,29 @@ namespace auton{
     intake::auton::stackReverseAuton(-500, 25, 25);
     tray::auton::trayDown(0,-100);
   }
+
+void red5(){
+  tray::motor.tarePosition();
+  drive::auton::resetPositions();
+  drive::auton::autonDrive(300,75);
+  lift::auton::popOpen();
+  drive::auton::autonDriveBack(-290,-125);
+  drive::auton::autonDriveBack(-250,-150);
+  lift::auton::autonLiftDown(2380,-100);
+  tray::auton::trayDown(0,-100);
+  intake::auton::intakeOn(200);
+  drive::auton::autonDrive(1000,60);
+  intake::auton::intakeOff();
+  drive::auton::autonDriveBack(-750,-150);
+  drive::auton::rightTurn(360,50);
+  drive::auton::autonDrive(50,50);
+  intake::auton::intakeOn(-25);\
+  wait(800);
+  intake::auton::intakeOff();
+  tray::auton::stack(415,20);
+  intake::auton::stackReverseAuton(-500, 25, 25);
+  tray::auton::trayDown(0,-100);
+
+}
+
 }

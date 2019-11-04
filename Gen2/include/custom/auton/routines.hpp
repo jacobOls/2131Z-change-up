@@ -3,7 +3,7 @@
 namespace auton{
   void skillsAuton(void);
   void redRight(void);
-
+  void red5(void);
 }
 
 

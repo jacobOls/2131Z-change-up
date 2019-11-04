@@ -44,15 +44,15 @@ namespace auton {
     lv_style_t style_config;
     // lv_style_t style_btn;
 
-    Positons positon = Positons::FRONTRED;
+    Positons positon = Positons::BACKRED;
     Stacks stack = Stacks::NONE;
     Options option = Options::NONE;
 
     std::string screenText[4][3] = {
         {"Front Red", "", ""},
-        {"Back Red", "", ""},
+        {"red 5", "", ""},
         {"Back Blue", "", ""},
-        {"Front Blue", "", ""},
+        {"blue 5", "", ""},
     };
     void execute() {
       switch (positon) {
@@ -61,8 +61,8 @@ namespace auton {
         break;
 
       case Positons::BACKRED:
-        // auton::routines::red::back::all(shoot, flag, option);
-        break;
+      red5();
+         break;
 
       case Positons::BACKBLUE:
         break;

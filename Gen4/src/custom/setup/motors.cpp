@@ -32,7 +32,7 @@ pros::ADIAnalogIn cubeSensor(3);
 
 namespace tilter
 {
-okapi::Motor motor(15, true, okapi::AbstractMotor::gearset::red,
+okapi::Motor motor(15, false, okapi::AbstractMotor::gearset::red,
                    okapi::AbstractMotor::encoderUnits::degrees);
 pros::ADIAnalogIn tilterSensor(2);
 

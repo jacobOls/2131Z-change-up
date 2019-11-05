@@ -16,8 +16,8 @@ namespace tilter
         return lift::liftSensor.get_value();
     }
 
-    int halfDown;
-    int allDown;
+    int halfDown =1850;
+    int allDown = 1170;
     int upPlace = 1850;
 
     void up()
@@ -70,14 +70,14 @@ namespace tilter
     {
         if (controller == Controllers::UP)
         {
-            if (sensor() > 2400)
+            if (sensor() > 2300)
             {
                 controller = Controllers::DEINIT;
             }
         }
         if (controller == Controllers::DOWN)
         {
-            if (sensor() < 1000)
+            if (sensor() < 1450)
             {
                 controller = Controllers::DEINIT;
             }
@@ -90,7 +90,7 @@ namespace tilter
                 break;
 
             case Controllers::DOWN:
-                motor.moveVelocity(75);
+                motor.moveVelocity(-75);
                 break;
 
             case Controllers::TOUP:
@@ -128,6 +128,7 @@ namespace tilter
     {
         up();
         down();
+        goUp();
         execute();
         returnDown();
     }

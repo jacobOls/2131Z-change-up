@@ -17,8 +17,8 @@ double tilter()
 }
 int upPlace = 1850;
 int sensorPlace = 1350;
-int fastSpeedSpot = 1200;
-int startUp = 1500;
+int fastSpeedSpot = 1250;
+int startUp = 1640;
 
 void up()
 {

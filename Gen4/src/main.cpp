@@ -26,8 +26,8 @@ void initialize() {
 	intake::left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-	std::cout << "initialize " << std::endl;
-	auton::screenInit();
+	// std::cout << "initialize " << std::endl;
+	// auton::screenInit();
 }
 
 /**

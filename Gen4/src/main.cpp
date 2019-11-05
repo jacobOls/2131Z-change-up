@@ -36,8 +36,8 @@ void initialize() {
  * the robot is enabled, this task will exit.
  */
 void disabled() {
-	auton::autonTask.suspend();
-	auton::set_auton(false);
+	// auton::autonTask.suspend();
+	// auton::set_auton(false);
 }
 
 /**
@@ -73,10 +73,10 @@ void competition_initialize() {
  }
 
 void autonomous() {
-	auton::screenInit();
-	auton::set_auton(true);
-	auton::autonTask.resume();
-	auton::execute();
+	// auton::screenInit();
+	// auton::set_auton(true);
+	// auton::autonTask.resume();
+	// auton::execute();
 }
 
 /**

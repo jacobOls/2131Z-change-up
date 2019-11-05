@@ -91,6 +91,7 @@ namespace tilter
 
             case Controllers::BACKWARD:
                 motor.moveVelocity(-75);
+                pros::lcd::print(0,"go down");
                 break;
 
             case Controllers::TOUP:

@@ -5,8 +5,8 @@ namespace tilter
 {
 enum class Controllers
 {
-    UP,
-    DOWN,
+    FORWARD,
+    BACKWARD,
     RETURN,
     DEINIT,
     TOUP,

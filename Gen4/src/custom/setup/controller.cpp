@@ -7,16 +7,17 @@ namespace drive
 
 namespace tilter
 {
-okapi::ControllerButton BtnUp = master[okapi::ControllerDigital::Y];
-okapi::ControllerButton BtnDown = master[okapi::ControllerDigital::right];
+okapi::ControllerButton BtnForward = master[okapi::ControllerDigital::Y];
+okapi::ControllerButton BtnBackward = master[okapi::ControllerDigital::right];
 okapi::ControllerButton BtnGoUp = master[okapi::ControllerDigital::up];
+okapi::ControllerButton BtnR = master[okapi::ControllerDigital::A];
+
 } // namespace tilter
 
 namespace intake
 {
 okapi::ControllerButton BtnIn = master[okapi::ControllerDigital::R1];
 okapi::ControllerButton BtnOut = master[okapi::ControllerDigital::R2];
-okapi::ControllerButton BtnR = master[okapi::ControllerDigital::A];
 okapi::ControllerButton BtnLeft = master[okapi::ControllerDigital::down];
 okapi::ControllerButton BtnRight = master[okapi::ControllerDigital::B];
 } // namespace intake

@@ -275,8 +275,8 @@
         "upload_options": {
             "compress_bin": true,
             "description": "",
-            "remote_name": "Gen4",
-            "slot": 2
+            "remote_name": "Gen4 kinda sorta",
+            "slot": 3
         }
     }
 }

@@ -102,7 +102,7 @@ namespace lift
 
       case Controllers::DEINIT:
       motor.moveVelocity(0);
-      // tilter::motor.moveVelocity(0);
+      tilter::motor.moveVelocity(0);
       controller = Controllers::NONE;
       break;
 

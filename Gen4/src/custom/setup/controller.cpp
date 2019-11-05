@@ -10,7 +10,7 @@ namespace tilter
 okapi::ControllerButton BtnForward = master[okapi::ControllerDigital::Y];
 okapi::ControllerButton BtnBackward = master[okapi::ControllerDigital::right];
 okapi::ControllerButton BtnGoUp = master[okapi::ControllerDigital::up];
-okapi::ControllerButton BtnR = master[okapi::ControllerDigital::A];
+okapi::ControllerButton BtnReturn = master[okapi::ControllerDigital::A];
 
 } // namespace tilter
 

@@ -11,7 +11,7 @@ namespace tilter
 {
 extern okapi::ControllerButton BtnForward;
 extern okapi::ControllerButton BtnBackward;
-extern okapi::ControllerButton BtnR;
+extern okapi::ControllerButton BtnReturn;
 extern okapi::ControllerButton BtnGoUp;
 } // namespace tilter
 

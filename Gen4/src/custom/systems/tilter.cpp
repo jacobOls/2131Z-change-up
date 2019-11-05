@@ -6,158 +6,158 @@
 
 namespace tilter
 {
-Controllers controller = Controllers::NONE;
-double sensor()
-{
-  return tilterSensor.get_value();
-}
-double lSensor()
-{
-  return lift::liftSensor.get_value();
-}
-
-int halfDown;
-int allDown;
-int upPlace = 1850;
-
-void up()
-{
-  if (BtnUp.isPressed())
-  {
-    controller = Controllers::UP;
-  }
-  else if (controller == Controllers::UP)
-  {
-    controller = Controllers::DEINIT;
-  }
-}
-
-void goUp(){
-  if(BtnGoUp.isPressed()){
-controller = Controllers::TOUP;
-  }
-  else if(controller == Controllers::TOUP && motor.getActualVelocity() < 10){
-    controller = Controllers::DEINIT;
-  }
-}
-
-
-void down()
-{
-  if (BtnDown.isPressed())
-  {
-    controller = Controllers::DOWN;
-  }
-  else if (controller == Controllers::DOWN)
-  {
-    controller = Controllers::DEINIT;
-  }
-}
-
-void returnDown()
-{
-  if (BtnDown.isPressed())
-  {
-    controller = Controllers::RETURN;
-  }
-  else if (controller == Controllers::RETURN)
-  {
-    controller = Controllers::DEINIT;
-  }
-}
-
-void execute()
-{
-  if (controller == Controllers::UP)
-  {
-    if (sensor() > 2200)
+    Controllers controller = Controllers::NONE;
+    double sensor()
     {
-      controller = Controllers::DEINIT;
+        return tilterSensor.get_value();
     }
-  }
-  if (controller == Controllers::DOWN)
-  {
-    if (sensor() < 1000)
+    double lSensor()
     {
-      controller = Controllers::DEINIT;
+        return lift::liftSensor.get_value();
     }
-  }
-  switch (controller)
-  {
 
-  case Controllers::UP:
-    motor.moveVelocity(25);
-    break;
+    int halfDown;
+    int allDown;
+    int upPlace = 1850;
 
-  case Controllers::DOWN:
-    motor.moveVelocity(75);
-    break;
-
-    case Controllers::TOUP:
-          if(sensor() < upPlace){
-            motor.moveVelocity(100);
-          }
-          else motor.moveVelocity(0);
-          break;
-
-  case Controllers::RETURN:
-    if (lSensor() > 1200)
+    void up()
     {
-      if (sensor() >= halfDown)
-      {
-        motor.moveVelocity(-100);
-      }
+        if (BtnUp.isPressed())
+        {
+            controller = Controllers::UP;
+        }
+        else if (controller == Controllers::UP)
+        {
+            controller = Controllers::DEINIT;
+        }
     }
-    else if (sensor() >= allDown)
+
+    void goUp(){
+        if(BtnGoUp.isPressed()){
+            controller = Controllers::TOUP;
+        }
+        else if(controller == Controllers::TOUP && motor.getActualVelocity() < 10){
+            controller = Controllers::DEINIT;
+        }
+    }
+
+
+    void down()
     {
-      motor.moveVelocity(-100);
+        if (BtnDown.isPressed())
+        {
+            controller = Controllers::DOWN;
+        }
+        else if (controller == Controllers::DOWN)
+        {
+            controller = Controllers::DEINIT;
+        }
     }
-    break;
 
-  case Controllers::DEINIT:
-    motor.moveVelocity(0);
-    controller = Controllers::NONE;
-    break;
+    void returnDown()
+    {
+        if (BtnDown.isPressed())
+        {
+            controller = Controllers::RETURN;
+        }
+        else if (controller == Controllers::RETURN)
+        {
+            controller = Controllers::DEINIT;
+        }
+    }
 
-  case Controllers::NONE:
-    break;
-  }
-}
+    void execute()
+    {
+        if (controller == Controllers::UP)
+        {
+            if (sensor() > 2400)
+            {
+                controller = Controllers::DEINIT;
+            }
+        }
+        if (controller == Controllers::DOWN)
+        {
+            if (sensor() < 1000)
+            {
+                controller = Controllers::DEINIT;
+            }
+        }
+        switch (controller)
+        {
 
-void init()
-{
-  up();
-  down();
-  execute();
-  returnDown();
-}
+            case Controllers::UP:
+                motor.moveVelocity(25);
+                break;
 
-namespace auton
-{
+            case Controllers::DOWN:
+                motor.moveVelocity(75);
+                break;
 
-void trayDown(double wantedPosition, double targetVelocity)
-{
-  while (sensor() > wantedPosition)
-  {
-    motor.moveVelocity(targetVelocity);
-  }
-  if (motor.getPosition() <= wantedPosition)
-  {
-    motor.moveVelocity(0);
-  }
-}
+            case Controllers::TOUP:
+                if(sensor() < upPlace){
+                    motor.moveVelocity(100);
+                }
+                else motor.moveVelocity(0);
+                break;
 
-void stack(double wantedPosition, double targetVelocity)
-{
-  while (sensor() < wantedPosition)
-  {
-    motor.moveVelocity(targetVelocity);
-  }
-  if (sensor() >= wantedPosition)
-  {
-    motor.moveVelocity(0);
-  }
-}
-} // namespace auton
+            case Controllers::RETURN:
+                if (lSensor() > 1200)
+                {
+                    if (sensor() >= halfDown)
+                    {
+                        motor.moveVelocity(-100);
+                    }
+                }
+                else if (sensor() >= allDown)
+                {
+                    motor.moveVelocity(-100);
+                }
+                break;
+
+            case Controllers::DEINIT:
+                motor.moveVelocity(0);
+                controller = Controllers::NONE;
+                break;
+
+            case Controllers::NONE:
+                break;
+        }
+    }
+
+    void init()
+    {
+        up();
+        down();
+        execute();
+        returnDown();
+    }
+
+    namespace auton
+    {
+
+        void trayDown(double wantedPosition, double targetVelocity)
+        {
+            while (sensor() > wantedPosition)
+            {
+                motor.moveVelocity(targetVelocity);
+            }
+            if (motor.getPosition() <= wantedPosition)
+            {
+                motor.moveVelocity(0);
+            }
+        }
+
+        void stack(double wantedPosition, double targetVelocity)
+        {
+            while (sensor() < wantedPosition)
+            {
+                motor.moveVelocity(targetVelocity);
+            }
+            if (sensor() >= wantedPosition)
+            {
+                motor.moveVelocity(0);
+            }
+        }
+    } // namespace auton
 
 } // namespace tilter

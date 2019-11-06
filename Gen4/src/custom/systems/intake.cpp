@@ -118,7 +118,7 @@ namespace intake
       break;
 
       case Controllers::MACRO:
-      intakegroup.moveVelocity(-25);
+      intakegroup.moveVelocity(-35);
       break;
 
       case Controllers::DEINIT:

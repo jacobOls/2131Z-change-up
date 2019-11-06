@@ -81,11 +81,11 @@ namespace tilter
     {
 
       case Controllers::FORWARD:
-      motor.moveVelocity(25);
+      motor.moveVelocity(75);
       break;
 
       case Controllers::BACKWARD:
-      motor.moveVelocity(-75);
+      motor.moveVelocity(-25);
       break;
 
       case Controllers::TOUP:

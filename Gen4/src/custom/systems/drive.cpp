@@ -9,22 +9,31 @@ namespace drive
 
     int rightVel;
     int leftVel;
-
+    int lJoystickSpeed = 200;
+    int rJoystickSpeed = 200;
     void drive()
     {
         //drive code
+        // if(abs(master.getAnalog(okapi::ControllerAnalog::leftY)) >0.5 || abs(master.getAnalog(okapi::ControllerAnalog::rightY)) > 0){
+        // lJoystickSpeed = LEFT_MANUAL.calculate(master.getAnalog(okapi::ControllerAnalog::leftY) * 200);
+        // rJoystickSpeed = RIGHT_MANUAL.calculate(master.getAnalog(okapi::ControllerAnalog::rightY) * 200);
         if (std::abs(master.getAnalog(okapi::ControllerAnalog::leftY)) < 0.05)
             leftVel = 0;
         else
-            leftVel = (master.getAnalog(ControllerAnalog::leftY) * 200);
+            leftVel = (master.getAnalog(ControllerAnalog::leftY) * abs(lJoystickSpeed));
+
         if (std::abs(master.getAnalog(okapi::ControllerAnalog::rightY)) < 0.05)
             rightVel = 0;
         else
-            rightVel = (master.getAnalog(ControllerAnalog::rightY) * 200);
+            rightVel = (master.getAnalog(ControllerAnalog::rightY) * abs(rJoystickSpeed));
 
         right_drive.moveVelocity(rightVel);
         left_drive.moveVelocity(leftVel);
     }
+    // else {
+    //   rightVel = 0;
+    //   leftVel = 0;
+    // }
 
     namespace auton
     {

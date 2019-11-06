@@ -16,6 +16,9 @@ okapi::MotorGroup left_drive({left_back, left_front});
 okapi::MotorGroup right_drive({right_back, right_front});
 Ramping LEFT_DRIVE(1, 5,200,-200);
     Ramping RIGHT_DRIVE(1,5,200,-200);
+    Ramping LEFT_MANUAL(1,10,200,-200);
+    Ramping RIGHT_MANUAL(1,10,200,-200);
+
 } // namespace drive
 
 namespace intake

@@ -115,10 +115,7 @@ void init()
 }
 namespace auton
 {
-bool unpopped = true;
-bool popped = false;
-const double targetPosition = 25;
-const double epsilon = 5;
+
 
 void autonLiftUp(double targetPosition, double targetVelocity)
 {

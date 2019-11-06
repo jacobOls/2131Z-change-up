@@ -68,14 +68,14 @@ namespace lift
       case Controllers::UP:
       if (tilter() < startUp)
       {
-        tilter::motor.moveVelocity(-40);
+        tilter::motor.moveVelocity(-75);
       }
       else if(tilter() >= startUp)
       {
         if (tilter() < upPlace)
         {
           motor.moveVelocity(100);
-          tilter::motor.moveVelocity(-40);
+          tilter::motor.moveVelocity(-75);
         }
         else{
           motor.moveVelocity(100);

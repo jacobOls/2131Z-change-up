@@ -11,6 +11,7 @@ enum class Controllers
   SPINR,
   SPINL,
   DEINIT,
+  MACRO,
   NONE
 };
 void init(void);

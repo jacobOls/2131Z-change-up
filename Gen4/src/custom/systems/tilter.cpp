@@ -48,9 +48,9 @@ namespace tilter
     if(BtnGoUp.isPressed()){
       controller = Controllers::TOUP;
     }
-    // else if(controller == Controllers::TOUP && motor.getActualVelocity() < 50){
-    //   controller = Controllers::DEINIT;
-    // }
+    else if(controller == Controllers::TOUP && motor.getActualVelocity() == 0){
+      controller = Controllers::DEINIT;
+    }
   }
 
 
@@ -61,7 +61,7 @@ namespace tilter
     {
       controller = Controllers::RETURN;
     }
-    else if (controller == Controllers::RETURN)
+    else if (controller == Controllers::RETURN && motor.getActualVelocity() == 0)
     {
       controller = Controllers::DEINIT;
     }
@@ -69,15 +69,13 @@ namespace tilter
 
   void execute()
   {
-    if (controller == Controllers::FORWARD && sensor() > 2300)
+    if (controller == Controllers::BACKWARD && sensor() > 2150)
     {
       controller = Controllers::DEINIT;
     }
-    if (controller == Controllers::BACKWARD && sensor() < 1450)
+    if (controller == Controllers::FORWARD && sensor() <= 1460)
     {
-
       controller = Controllers::DEINIT;
-
     }
     switch (controller)
     {
@@ -92,7 +90,7 @@ namespace tilter
 
       case Controllers::TOUP:
       if(sensor() < upPlace){
-        motor.moveVelocity(100);
+        motor.moveVelocity(-100);
       }
       else if(sensor() >= upPlace)
       { motor.moveVelocity(0);
@@ -101,17 +99,13 @@ namespace tilter
       break;
 
       case Controllers::RETURN:
-      if (lSensor() > 1200)
-      {
-        if (sensor() >= halfDown)
-        {
-          motor.moveVelocity(-100);
-        }
-        else if (sensor() >= allDown)
-        {
-          motor.moveVelocity(-100);
-        }
+      if(lSensor() < 1250 && sensor() > 1520){
+        motor.moveVelocity(100);
       }
+      else if(sensor() > 1870){
+        motor.moveVelocity(100);
+      }
+
       break;
 
       case Controllers::DEINIT:

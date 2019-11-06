@@ -21,6 +21,7 @@ extern okapi::ControllerButton BtnIn;
 extern okapi::ControllerButton BtnOut;
 extern okapi::ControllerButton BtnRight;
 extern okapi::ControllerButton BtnLeft;
+extern okapi::ControllerButton BtnBackUp;
 } // namespace intake
 
 namespace lift

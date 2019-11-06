@@ -15,9 +15,9 @@ namespace lift
   {
     return tilter::tilterSensor.get_value();
   }
-  int upPlace = 1850;
-  int sensorPlace = 1350;
-  int fastSpeedSpot = 1250;
+  int upPlace = 1750;
+  int sensorPlace = 1500;
+  int fastSpeedSpot = 1400;
   int startUp = 1640;
 
   void up()
@@ -50,7 +50,7 @@ namespace lift
   {
     if (controller == Controllers::UP)
     {
-      if (sensor() > 2200)
+      if (sensor() > 2800)
       {
         controller = Controllers::DEINIT;
       }
@@ -68,35 +68,34 @@ namespace lift
       case Controllers::UP:
       if (tilter() < startUp)
       {
-        tilter::motor.moveVelocity(75);
+        tilter::motor.moveVelocity(-40);
       }
-      else if(tilter() > startUp){
+      else if(tilter() >= startUp)
       {
-        motor.moveVelocity(75);
         if (tilter() < upPlace)
         {
-          tilter::motor.moveVelocity(75);
+          motor.moveVelocity(100);
+          tilter::motor.moveVelocity(-40);
+        }
+        else{
+          motor.moveVelocity(100);
+          tilter::motor.moveVelocity(-0);
         }
       }
-    }
       break;
 
       case Controllers::DOWN:
-      if (sensor() > fastSpeedSpot)
-      {
+
         motor.moveVelocity(-75);
-      }
-      else if(sensor() < fastSpeedSpot)
-      {
-        motor.moveVelocity(-25);
-      }
-      if (sensor() < sensorPlace)
-      {
-        if (tilter() <= upPlace)
+        if (sensor() < sensorPlace)
         {
-          tilter::motor.moveVelocity(-75);
+          if (tilter() >= startUp)
+          {
+            tilter::motor.moveVelocity(75);
+          }
         }
-      }
+
+
       break;
 
 

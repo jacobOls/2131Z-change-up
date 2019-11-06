@@ -27,6 +27,18 @@ namespace intake
         }
     }
 
+    void stackReverse(){
+      if(BtnBackUp.isPressed()){
+        drive::left_drive.moveVelocity(-25);
+        drive::right_drive.moveVelocity(-25);
+        controller = Controllers::MACRO;
+      }
+      else if(controller == Controllers::MACRO){
+        controller = Controllers::DEINIT;
+      }
+    }
+
+
     void outake()
     {
         if (BtnOut.isPressed() || bothButtonsPressed())
@@ -104,6 +116,10 @@ namespace intake
                 right_motor.moveVelocity(50);
                 break;
 
+                case Controllers::MACRO:
+                    intakegroup.moveVelocity(-25);
+                    break;
+
             case Controllers::DEINIT:
                 intakegroup.moveVelocity(0);
                 slowOut = false;
@@ -122,6 +138,7 @@ namespace intake
         spinR();
         spinL();
         execute();
+        stackReverse();
     }
     namespace auton
     {

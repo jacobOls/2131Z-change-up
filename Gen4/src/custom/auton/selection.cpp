@@ -60,6 +60,7 @@ void execute()
   switch (positon)
   {
   case Positons::FRONTRED:
+  red5();
     break;
 
   case Positons::BACKRED:

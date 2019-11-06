@@ -46,6 +46,7 @@ namespace drive
 
         void driving(int distance, int velocity)
         {
+          resetPositions();
             lVel = LEFT_DRIVE.calculate(velocity);
             rVel = RIGHT_DRIVE.calculate(velocity);
             lPos = left_back.getPosition();
@@ -69,6 +70,7 @@ namespace drive
 
         void rightTurn(double distance, double velocity)
         {
+          resetPositions();
             while (left_front.getPosition() < distance)
             {
                 left_drive.moveVelocity(velocity);
@@ -84,6 +86,7 @@ namespace drive
 
         void leftTurn(double distance, double velocity)
         {
+             resetPositions();
             while (right_front.getPosition() < distance)
             {
                 left_drive.moveVelocity(-velocity);

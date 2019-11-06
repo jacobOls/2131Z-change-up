@@ -3,6 +3,7 @@
 namespace auton{
 
   void red5();
+   void blue5();
 }
 
 

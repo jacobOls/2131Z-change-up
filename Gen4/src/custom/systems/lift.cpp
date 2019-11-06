@@ -147,18 +147,5 @@ namespace lift
       }
     }
 
-    void popOpen()
-    {
-      if (sensor() > 2000)
-      {
-        motor.moveVelocity(90);
-        tilter::motor.moveVelocity(60);
-      }
-      if (sensor() <= 2000)
-      {
-        motor.moveVelocity(0);
-        tilter::motor.moveVelocity(0);
-      }
-    }
   } // namespace auton
 } // namespace lift

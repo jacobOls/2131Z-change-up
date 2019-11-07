@@ -74,7 +74,7 @@ void execute()
   {
     controller = Controllers::DEINIT;
   }
-  if (controller == Controllers::FORWARD && sensor() <= 1460)
+  if (controller == Controllers::FORWARD && sensor() <= 1430)
   {
     controller = Controllers::DEINIT;
   }

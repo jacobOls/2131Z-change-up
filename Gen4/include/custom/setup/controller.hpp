@@ -5,6 +5,7 @@ extern okapi::Controller master;
 
 namespace drive
 {
+  extern okapi::ControllerButton BtnHold;
 }
 
 namespace tilter

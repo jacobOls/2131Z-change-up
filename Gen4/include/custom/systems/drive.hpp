@@ -4,7 +4,7 @@
 namespace drive
 {
 void drive(void);
-
+void init(void);
 namespace auton
 {
 void driving(int distance, int velocity);

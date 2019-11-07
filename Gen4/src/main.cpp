@@ -95,7 +95,7 @@ void autonomous() {
 void opcontrol() {
 
 	while (true) {
-		drive::drive();
+		drive::init();
 		intake::init();
 		tilter::init();
 		lift::init();

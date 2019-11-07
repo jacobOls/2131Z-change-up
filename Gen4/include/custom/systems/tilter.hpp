@@ -13,6 +13,7 @@ enum class Controllers
     NONE
 };
 void init(void);
+extern bool trayLock;
 namespace auton
 {
 void trayDown(double wantedPosition, double targetVelocity);

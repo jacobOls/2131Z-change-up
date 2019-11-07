@@ -15,10 +15,13 @@ double tilter()
 {
   return tilter::tilterSensor.get_value();
 }
+
 int upPlace = 1750;
 int sensorPlace = 1500;
 int fastSpeedSpot = 1400;
 int startUp = 1640;
+
+
 
 void up()
 {
@@ -88,7 +91,7 @@ void execute()
     motor.moveVelocity(-75);
     if (sensor() < sensorPlace)
     {
-      if (tilter() >= startUp)
+      if (tilter() >= startUp && tilter::trayLock == false)
       {
         tilter::motor.moveVelocity(75);
       }

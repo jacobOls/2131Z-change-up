@@ -55,7 +55,7 @@ namespace drive
 
   void toggle(){
 
-    if(lSensor() >= 2400){
+    if(lSensor() >= 2400 && abs(intake::intakegroup.getActualVelocity()) > 0){
       holdDrive = true;
     }
     else if(BtnHold.isPressed() && toggled == false){
@@ -71,7 +71,7 @@ namespace drive
 
 
   }
-  
+
   void init(){
     drive();
     hold();

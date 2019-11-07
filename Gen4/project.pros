@@ -275,7 +275,7 @@
         "upload_options": {
             "compress_bin": true,
             "description": "",
-            "remote_name": "Gen4 drive ramp",
+            "remote_name": "Gen4 test slot",
             "slot": 2
         }
     }

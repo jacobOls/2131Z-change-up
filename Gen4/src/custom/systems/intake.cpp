@@ -84,14 +84,14 @@ void execute()
   {
 
   case Controllers::IN:
-    if (lift::liftSensor.get_value() > liftUp)
-    {
-      intakegroup.moveVelocity(0);
-    }
-    else
-    {
+    // if (lift::liftSensor.get_value() > liftUp)
+    // {
+      // intakegroup.moveVelocity(0);
+    // }
+    // else
+    // {
       intakegroup.moveVelocity(200);
-    }
+    // }
     break;
 
   case Controllers::OUT:

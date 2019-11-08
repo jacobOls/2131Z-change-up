@@ -22,7 +22,7 @@ namespace auton
     wait(900);
     intake::auton::intakeOff();
     tilter::auton::stack(1700, 25);
-    intake::auton::intakeOn(75);
+    intake::auton::intakeOn(-75);
     tilter::auton::stack(1900, 25);
     intake::auton::intakeOff();
     tilter::auton::stack(2050, 25);
@@ -63,12 +63,12 @@ namespace auton
     intake::auton::intakeOn(-50);
     wait(900);
     intake::auton::intakeOff();
-    tilter::auton::stack(1700, 25);
-    intake::auton::intakeOn(75);
     tilter::auton::stack(1900, 25);
+    intake::auton::intakeOn(150);
+    tilter::auton::stack(2000, 25);
     intake::auton::intakeOff();
-    tilter::auton::stack(2050, 25);
-    intake::auton::stackReverseAuton(-300, 25, 25);
+    tilter::auton::stack(2060, 25);
+    intake::auton::stackReverseAuton(-300, 25, 150);
   }
 
   void blue7(){

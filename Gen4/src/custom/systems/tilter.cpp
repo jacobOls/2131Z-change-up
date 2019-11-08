@@ -155,7 +155,7 @@ namespace tilter
     {
       while (sensor() < wantedPosition)
       {
-        motor.moveVelocity(targetVelocity);
+        motor.moveVelocity(-targetVelocity);
       }
       if (sensor() >= wantedPosition)
       {

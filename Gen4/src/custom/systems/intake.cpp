@@ -166,6 +166,7 @@ void intakeOn(double targetVelocity)
 {
   intakegroup.moveVelocity(targetVelocity);
 }
+
 void intakeOff()
 {
   intakegroup.moveVelocity(0);

@@ -103,26 +103,38 @@ namespace drive
     void driving(int distance, int velocity)
     {
       resetPositions();
-      lVel = LEFT_DRIVE.calculate(velocity);
-      rVel = RIGHT_DRIVE.calculate(velocity);
-      lPos = left_back.getPosition();
-      rPos = right_back.getPosition();
+      while(left_front.getPosition() < distance || right_front.getPosition() < distance){
+        left_drive.moveVelocity(LEFT_DRIVE.calculate(velocity));
+        right_drive.moveVelocity(RIGHT_DRIVE.calculate(velocity));
+        // LEFT_DRIVE.calculate(targetVelocity);
+        // RIGHT_DRIVE.calculate(targetVelocity);
+        pros::delay(LEFT_DRIVE.get_changeMsec());
 
-      while (lPos != distance || rPos != distance)
-      {
-        left_drive.moveVelocity(lVel);
-        right_drive.moveVelocity(rVel);
-        pros::delay(20);
       }
-
-      while (moving() > 0)
-      {
-        velocity = 0;
-        left_drive.moveVelocity(lVel);
-        right_drive.moveVelocity(rVel);
-        pros::delay(20);
+      while(LEFT_DRIVE.output() != 0){
+        left_drive.moveVelocity(LEFT_DRIVE.calculate(0));
+        right_drive.moveVelocity(RIGHT_DRIVE.calculate(0));
+        pros::delay(LEFT_DRIVE.get_changeMsec());
       }
     }
+
+
+    void driveBack(double distance, double velocity){
+      resetPositions();
+      while(left_front.getPosition() > distance || right_front.getPosition() > distance){
+        left_drive.moveVelocity(LEFT_DRIVE.calculate(velocity));
+        right_drive.moveVelocity(LEFT_DRIVE.calculate(velocity));
+        pros::delay(LEFT_DRIVE.get_changeMsec());
+      }
+      while(LEFT_DRIVE.output() != 0){
+        left_drive.moveVelocity(LEFT_DRIVE.calculate(0));
+        right_drive.moveVelocity(LEFT_DRIVE.calculate(0));
+        pros::delay(LEFT_DRIVE.get_changeMsec());
+      }
+      resetPositions();
+    }
+
+
 
     void rightTurn(double distance, double velocity)
     {
@@ -132,11 +144,10 @@ namespace drive
         left_drive.moveVelocity(velocity);
         right_drive.moveVelocity(-velocity);
       }
-      if (left_front.getPosition() > distance)
+      if (left_front.getPosition() >= distance)
       {
         left_drive.moveVelocity(0);
         right_drive.moveVelocity(0);
-        resetPositions();
       }
     }
 
@@ -148,11 +159,10 @@ namespace drive
         left_drive.moveVelocity(-velocity);
         right_drive.moveVelocity(velocity);
       }
-      if (right_front.getPosition() > distance)
+      if (right_front.getPosition() >= distance)
       {
         left_drive.moveVelocity(0);
         right_drive.moveVelocity(0);
-        resetPositions();
       }
     }
 

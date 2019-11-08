@@ -76,7 +76,9 @@ namespace auton
     intake::auton::intakeOn(-75);
     tilter::auton::stack(1900, 25);
     intake::auton::intakeOff();
-    tilter::auton::stack(2020, 25);
+    tilter::auton::stack(2035, 25);
+    // intake::auton::intakeOn(20);
+    // drive::auton::driving(25,25);
     intake::auton::intakeOn(-200);
     wait(250);
     intake::auton::intakeOff();

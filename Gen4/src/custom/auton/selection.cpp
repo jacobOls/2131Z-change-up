@@ -45,7 +45,7 @@ lv_style_t style_blue;
 lv_style_t style_config;
 // lv_style_t style_btn;
 
-Positons positon = Positons::FRONTRED;
+Positons positon = Positons::FRONTBLUE;
 Stacks stack = Stacks::NONE;
 Options option = Options::NONE;
 

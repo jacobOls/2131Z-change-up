@@ -21,12 +21,19 @@ namespace auton
     intake::auton::intakeOn(-50);
     wait(900);
     intake::auton::intakeOff();
-    tilter::auton::stack(1700, 25);
+    intake::auton::intakeOn(25);
+    wait(400);
+    intake::auton::intakeOff();
+    tilter::auton::stack(1800, 25);
     intake::auton::intakeOn(-75);
     tilter::auton::stack(1900, 25);
     intake::auton::intakeOff();
-    tilter::auton::stack(2050, 25);
-    intake::auton::stackReverseAuton(-300, 25, 25);
+    tilter::auton::stack(2020, 25);
+    intake::auton::intakeOn(-200);
+    wait(250);
+    intake::auton::intakeOff();
+    intake::auton::stackReverseAuton(-100, 25, 25);
+    tilter::auton::trayDown(1500, 100);
   }
 
   void red7(){
@@ -54,7 +61,6 @@ namespace auton
 
   void blue5()
   {
-
     intake::auton::intakeOn(200);
     drive::auton::driving(900, 60);
     drive::auton::driveBack(-300, -125);
@@ -63,12 +69,19 @@ namespace auton
     intake::auton::intakeOn(-50);
     wait(900);
     intake::auton::intakeOff();
-    tilter::auton::stack(1900, 25);
-    intake::auton::intakeOn(150);
-    tilter::auton::stack(2000, 25);
+    intake::auton::intakeOn(25);
+    wait(400);
     intake::auton::intakeOff();
-    tilter::auton::stack(2060, 25);
-    intake::auton::stackReverseAuton(-300, 25, 150);
+    tilter::auton::stack(1800, 25);
+    intake::auton::intakeOn(-75);
+    tilter::auton::stack(1900, 25);
+    intake::auton::intakeOff();
+    tilter::auton::stack(2020, 25);
+    intake::auton::intakeOn(-200);
+    wait(250);
+    intake::auton::intakeOff();
+    intake::auton::stackReverseAuton(-100, 25, 25);
+    tilter::auton::trayDown(1500, 100);
   }
 
   void blue7(){

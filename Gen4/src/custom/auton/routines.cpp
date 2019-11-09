@@ -25,7 +25,7 @@ namespace auton
   intake::auton::intakeOff();
   intake::auton::stackReverseAuton(-100, 25, 25);
   tilter::auton::trayDown(1500, 100);
-*/
+  */
   void wait(int time)
   {
     pros::delay(time);
@@ -85,21 +85,20 @@ namespace auton
     intake::auton::intakeOff();
     intake::auton::stackReverseAuton(-100, 25, 25);
     tilter::auton::trayDown(1500, 100);
-
   }
 
-void red2(){
-  intake::auton::intakeOn(200);
-  drive::auton::driving(400, 60);
-  drive::auton::leftTurn(250,50);
-  drive::auton::driving(75, 60);
-  drive::auton::leftTurn(250,50);
-  intake::auton::intakeOn(-250);
-  wait(1000);
-  intake::auton::intakeOff();
+  void red2(){
+    intake::auton::intakeOn(200);
+    drive::auton::driving(400, 60);
+    drive::auton::leftTurn(250,50);
+    drive::auton::driving(75, 60);
+    drive::auton::leftTurn(250,50);
+    intake::auton::intakeOn(-250);
+    wait(1000);
+    intake::auton::intakeOff();
     drive::auton::driving(50,50);
-  drive::auton::driveBack(-250, -60);
-}
+    drive::auton::driveBack(-250, -60);
+  }
 
 
 
@@ -141,7 +140,7 @@ void red2(){
     intake::auton::intakeOn(-250);
     wait(1000);
     intake::auton::intakeOff();
-      drive::auton::driving(50,50);
+    drive::auton::driving(50,50);
     drive::auton::driveBack(-250, -60);
   }
 
@@ -158,13 +157,22 @@ void red2(){
     intake::auton::intakeOff();
     drive::auton::leftTurn(300,75);
     drive::auton::driving(300,150);
-    intake::auton::intakeOn(-25);
-    wait(800);
+    intake::auton::intakeOn(-50);
+    wait(900);
     intake::auton::intakeOff();
-    tilter::auton::stack(1600,25);
-    intake::auton::stackReverseAuton(-300, -25, -25);
-    tilter::auton::trayDown(1170,-200);
-
+    intake::auton::intakeOn(25);
+    wait(400);
+    intake::auton::intakeOff();
+    tilter::auton::stack(1800, 25);
+    intake::auton::intakeOn(-75);
+    tilter::auton::stack(1900, 25);
+    intake::auton::intakeOff();
+    tilter::auton::stack(2020, 25);
+    intake::auton::intakeOn(-200);
+    wait(250);
+    intake::auton::intakeOff();
+    intake::auton::stackReverseAuton(-100, 25, 25);
+    tilter::auton::trayDown(1500, 100);
   }
 
 } // namespace auton

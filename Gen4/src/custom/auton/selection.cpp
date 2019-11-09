@@ -60,7 +60,7 @@ namespace auton
     switch (positon)
     {
       case Positons::FRONTRED:
-      red5();
+      red7();
       break;
 
       case Positons::BACKRED:

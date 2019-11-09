@@ -58,14 +58,13 @@ namespace auton
 
   void red7(){
     intake::auton::intakeOn(200);
-    drive::auton::driving(800, 60);
-    drive::auton::driving(-150,-100);
-    drive::auton::leftTurn(5,25);
-    drive::auton::driving(150,60);
-    drive::auton::driving(-150,-100);
+    drive::auton::driving(900, 80);
+    drive::auton::leftTurn(15,25);
+    drive::auton::driving(100,60);
+    drive::auton::driveBack(-150,-150);
     drive::auton::rightTurn(40,50);
-    drive::auton::driving(200,60);
-    drive::auton::driving(-600,-200);
+    drive::auton::driving(400,60);
+    drive::auton::driveBack(-600,-200);
     intake::auton::intakeOff();
     drive::auton::rightTurn(300,75);
     drive::auton::driving(300,150);

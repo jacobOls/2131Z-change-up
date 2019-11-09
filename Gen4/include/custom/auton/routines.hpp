@@ -5,6 +5,7 @@ namespace auton{
   void red5();
    void blue5();
    void blue2();
+   void red2();
 }
 
 

@@ -69,19 +69,19 @@ void execute()
   case Controllers::UP:
     if (tilter() < startUp)
     {
-      tilter::motor.moveVelocity(-75);
+      tilter::motor.moveVelocity(75);
     }
     else if (tilter() >= startUp)
     {
       if (tilter() < upPlace)
       {
         motor.moveVelocity(100);
-        tilter::motor.moveVelocity(-75);
+        tilter::motor.moveVelocity(75);
       }
       else
       {
         motor.moveVelocity(100);
-        tilter::motor.moveVelocity(-0);
+        tilter::motor.moveVelocity(0);
       }
     }
     break;
@@ -93,7 +93,7 @@ void execute()
     {
       if (tilter() >= startUp && tilter::trayLock == false)
       {
-        tilter::motor.moveVelocity(75);
+        tilter::motor.moveVelocity(-75);
       }
     }
 

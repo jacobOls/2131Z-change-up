@@ -71,11 +71,11 @@ namespace tilter
 
   void execute()
   {
-    if (controller == Controllers::BACKWARD && sensor() > 2150)
+    if (controller == Controllers::FORWARD && sensor() > 2150)
     {
       controller = Controllers::DEINIT;
     }
-    if (controller == Controllers::FORWARD && sensor() <= 1430)
+    if (controller == Controllers::BACKWARD && sensor() <= 1430)
     {
       controller = Controllers::DEINIT;
     }
@@ -83,12 +83,12 @@ namespace tilter
     {
 
       case Controllers::FORWARD:
-      motor.moveVelocity(75);
+      motor.moveVelocity(25);
       trayLock = false;
       break;
 
       case Controllers::BACKWARD:
-      motor.moveVelocity(-25);
+      motor.moveVelocity(-75);
       trayLock = false;
       break;
 
@@ -96,7 +96,7 @@ namespace tilter
       trayLock = true;
       if (sensor() < upPlace)
       {
-        motor.moveVelocity(-100);
+        motor.moveVelocity(100);
       }
       else if (sensor() >= upPlace)
       {
@@ -108,11 +108,11 @@ namespace tilter
       case Controllers::RETURN:
       if (lSensor() < 1250 && sensor() > 1520)
       {
-        motor.moveVelocity(100);
+        motor.moveVelocity(-100);
       }
       else if (sensor() > 1870)
       {
-        motor.moveVelocity(100);
+        motor.moveVelocity(-100);
       }
 
       break;
@@ -143,7 +143,7 @@ namespace tilter
     {
       while (sensor() > wantedPosition)
       {
-        motor.moveVelocity(targetVelocity);
+        motor.moveVelocity(-targetVelocity);
       }
       if (motor.getPosition() <= wantedPosition)
       {
@@ -155,7 +155,7 @@ namespace tilter
     {
       while (sensor() < wantedPosition)
       {
-        motor.moveVelocity(-targetVelocity);
+        motor.moveVelocity(targetVelocity);
       }
       if (sensor() >= wantedPosition)
       {

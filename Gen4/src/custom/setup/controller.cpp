@@ -9,8 +9,8 @@ namespace drive
 
 namespace tilter
 {
-okapi::ControllerButton BtnForward = master[okapi::ControllerDigital::left];
-okapi::ControllerButton BtnBackward = master[okapi::ControllerDigital::up];
+okapi::ControllerButton BtnForward = master[okapi::ControllerDigital::up];
+okapi::ControllerButton BtnBackward = master[okapi::ControllerDigital::left];
 okapi::ControllerButton BtnGoUp = master[okapi::ControllerDigital::right];
 okapi::ControllerButton BtnReturn = master[okapi::ControllerDigital::A];
 

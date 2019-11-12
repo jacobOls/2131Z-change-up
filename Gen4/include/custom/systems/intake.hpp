@@ -15,6 +15,7 @@ enum class Controllers
   NONE
 };
 void init(void);
+void execute(void);
 namespace auton
 {
 void stackReverseAuton(double distance, double driveSpeed, double intakeSpeed);

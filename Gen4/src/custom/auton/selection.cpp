@@ -6,6 +6,7 @@
 #include "custom/systems/intake.hpp"
 #include "custom/systems/tilter.hpp"
 #include "custom/systems/drive.hpp"
+#include "custom/setup/motors.hpp"
 #include <algorithm>
 #include <string>
 namespace auton
@@ -289,11 +290,11 @@ namespace auton
       if (inAuton)
       {
         // drive::auton::ramping();
-        // intake::execute();
-        // lift::execute();
-        // tray::execute();
+        intake::execute();
+        lift::execute();
+        tilter::execute();
       }
-      // std::cout << "T: "<< (pros::millis()-beg)/5 <<" BLv: " << drive::back_left_motor.get_actual_velocity() << std::endl;
+      std::cout << "T: "<< (pros::millis()-beg)/5 <<" BLv: " << drive::left_back.get_actual_velocity() << std::endl;
       pros::Task::delay_until(&test, 5); //delay for 5 millis exact
     }
   }

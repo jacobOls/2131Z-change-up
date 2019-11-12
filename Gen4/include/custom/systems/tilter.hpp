@@ -12,6 +12,7 @@ enum class Controllers
     TOUP,
     NONE
 };
+void execute(void);
 void init(void);
 extern bool trayLock;
 namespace auton

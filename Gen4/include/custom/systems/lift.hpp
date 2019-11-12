@@ -11,6 +11,7 @@ enum class Controllers
   NONE
 };
 void init(void);
+void execute(void);
 namespace auton
 {
 void popOpen();

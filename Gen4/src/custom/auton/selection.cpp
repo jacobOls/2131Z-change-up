@@ -266,7 +266,7 @@ namespace auton
     switch (option)
     {
       case Options::SKILLS:
-      lv_btn_set_state(Btn3_1, LV_BTN_STATE_TGL_PR); //park
+      lv_btn_set_state(Btn3_1, LV_BTN_STATE_TGL_PR); //skills
       break;
       case Options::NOTSKILLS:
       break;

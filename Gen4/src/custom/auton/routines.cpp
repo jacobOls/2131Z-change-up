@@ -26,7 +26,7 @@ namespace auton
   intake::auton::stackReverseAuton(-100, 25, 25);
   tilter::auton::trayDown(1500, 100);
   */
-  
+
   void wait(int time)
   {
     pros::delay(time);

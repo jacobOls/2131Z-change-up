@@ -10,4 +10,23 @@ extern okapi::ControllerButton BtnRight;
 extern okapi::ControllerButton BtnLeft;
 extern okapi::ControllerButton BtnBackUp;
 } // namespace intake
+namespace drive
+{
+  extern okapi::ControllerButton BtnHold;
+}
+
+namespace tilter
+{
+extern okapi::ControllerButton BtnForward;
+extern okapi::ControllerButton BtnBackward;
+extern okapi::ControllerButton BtnReturn;
+extern okapi::ControllerButton BtnGoUp;
+} // namespace tilter
+
+
+namespace lift
+{
+extern okapi::ControllerButton BtnUp;
+extern okapi::ControllerButton BtnDown;
+}
 #endif /* end of include guard: CONTROLLER_HPP */

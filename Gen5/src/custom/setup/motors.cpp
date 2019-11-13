@@ -18,12 +18,28 @@ namespace drive{
 
         namespace intake
         {
-        okapi::Motor left_motor(9, false, okapi::AbstractMotor::gearset::green, //left
-                                okapi::AbstractMotor::encoderUnits::degrees);
-        okapi::Motor right_motor(10, true, okapi::AbstractMotor::gearset::green, //right
-                                 okapi::AbstractMotor::encoderUnits::degrees);
+          okapi::Motor left_motor(9, false, okapi::AbstractMotor::gearset::green, //left
+            okapi::AbstractMotor::encoderUnits::degrees);
+            okapi::Motor right_motor(10, true, okapi::AbstractMotor::gearset::green, //right
+              okapi::AbstractMotor::encoderUnits::degrees);
 
-        okapi::MotorGroup intakegroup({left_motor, right_motor});
-        // pros::ADIAnalogIn cubeSensor(2);
+              okapi::MotorGroup intakegroup({left_motor, right_motor});
+              // pros::ADIAnalogIn cubeSensor(2);
 
-        } // namespace intake
+            } // namespace intake
+
+            namespace tilter
+            {
+              okapi::Motor motor(15, true, okapi::AbstractMotor::gearset::red,
+                okapi::AbstractMotor::encoderUnits::degrees);
+                // pros::ADIAnalogIn tilterSensor(3);
+                
+              } // namespace tilter
+
+              namespace lift
+              {
+                okapi::Motor motor(1, false, okapi::AbstractMotor::gearset::red,
+                  okapi::AbstractMotor::encoderUnits::degrees);
+                  // pros::ADIAnalogIn liftSensor(1);
+
+                } // namespace lift

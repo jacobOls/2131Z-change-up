@@ -20,4 +20,15 @@ extern okapi::MotorGroup intakegroup;
 // extern pros::ADIAnalogIn cubeSensor;
 } // namespace intake
 
+namespace tilter
+{
+extern okapi::Motor motor;
+// extern pros::ADIAnalogIn tilterSensor;
+} // namespace tilter
+
+namespace lift
+{
+extern okapi::Motor motor;
+// extern pros::ADIAnalogIn liftSensor;
+} // namespace lift
 #endif /* end of include guard: MOTORS_HPP */

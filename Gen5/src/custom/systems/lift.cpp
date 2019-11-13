@@ -8,7 +8,7 @@ namespace lift{
     if(BtnUp.isPressed()){
       motor.moveVelocity(100);
     }
-    else if(abs(motor.get_actual_velocity()) > 0){
+    else if(abs(motor.get_actual_velocity()) > 0 && !BtnDown.isPressed()){
       motor.moveVelocity(0);
     }
   }
@@ -17,7 +17,7 @@ namespace lift{
     if(BtnDown.isPressed()){
       motor.moveVelocity(-100);
     }
-    else if(abs(motor.get_actual_velocity()) > 0){
+    else if(abs(motor.get_actual_velocity()) > 0 && !BtnUp.isPressed()){
       motor.moveVelocity(0);
     }
   }

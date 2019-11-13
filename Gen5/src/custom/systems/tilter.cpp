@@ -9,7 +9,7 @@ namespace tilter{
     if(BtnForward.isPressed()){
       motor.moveVelocity(25);
     }
-    else if(abs(motor.get_actual_velocity()) > 0){
+    else if(abs(motor.get_actual_velocity()) > 0 && !BtnBackward.isPressed()){
       motor.moveVelocity(0);
     }
   }
@@ -17,7 +17,7 @@ namespace tilter{
     if(BtnBackward.isPressed()){
       motor.moveVelocity(-100);
     }
-    else if(abs(motor.get_actual_velocity()) > 0){
+    else if(abs(motor.get_actual_velocity()) > 0 && !BtnForward.isPressed()){
       motor.moveVelocity(0);
     }
   }

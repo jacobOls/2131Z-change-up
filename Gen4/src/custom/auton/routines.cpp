@@ -104,7 +104,6 @@ namespace auton
 
 
 
-
   void blue5()
   {
     intake::auton::intakeOn(200);

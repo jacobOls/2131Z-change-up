@@ -36,4 +36,9 @@ extern okapi::Motor motor;
 extern pros::ADIAnalogIn liftSensor;
 } // namespace lift
 
+namespace vision{
+extern pros::Vision vision;
+
+}
+
 #endif /* end of include guard: MOTORS_HPP */

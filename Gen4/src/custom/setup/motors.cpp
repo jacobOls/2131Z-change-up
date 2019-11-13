@@ -48,3 +48,8 @@ okapi::Motor motor(1, false, okapi::AbstractMotor::gearset::red,
 pros::ADIAnalogIn liftSensor(1);
 
 } // namespace lift
+
+namespace vision{
+  pros::Vision vision (5);
+
+}

@@ -3,6 +3,7 @@
 #include "custom/systems/intake.hpp"
 #include "custom/systems/lift.hpp"
 #include "custom/systems/tilter.hpp"
+#include "custom/setup/motors.hpp"
 /**
  * A callback function for LLEMU's center button.
  *
@@ -17,7 +18,11 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-
+	tilter::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	intake::right_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	intake::left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
 }
 
 /**

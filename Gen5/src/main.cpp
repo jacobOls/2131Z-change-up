@@ -71,6 +71,8 @@ void opcontrol() {
 	while (true) {
 		drive::drive();
 		intake::init();
+		lift::init();
+		tilter::init();
 		pros::delay(20);
 	}
 }

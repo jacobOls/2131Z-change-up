@@ -4,11 +4,11 @@
 namespace drive{
   okapi::Motor left_back(11, false, okapi::AbstractMotor::gearset::green,
     okapi::AbstractMotor::encoderUnits::degrees);
-    okapi::Motor left_front(13, true, okapi::AbstractMotor::gearset::green,
+    okapi::Motor left_front(13, false, okapi::AbstractMotor::gearset::green,
       okapi::AbstractMotor::encoderUnits::degrees);
       okapi::Motor right_back(19, true, okapi::AbstractMotor::gearset::green,
         okapi::AbstractMotor::encoderUnits::degrees);
-        okapi::Motor right_front(18, false, okapi::AbstractMotor::gearset::green,
+        okapi::Motor right_front(18, true, okapi::AbstractMotor::gearset::green,
           okapi::AbstractMotor::encoderUnits::degrees);
           okapi::MotorGroup left_drive({left_back, left_front});
           okapi::MotorGroup right_drive({right_back, right_front});
@@ -33,7 +33,7 @@ namespace drive{
               okapi::Motor motor(15, true, okapi::AbstractMotor::gearset::red,
                 okapi::AbstractMotor::encoderUnits::degrees);
                 // pros::ADIAnalogIn tilterSensor(3);
-                
+
               } // namespace tilter
 
               namespace lift

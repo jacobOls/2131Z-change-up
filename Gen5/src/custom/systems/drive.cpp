@@ -2,7 +2,6 @@
 #include "custom/setup/motors.hpp"
 #include "custom/setup/controller.hpp"
 #include "custom/systems/drive.hpp"
-
 int leftXVel;
 int rightXVel;
 int leftYVel;
@@ -36,6 +35,5 @@ namespace drive{
       }
     }
   }
-  
 
 }

@@ -9,5 +9,6 @@ namespace vision{
     // Gets the largest object
     std::cout << "sig: " << rtn.signature;
     pros::delay(2);
+
   }
 }

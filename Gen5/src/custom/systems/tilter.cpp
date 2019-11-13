@@ -85,5 +85,6 @@ namespace tilter{
   void init(){
     tilterUp();
     tilterDown();
+    execute();
   }
 }

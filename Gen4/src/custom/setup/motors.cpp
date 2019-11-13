@@ -51,5 +51,4 @@ pros::ADIAnalogIn liftSensor(1);
 
 namespace vision{
   pros::Vision vision (5);
-
 }

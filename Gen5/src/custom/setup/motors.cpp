@@ -15,3 +15,15 @@ namespace drive{
           okapi::MotorGroup left_strafe({left_back, right_front});
           okapi::MotorGroup right_strafe({right_back, left_front});
         }
+
+        namespace intake
+        {
+        okapi::Motor left_motor(9, false, okapi::AbstractMotor::gearset::green, //left
+                                okapi::AbstractMotor::encoderUnits::degrees);
+        okapi::Motor right_motor(10, true, okapi::AbstractMotor::gearset::green, //right
+                                 okapi::AbstractMotor::encoderUnits::degrees);
+
+        okapi::MotorGroup intakegroup({left_motor, right_motor});
+        // pros::ADIAnalogIn cubeSensor(2);
+
+        } // namespace intake

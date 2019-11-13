@@ -1,5 +1,8 @@
 #include "main.h"
-
+#include "custom/systems/drive.hpp"
+#include "custom/systems/intake.hpp"
+#include "custom/systems/lift.hpp"
+#include "custom/systems/tilter.hpp"
 /**
  * A callback function for LLEMU's center button.
  *
@@ -66,7 +69,8 @@ void opcontrol() {
 
 
 	while (true) {
-
+		drive::drive();
+		intake::init();
 		pros::delay(20);
 	}
 }

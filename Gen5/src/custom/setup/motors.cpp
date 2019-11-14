@@ -16,9 +16,9 @@ namespace drive{
           okapi::MotorGroup right_strafe({right_back, left_front});
         }
 
-        namespace intake
+        namespace intake 
         {
-          okapi::Motor left_motor(8, false, okapi::AbstractMotor::gearset::green, //left
+          okapi::Motor left_motor(11, false, okapi::AbstractMotor::gearset::green, //left
             okapi::AbstractMotor::encoderUnits::degrees);
             okapi::Motor right_motor(7, true, okapi::AbstractMotor::gearset::green, //right
               okapi::AbstractMotor::encoderUnits::degrees);

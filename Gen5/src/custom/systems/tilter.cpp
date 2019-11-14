@@ -8,19 +8,19 @@ namespace tilter{
   Controllers controller = Controllers::NONE;
   void tilterUp(){
     if(BtnForward.isPressed()){
-      motor.moveVelocity(25);
+      Controllers controller = Controllers::FORWARD;
     }
-    else if(abs(motor.get_actual_velocity()) > 0 && !BtnBackward.isPressed()){
-      motor.moveVelocity(0);
+    else if(controller == Controllers::FORWARD){
+      Controllers controller = Controllers::DEINIT;
     }
   }
 
   void tilterDown(){
     if(BtnBackward.isPressed()){
-      motor.moveVelocity(-100);
+      Controllers controller = Controllers::BACKWARD;
     }
-    else if(abs(motor.get_actual_velocity()) > 0 && !BtnForward.isPressed()){
-      motor.moveVelocity(0);
+    else if(controller == Controllers::BACKWARD){
+      Controllers controller = Controllers::DEINIT;
     }
   }
 

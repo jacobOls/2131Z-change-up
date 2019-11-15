@@ -95,12 +95,12 @@ void autonomous() {
 int mili = 0;
 
 void opcontrol() {
-okapi::Timer timer;
+// okapi::Timer timer;
 	while (true) {
-		if (timer.repeat(100_ms)) {
+		// if (timer.repeat(100_ms)) {
 			//print mili;
-			mili += 100;
-	 }
+		// 	mili += 100;
+	 // }
 		drive::init();
 		intake::init();
 		tilter::init();

@@ -22,7 +22,7 @@ void initialize() {
 	intake::right_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	intake::left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
-	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 }
 
 /**

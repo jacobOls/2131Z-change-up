@@ -92,9 +92,15 @@ void autonomous() {
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
-void opcontrol() {
+int mili = 0;
 
+void opcontrol() {
+okapi::Timer timer;
 	while (true) {
+		if (timer.repeat(100_ms)) {
+			//print mili;
+			mili += 100;
+	 }
 		drive::init();
 		intake::init();
 		tilter::init();

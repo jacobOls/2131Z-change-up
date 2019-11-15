@@ -38,7 +38,7 @@ namespace tilter{
     {
 
       case Controllers::FORWARD:
-      motor.moveVelocity(100);
+      motor.moveVelocity(50);
       // trayLock = false;
       break;
 

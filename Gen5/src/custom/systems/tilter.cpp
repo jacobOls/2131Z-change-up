@@ -8,29 +8,29 @@ namespace tilter{
   Controllers controller = Controllers::NONE;
   void tilterUp(){
     if(BtnForward.isPressed()){
-      Controllers controller = Controllers::FORWARD;
+       controller = Controllers::FORWARD;
     }
     else if(controller == Controllers::FORWARD){
-      Controllers controller = Controllers::DEINIT;
+       controller = Controllers::DEINIT;
     }
   }
 
   void tilterDown(){
     if(BtnBackward.isPressed()){
-      Controllers controller = Controllers::BACKWARD;
+       controller = Controllers::BACKWARD;
     }
     else if(controller == Controllers::BACKWARD){
-      Controllers controller = Controllers::DEINIT;
+       controller = Controllers::DEINIT;
     }
   }
 
   void execute()
   {
-    // if (controller == Controllers::FORWARD && sensor() > 2150)
+    // if (controller == Controllers::FORWARD && motor.getPosition() > 400)
     // {
     //   controller = Controllers::DEINIT;
     // }
-    // if (controller == Controllers::BACKWARD && sensor() <= 1430)
+    // if (controller == Controllers::BACKWARD && motor.getPosition() < 5)
     // {
     //   controller = Controllers::DEINIT;
     // }
@@ -38,12 +38,12 @@ namespace tilter{
     {
 
       case Controllers::FORWARD:
-      motor.moveVelocity(25);
+      motor.moveVelocity(100);
       // trayLock = false;
       break;
 
       case Controllers::BACKWARD:
-      motor.moveVelocity(-75);
+      motor.moveVelocity(-100);
       // trayLock = false;
       break;
 

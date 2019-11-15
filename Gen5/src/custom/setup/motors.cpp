@@ -12,15 +12,15 @@ namespace drive{
           okapi::AbstractMotor::encoderUnits::degrees);
           okapi::MotorGroup left_drive({left_back, left_front});
           okapi::MotorGroup right_drive({right_back, right_front});
-          okapi::MotorGroup left_strafe({left_back, right_front});
-          okapi::MotorGroup right_strafe({right_back, left_front});
+          okapi::MotorGroup right_strafe({left_back, right_front});
+          okapi::MotorGroup left_strafe({right_back, left_front});
         }
 
-        namespace intake 
+        namespace intake
         {
-          okapi::Motor left_motor(11, false, okapi::AbstractMotor::gearset::green, //left
+          okapi::Motor left_motor(8, true, okapi::AbstractMotor::gearset::green, //left
             okapi::AbstractMotor::encoderUnits::degrees);
-            okapi::Motor right_motor(7, true, okapi::AbstractMotor::gearset::green, //right
+            okapi::Motor right_motor(7, false, okapi::AbstractMotor::gearset::green, //right
               okapi::AbstractMotor::encoderUnits::degrees);
 
               okapi::MotorGroup intakegroup({left_motor, right_motor});
@@ -38,7 +38,7 @@ namespace drive{
 
               namespace lift
               {
-                okapi::Motor motor(6, false, okapi::AbstractMotor::gearset::red,
+                okapi::Motor motor(6, true, okapi::AbstractMotor::gearset::red,
                   okapi::AbstractMotor::encoderUnits::degrees);
                   // pros::ADIAnalogIn liftSensor(1);
 

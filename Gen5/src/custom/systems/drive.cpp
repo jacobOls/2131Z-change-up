@@ -17,7 +17,7 @@ namespace drive{
     }
 
     else if(std::abs(master.getAnalog(okapi::ControllerAnalog::leftY)) < std::abs(master.getAnalog(okapi::ControllerAnalog::leftX))){
-      if(master.getAnalog(okapi::ControllerAnalog::leftX) > 0.05 && master.getAnalog(okapi::ControllerAnalog::leftX) > master.getAnalog(okapi::ControllerAnalog::rightX)){
+      if(master.getAnalog(okapi::ControllerAnalog::leftX) < 0.05 && abs(master.getAnalog(okapi::ControllerAnalog::leftX)) > master.getAnalog(okapi::ControllerAnalog::rightX)){
         left_strafe.moveVelocity(master.getAnalog(okapi::ControllerAnalog::leftX)*200);
         right_strafe.moveVelocity(master.getAnalog(okapi::ControllerAnalog::leftX)*-200);
       }
@@ -40,4 +40,3 @@ namespace drive{
     }
   }
 }
- 

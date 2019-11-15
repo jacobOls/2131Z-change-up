@@ -7,19 +7,19 @@ namespace lift{
   Controllers controller = Controllers::NONE;
   void up(){
     if(BtnUp.isPressed()){
-      Controllers controller = Controllers::UP;
+       controller = Controllers::UP;
     }
     else if(controller == Controllers::UP){
-      Controllers controller = Controllers::DEINIT;
+       controller = Controllers::DEINIT;
     }
   }
 
   void down(){
     if(BtnDown.isPressed()){
-    Controllers controller = Controllers::DOWN;
+     controller = Controllers::DOWN;
     }
     else if(controller == Controllers::DOWN){
-      Controllers controller = Controllers::DEINIT;
+       controller = Controllers::DEINIT;
     }
   }
 
@@ -44,8 +44,8 @@ namespace lift{
     {
 
       case Controllers::UP:
-
-        tilter::motor.moveVelocity(75);
+      motor.moveVelocity(100);
+        // tilter::motor.moveVelocity(75);
 
       break;
 

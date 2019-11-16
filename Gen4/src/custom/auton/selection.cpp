@@ -46,7 +46,7 @@ namespace auton
   lv_style_t style_config;
   // lv_style_t style_btn;
 
-  Positons positon = Positons::FRONTBLUE;
+  Positons positon = Positons::BACKBLUE;
   Stacks stack = Stacks::NONE;
   Options option = Options::NONE;
 

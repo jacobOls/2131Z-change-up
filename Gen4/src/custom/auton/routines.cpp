@@ -132,10 +132,10 @@ namespace auton
 
   void blue2(){
     intake::auton::intakeOn(200);
-    drive::auton::driving(400, 60);
-    drive::auton::rightTurn(250,50);
+    drive::auton::driving(450, 60);
+    drive::auton::rightTurn(350,50);
     drive::auton::driving(75, 60);
-    drive::auton::rightTurn(250,50);
+    // drive::auton::rightTurn(100,50);
     intake::auton::intakeOn(-250);
     wait(1000);
     intake::auton::intakeOff();
@@ -147,10 +147,10 @@ namespace auton
     intake::auton::intakeOn(200);
     drive::auton::driving(400, 100);
     drive::auton::rightTurn(140,60);
-    drive::auton::driveBack(-410,-145);
+    drive::auton::driveBack(-400,-145);
     drive::auton::leftTurn(140,50);
     drive::auton::driving(220,100);
-    drive::auton::driveBack(-140,-140);
+    drive::auton::driveBack(-150,-140);
     intake::auton::intakeOn(50);
     drive::auton::leftTurn(400,70);
     drive::auton::driving(125,110);

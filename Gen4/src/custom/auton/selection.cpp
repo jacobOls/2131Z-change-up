@@ -46,7 +46,7 @@ namespace auton
   lv_style_t style_config;
   // lv_style_t style_btn;
 
-  Positons positon = Positons::FRONTRED;
+  Positons positon = Positons::FRONTBLUE;
   Stacks stack = Stacks::NONE;
   Options option = Options::NONE;
 
@@ -61,7 +61,7 @@ namespace auton
     switch (positon)
     {
       case Positons::FRONTRED:
-      red5();
+      red7();
       break;
 
       case Positons::BACKRED:
@@ -73,7 +73,7 @@ namespace auton
       break;
 
       case Positons::FRONTBLUE:
-      blue5();
+      blue7();
       break;
 
       case Positons::NONE:

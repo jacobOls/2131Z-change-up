@@ -17,7 +17,7 @@ namespace lift
   }
 
   int upPlace = 1750;
-  int sensorPlace = 1500;
+  int sensorPlace = 1300;
   int fastSpeedSpot = 1400;
   int startUp = 1640;
 
@@ -58,7 +58,7 @@ namespace lift
     }
     if (controller == Controllers::DOWN)
     {
-      if (sensor() < 1200)
+      if (sensor() < 1050)
       {
         controller = Controllers::DEINIT;
       }

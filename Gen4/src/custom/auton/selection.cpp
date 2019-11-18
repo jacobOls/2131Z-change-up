@@ -7,6 +7,7 @@
 #include "custom/systems/tilter.hpp"
 #include "custom/systems/drive.hpp"
 #include "custom/setup/motors.hpp"
+#include "custom/auton.hpp"
 #include <algorithm>
 #include <string>
 namespace auton

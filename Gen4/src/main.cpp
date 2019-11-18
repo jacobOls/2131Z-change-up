@@ -28,7 +28,7 @@ void initialize() {
 	intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
 	std::cout << "initialize " << std::endl;
-	// auton::screenInit();
+	auton::screenInit();
 }
 
 /**
@@ -37,8 +37,8 @@ void initialize() {
  * the robot is enabled, this task will exit.
  */
 void disabled() {
-	// auton::autonTask.suspend();
-	// auton::set_auton(false);
+	auton::autonTask.suspend();
+	auton::set_auton(false);
 }
 
 /**
@@ -69,17 +69,17 @@ void competition_initialize() {
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
- //namespace auton {
-	//  pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
-	// 		 TASK_STACK_DEPTH_DEFAULT, "AutonTask");
- // }
+ namespace auton {
+	 pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
+			 TASK_STACK_DEPTH_DEFAULT, "AutonTask");
+ }
 
 void autonomous() {
-	auton::blue5();
-	// auton::screenInit();
-	// auton::set_auton(true);
-	// auton::autonTask.resume();
-	// auton::execute();
+	// auton::blue5();
+	auton::screenInit();
+	auton::set_auton(true);
+	auton::autonTask.resume();
+	auton::execute();
 }
 
 /**

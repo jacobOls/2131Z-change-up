@@ -16,6 +16,7 @@ namespace auton
 {
 void popOpen();
 void autonLiftDown(double wantedPosition, double targetVelocity);
+void autonLiftUp(double wantedPosition, double targetVelocity);
 } // namespace auton
 } // namespace lift
 

@@ -71,11 +71,11 @@ namespace tilter
 
   void execute()
   {
-    if (controller == Controllers::FORWARD && sensor() > 2150)
+    if (controller == Controllers::FORWARD && sensor() > 2350)
     {
       controller = Controllers::DEINIT;
     }
-    if (controller == Controllers::BACKWARD && sensor() <= 1430)
+    if (controller == Controllers::BACKWARD && sensor() <= 1350)
     {
       controller = Controllers::DEINIT;
     }
@@ -135,6 +135,7 @@ namespace tilter
     execute();
     returnDown();
   }
+
 
   namespace auton
   {

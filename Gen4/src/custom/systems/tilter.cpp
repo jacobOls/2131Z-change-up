@@ -48,6 +48,17 @@ namespace tilter
     }
   }
 
+  void liftDown()
+  {
+    if(lift::BtnDown.isPressed())
+    {
+      controller = Controllers::LIFTDOWN;
+    }
+    else if(controller == Controllers::LIFTDOWN){
+      controller = Controllers::LIFTDOWN;
+    }
+  }
+
   void goUp()
   {
     if (BtnGoUp.isPressed())

@@ -100,9 +100,9 @@ void autonomous() {
 void opcontrol() {
 // okapi::Timer timer;
 	while (true) {
-		// if (timer.repeat(100_ms)) {
+		// if (timer.repeat(10_ms)) {
 			//print mili;
-		// 	mili += 100;
+		// 	mili += 10;
 	 // }
 		drive::init();
 		intake::init();

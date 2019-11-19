@@ -3,8 +3,8 @@
 
 namespace tilter
 {
-enum class Controllers
-{
+  enum class Controllers
+  {
     FORWARD,
     BACKWARD,
     RETURN,
@@ -12,15 +12,15 @@ enum class Controllers
     TOUP,
     LIFTDOWN,
     NONE
-};
-void execute(void);
-void init(void);
-extern bool trayLock;
-namespace auton
-{
-void trayDown(double wantedPosition, double targetVelocity);
-void stack(double wantedPosition, double targetVelocity);
-} // namespace auton
+  };
+  void execute(void);
+  void init(void);
+  extern bool trayLock;
+  namespace auton
+  {
+    void trayDown(double wantedPosition, double targetVelocity);
+    void stack(double wantedPosition, double targetVelocity);
+  } // namespace auton
 } // namespace tilter
 
 #endif /* end of include guard: TILTER_HPP */

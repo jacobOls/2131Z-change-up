@@ -21,7 +21,7 @@ namespace tilter
   int allDown = 1170;
   int upPlace = 1850;
   int startUp = 1640;
-  int sensorPlace = 1300;
+  int sensorPlace = 1600;
 
 
   void up()
@@ -158,6 +158,7 @@ namespace tilter
     goUp();
     execute();
     returnDown();
+    liftDown();
   }
 
 

@@ -58,7 +58,7 @@ namespace lift
     }
     if (controller == Controllers::DOWN)
     {
-      if (sensor() < 1050)
+      if (sensor() < 1290)
       {
         controller = Controllers::DEINIT;
       }

@@ -89,13 +89,13 @@ namespace lift
       case Controllers::DOWN:
 
       motor.moveVelocity(-75);
-      if (sensor() < sensorPlace)
-      {
-        if (tilter() >= startUp && tilter::trayLock == false)
-        {
-          tilter::motor.moveVelocity(-75);
-        }
-      }
+      // if (sensor() < sensorPlace)
+      // {
+      //   if (tilter() >= startUp && tilter::trayLock == false)
+      //   {
+      //     tilter::motor.moveVelocity(-75);
+      //   }
+      // }
 
       break;
       case Controllers::DEINIT:

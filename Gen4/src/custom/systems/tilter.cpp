@@ -20,6 +20,9 @@ namespace tilter
   int halfDown = 1850;
   int allDown = 1170;
   int upPlace = 1850;
+  int startUp = 1640;
+  int sensorPlace = 1300;
+
 
   void up()
   {
@@ -115,6 +118,16 @@ namespace tilter
         motor.moveVelocity(-100);
       }
 
+      break;
+
+      case Controllers::LIFTDOWN:
+      if (lSensor() < sensorPlace)
+      {
+        if (sensor() >= startUp && tilter::trayLock == false)
+        {
+          tilter::motor.moveVelocity(-75);
+        }
+      }
       break;
 
       case Controllers::DEINIT:

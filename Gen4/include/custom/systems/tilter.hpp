@@ -10,6 +10,7 @@ enum class Controllers
     RETURN,
     DEINIT,
     TOUP,
+    LIFTDOWN,
     NONE
 };
 void execute(void);

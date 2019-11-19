@@ -9,21 +9,14 @@ namespace auton
 
 
   /* stacking 101
-  intake::auton::intakeOn(-50);
-  wait(900);
+  tilter::auton::stack(1525,35);
+  intake::auton::intakeOn(-37);
+  tilter::auton::stack(2300, 30);
   intake::auton::intakeOff();
-  intake::auton::intakeOn(25);
-  wait(400);
-  intake::auton::intakeOff();
-  tilter::auton::stack(1800, 25);
-  intake::auton::intakeOn(-75);
-  tilter::auton::stack(1900, 25);
-  intake::auton::intakeOff();
-  tilter::auton::stack(2020, 25);
-  intake::auton::intakeOn(-200);
+  tilter::auton::stack(2350, 25);
   wait(250);
   intake::auton::intakeOff();
-  intake::auton::stackReverseAuton(-100, 25, 25);
+  intake::auton::stackReverseAuton(-100, 30, 25);
   tilter::auton::trayDown(1500, 100);
   */
 

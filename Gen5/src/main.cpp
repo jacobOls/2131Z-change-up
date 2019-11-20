@@ -23,6 +23,8 @@ void initialize() {
 	intake::left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	lift::motor.tarePosition();
+	tilter::motor.tarePosition();
 }
 
 /**

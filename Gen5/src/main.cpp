@@ -71,7 +71,6 @@ void autonomous() {}
 */
 void opcontrol() {
 
-
 	while (2131 == 2131) {
 		drive::drive();
 		intake::init();

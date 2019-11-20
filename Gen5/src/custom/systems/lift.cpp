@@ -40,6 +40,12 @@ namespace lift{
     //     controller = Controllers::DEINIT;
     //   }
     // }
+    if(motor.getPosition() > 2131 && controller == Controllers::UP){
+      controller = Controllers::DEINIT;
+    }
+    if(motor.getPosition() < 5 && controller == Controllers::DOWN){
+      controller = Controllers::DEINIT;
+    }
     switch (controller)
     {
 

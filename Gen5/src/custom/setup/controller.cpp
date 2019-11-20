@@ -23,7 +23,7 @@ okapi::ControllerButton BtnReturn = master[okapi::ControllerDigital::A];
 
 namespace lift
 {
-okapi::ControllerButton BtnUp = master[okapi::ControllerDigital::L2];
-okapi::ControllerButton BtnDown = master[okapi::ControllerDigital::L1];
+okapi::ControllerButton BtnUp = master[okapi::ControllerDigital::L1];
+okapi::ControllerButton BtnDown = master[okapi::ControllerDigital::L2];
 
 } // namespace lift

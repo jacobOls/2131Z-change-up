@@ -34,9 +34,14 @@ namespace tilter{
     // {
     //   controller = Controllers::DEINIT;
     // }
+    if(motor.getPosition() > 1684 && controller == Controllers::FORWARD){
+      controller = Controllers::DEINIT;
+    }
+    if(motor.getPosition() < 5 && controller == Controllers::BACKWARD){
+      controller = Controllers::DEINIT;
+    }
     switch (controller)
     {
-
       case Controllers::FORWARD:
       motor.moveVelocity(50);
       // trayLock = false;

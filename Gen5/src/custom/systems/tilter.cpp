@@ -46,7 +46,7 @@ namespace tilter{
       motor.moveVelocity(50);
       // trayLock = false;
       break;
- 
+
       case Controllers::BACKWARD:
       motor.moveVelocity(-100);
       // trayLock = false;
@@ -91,5 +91,16 @@ namespace tilter{
     tilterUp();
     tilterDown();
     execute();
+  }
+
+  namespace auton{
+
+void tilter(int pos, int velocity){
+if(motor.getPosition() > pos){
+  velocity = -velocity;
+}
+motor.moveAbsolute(pos,velocity);
+
+}  
   }
 }

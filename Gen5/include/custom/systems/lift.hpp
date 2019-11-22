@@ -12,6 +12,9 @@ enum class Controllers
 void init(void);
 void execute(void);
 void init(void);
+namespace auton{
+  void lift(double pos, double velocity);
+}
 }
 
 

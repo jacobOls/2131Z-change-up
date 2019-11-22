@@ -75,4 +75,19 @@ namespace lift{
     down();
     execute();
   }
+
+namespace auton{
+
+void lift(int pos, int velocity){
+  if(motor.getPosition() > pos){
+    velocity = -velocity;
+  }
+motor.moveAbsolute(pos,velocity);
+}
+
+
+
+}
+
+
 }

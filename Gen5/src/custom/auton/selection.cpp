@@ -52,10 +52,10 @@ namespace auton
   Options option = Options::NONE;
 
   std::string screenText[4][3] = {
-    {"Front Red", "!", "!"},
-    {"Back Red", "!", "!"},
-    {"Back Blue", "!", "!"},
-    {"Front Blue", "!", "!"},
+    {"Front Red", "", ""},
+    {"Back Red", "", ""},
+    {"Back Blue", "", ""},
+    {"Front Blue", "", ""},
   };
   void execute()
   {

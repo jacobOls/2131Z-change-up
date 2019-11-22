@@ -4,6 +4,8 @@
 #include "custom/systems/lift.hpp"
 #include "custom/systems/tilter.hpp"
 #include "custom/setup/motors.hpp"
+#include "custom/auton/selection.hpp"
+#include "custom/auton.hpp"
 /**
 * A callback function for LLEMU's center button.
 *
@@ -25,6 +27,8 @@ void initialize() {
 	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	lift::motor.tarePosition();
 	tilter::motor.tarePosition();
+	std::cout << "initialize " << std::endl;
+auton::screenInit();
 }
 
 /**
@@ -33,7 +37,8 @@ void initialize() {
 * the robot is enabled, this task will exit.
 */
 void disabled() {
-
+	auton::autonTask.suspend();
+	auton::set_auton(false);
 }
 
 /**
@@ -46,7 +51,7 @@ void disabled() {
 * starts.
 */
 void competition_initialize() {
-	
+
 }
 
 /**
@@ -60,8 +65,14 @@ void competition_initialize() {
 * will be stopped. Re-enabling the robot will restart the task, not re-start it
 * from where it left off.
 */
-void autonomous() {
+pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
+TASK_STACK_DEPTH_DEFAULT, "AutonTask");
 
+void autonomous() {
+	auton::screenInit();
+	auton::set_auton(true);
+	auton::autonTask.resume();
+	auton::execute();
 }
 
 /**

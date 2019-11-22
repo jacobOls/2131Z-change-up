@@ -144,4 +144,33 @@ namespace intake
     execute();
     stackReverse();
   }
+  namespace auton
+{
+
+  void stackReverseAuton(double distance, double driveSpeed, double intakeSpeed)
+  {
+    while (drive::left_front.getPosition() > distance || drive::right_front.getPosition() > distance)
+    {
+      /* code */
+      drive::left_drive.moveVelocity(-driveSpeed);
+      drive::right_drive.moveVelocity(-driveSpeed);
+      intakegroup.moveVelocity(-intakeSpeed);
+    }
+    drive::left_drive.moveVelocity(0);
+    drive::right_drive.moveVelocity(0);
+    intakegroup.moveVelocity(0);
+    // drive::auton::resetPositions();
+  }
+
+  bool intakeRunning = false;
+  void intakeOn(double targetVelocity)
+  {
+    intakegroup.moveVelocity(targetVelocity);
+  }
+
+  void intakeOff()
+  {
+    intakegroup.moveVelocity(0);
+  }
+} // namespace auton
 }

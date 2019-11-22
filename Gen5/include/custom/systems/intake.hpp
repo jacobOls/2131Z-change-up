@@ -14,6 +14,11 @@ namespace intake{
 };
 void init(void);
 void execute(void);
+namespace auton{
+  void stackReverseAuton(double distance, double driveSpeed, double intakeSpeed);
+void intakeOn(double targetVelocity);
+void intakeOff();
+}
 }
 
 #endif /* end of include guard: INTAKE_HPP */

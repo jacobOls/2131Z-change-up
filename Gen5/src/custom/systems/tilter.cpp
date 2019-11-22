@@ -66,14 +66,15 @@ namespace tilter{
       break;
 
       case Controllers::RETURN:
-      // if (lSensor() < 1250 && sensor() > 1520)
-      // {
-      //   motor.moveVelocity(-100);
-      // }
-      // else if (sensor() > 1870)
-      // {
-      //   motor.moveVelocity(-100);
-      // }
+      if (lift::motor.getPosition() < 1250 && motor.getPosition() > 1520)
+      {
+        motor.moveVelocity(-100);
+      }
+      else if (motor.getPosition() > 1870)
+      {
+        motor.moveVelocity(-100);
+      }
+
 
       break;
 
@@ -101,6 +102,6 @@ if(motor.getPosition() > pos){
 }
 motor.moveAbsolute(pos,velocity);
 
-}  
+}
   }
 }

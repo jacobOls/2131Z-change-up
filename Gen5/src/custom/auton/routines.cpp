@@ -42,7 +42,6 @@ namespace auton{
     stack();
   }
 
-
   void blue9(){
     startup();
     drive::auton::driving(1000,100);

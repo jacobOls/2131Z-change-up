@@ -10,6 +10,7 @@ namespace tilter{
     TOUP,
     NONE
   };
+  extern bool trayLock;
   void execute(void);
   void init(void);
   namespace auton{

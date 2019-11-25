@@ -43,6 +43,18 @@ tilter::auton::tilter(0, -100);
   }
 
 
-
+  void blue9(){
+    startup();
+    drive::auton::driving(1000,100);
+   drive::auton::turn(20,25);
+   drive::auton::driving(-800,150);
+   drive::auton::turn(20,-25);
+   drive::auton::driving(1000,100);
+   drive::auton::driving(-1000,-100);
+   drive::auton::turn(200,-75);
+   drive::auton::driving(200,100);
+   intake::auton::intakeOff();
+  stack();
+  }
 
 }

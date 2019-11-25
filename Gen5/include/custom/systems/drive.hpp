@@ -6,6 +6,7 @@ void drive(void);
 namespace auton{
 void driving(int distance, int speed);
 void turn(int deg, int velocity);
+void resetPositions();
 }
 }
 #endif /* end of include guard: DRIVE_HPP */

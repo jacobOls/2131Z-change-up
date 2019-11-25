@@ -3,6 +3,7 @@
 #include "custom/setup/controller.hpp"
 #include "custom/systems/tilter.hpp"
 #include "custom/systems/lift.hpp"
+#include "custom/auton.hpp"
 
 namespace tilter{
   Controllers controller = Controllers::NONE;
@@ -44,16 +45,16 @@ namespace tilter{
     {
       case Controllers::FORWARD:
       motor.moveVelocity(50);
-      trayLock = false;
+      // trayLock = false;
       break;
 
       case Controllers::BACKWARD:
       motor.moveVelocity(-100);
-      trayLock = false;
+      // trayLock = false;
       break;
 
       case Controllers::TOUP:
-      trayLock = true;
+      // trayLock = true;
       if(motor.getPosition() < 250){
         motor.moveVelocity(50);
       }

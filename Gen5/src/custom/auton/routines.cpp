@@ -18,61 +18,61 @@ namespace auton{
 
   void stack(){
     tilter::auton::tilter(1525,35);
-intake::auton::intakeOn(-37);
-tilter::auton::tilter(2300, 30);
-intake::auton::intakeOff();
-tilter::auton::tilter(2350, 25);
-wait(250);
-intake::auton::intakeOff();
-intake::auton::stackReverseAuton(-100, 30, 25);
-tilter::auton::tilter(0, -100);
+    intake::auton::intakeOn(-37);
+    tilter::auton::tilter(2300, 30);
+    intake::auton::intakeOff();
+    tilter::auton::tilter(2350, 25);
+    wait(250);
+    intake::auton::intakeOff();
+    intake::auton::stackReverseAuton(-100, 30, 25);
+    tilter::auton::tilter(0, -100);
   }
 
   void red9(){
     startup();
     drive::auton::driving(1000,100);
-   drive::auton::turn(20,-25);
-   drive::auton::driving(-800,150);
-   drive::auton::turn(20,25);
-   drive::auton::driving(1000,100);
-   drive::auton::driving(-1000,-100);
-   drive::auton::turn(200,75);
-   drive::auton::driving(200,100);
-   intake::auton::intakeOff();
-  stack();
+    drive::auton::turn(20,-25);
+    drive::auton::driving(-800,150);
+    drive::auton::turn(20,25);
+    drive::auton::driving(1000,100);
+    drive::auton::driving(-1000,-100);
+    drive::auton::turn(200,75);
+    drive::auton::driving(200,100);
+    intake::auton::intakeOff();
+    stack();
   }
 
 
   void blue9(){
     startup();
     drive::auton::driving(1000,100);
-   drive::auton::turn(20,25);
-   drive::auton::driving(-800,150);
-   drive::auton::turn(20,-25);
-   drive::auton::driving(1000,100);
-   drive::auton::driving(-1000,-100);
-   drive::auton::turn(200,-75);
-   drive::auton::driving(200,100);
-   intake::auton::intakeOff();
-  stack();
+    drive::auton::turn(20,25);
+    drive::auton::driving(-800,150);
+    drive::auton::turn(20,-25);
+    drive::auton::driving(1000,100);
+    drive::auton::driving(-1000,-100);
+    drive::auton::turn(200,-75);
+    drive::auton::driving(200,100);
+    intake::auton::intakeOff();
+    stack();
   }
 
 
-void red7(){
-  startup();
-  drive::auton::driving(1000,100);
-  drive::auton::turn(200,-50);
-  drive::auton::driving(375,75);
-  stack();
-}
+  void red7(){
+    startup();
+    drive::auton::driving(1000,100);
+    drive::auton::turn(200,-50);
+    drive::auton::driving(375,75);
+    stack();
+  }
 
-void blue7(){
-  startup();
-  drive::auton::driving(1000,100);
-  drive::auton::turn(200,50);
-  drive::auton::driving(375,75);
-  stack();
-}
+  void blue7(){
+    startup();
+    drive::auton::driving(1000,100);
+    drive::auton::turn(200,50);
+    drive::auton::driving(375,75);
+    stack();
+  }
 
 
 

@@ -57,4 +57,25 @@ tilter::auton::tilter(0, -100);
   stack();
   }
 
+
+void red7(){
+  startup();
+  drive::auton::driving(1000,100);
+  drive::auton::turn(200,-50);
+  drive::auton::driving(375,75);
+  stack();
+}
+
+void blue7(){
+  startup();
+  drive::auton::driving(1000,100);
+  drive::auton::turn(200,50);
+  drive::auton::driving(375,75);
+  stack();
+}
+
+
+
+
+
 }

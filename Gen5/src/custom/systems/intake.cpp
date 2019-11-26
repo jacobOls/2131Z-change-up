@@ -10,7 +10,7 @@ namespace intake
 
   Controllers controller = Controllers::NONE;
   int liftUp = 1300;
-  bool bothButtonsPressed()  {
+  bool bothButtonsPressed(){
     return BtnLeft.isPressed() && BtnRight.isPressed();
   }
 

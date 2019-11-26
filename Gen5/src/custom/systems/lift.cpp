@@ -24,8 +24,7 @@ namespace lift{
   }
 
 
-  void execute()
-  {
+  void execute(){
     // if (controller == Controllers::UP)
     // {
     //   if (motor.getPosition() > 800)

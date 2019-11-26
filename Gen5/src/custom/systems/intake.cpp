@@ -17,12 +17,10 @@ namespace intake
   bool slowOut = false;
   void intake(){
 
-    if (BtnIn.isPressed())
-    {
+    if (BtnIn.isPressed()){
       controller = Controllers::IN;
     }
-    else if (controller == Controllers::IN)
-    {
+    else if (controller == Controllers::IN){
       controller = Controllers::DEINIT;
     }
   }

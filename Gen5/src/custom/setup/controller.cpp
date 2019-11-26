@@ -1,8 +1,7 @@
 #include "main.h"
 #include "custom/setup/controller.hpp"
 okapi::Controller master;
-namespace intake
-{
+namespace intake{
   okapi::ControllerButton BtnIn = master[okapi::ControllerDigital::R1];
   okapi::ControllerButton BtnOut = master[okapi::ControllerDigital::R2];
   okapi::ControllerButton BtnLeft = master[okapi::ControllerDigital::down];
@@ -11,8 +10,7 @@ namespace intake
 } // namespace intake
 
 
-namespace tilter
-{
+namespace tilter{
   okapi::ControllerButton BtnForward = master[okapi::ControllerDigital::up];
   okapi::ControllerButton BtnBackward = master[okapi::ControllerDigital::left];
   okapi::ControllerButton BtnGoUp = master[okapi::ControllerDigital::right];
@@ -21,8 +19,7 @@ namespace tilter
 } // namespace tilter
 
 
-namespace lift
-{
+namespace lift{
   okapi::ControllerButton BtnUp = master[okapi::ControllerDigital::L1];
   okapi::ControllerButton BtnDown = master[okapi::ControllerDigital::L2];
 

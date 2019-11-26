@@ -2,8 +2,7 @@
 #define LIFT_HPP
 namespace lift{
 
-  enum class Controllers
-  {
+  enum class Controllers{
     UP,
     DOWN,
     DEINIT,

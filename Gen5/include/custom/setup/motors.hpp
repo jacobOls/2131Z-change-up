@@ -15,22 +15,19 @@ extern Ramping LEFT_DRIVE;
 extern Ramping RIGHT_DRIVE;
 }
 
-namespace intake
-{
+namespace intake{
 extern okapi::Motor left_motor;
 extern okapi::Motor right_motor;
 extern okapi::MotorGroup intakegroup;
 // extern pros::ADIAnalogIn cubeSensor;
 } // namespace intake
 
-namespace tilter
-{
+namespace tilter{
 extern okapi::Motor motor;
 // extern pros::ADIAnalogIn tilterSensor;
 } // namespace tilter
 
-namespace lift
-{
+namespace lift{
 extern okapi::Motor motor;
 // extern pros::ADIAnalogIn liftSensor;
 } // namespace lift

@@ -2,7 +2,6 @@
 
 #include "api.h"
 
-namespace auton
-{
+namespace auton{
 extern pros::Task autonTask;
 } // namespace auton

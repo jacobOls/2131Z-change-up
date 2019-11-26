@@ -2,8 +2,7 @@
 #define INTAKE_HPP
 namespace intake{
 
-  enum class Controllers
-  {
+  enum class Controllers{
     IN,
     OUT,
     SPINR,

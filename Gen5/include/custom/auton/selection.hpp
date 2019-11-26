@@ -1,25 +1,21 @@
 #ifndef SELECTION_HPP
 #define SELECTION_HPP
 
-namespace auton
-{
-enum class Positons
-{
+namespace auton{
+enum class Positons{
   FRONTRED,
   BACKRED,
   BACKBLUE,
   FRONTBLUE,
   NONE
 };
-enum class Stacks
-{
+enum class Stacks{
   LEFT,
   RIGHT,
   NONE
 };
 
-enum class Options
-{
+enum class Options{
   SKILLS,
   NOTSKILLS,
   NONE

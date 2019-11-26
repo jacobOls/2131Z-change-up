@@ -7,19 +7,19 @@ namespace lift{
   Controllers controller = Controllers::NONE;
   void up(){
     if(BtnUp.isPressed()){
-       controller = Controllers::UP;
+      controller = Controllers::UP;
     }
     else if(controller == Controllers::UP){
-       controller = Controllers::DEINIT;
+      controller = Controllers::DEINIT;
     }
   }
 
   void down(){
     if(BtnDown.isPressed()){
-     controller = Controllers::DOWN;
+      controller = Controllers::DOWN;
     }
     else if(controller == Controllers::DOWN){
-       controller = Controllers::DEINIT;
+      controller = Controllers::DEINIT;
     }
   }
 
@@ -51,7 +51,7 @@ namespace lift{
 
       case Controllers::UP:
       motor.moveVelocity(100);
-        // tilter::motor.moveVelocity(75);
+      // tilter::motor.moveVelocity(75);
 
       break;
 
@@ -76,16 +76,15 @@ namespace lift{
     execute();
   }
 
-namespace auton{
+  namespace auton{
 
-void lift(int pos, int velocity){
-  if(motor.getPosition() > pos){
-    velocity = -velocity;
+    void lift(int pos, int velocity){
+      if(motor.getPosition() > pos){
+        velocity = -velocity;
+      }
+      motor.moveAbsolute(pos,velocity);
+    }
+
+
   }
-motor.moveAbsolute(pos,velocity);
-}
-
-
-}
-
 }

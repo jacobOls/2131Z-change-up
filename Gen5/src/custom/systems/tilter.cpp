@@ -9,19 +9,19 @@ namespace tilter{
   Controllers controller = Controllers::NONE;
   void tilterUp(){
     if(BtnForward.isPressed()){
-       controller = Controllers::FORWARD;
+      controller = Controllers::FORWARD;
     }
     else if(controller == Controllers::FORWARD){
-       controller = Controllers::DEINIT;
+      controller = Controllers::DEINIT;
     }
   }
 
   void tilterDown(){
     if(BtnBackward.isPressed()){
-       controller = Controllers::BACKWARD;
+      controller = Controllers::BACKWARD;
     }
     else if(controller == Controllers::BACKWARD){
-       controller = Controllers::DEINIT;
+      controller = Controllers::DEINIT;
     }
   }
 
@@ -100,12 +100,12 @@ namespace tilter{
 
   namespace auton{
 
-void tilter(int pos, int velocity){
-if(motor.getPosition() > pos){
-  velocity = -velocity;
-}
-motor.moveAbsolute(pos,velocity);
+    void tilter(int pos, int velocity){
+      if(motor.getPosition() > pos){
+        velocity = -velocity;
+      }
+      motor.moveAbsolute(pos,velocity);
 
-}
+    }
   }
 }

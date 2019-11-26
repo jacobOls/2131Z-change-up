@@ -10,8 +10,7 @@
 #include "custom/auton.hpp"
 #include <algorithm>
 #include <string>
-namespace auton
-{
+namespace auton{
   /*forward defs*/
   void StyleInit();
   void BtnInit(lv_obj_t *btn, lv_style_t *sty, int row, int col);
@@ -57,13 +56,11 @@ namespace auton
     {"Back Blue", "", ""},
     {"Front Blue", "", ""},
   };
-  void execute()
-  {
-    switch (positon)
-    {
+  void execute(){
+    switch (positon){
       case Positons::FRONTRED:
       // red7();
-     break;
+      break;
 
       case Positons::BACKRED:
       // red2();
@@ -81,8 +78,7 @@ namespace auton
       break;
     }
   }
-  void screenInit()
-  {
+  void screenInit(){
     StyleInit();
 
     BtnInit(Btn0_0, &style_red, 0, 0);
@@ -113,8 +109,7 @@ namespace auton
     std::cout << "pos: " << static_cast<int>(positon) << " sta: " << static_cast<int>(stack) << " fla: "
     << " opt: " << static_cast<int>(option) << std::endl;
   }
-  void StyleInit()
-  {
+  void StyleInit(){
     lv_style_copy(&style_red, &lv_style_plain);
     style_red.text.color = LV_COLOR_HEX(0xFF0000);
 
@@ -126,8 +121,7 @@ namespace auton
 
     // lv_style_copy(&style_btn, &lv_style_plain);
   }
-  void BtnInit(lv_obj_t *btn, lv_style_t *sty, int row, int col)
-  {
+  void BtnInit(lv_obj_t *btn, lv_style_t *sty, int row, int col){
     lv_obj_t *label;
     int x = 465 / 3 * col;
     int y = 240 / 4 * row;
@@ -146,45 +140,35 @@ namespace auton
     else
     std::cout << "blue" << std::endl;
   }
-  std::string RoutsToString(int one, int two)
-  {
+  std::string RoutsToString(int one, int two){
     return screenText[one][two];
   }
 
-  void ControllerScreen()
-  {
+  void ControllerScreen(){
     master.setText(0, 0, "");
   }
 
-  void testBtnPos(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Positons Positon)
-  {
-    if (pressedBtn == Btn)
-    {
+  void testBtnPos(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Positons Positon){
+    if (pressedBtn == Btn){
       positon = Positon;
     }
-    else
-    {
+    else{
       lv_btn_set_state(Btn, LV_BTN_STATE_REL);
     }
   }
-  void testBtnSta(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Stacks Stack)
-  {
+  void testBtnSta(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Stacks Stack){
     if (pressedBtn == Btn)
     {
       stack = Stack;
     }
-    else
-    {
+    else{
       lv_btn_set_state(Btn, LV_BTN_STATE_REL);
     }
   }
 
-  void testBtnOpt(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Options Option)
-  {
-    if (pressedBtn == Btn)
-    {
-      switch (option)
-      {
+  void testBtnOpt(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Options Option){
+    if (pressedBtn == Btn){
+      switch (option){
         case Options::SKILLS:
         option = Options::NOTSKILLS;
         break;
@@ -196,13 +180,11 @@ namespace auton
         break;
       }
     }
-    else
-    {
+    else{
       lv_btn_set_state(Btn, LV_BTN_STATE_REL);
     }
   }
-  static lv_res_t OnClickPos(_lv_obj_t *pressedBtn)
-  {
+  static lv_res_t OnClickPos(_lv_obj_t *pressedBtn){
     testBtnPos(pressedBtn, Btn0_0, Positons::FRONTRED);
     testBtnPos(pressedBtn, Btn1_0, Positons::BACKRED);
     testBtnPos(pressedBtn, Btn2_0, Positons::BACKBLUE);
@@ -212,8 +194,7 @@ namespace auton
     << " opt: " << static_cast<int>(option) << std::endl;
     return LV_RES_OK;
   }
-  static lv_res_t OnClickSta(_lv_obj_t *pressedBtn)
-  {
+  static lv_res_t OnClickSta(_lv_obj_t *pressedBtn){
     testBtnSta(pressedBtn, Btn0_1, Stacks::LEFT);
     testBtnSta(pressedBtn, Btn0_2, Stacks::RIGHT);
     ControllerScreen();
@@ -222,8 +203,7 @@ namespace auton
     return LV_RES_OK;
   }
 
-  static lv_res_t OnClickOpt(_lv_obj_t *pressedBtn)
-  {
+  static lv_res_t OnClickOpt(_lv_obj_t *pressedBtn){
     testBtnOpt(pressedBtn, Btn3_1, Options::SKILLS);
     ControllerScreen();
     std::cout << "pos: " << static_cast<int>(positon) << " sta: " << static_cast<int>(stack) << " fla: "
@@ -231,10 +211,8 @@ namespace auton
     return LV_RES_OK;
   }
 
-  void BtnShow()
-  {
-    switch (positon)
-    {
+  void BtnShow(){
+    switch (positon){
       case Positons::FRONTRED:
       lv_btn_set_state(Btn0_0, LV_BTN_STATE_TGL_PR); //fr
       break;
@@ -250,9 +228,8 @@ namespace auton
 
       case Positons::NONE:
       break;
-    };
-    switch (stack)
-    {
+    }
+    switch (stack){
       case Stacks::LEFT:
       lv_btn_set_state(Btn0_2, LV_BTN_STATE_TGL_PR); //far
       break;
@@ -264,8 +241,7 @@ namespace auton
       break;
     }
 
-    switch (option)
-    {
+    switch (option){
       case Options::SKILLS:
       lv_btn_set_state(Btn3_1, LV_BTN_STATE_TGL_PR); //skills
       break;
@@ -278,18 +254,15 @@ namespace auton
   }
 
   bool inAuton = false;
-  void set_auton(bool b)
-  {
+  void set_auton(bool b){
     inAuton = b;
   }
   void Task(void *why)
   {
     std::uint32_t test = pros::millis(); //init delay
     int beg = pros::millis();
-    while (1)
-    {
-      if (inAuton)
-      {
+    while (1){
+      if (inAuton){
         // drive::auton::ramping();
         intake::execute();
         lift::execute();

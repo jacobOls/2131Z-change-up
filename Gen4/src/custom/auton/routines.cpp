@@ -48,11 +48,11 @@ namespace auton
     intake::auton::intakeOn(200);
     drive::auton::driving(400, 100);
     drive::auton::leftTurn(150,60);
-    drive::auton::driveBack(-440,-145);
+    drive::auton::driveBack(-385,-145);
     drive::auton::rightTurn(150,50);
-    drive::auton::driving(220,100);
-    drive::auton::driveBack(-60,-140);
+    drive::auton::driving(340,120);
     intake::auton::intakeOn(50);
+    drive::auton::driveBack(-210,-140);
     drive::auton::rightTurn(400,70);
     drive::auton::driving(125,110);
     //stacking

@@ -74,6 +74,13 @@ namespace drive{
 
     }
 
+    void turn(int deg, int velocity){
+      resetPos();
+      while(abs(left_front.getPosition()) < deg){
+        left_drive.moveVelocity(velocity);
+        right_drive.moveVelocity(-velocity);
 
+      }
+    }
   }
 }

@@ -70,6 +70,9 @@ void autonomous() {}
  */
 void opcontrol() {
 	while (true) {
-
+		drive::userDrive();
+		lift::init();
+		intake::init();
+		tilter::init();
 	}
 }

@@ -50,6 +50,7 @@ namespace tilter{
 
       case Controllers::BACKWARD:
       motor.moveVelocity(-100);
+      intake::intakegroup.moveVelocity(-28);
       // trayLock = false;
       break;
 

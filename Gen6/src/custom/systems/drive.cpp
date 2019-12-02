@@ -1,3 +1,4 @@
+#include "main.h"
 #include "custom/systems/drive.hpp"
 #include "custom/systems/lift.hpp"
 #include "custom/setup/motors.hpp"
@@ -14,6 +15,7 @@ namespace drive{
   int height(){
     return std::abs(lift::motor.getPosition()/500);
   }
+
   void userDrive(){
     if(lift::motor.getPosition() < 300){
       if(lStick() < 0.5){
@@ -22,7 +24,6 @@ namespace drive{
       else{
         left_drive.moveVelocity(lStick()*200);
       }
-
 
       if(rStick() < 0.5){
         right_drive.moveVelocity(0);
@@ -38,8 +39,6 @@ namespace drive{
       else{
         left_drive.moveVelocity(lStick()*200/height());
       }
-
-
       if(rStick() < 0.5){
         right_drive.moveVelocity(0);
       }

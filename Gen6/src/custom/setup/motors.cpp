@@ -10,10 +10,10 @@ namespace drive{
         okapi::AbstractMotor::encoderUnits::degrees);
         okapi::Motor right_front(4, false, okapi::AbstractMotor::gearset::green,
           okapi::AbstractMotor::encoderUnits::degrees);
-          okapi::MotorGroup left_drive({left_back, left_front});
-          okapi::MotorGroup right_drive({right_back, right_front});
-          okapi::MotorGroup right_strafe({left_back, right_front});
-          okapi::MotorGroup left_strafe({right_back, left_front});
+          okapi::MotorGroup left_drive({left_front, left_back});
+          okapi::MotorGroup right_drive({right_front, right_back});
+          Ramping LEFT_DRIVE(1, 12, 200, -200);
+          Ramping RIGHT_DRIVE(1, 12, 200, -200);
 
 
         }

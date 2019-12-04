@@ -9,7 +9,8 @@ namespace auton{
   void wait(int time){
     pros::delay(time);
   }
-
+  //posotive turn is left
+  //negative turn is right
   void startup(){
     lift::motor.tarePosition();
     tilter::motor.tarePosition();
@@ -79,17 +80,21 @@ namespace auton{
   void skills(){
     intake::auton::intakeOn(200);
     drive::auton::driving(2000,100);
-    drive::auton::turn(150,75);
+    drive::auton::turn(-150,75);
     drive::auton::driving(800,100);
     stack();
-    drive::auton::turn(300,150);
+    drive::auton::turn(-300,150);
     drive::auton::driving(2000,100);
-    drive::auton::turn(-200,150);
+    drive::auton::turn(200,150);
     drive::auton::driving(500,100);
     stack();
-    drive::auton::turn(-200,-80);
+    drive::auton::turn(200,-80);
     drive::auton::driving(800,100);
-
+    drive::auton::driving(-100,-100);
+    drive::auton::turn(100,50);
+    drive::auton::driving(400,80);
+    lift::auton::lift(500,100);
+    intake::auton::intakeOn(-25);
 
   }
 

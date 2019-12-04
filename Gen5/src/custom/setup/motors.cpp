@@ -14,8 +14,8 @@ namespace drive{
           okapi::MotorGroup right_drive({right_back, right_front});
           okapi::MotorGroup right_strafe({left_back, right_front});
           okapi::MotorGroup left_strafe({right_back, left_front});
-          Ramping LEFT_DRIVE(1, 12, 200, -200);
-          Ramping RIGHT_DRIVE(1, 12, 200, -200);
+          Ramping LEFT_DRIVE(1, 10, 200, -200);
+          Ramping RIGHT_DRIVE(1, 10, 200, -200);
 
         }
 

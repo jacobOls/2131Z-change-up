@@ -9,6 +9,7 @@ namespace auton{
   void wait(int time){
     pros::delay(time);
   }
+
   void startup(){
     lift::motor.tarePosition();
     tilter::motor.tarePosition();
@@ -73,6 +74,21 @@ namespace auton{
     stack();
   }
 
+
+
+  void skills(){
+    intake::auton::intakeOn(200);
+    drive::auton::driving(2000,100);
+    drive::auton::turn(150,75);
+    drive::auton::driving(800,100);
+    stack();
+    drive::auton::turn(300,150);
+    drive::auton::driving(2000,100);
+    drive::auton::turn(-200,150);
+    drive::auton::driving(500,100);
+    stack();
+
+  }
 
 
 

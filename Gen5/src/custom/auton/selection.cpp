@@ -59,19 +59,19 @@ namespace auton{
   void execute(){
     switch (positon){
       case Positons::FRONTRED:
-      // red7();
+      red9();
       break;
 
       case Positons::BACKRED:
-      // red2();
+      red7();
       break;
 
       case Positons::BACKBLUE:
-      // blue2();
+      blue7();
       break;
 
       case Positons::FRONTBLUE:
-      // blue7();
+      blue9();
       break;
 
       case Positons::NONE:

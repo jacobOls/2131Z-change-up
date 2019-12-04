@@ -27,7 +27,6 @@ void initialize() {
 	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	lift::motor.tarePosition();
 	tilter::motor.tarePosition();
-	std::cout << "initialize " << std::endl;
 	auton::screenInit();
 }
 
@@ -71,7 +70,6 @@ namespace auton{
 }
 
 void autonomous() {
-	auton::screenInit();
 	auton::set_auton(true);
 	auton::autonTask.resume();
 	auton::execute();

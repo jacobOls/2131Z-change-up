@@ -108,7 +108,7 @@ void returnDown(){
   namespace auton{
 
     void tilter(int pos, int velocity){
-      if(motor.getPosition() > pos){
+      if(motor.getPosition() > pos && velocity > 1){
         velocity = -velocity;
       }
       motor.moveAbsolute(pos,velocity);

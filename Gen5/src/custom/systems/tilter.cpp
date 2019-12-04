@@ -25,6 +25,16 @@ namespace tilter{
     }
   }
 
+void returnDown(){
+  if(BtnBackward.isPressed()){
+    controller = Controllers::RETURN;
+  }
+  else if(controller == Controllers::RETURN && motor.getActualVelocity() < 5){
+    controller = Controllers::DEINIT;
+  }
+}
+
+
   void execute()
   {
     // if (controller == Controllers::FORWARD && motor.getPosition() > 400)
@@ -50,7 +60,7 @@ namespace tilter{
 
       case Controllers::BACKWARD:
       motor.moveVelocity(-100);
-      intake::intakegroup.moveVelocity(-28);
+      // intake::intakegroup.moveVelocity(-28);
       // trayLock = false;
       break;
 
@@ -71,12 +81,7 @@ namespace tilter{
       break;
 
       case Controllers::RETURN:
-      if (lift::motor.getPosition() < 1250 && motor.getPosition() > 1520)
-      {
-        motor.moveVelocity(-100);
-      }
-      else if (motor.getPosition() > 1870)
-      {
+      if(motor.getPosition() > 5){
         motor.moveVelocity(-100);
       }
 
@@ -96,6 +101,7 @@ namespace tilter{
   void init(){
     tilterUp();
     tilterDown();
+    returnDown();
     execute();
   }
 

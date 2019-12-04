@@ -9,7 +9,7 @@ namespace auton{
   void wait(int time){
     pros::delay(time);
   }
-  //posotive turn is left
+  //positive turn is left
   //negative turn is right
   void startup(){
     lift::motor.tarePosition();

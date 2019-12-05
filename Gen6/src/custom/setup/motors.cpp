@@ -12,8 +12,8 @@ namespace drive{
           okapi::AbstractMotor::encoderUnits::degrees);
           okapi::MotorGroup left_drive({left_front, left_back});
           okapi::MotorGroup right_drive({right_front, right_back});
-          Ramping LEFT_DRIVE(1, 12, 200, -200);
-          Ramping RIGHT_DRIVE(1, 12, 200, -200);
+          Ramping LEFT_DRIVE(1, 10, 200, -200);
+          Ramping RIGHT_DRIVE(1, 10, 200, -200);
 
 
         }

@@ -27,7 +27,7 @@ namespace drive{
       }
 
       if(rStick() < 0.5){
-        right_drive.moveVelocity(0);
+right_drive.moveVelocity(0);
       }
       else{
         right_drive.moveVelocity(rStick()*200);

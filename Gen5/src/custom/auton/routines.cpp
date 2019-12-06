@@ -18,6 +18,7 @@ namespace auton{
     intake::auton::intakeOn(200);
   }
 
+
   void stack(){
     tilter::auton::tilter(1525,35);
     intake::auton::intakeOn(-37);
@@ -29,6 +30,7 @@ namespace auton{
     intake::auton::stackReverseAuton(-100, 30, 25);
     tilter::auton::tilter(0, -100);
   }
+
 
   void red9(){
     startup();
@@ -43,6 +45,7 @@ namespace auton{
     intake::auton::intakeOff();
     stack();
   }
+
 
   void blue9(){
     startup();
@@ -74,7 +77,6 @@ namespace auton{
     drive::auton::driving(375,75);
     stack();
   }
-
 
 
   void skills(){

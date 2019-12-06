@@ -97,7 +97,6 @@ namespace auton{
     drive::auton::driving(400,80);
     lift::auton::lift(500,100);
     intake::auton::intakeOn(-25);
-
   }
 
 

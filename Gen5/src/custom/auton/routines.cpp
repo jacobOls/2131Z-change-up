@@ -50,9 +50,9 @@ namespace auton{
   void blue9(){
     startup();
     drive::auton::driving(1000,100);
-    drive::auton::turn(20,25);
+    drive::auton::turn(-20,-25);
     drive::auton::driving(-800,150);
-    drive::auton::turn(20,-25);
+    drive::auton::turn(-20,-25);
     drive::auton::driving(1000,100);
     drive::auton::driving(-1000,-100);
     drive::auton::turn(200,-75);
@@ -73,7 +73,7 @@ namespace auton{
   void blue7(){
     startup();
     drive::auton::driving(1000,100);
-    drive::auton::turn(200,50);
+    drive::auton::turn(-200,-50);
     drive::auton::driving(375,75);
     stack();
   }
@@ -82,7 +82,7 @@ namespace auton{
   void skills(){
     intake::auton::intakeOn(200);
     drive::auton::driving(2000,100);
-    drive::auton::turn(-150,75);
+    drive::auton::turn(-150,-75);
     drive::auton::driving(800,100);
     stack();
     drive::auton::turn(-300,150);
@@ -90,7 +90,7 @@ namespace auton{
     drive::auton::turn(200,150);
     drive::auton::driving(500,100);
     stack();
-    drive::auton::turn(200,-80);
+    drive::auton::turn(-200,-80);
     drive::auton::driving(800,100);
     drive::auton::driving(-100,-100);
     drive::auton::turn(100,50);

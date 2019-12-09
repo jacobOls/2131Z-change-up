@@ -25,6 +25,7 @@ void initialize() {
 	lift::motor.tarePosition();
 	tilter::motor.tarePosition();
 	auton::screenInit();
+		std::cout << "initialize " << std::endl;
 }
 
 /**
@@ -67,6 +68,7 @@ namespace auton{
 }
 
 void autonomous() {
+		auton::screenInit();
 	auton::set_auton(true);
 	auton::autonTask.resume();
 	auton::execute();

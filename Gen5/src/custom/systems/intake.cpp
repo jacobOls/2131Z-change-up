@@ -143,6 +143,7 @@ namespace intake
     }
 
     bool intakeRunning = false;
+
     void intakeOn(double targetVelocity){
       intakegroup.moveVelocity(targetVelocity);
     }

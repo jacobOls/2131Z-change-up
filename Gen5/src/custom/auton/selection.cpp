@@ -63,15 +63,15 @@ namespace auton{
       break;
 
       case Positons::BACKRED:
-      red7();
+      red9();
       break;
 
       case Positons::BACKBLUE:
-      blue7();
+      red9();
       break;
 
       case Positons::FRONTBLUE:
-      blue9();
+      red9();
       break;
 
       case Positons::NONE:

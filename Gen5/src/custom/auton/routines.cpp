@@ -15,7 +15,7 @@ namespace auton{
     lift::motor.tarePosition();
     tilter::motor.tarePosition();
     drive::auton::resetPositions();
-    intake::auton::intakeOn(200);
+    // intake::auton::intakeOn(200);
   }
 
 
@@ -34,6 +34,10 @@ namespace auton{
 
   void red9(){
     startup();
+    intake::auton::intakeOn(-200);
+    lift::auton::lift(100,100);
+    intake::auton::intakeOn(200);
+    lift::auton::lift(0,100);
     drive::auton::driving(1000,100);
     drive::auton::turn(20,-25);
     drive::auton::driving(-800,150);

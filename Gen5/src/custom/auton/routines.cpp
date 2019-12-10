@@ -20,8 +20,9 @@ namespace auton{
 
 
   void stack(){
+    tilter::motor.tarePosition();
     tilter::auton::tilter(900,35);
-    intake::auton::intakeOn(-37);
+    intake::intakegroup.moveVelocity(-37);
     tilter::auton::tilter(1200, 30);
     intake::auton::intakeOff();
     tilter::auton::tilter(1450, 25);
@@ -38,20 +39,30 @@ namespace auton{
     wait(400);
     intake::auton::intakeOff();
     lift::auton::lift(200,100);
-    intake::auton::intakeOn(200);
+    intake::intakegroup.moveVelocity(200);
     lift::auton::lift(0,50);
     drive::auton::driving(500,200);
     drive::auton::turn(95,-25);
     drive::auton::driving(500,-200);
     drive::auton::turn(95,25);
-    drive::auton::driving(450,200);
+    drive::auton::driving(450,175);
     drive::auton::driving(-550,-200);
     drive::auton::turn(420,75);
-    drive::auton::driving(500,100);
-    intake::auton::intakeOff();
-    stack();
+    drive::auton::driving(450,150);
+    intake::intakegroup.moveVelocity(0);
+    //stacking
+    tilter::motor.tarePosition();
+    tilter::auton::tilter(900,35);
+    intake::intakegroup.moveVelocity(-37);
+    // wait(100);
+    tilter::auton::tilter(1200, 30);
+    // wait(100);
+    intake::intakegroup.moveVelocity(0);
+    tilter::auton::tilter(1450, 25);
+    wait(250);
+    intake::auton::stackReverseAuton(-100, 30, 25);
+    tilter::auton::tilter(0, -100);
   }
-
 
   void blue8(){
     startup();

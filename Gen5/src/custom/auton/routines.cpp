@@ -43,7 +43,7 @@ namespace auton{
     drive::auton::driving(500,200);
     drive::auton::turn(100,-25);
     drive::auton::driving(550,-200);
-    drive::auton::turn(100,25);
+    drive::auton::turn(110,25);
     drive::auton::driving(400,200);
     drive::auton::driving(-500,-200);
     drive::auton::turn(500,75);

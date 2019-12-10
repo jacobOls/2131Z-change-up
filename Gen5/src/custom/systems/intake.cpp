@@ -130,7 +130,8 @@ namespace intake
   namespace auton{
 
     void stackReverseAuton(double distance, double driveSpeed, double intakeSpeed){
-      while (drive::left_front.getPosition() > distance || drive::right_front.getPosition() > distance){
+      drive::auton::resetPositions();
+      while (abs(drive::left_front.getPosition()) > distance){
         /* code */
         drive::left_drive.moveVelocity(-driveSpeed);
         drive::right_drive.moveVelocity(-driveSpeed);

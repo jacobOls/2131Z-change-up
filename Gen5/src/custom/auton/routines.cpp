@@ -43,23 +43,23 @@ namespace auton{
     lift::auton::lift(0,50);
     drive::auton::driving(500,200);
     drive::auton::turn(95,-25);
-    drive::auton::driving(500,-200);
-    drive::auton::turn(95,25);
+    drive::auton::driving(515,-200);
+    drive::auton::turn(100,25);
     drive::auton::driving(475,160);
     drive::auton::driving(-550,-200);
-    drive::auton::turn(420,75);
-    drive::auton::driving(450,150);
+    drive::auton::turn(435,75);
+    drive::auton::driving(400,150);
     intake::intakegroup.moveVelocity(0);
     //stacking
     tilter::motor.tarePosition();
-    tilter::auton::tilter(900,35);
+    tilter::auton::tilter(450,35);
     intake::intakegroup.moveVelocity(-37);
     // wait(100);
-    tilter::auton::tilter(1200, 30);
+    tilter::auton::tilter(900, 30);
     // wait(100);
     intake::intakegroup.moveVelocity(0);
     tilter::auton::tilter(1450, 25);
-    wait(250);
+    // wait(250);
     intake::auton::stackReverseAuton(-100, 30, 25);
     tilter::auton::tilter(0, -100);
   }

@@ -46,8 +46,8 @@ namespace auton{
     drive::auton::turn(100,25);
     drive::auton::driving(400,200);
     drive::auton::driving(-500,-200);
-    drive::auton::turn(420,75);
-    drive::auton::driving(200,100);
+    drive::auton::turn(500,75);
+    drive::auton::driving(500,100);
     intake::auton::intakeOff();
     stack();
   }

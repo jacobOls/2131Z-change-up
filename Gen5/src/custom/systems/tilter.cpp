@@ -25,14 +25,14 @@ namespace tilter{
     }
   }
 
-void returnDown(){
-  if(BtnBackward.isPressed()){
-    controller = Controllers::RETURN;
+  void returnDown(){
+    if(BtnBackward.isPressed()){
+      controller = Controllers::RETURN;
+    }
+    else if(controller == Controllers::RETURN && motor.getActualVelocity() > -5){
+      controller = Controllers::DEINIT;
+    }
   }
-  else if(controller == Controllers::RETURN && motor.getActualVelocity() > -5){
-    controller = Controllers::DEINIT;
-  }
-}
 
 
   void execute()
@@ -110,9 +110,16 @@ void returnDown(){
     void tilter(int pos, int velocity){
       if(motor.getPosition() > pos && velocity > 1){
         velocity = -velocity;
+        while(motor.getPosition() > pos){
+          motor.moveAbsolute(pos,velocity);
+        }
       }
-      motor.moveAbsolute(pos,velocity);
+      else{
+        while(motor.getPosition() < pos){
+          motor.moveAbsolute(pos,velocity);
+        }
 
+      }
     }
   }
 }

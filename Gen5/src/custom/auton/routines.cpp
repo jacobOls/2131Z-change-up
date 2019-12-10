@@ -32,7 +32,7 @@ namespace auton{
   }
 
 
-  void red9(){
+  void red8(){
     startup();
     intake::intakegroup.moveVelocity(-75);
     wait(400);
@@ -53,7 +53,7 @@ namespace auton{
   }
 
 
-  void blue9(){
+  void blue8(){
     startup();
     drive::auton::driving(1000,100);
     drive::auton::turn(-20,-25);

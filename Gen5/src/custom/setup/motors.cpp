@@ -6,7 +6,7 @@ namespace drive{
     okapi::AbstractMotor::encoderUnits::degrees);
     okapi::Motor left_front(8, true, okapi::AbstractMotor::gearset::green,
       okapi::AbstractMotor::encoderUnits::degrees);
-      okapi::Motor right_back(7, true, okapi::AbstractMotor::gearset::green,
+      okapi::Motor right_back(9, true, okapi::AbstractMotor::gearset::green,
         okapi::AbstractMotor::encoderUnits::degrees);
         okapi::Motor right_front(4, false, okapi::AbstractMotor::gearset::green,
           okapi::AbstractMotor::encoderUnits::degrees);

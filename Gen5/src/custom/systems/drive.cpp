@@ -49,6 +49,7 @@ namespace drive{
     }
 
     void turn(int deg, int velocity){
+      resetPositions();
       while(abs(left_front.getPosition()) < deg){
         left_drive.moveVelocity(velocity);
         right_drive.moveVelocity(-velocity);

@@ -34,21 +34,22 @@ namespace auton{
 
   void red9(){
     startup();
-    intake::intakegroup.moveVelocity(-200);
+    intake::intakegroup.moveVelocity(-75);
     wait(400);
-    lift::auton::lift(100,100);
+    intake::auton::intakeOff();
+    lift::auton::lift(200,100);
     intake::auton::intakeOn(200);
-    lift::auton::lift(0,100);
-    // drive::auton::driving(1000,100);
-    // drive::auton::turn(20,-25);
-    // drive::auton::driving(-800,150);
-    // drive::auton::turn(20,25);
-    // drive::auton::driving(1000,100);
-    // drive::auton::driving(-1000,-100);
-    // drive::auton::turn(200,75);
-    // drive::auton::driving(200,100);
-    // intake::auton::intakeOff();
-    // stack();
+    lift::auton::lift(0,50);
+    drive::auton::driving(500,200);
+    drive::auton::turn(100,-25);
+    drive::auton::driving(550,-200);
+    drive::auton::turn(100,25);
+    drive::auton::driving(400,200);
+    drive::auton::driving(-500,-200);
+    drive::auton::turn(420,75);
+    drive::auton::driving(200,100);
+    intake::auton::intakeOff();
+    stack();
   }
 
 

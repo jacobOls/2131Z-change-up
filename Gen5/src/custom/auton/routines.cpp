@@ -20,11 +20,11 @@ namespace auton{
 
 
   void stack(){
-    tilter::auton::tilter(1525,35);
+    tilter::auton::tilter(900,35);
     intake::auton::intakeOn(-37);
-    tilter::auton::tilter(2300, 30);
+    tilter::auton::tilter(1200, 30);
     intake::auton::intakeOff();
-    tilter::auton::tilter(2350, 25);
+    tilter::auton::tilter(1450, 25);
     wait(250);
     intake::auton::intakeOff();
     intake::auton::stackReverseAuton(-100, 30, 25);
@@ -42,10 +42,10 @@ namespace auton{
     lift::auton::lift(0,50);
     drive::auton::driving(500,200);
     drive::auton::turn(95,-25);
-    drive::auton::driving(525,-200);
+    drive::auton::driving(500,-200);
     drive::auton::turn(95,25);
-    drive::auton::driving(400,200);
-    drive::auton::driving(-500,-200);
+    drive::auton::driving(450,200);
+    drive::auton::driving(-550,-200);
     drive::auton::turn(420,75);
     drive::auton::driving(500,100);
     intake::auton::intakeOff();

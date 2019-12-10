@@ -110,12 +110,12 @@ namespace tilter{
     void tilter(int pos, int velocity){
       if(motor.getPosition() > pos && velocity > 1){
         velocity = -velocity;
-        while(motor.getPosition() > pos){
+        while(motor.getPosition() >= pos){
           motor.moveAbsolute(pos,velocity);
         }
       }
       else{
-        while(motor.getPosition() < pos){
+        while(motor.getPosition() <= pos){
           motor.moveAbsolute(pos,velocity);
         }
 

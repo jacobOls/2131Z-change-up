@@ -3,6 +3,7 @@
 #include "custom/setup/motors.hpp"
 #include "custom/systems/drive.hpp"
 #include "custom/systems/intake.hpp"
+#include "custom/systems/lift.hpp"
 
 
 namespace intake
@@ -27,9 +28,16 @@ namespace intake
 
   void stackReverse(){
     if (BtnBackUp.isPressed()){
-      drive::left_drive.moveVelocity(-25);
-      drive::right_drive.moveVelocity(-25);
-      controller = Controllers::MACRO;
+      if(lift::motor.getPosition() < 450){
+        drive::left_drive.moveVelocity(-25);
+        drive::right_drive.moveVelocity(-25);
+        controller = Controllers::MACRO;
+      }
+      else if(lift::motor.getPosition() >= 450){
+        drive::left_drive.moveVelocity(-100);
+        drive::right_drive.moveVelocity(-100);
+        controller = Controllers::MACRO;
+      }
     }
     else if (controller == Controllers::MACRO){
       controller = Controllers::DEINIT;
@@ -105,7 +113,12 @@ namespace intake
       break;
 
       case Controllers::MACRO:
+      if(lift::motor.getPosition() < 450){
       intakegroup.moveVelocity(-35);
+    }
+    else if(lift::motor.getPosition() >= 450){
+      intakegroup.moveVelocity(-100);
+    }
       break;
 
       case Controllers::DEINIT:
@@ -150,7 +163,9 @@ namespace intake
     }
 
     void intakeOff(){
-      intakegroup.moveVelocity(0);
+      if(intakegroup.getActualVelocity() > 0){
+        intakegroup.moveVelocity(0);
+      }
     }
   } // namespace auton
 }

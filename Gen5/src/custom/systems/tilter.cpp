@@ -48,7 +48,7 @@ namespace tilter{
     if(motor.getPosition() > 1684 && controller == Controllers::FORWARD){
       controller = Controllers::DEINIT;
     }
-    if(motor.getPosition() < 15 && controller == Controllers::BACKWARD){
+    if(motor.getPosition() < 50 && controller == Controllers::BACKWARD){
       controller = Controllers::DEINIT;
     }
     switch (controller)

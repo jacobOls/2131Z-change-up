@@ -48,6 +48,16 @@ namespace drive{
       }
     }
 
+    void driveVolt(int distance){
+      resetPositions();
+      while(abs(left_front.getPosition()) < distance){
+        left_drive.moveVoltage(10000);
+        right_drive.moveVoltage(10000);
+      }
+      left_drive.moveVoltage(0);
+      right_drive.moveVoltage(0);
+    }
+
     void turn(int deg, int velocity){
       resetPositions();
       while(abs(left_front.getPosition()) < deg){

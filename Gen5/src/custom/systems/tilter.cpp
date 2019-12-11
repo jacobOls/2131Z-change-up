@@ -54,7 +54,7 @@ namespace tilter{
     if(motor.getPosition() > 1684 && controller == Controllers::FORWARD){
       controller = Controllers::DEINIT;
     }
-    if(controller == Controllers::BACKWARD &&motor.getPosition() <= 100){
+    if(controller == Controllers::BACKWARD &&motor.getPosition() <= 50){
       controller = Controllers::DEINIT;
     }
     switch (controller)
@@ -87,11 +87,7 @@ namespace tilter{
       break;
 
       case Controllers::RETURN:
-      if(motor.getPosition() > 50){
-        motor.moveVelocity(-100);
-      }
-
-
+    motor.moveAbsolute(50,-100);
       break;
 
       case Controllers::DEINIT:
@@ -115,18 +111,18 @@ namespace tilter{
   namespace auton{
 
     void tilter(int pos, int velocity){
-      if(motor.getPosition() > pos && velocity > 1){
-        velocity = -velocity;
-        while(motor.getPosition() >= pos){
-          motor.moveAbsolute(pos,velocity);
-        }
-      }
-      else{
-        while(motor.getPosition() <= pos){
+      // if(motor.getPosition() > pos && velocity > 1){
+      //   velocity = -velocity;
+      //   while(motor.getPosition() >= pos){
+      //     motor.moveAbsolute(pos,velocity);
+      //   }
+      // }
+      // else{
+        while(motor.getPosition() != pos){
           motor.moveAbsolute(pos,velocity);
         }
 
       }
-    }
+
   }
 }

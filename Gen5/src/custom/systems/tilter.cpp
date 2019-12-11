@@ -16,6 +16,12 @@ namespace tilter{
     }
   }
 
+  void calibrate(){
+    if(BtnCal.isPressed()){
+      motor.tarePosition();
+    }
+  }
+
   void tilterDown(){
     if(BtnBackward.isPressed()){
       controller = Controllers::BACKWARD;
@@ -48,7 +54,7 @@ namespace tilter{
     if(motor.getPosition() > 1684 && controller == Controllers::FORWARD){
       controller = Controllers::DEINIT;
     }
-    if(motor.getPosition() < 50 && controller == Controllers::BACKWARD){
+    if(motor.getPosition() < 200 && controller == Controllers::BACKWARD){
       controller = Controllers::DEINIT;
     }
     switch (controller)
@@ -102,6 +108,7 @@ namespace tilter{
     tilterUp();
     tilterDown();
     returnDown();
+    calibrate();
     execute();
   }
 

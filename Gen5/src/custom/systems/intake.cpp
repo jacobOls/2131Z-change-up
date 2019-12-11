@@ -28,14 +28,14 @@ namespace intake
 
   void stackReverse(){
     if (BtnBackUp.isPressed()){
-      if(lift::motor.getPosition() < 450){
+      if(lift::motor.getPosition() < 300){
         drive::left_drive.moveVelocity(-25);
         drive::right_drive.moveVelocity(-25);
         controller = Controllers::MACRO;
       }
-      else if(lift::motor.getPosition() >= 450){
-        drive::left_drive.moveVelocity(-100);
-        drive::right_drive.moveVelocity(-100);
+      else if(lift::motor.getPosition() >= 300){
+        drive::left_drive.moveVelocity(-50);
+        drive::right_drive.moveVelocity(-50);
         controller = Controllers::MACRO;
       }
     }
@@ -113,10 +113,10 @@ namespace intake
       break;
 
       case Controllers::MACRO:
-      if(lift::motor.getPosition() < 450){
+      if(lift::motor.getPosition() < 300){
       intakegroup.moveVelocity(-35);
     }
-    else if(lift::motor.getPosition() >= 450){
+    else if(lift::motor.getPosition() >= 300){
       intakegroup.moveVelocity(-100);
     }
       break;

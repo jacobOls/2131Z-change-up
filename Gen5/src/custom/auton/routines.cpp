@@ -41,12 +41,12 @@ namespace auton{
     lift::auton::lift(200,100);
     intake::intakegroup.moveVelocity(200);
     lift::auton::lift(0,50);
-    drive::auton::driving(15,-100);
+    // drive::auton::driving(15,-100);
     drive::auton::driving(525,200);
     drive::auton::turn(95,-25);
     drive::auton::driving(515,-200);
     drive::auton::turn(100,25);
-    drive::auton::driving(665,110);
+    drive::auton::driving(680,90);
     drive::auton::driving(-550,-200);
     drive::auton::turn(435,75);
     drive::auton::driving(360,150);
@@ -55,13 +55,13 @@ namespace auton{
     //stacking
     tilter::motor.tarePosition();
     intake::auton::intakeOn(-5);
-    tilter::auton::tilter(500,35);
+    tilter::auton::tilter(500,45);
     intake::auton::intakeOn(-50);
-    tilter::auton::tilter(1000, 30);
+    tilter::auton::tilter(1000, 40);
     // intake::auton::intakeOff();
-    tilter::auton::tilter(1200, 25);
-    intake::auton::intakeOff();
-    intake::auton::stackReverseAuton(-100, 40, 25);
+    tilter::auton::tilter(1100, 35);
+    intake::auton::intakeOn(-20);
+    drive::auton::driving(100,-40);
     tilter::auton::tilter(0, -100);
   }
 

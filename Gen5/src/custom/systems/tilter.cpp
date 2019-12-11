@@ -32,7 +32,7 @@ namespace tilter{
   }
 
   void returnDown(){
-    if(BtnBackward.isPressed()){
+    if(BtnReturn.isPressed()){
       controller = Controllers::RETURN;
     }
     else if(controller == Controllers::RETURN && motor.getActualVelocity() > -5){
@@ -54,7 +54,7 @@ namespace tilter{
     if(motor.getPosition() > 1684 && controller == Controllers::FORWARD){
       controller = Controllers::DEINIT;
     }
-    if(motor.getPosition() < 200 && controller == Controllers::BACKWARD){
+    if(controller == Controllers::BACKWARD &&motor.getPosition() <= 100){
       controller = Controllers::DEINIT;
     }
     switch (controller)
@@ -87,7 +87,7 @@ namespace tilter{
       break;
 
       case Controllers::RETURN:
-      if(motor.getPosition() > 5){
+      if(motor.getPosition() > 50){
         motor.moveVelocity(-100);
       }
 

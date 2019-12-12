@@ -36,33 +36,33 @@ namespace auton{
   void red8(){
     startup();
     intake::intakegroup.moveVelocity(-45);
-    wait(400);
+    wait(200);
     intake::auton::intakeOff();
-    lift::auton::lift(200,100);
+    lift::auton::lift(150,100);
     intake::intakegroup.moveVelocity(200);
     lift::auton::lift(0,50);
     // drive::auton::driving(15,-100);
     drive::auton::driving(525,200);
-    drive::auton::turn(95,-25);
-    drive::auton::driving(515,-200);
-    drive::auton::turn(100,25);
-    drive::auton::driving(680,90);
+    drive::auton::turn(95,-45);
+    drive::auton::driving(500,-200);
+    drive::auton::turn(100,45);
+    drive::auton::driving(400,170);
     drive::auton::driving(-550,-200);
-    drive::auton::turn(435,75);
-    drive::auton::driving(360,150);
+    drive::auton::turn(420,75);
+    drive::auton::driving(315,200);
     // drive::auton::driveVolt(100, 6000); volt goes from -12000 to 12000
     intake::intakegroup.moveVelocity(0);
     //stacking
     tilter::motor.tarePosition();
     intake::auton::intakeOn(-5);
-    tilter::auton::tilter(500,45);
+    tilter::auton::tilter(500,80);
     intake::auton::intakeOn(-50);
-    tilter::auton::tilter(1000, 40);
+    tilter::auton::tilter(950, 50);
     // intake::auton::intakeOff();
-    tilter::auton::tilter(1100, 35);
-    intake::auton::intakeOn(-20);
+    // tilter::auton::tilter(1100, 35);
     drive::auton::driving(100,-40);
-    tilter::auton::tilter(0, -100);
+    intake::auton::intakeOn(-20);
+    tilter::auton::tilterDown(0, -100);
   }
 
   void blue8(){

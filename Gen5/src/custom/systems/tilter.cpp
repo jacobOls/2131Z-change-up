@@ -118,11 +118,23 @@ namespace tilter{
       //   }
       // }
       // else{
-        while(motor.getPosition() != pos){
+        while(motor.getPosition() <= pos){
           motor.moveAbsolute(pos,velocity);
+          if(motor.getPosition() > pos){
+            motor.moveVelocity(0);
+            break;
+          }
         }
 
       }
-
+void tilterDown(int pos, int velocity){
+  while(motor.getPosition() >= pos){
+    motor.moveAbsolute(pos,velocity);
+    if(motor.getPosition() < pos){
+      motor.moveVelocity(0);
+      break;
+    }
+  }
+}
   }
 }

@@ -55,7 +55,7 @@ namespace auton{
     //stacking
     tilter::motor.tarePosition();
     intake::auton::intakeOn(-5);
-    tilter::auton::tilter(500,80);
+    tilter::auton::tilter(500,100);
     intake::auton::intakeOn(-50);
     tilter::auton::tilter(950, 50);
     // intake::auton::intakeOff();

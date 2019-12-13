@@ -34,14 +34,14 @@ namespace auton{
 
 
   void red8(){
-    startup();
-    intake::intakegroup.moveVelocity(-45);
+    startup(); //sets positions to 0
+    intake::intakegroup.moveVelocity(-45);//starts deployment
     wait(200);
     intake::auton::intakeOff();
     lift::auton::lift(150,100);
     intake::intakegroup.moveVelocity(200);
     lift::auton::lift(0,50);
-    // drive::auton::driving(15,-100);
+    //finished deploying
     drive::auton::driving(525,200);
     drive::auton::turn(95,-45);
     drive::auton::driving(500,-200);
@@ -50,7 +50,6 @@ namespace auton{
     drive::auton::driving(-550,-200);
     drive::auton::turn(420,75);
     drive::auton::driving(315,200);
-    // drive::auton::driveVolt(100, 6000); volt goes from -12000 to 12000
     intake::intakegroup.moveVelocity(0);
     //stacking
     tilter::motor.tarePosition();
@@ -58,9 +57,7 @@ namespace auton{
     tilter::auton::tilter(500,100);
     intake::auton::intakeOn(-50);
     tilter::auton::tilter(950, 50);
-    // intake::auton::intakeOff();
-    // tilter::auton::tilter(1100, 35);
-    drive::auton::driving(100,-40);
+    drive::auton::driving(100,-40); //stacking down, backing away and finishing;
     intake::auton::intakeOn(-20);
     tilter::auton::tilterDown(0, -100);
   }

@@ -21,15 +21,10 @@ namespace auton{
 
   void stack(){
     tilter::motor.tarePosition();
-    tilter::auton::tilter(900,35);
-    intake::intakegroup.moveVelocity(-37);
-    tilter::auton::tilter(1200, 30);
-    intake::auton::intakeOff();
-    tilter::auton::tilter(1450, 25);
-    wait(250);
-    intake::auton::intakeOff();
-    intake::auton::stackReverseAuton(-100, 30, 25);
-    tilter::auton::tilter(0, -100);
+    intake::auton::intakeOn(-5);
+    tilter::auton::tilter(500,100);
+    intake::auton::intakeOn(-50);
+    tilter::auton::tilter(950, 50);
   }
 
 

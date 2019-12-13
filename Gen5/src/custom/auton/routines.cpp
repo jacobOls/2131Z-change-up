@@ -34,6 +34,7 @@ namespace auton{
 
 
   void red8(){
+    //all commands are distance ,velocity, one int in the () means its only velocity;
     startup(); //sets positions to 0
     intake::intakegroup.moveVelocity(-45);//starts deployment
     wait(200);

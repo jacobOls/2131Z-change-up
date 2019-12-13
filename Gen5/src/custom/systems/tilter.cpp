@@ -79,6 +79,7 @@ namespace tilter{
 
       case Controllers::CALIBRATEDEINIT:
       motor.tarePosition();
+      motor.moveVoltage(0);
       controller = Controllers::DEINIT;
       break;
 

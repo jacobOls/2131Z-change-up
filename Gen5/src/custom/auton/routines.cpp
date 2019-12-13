@@ -57,7 +57,7 @@ namespace auton{
     tilter::auton::tilter(500,100);
     intake::auton::intakeOn(-50);
     tilter::auton::tilter(950, 50);
-    drive::auton::driving(100,-40); //stacking down, backing away and finishing;
+    drive::auton::driving(100,-40); //stacking done, backing away and finishing;
     intake::auton::intakeOn(-20);
     tilter::auton::tilterDown(0, -100);
   }

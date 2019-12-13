@@ -6,6 +6,8 @@ namespace tilter{
     BACKWARD,
     RETURN,
     DEINIT,
+    CALIBRATE,
+    CALIBRATEDEINIT,
     TOUP,
     NONE
   };

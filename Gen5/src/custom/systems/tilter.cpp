@@ -18,7 +18,10 @@ namespace tilter{
 
   void calibrate(){
     if(BtnCal.isPressed()){
-      motor.tarePosition();
+        controller = Controllers::CALIBRATE;
+    }
+    else if(controller == Controllers::CALIBRATE){
+      controller = Controllers::CALIBRATEDEINIT;
     }
   }
 
@@ -54,7 +57,7 @@ namespace tilter{
     if(motor.getPosition() > 1684 && controller == Controllers::FORWARD){
       controller = Controllers::DEINIT;
     }
-    if(controller == Controllers::BACKWARD &&motor.getPosition() <= 50){
+    if(controller == Controllers::BACKWARD &&motor.getPosition() <= 25){
       controller = Controllers::DEINIT;
     }
     switch (controller)
@@ -68,6 +71,15 @@ namespace tilter{
       motor.moveVelocity(-100);
       // intake::intakegroup.moveVelocity(-28);
       // trayLock = false;
+      break;
+
+      case Controllers::CALIBRATE:
+      motor.moveVoltage(-1000);
+      break;
+
+      case Controllers::CALIBRATEDEINIT:
+      motor.tarePosition();
+      controller = Controllers::DEINIT;
       break;
 
       case Controllers::TOUP:

@@ -44,7 +44,7 @@ namespace auton{
     drive::auton::turn(85,85);
     drive::auton::driving(400,200);
     drive::auton::driving(-550,-200);
-    drive::auton::turn(410,150);
+    drive::auton::turn(410,100);
     // intake::auton::intakeOn(-15);
     drive::auton::driving(385,200);
     // drive::auton::driving(200,200);
@@ -62,17 +62,36 @@ namespace auton{
   }
 
   void blue8(){
-    startup();
-    drive::auton::driving(1000,100);
-    drive::auton::turn(-20,-25);
-    drive::auton::driving(-800,150);
-    drive::auton::turn(-20,-25);
-    drive::auton::driving(1000,100);
-    drive::auton::driving(-1000,-100);
-    drive::auton::turn(200,-75);
-    drive::auton::driving(200,100);
+    //all commands are distance ,velocity, one int in the () means its only velocity;
+    startup(); //sets positions to 0
+    intake::intakegroup.moveVelocity(-45);//starts deployment
+    wait(200);
     intake::auton::intakeOff();
-    stack();
+    lift::auton::lift(150,100);
+    intake::intakegroup.moveVelocity(200);
+    lift::auton::lift(0,50);
+    //finished deploying
+    drive::auton::driving(525,200);
+    drive::auton::turn(80,85);
+    drive::auton::driving(440,-200);
+    drive::auton::turn(85,-85);
+    drive::auton::driving(400,200);
+    drive::auton::driving(-550,-200);
+    drive::auton::turn(410,-150);
+    // intake::auton::intakeOn(-15);
+    drive::auton::driving(385,200);
+    // drive::auton::driving(200,200);
+    intake::auton::intakeOn(-35);
+    //stacking
+    tilter::auton::tilter(450,100);
+    intake::auton::intakeOn(-35);
+    tilter::auton::tilter(800, 80);
+    intake::auton::intakeOff();
+    tilter::auton::tilter(920, 80);
+    // wait(250);
+    intake::auton::intakeOn(-25);
+    drive::auton::driving(100,-30);
+    tilter::auton::tilterDown(0, -100);
   }
 
 

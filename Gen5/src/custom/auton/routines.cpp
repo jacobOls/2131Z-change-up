@@ -76,12 +76,12 @@ void red6(){
   intake::intakegroup.moveVelocity(200);
   lift::auton::lift(0,50);
   intake::auton::intakeOn(200);
-  drive::auton::driving(1000,70);
+  drive::auton::driving(1100,70);
   intake::auton::intakeOn(50);
   drive::auton::driving(300,-200);
   drive::auton::turn(360,75);
   intake::auton::intakeOn(-15);
-  drive::auton::driving(100,100);
+  drive::auton::driving(125,100);
   //stacking
   intake::auton::intakeOn(-15);
   tilter::auton::tilter(450,60);

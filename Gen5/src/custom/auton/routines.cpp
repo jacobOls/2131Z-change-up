@@ -39,26 +39,26 @@ namespace auton{
     lift::auton::lift(0,50);
     //finished deploying
     drive::auton::driving(525,200);
-    drive::auton::turn(80,-45);
+    drive::auton::turn(80,-85);
     drive::auton::driving(440,-200);
-    drive::auton::turn(85,45);
+    drive::auton::turn(85,85);
     drive::auton::driving(400,200);
     drive::auton::driving(-550,-200);
-    drive::auton::turn(410,100);
+    drive::auton::turn(410,150);
     // intake::auton::intakeOn(-15);
     drive::auton::driving(385,200);
     // drive::auton::driving(200,200);
-    intake::auton::intakeOn(-15);
+    intake::auton::intakeOn(-35);
     //stacking
-    tilter::auton::tilter(450,35);
-      intake::auton::intakeOn(-35);
-      tilter::auton::tilter(800, 30);
-      intake::auton::intakeOff();
-      tilter::auton::tilter(920, 25);
-      wait(250);
-      intake::auton::intakeOff();
-      intake::auton::stackReverseAuton(-100, 30, 25);
-      tilter::auton::tilterDown(0, -100);
+    tilter::auton::tilter(450,100);
+    intake::auton::intakeOn(-35);
+    tilter::auton::tilter(800, 80);
+    intake::auton::intakeOff();
+    tilter::auton::tilter(920, 80);
+    // wait(250);
+    intake::auton::intakeOn(-25);
+    drive::auton::driving(100,-30);
+    tilter::auton::tilterDown(0, -100);
   }
 
   void blue8(){

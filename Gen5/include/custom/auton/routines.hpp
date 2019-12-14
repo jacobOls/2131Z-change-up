@@ -3,6 +3,7 @@
 namespace auton{
  void red8();
  void red7();
+ void red6();
  void blue8();
  void blue7();
  void skills();

@@ -98,6 +98,52 @@ void red6(){
   tilter::auton::tilterDown(0, -100);
 }
 
+
+void skills(){
+  startup();
+  intake::intakegroup.moveVelocity(-45);//starts deployment
+  wait(200);
+  intake::auton::intakeOff();
+  lift::auton::lift(175,100);
+  intake::intakegroup.moveVelocity(200);
+  lift::auton::lift(0,50);
+  intake::auton::intakeOn(200);
+  drive::auton::driving(1100,70);
+  intake::auton::intakeOn(50);
+  drive::auton::driving(300,-200);
+  drive::auton::turn(360,75);
+  intake::auton::intakeOn(-15);
+  drive::auton::driving(125,100);
+  //stacking
+  intake::auton::intakeOn(-15);
+  tilter::auton::tilter(450,60);
+  intake::auton::intakeOn(-40);
+  tilter::auton::tilter(660, 50);
+  tilter::auton::tilter(750,40);
+  intake::auton::intakeOn(-15);
+  tilter::auton::tilter(850,30);
+  drive::auton::driving(100,-45);
+  intake::auton::intakeOn(-25);
+  // drive::auton::driving(20,-10);
+  // tilter::auton::tilter(900, 15);
+  // wait(250);
+  tilter::auton::tilterDown(0, -100);
+  drive::auton::driving(200,-50);
+  drive::auton::turn(380,-50);
+  intake::auton::intakeOn(200);
+  drive::auton::driving(300,150);
+  // intake::auton::intakeOff();
+  // intake::auton::intakeOn(-25);
+  drive::auton::driving(300,-80);
+  intake::auton::intakeOn(-25);
+  lift::auton::lift(500,100);
+  drive::auton::driving(250,100);
+  // intake::auton::intakeOn(-50);
+  // intake::auton::intakeOn(-50);
+  wait(1000);
+  drive::auton::driving(100,-50);
+}
+
 void blue6(){
   startup();
   intake::intakegroup.moveVelocity(-45);//starts deployment
@@ -213,25 +259,25 @@ void blue5(){
   }
 
 
-  void skills(){
-    intake::auton::intakeOn(200);
-    drive::auton::driving(2000,100);
-    drive::auton::turn(-150,-75);
-    drive::auton::driving(800,100);
-    stack();
-    drive::auton::turn(-300,150);
-    drive::auton::driving(2000,100);
-    drive::auton::turn(200,150);
-    drive::auton::driving(500,100);
-    stack();
-    drive::auton::turn(-200,-80);
-    drive::auton::driving(800,100);
-    drive::auton::driving(-100,-100);
-    drive::auton::turn(100,50);
-    drive::auton::driving(400,80);
-    lift::auton::lift(500,100);
-    intake::auton::intakeOn(-25);
-  }
+  // void skills(){
+  //   intake::auton::intakeOn(200);
+  //   drive::auton::driving(2000,100);
+  //   drive::auton::turn(-150,-75);
+  //   drive::auton::driving(800,100);
+  //   stack();
+  //   drive::auton::turn(-300,150);
+  //   drive::auton::driving(2000,100);
+  //   drive::auton::turn(200,150);
+  //   drive::auton::driving(500,100);
+  //   stack();
+  //   drive::auton::turn(-200,-80);
+  //   drive::auton::driving(800,100);
+  //   drive::auton::driving(-100,-100);
+  //   drive::auton::turn(100,50);
+  //   drive::auton::driving(400,80);
+  //   lift::auton::lift(500,100);
+  //   intake::auton::intakeOn(-25);
+  // }
 
 
 }

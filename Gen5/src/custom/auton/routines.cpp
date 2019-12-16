@@ -104,7 +104,7 @@ void skills(){
   intake::intakegroup.moveVelocity(-45);//starts deployment
   wait(200);
   intake::auton::intakeOff();
-  lift::auton::lift(175,100);
+  lift::auton::lift(225,100);
   intake::intakegroup.moveVelocity(200);
   lift::auton::lift(0,50);
   //finished deploying
@@ -133,7 +133,7 @@ void skills(){
   drive::auton::driving(100,-45);
   intake::auton::intakeOn(-25);
   tilter::auton::tilterDown(0, -100);
-  drive::auton::driving(200,-50);
+  drive::auton::driving(350,-50);
   drive::auton::turn(420,-50);
   intake::auton::intakeOn(200);
   drive::auton::driving(300,150);

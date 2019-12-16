@@ -111,28 +111,38 @@ void skills(){
   drive::auton::driving(525,200);
   drive::auton::turn(50,-70);
   intake::auton::intakeOn(50);
-  drive::auton::driving(435,-200);
+  drive::auton::driving(455,-200);
   drive::auton::turn(55,70);
   intake::auton::intakeOn(200);
-  drive::auton::driving(800,75);
+  drive::auton::driving(850,75);
   drive::auton::driving(-450,-100);
   drive::auton::turn(375,125);
   intake::auton::intakeOn(50);
-  drive::auton::driving(370,200);
+  drive::auton::driving(390,200);
   intake::auton::intakeOn(-35);
   // drive::auton::driving(200,200);
   //stacking
-  tilter::auton::tilter(450,100);
+  intake::auton::intakeOn(-15);
+  tilter::auton::tilter(450,60);
   intake::auton::intakeOn(-40);
-  tilter::auton::tilter(800, 100);
-  intake::auton::intakeOff();
-  tilter::auton::tilter(850,100);
-  drive::auton::driving(20,-10);
-  tilter::auton::tilter(920, 90);
-  // wait(250);
-  intake::auton::intakeOn(-25);
+  tilter::auton::tilter(660, 50);
+  tilter::auton::tilter(750,40);
+  intake::auton::intakeOn(-15);
+  tilter::auton::tilter(850,30);
+  //end stack
   drive::auton::driving(100,-45);
+  intake::auton::intakeOn(-25);
   tilter::auton::tilterDown(0, -100);
+  drive::auton::driving(200,-50);
+  drive::auton::turn(420,-50);
+  intake::auton::intakeOn(200);
+  drive::auton::driving(300,150);
+  drive::auton::driving(300,-80);
+  intake::auton::intakeOn(-25);
+  lift::auton::lift(500,100);
+  drive::auton::driving(250,100);
+  wait(1000);
+  drive::auton::driving(100,-50);
 }
 
 void blue6(){

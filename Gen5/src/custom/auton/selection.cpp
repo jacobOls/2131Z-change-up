@@ -59,7 +59,7 @@ namespace auton{
   void execute(){
     switch (positon){
       case Positons::FRONTRED:
-      red6();
+      skills();
       break;
 
       case Positons::BACKRED:

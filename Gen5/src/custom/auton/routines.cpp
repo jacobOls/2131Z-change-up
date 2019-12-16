@@ -100,7 +100,39 @@ void red6(){
 
 
 void skills(){
-
+  startup(); //sets positions to 0
+  intake::intakegroup.moveVelocity(-45);//starts deployment
+  wait(200);
+  intake::auton::intakeOff();
+  lift::auton::lift(175,100);
+  intake::intakegroup.moveVelocity(200);
+  lift::auton::lift(0,50);
+  //finished deploying
+  drive::auton::driving(525,200);
+  drive::auton::turn(50,-70);
+  intake::auton::intakeOn(50);
+  drive::auton::driving(435,-200);
+  drive::auton::turn(55,70);
+  intake::auton::intakeOn(200);
+  drive::auton::driving(800,75);
+  drive::auton::driving(-450,-100);
+  drive::auton::turn(375,125);
+  intake::auton::intakeOn(50);
+  drive::auton::driving(370,200);
+  intake::auton::intakeOn(-35);
+  // drive::auton::driving(200,200);
+  //stacking
+  tilter::auton::tilter(450,100);
+  intake::auton::intakeOn(-40);
+  tilter::auton::tilter(800, 100);
+  intake::auton::intakeOff();
+  tilter::auton::tilter(850,100);
+  drive::auton::driving(20,-10);
+  tilter::auton::tilter(920, 90);
+  // wait(250);
+  intake::auton::intakeOn(-25);
+  drive::auton::driving(100,-45);
+  tilter::auton::tilterDown(0, -100);
 }
 
 void blue6(){

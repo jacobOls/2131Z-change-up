@@ -109,10 +109,12 @@ void skills(){
   lift::auton::lift(0,50);
   //finished deploying
   drive::auton::driving(525,200);
+  //start z-turn
   drive::auton::turn(50,-70);
   intake::auton::intakeOn(50);
   drive::auton::driving(455,-200);
   drive::auton::turn(55,70);
+  //end z-turn
   intake::auton::intakeOn(200);
   drive::auton::driving(850,75);
   drive::auton::driving(-450,-100);

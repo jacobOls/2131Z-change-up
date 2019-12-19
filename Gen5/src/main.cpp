@@ -6,6 +6,9 @@
 #include "custom/setup/motors.hpp"
 #include "custom/auton/selection.hpp"
 #include "custom/auton.hpp"
+#include "custom/setup/controller.hpp"
+#include <string>
+#include <iostream>
 /**
 
 */
@@ -24,8 +27,10 @@ void initialize() {
 	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	lift::motor.tarePosition();
 	tilter::motor.tarePosition();
-	auton::screenInit();
-		std::cout << "initialize " << std::endl;
+	pros::lcd::initialize();
+
+	// auton::screenInit();
+	// std::cout << "initialize " << std::endl;
 }
 
 /**
@@ -34,8 +39,8 @@ void initialize() {
 * the robot is enabled, this task will exit.
 */
 void disabled() {
-	auton::autonTask.suspend();
-	auton::set_auton(false);
+	// auton::autonTask.suspend();
+	// auton::set_auton(false);
 }
 
 /**
@@ -62,16 +67,16 @@ void competition_initialize() {
 * will be stopped. Re-enabling the robot will restart the task, not re-start it
 * from where it left off.
 */
-namespace auton{
-	pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
-	TASK_STACK_DEPTH_DEFAULT, "AutonTask");
-}
+// namespace auton{
+// pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
+// TASK_STACK_DEPTH_DEFAULT, "AutonTask");
+// }
 
 void autonomous() {
-		auton::screenInit();
-	auton::set_auton(true);
-	auton::autonTask.resume();
-	auton::execute();
+	// auton::screenInit();
+	// auton::autonTask.resume();
+	// auton::set_auton(true);
+	// auton::execute();
 }
 
 /**
@@ -87,6 +92,17 @@ void autonomous() {
 * operator control task will be stopped. Re-enabling the robot will restart the
 * task, not resume it from where it left off.
 */
+
+int temp(){
+	return intake::left_motor.getTemperature();
+}
+int temp2(){
+return	intake::right_motor.getTemperature();
+}
+
+std::string temperature = std::to_string(temp());
+std::string temperature2 = std::to_string(temp2());
+
 void opcontrol() {
 
 	while (2131 == 2131){
@@ -94,6 +110,8 @@ void opcontrol() {
 		intake::init();
 		lift::init();
 		tilter::init();
+		pros::lcd::set_text(1,temperature );
+		pros::lcd::set_text(2,temperature2 );
 		pros::delay(20);
 	}
 }

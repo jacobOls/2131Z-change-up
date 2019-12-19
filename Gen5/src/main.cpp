@@ -93,25 +93,30 @@ void autonomous() {
 * task, not resume it from where it left off.
 */
 
-int temp(){
-	return intake::left_motor.getTemperature();
-}
-int temp2(){
-return	intake::right_motor.getTemperature();
-}
+int temp;
+int temp2;
 
-std::string temperature = std::to_string(temp());
-std::string temperature2 = std::to_string(temp2());
-
+std::string temperature;
+std::string temperature2;
+void tempcheck(){
+	temp = intake::left_motor.getTemperature();
+	temp2 = intake::right_motor.getTemperature();
+ std::string temperature = std::to_string(temp);
+ std::string temperature2 = std::to_string(temp2);
+ pros::lcd::set_text(1,temperature );
+ pros::lcd::set_text(2,temperature2 );
+ pros::delay(100);
+ // pros::lcd::clear_line(1);
+ // pros::lcd::clear_line(2);
+}
 void opcontrol() {
 
 	while (2131 == 2131){
+		tempcheck();
 		drive::drive();
 		intake::init();
 		lift::init();
 		tilter::init();
-		pros::lcd::set_text(1,temperature );
-		pros::lcd::set_text(2,temperature2 );
 		pros::delay(20);
 	}
 }

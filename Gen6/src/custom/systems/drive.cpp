@@ -6,47 +6,22 @@
 #include "custom/setup/ramping.hpp"
 
 namespace drive{
-  int lStick(){
-    return std::abs(master.getAnalog(okapi::ControllerAnalog::leftY));
-  }
-
-  int rStick(){
-    return std::abs(master.getAnalog(okapi::ControllerAnalog::rightY));
-  }
-  int height(){
-    return std::abs(lift::motor.getPosition()/500);
-  }
+int rightVel;
+int leftVel;
 
   void userDrive(){
-    if(lift::motor.getPosition() < 300){
-      // if(lStick() < 0.5){
-        // left_drive.moveVelocity(0);
-      // }
-      // else{
-        left_drive.moveVelocity(lStick()*200);
-        right_drive.moveVelocity(rStick()*200);
-      // }
+    // if (std::abs(master.getAnalog(okapi::ControllerAnalog::leftY)) < 0.05)
+       // leftVel = 0;
+       // else
+       leftVel = (master.getAnalog(ControllerAnalog::leftY) * abs(200));
 
-//       if(rStick() < 0.5){
-// right_drive.moveVelocity(0);
-//       }
-//       else{
-      }
-    // }
-    // else{
-    //   if(lStick() < 0.5){
-    //     left_drive.moveVelocity(0);
-    //   }
-    //   else{
-    //     left_drive.moveVelocity(lStick()*200/height());
-    //   }
-    //   if(rStick() < 0.5){
-    //     right_drive.moveVelocity(0);
-    //   }
-    //   else{
-    //     right_drive.moveVelocity(rStick()*200/height());
-    //   }
-    // }
+       // if (std::abs(master.getAnalog(okapi::ControllerAnalog::rightY)) < 0.05)
+       // rightVel = 0;
+       // else
+       rightVel = (master.getAnalog(ControllerAnalog::rightY) * abs(200));
+
+       right_drive.moveVelocity(rightVel);
+       left_drive.moveVelocity(leftVel);
   }
 
   namespace auton{

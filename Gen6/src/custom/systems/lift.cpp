@@ -34,7 +34,7 @@ namespace lift{
       break;
 
       case Controllers::DOWN:
-      motor.moveVelocity(100);
+      motor.moveVelocity(-100);
 
       break;
       case Controllers::DEINIT:

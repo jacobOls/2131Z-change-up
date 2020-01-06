@@ -13,11 +13,11 @@ int leftVel;
     // if (std::abs(master.getAnalog(okapi::ControllerAnalog::leftY)) < 0.05)
        // leftVel = 0;
        // else
-       leftVel = (master.getAnalog(ControllerAnalog::leftY) * abs(200));
 
        // if (std::abs(master.getAnalog(okapi::ControllerAnalog::rightY)) < 0.05)
        // rightVel = 0;
        // else
+       leftVel = (master.getAnalog(ControllerAnalog::leftY) * abs(200));
        rightVel = (master.getAnalog(ControllerAnalog::rightY) * abs(200));
 
        right_drive.moveVelocity(rightVel);

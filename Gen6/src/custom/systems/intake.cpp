@@ -23,8 +23,7 @@ namespace intake{
 
     void stackReverse(){
       if (BtnBackUp.isPressed()){
-        drive::left_drive.moveVelocity(-25);
-        drive::right_drive.moveVelocity(-25);
+
         controller = Controllers::MACRO;
       }
       else if (controller == Controllers::MACRO){
@@ -101,6 +100,8 @@ namespace intake{
         break;
 
         case Controllers::MACRO:
+        drive::left_drive.moveVelocity(-25);
+        drive::right_drive.moveVelocity(-25);
         intakegroup.moveVelocity(-35);
         break;
 

@@ -21,7 +21,13 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-
+	tilter::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	intake::right_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	intake::left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	intake::intakegroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+	lift::motor.tarePosition();
+	tilter::motor.tarePosition();
 }
 
 /**

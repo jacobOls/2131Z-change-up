@@ -8,6 +8,7 @@ namespace intake{
   extern okapi::ControllerButton BtnRight;
   extern okapi::ControllerButton BtnLeft;
   extern okapi::ControllerButton BtnBackUp;
+  extern okapi::ControllerButton BtnSlowOut;
 } // namespace intake
 namespace drive{
   extern okapi::ControllerButton BtnHold;

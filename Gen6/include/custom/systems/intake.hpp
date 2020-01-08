@@ -9,6 +9,7 @@ namespace intake{
     SPINL,
     DEINIT,
     MACRO,
+    SLOWOUT,
     NONE
   };
   void init(void);

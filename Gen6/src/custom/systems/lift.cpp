@@ -25,7 +25,9 @@ namespace lift{
 
   void pulse(){
     motor.moveVelocity(-125);
-    pros::delay(100);
+    pros::delay(300);
+    motor.moveVelocity(125);
+    pros::delay(300);
     motor.moveVelocity(0);
   }
 

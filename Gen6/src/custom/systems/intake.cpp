@@ -65,6 +65,16 @@ namespace intake
     }
   }
 
+
+  void slow(){
+    if (BtnSlowOut.isPressed()){
+      controller = Controllers::SLOWOUT;
+    }
+    else if (controller == Controllers::SLOWOUT){
+      controller = Controllers::DEINIT;
+    }
+  }
+
   void execute(){
     switch (controller){
 
@@ -111,6 +121,10 @@ namespace intake
       // drive::right_drive.moveVelocity(-25);
       break;
 
+      case Controllers::SLOWOUT:
+      intakegroup.moveVelocity(-35);
+      break;
+
       case Controllers::DEINIT:
       intakegroup.moveVelocity(0);
       slowOut = false;
@@ -129,6 +143,7 @@ namespace intake
     spinL();
     execute();
     stackReverse();
+    slow();
   }
   namespace auton{
 

@@ -22,6 +22,16 @@ namespace drive{
     right_drive.moveVelocity(rightVel);
     left_drive.moveVelocity(leftVel);
   }
+  void straightIntake(){
+    if(tilter::BtnCal.isPressed()){
+      left_drive.moveVelocity(200);
+      right_drive.moveVelocity(200);
+      intake::intakegroup.moveVelocity(200);
+    }
+    else{
+      
+    }
+  }
   namespace auton{
 
     void resetPositions(){
@@ -29,6 +39,8 @@ namespace drive{
       right_drive.tarePosition();
 
     }
+
+
 
     void driving(int distance, int velocity)
     {

@@ -2,7 +2,7 @@
 #define DRIVE_HPP
 namespace drive{
 void drive(void);
-
+void straightIntake(void);
 namespace auton{
 void driving(int distance, int speed);
 void turn(int deg, int velocity);

@@ -114,6 +114,7 @@ void opcontrol() {
 	while (2131 == 2131){
 		tempcheck();
 		drive::drive();
+		drive::straightIntake();
 		intake::init();
 		lift::init();
 		tilter::init();

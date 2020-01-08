@@ -14,7 +14,7 @@ if(abs(master.getAnalog(ControllerAnalog::leftY)) > 0 || abs(master.getAnalog(Co
   Controllers controller = Controllers::DRIVE;
 }
 else if(controller == Controllers::DRIVE && abs(master.getAnalog(ControllerAnalog::leftY)) == 0 && abs(master.getAnalog(ControllerAnalog::rightY)) == 0 ){
-  Controllers controller = Controllers::DRIVE;
+  Controllers controller = Controllers::DEINIT;
 }
 }
 
@@ -28,7 +28,15 @@ switch(controller){
   left_drive.moveVelocity(leftVel);
   break;
 
-  case Controllers::NONE:
+
+case Controllers::NONE:
+  break;
+
+
+  case Controllers::DEINIT:
+  right_drive.moveVelocity(0);
+  left_drive.moveVelocity(0);
+  Controllers controller = Controllers::NONE;
   break;
 }
 }

@@ -5,7 +5,8 @@ namespace drive{
   void userDrive(void);
   enum class Controllers{
 DRIVE,
-NONE,
+DEINIT,
+NONE
   };
   namespace auton{
     void drive(int distance, int velocity);

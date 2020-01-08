@@ -3,7 +3,10 @@
 
 namespace drive{
   void userDrive(void);
-
+  enum class Controllers{
+DRIVE,
+NONE,
+  };
   namespace auton{
     void drive(int distance, int velocity);
     void turn(int deg, int velocity);

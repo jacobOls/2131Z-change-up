@@ -8,21 +8,43 @@
 namespace drive{
 int rightVel;
 int leftVel;
+  Controllers controller = Controllers::NONE;
+void driveU(){
+if(abs(master.getAnalog(ControllerAnalog::leftY)) > 0 || abs(master.getAnalog(ControllerAnalog::rightY)) > 0){
+  Controllers controller = Controllers::DRIVE;
+}
+else if(controller == Controllers::DRIVE && abs(master.getAnalog(ControllerAnalog::leftY)) == 0 && abs(master.getAnalog(ControllerAnalog::rightY)) == 0 ){
+  Controllers controller = Controllers::DRIVE;
+}
+}
 
-  void userDrive(){
-    // if (std::abs(master.getAnalog(okapi::ControllerAnalog::leftY)) < 0.05)
-       // leftVel = 0;
-       // else
+void execute(){
+switch(controller){
+  case Controllers::DRIVE:
+  leftVel = (master.getAnalog(ControllerAnalog::leftY) * abs(200));
+  rightVel = (master.getAnalog(ControllerAnalog::rightY) * abs(200));
 
-       // if (std::abs(master.getAnalog(okapi::ControllerAnalog::rightY)) < 0.05)
-       // rightVel = 0;
-       // else
-       leftVel = (master.getAnalog(ControllerAnalog::leftY) * abs(200));
-       rightVel = (master.getAnalog(ControllerAnalog::rightY) * abs(200));
+  right_drive.moveVelocity(rightVel);
+  left_drive.moveVelocity(leftVel);
+  break;
 
-       right_drive.moveVelocity(rightVel);
-       left_drive.moveVelocity(leftVel);
-  }
+  case Controllers::NONE:
+  break;
+}
+}
+void userDrive(){
+  execute();
+  driveU();
+
+}
+
+
+
+
+
+
+
+
 
   namespace auton{
 

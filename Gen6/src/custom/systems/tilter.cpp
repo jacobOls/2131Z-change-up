@@ -33,7 +33,7 @@ namespace tilter{
     // {
     //   controller = Controllers::DEINIT;
     // }
-    if(motor.getPosition() > 1800 && controller == Controllers::FORWARD){
+    if(motor.getPosition() > 1750 && controller == Controllers::FORWARD){
       controller = Controllers::DEINIT;
     }
     if(motor.getPosition() < 5 && controller == Controllers::BACKWARD){

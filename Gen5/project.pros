@@ -275,8 +275,8 @@
         "upload_options": {
             "compress_bin": true,
             "description": "Created with PROS",
-            "remote_name": "straight driving cause errol cant drive",
-            "slot": 2
+            "remote_name": "Gen5",
+            "slot": 1
         }
     }
 }

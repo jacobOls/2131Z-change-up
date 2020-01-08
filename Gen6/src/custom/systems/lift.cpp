@@ -23,6 +23,11 @@ namespace lift{
     }
   }
 
+  void pulse(){
+    motor.moveVelocity(-125);
+    pros::delay(100);
+    motor.moveVelocity(0);
+  }
 
   void execute(){
     if(motor.getPosition() < 5 && controller == Controllers::DOWN){

@@ -6,46 +6,51 @@
 #include "custom/setup/ramping.hpp"
 
 namespace drive{
-int rightVel;
-int leftVel;
+  int rightVel;
+  int leftVel;
   Controllers controller = Controllers::NONE;
-void driveU(){
-if(abs(master.getAnalog(ControllerAnalog::leftY)) > 0 || abs(master.getAnalog(ControllerAnalog::rightY)) > 0){
-  Controllers controller = Controllers::DRIVE;
-}
-else if(controller == Controllers::DRIVE && abs(master.getAnalog(ControllerAnalog::leftY)) == 0 && abs(master.getAnalog(ControllerAnalog::rightY)) == 0 ){
-  Controllers controller = Controllers::DEINIT;
-}
-}
+  void userDrive(){
+    if(intake::BtnBackUp.isPressed()){
+      right_drive.moveVelocity(-25);
+      left_drive.moveVelocity(-25);
+    }
+    else{
+      leftVel = (master.getAnalog(ControllerAnalog::leftY) * abs(200));
+      rightVel = (master.getAnalog(ControllerAnalog::rightY) * abs(200));
 
-void execute(){
-switch(controller){
-  case Controllers::DRIVE:
-  leftVel = (master.getAnalog(ControllerAnalog::leftY) * abs(200));
-  rightVel = (master.getAnalog(ControllerAnalog::rightY) * abs(200));
+      right_drive.moveVelocity(rightVel);
+      left_drive.moveVelocity(leftVel);
+    }
+  }
+  
+  void execute(){
+    switch(controller){
+      case Controllers::DRIVE:
+      leftVel = (master.getAnalog(ControllerAnalog::leftY) * abs(200));
+      rightVel = (master.getAnalog(ControllerAnalog::rightY) * abs(200));
 
-  right_drive.moveVelocity(rightVel);
-  left_drive.moveVelocity(leftVel);
-  break;
+      right_drive.moveVelocity(rightVel);
+      left_drive.moveVelocity(leftVel);
+      break;
 
 
-case Controllers::NONE:
-  break;
+      case Controllers::NONE:
+      break;
 
 
-  case Controllers::DEINIT:
-  right_drive.moveVelocity(0);
-  left_drive.moveVelocity(0);
-  Controllers controller = Controllers::NONE;
-  break;
-}
-}
+      case Controllers::DEINIT:
+      right_drive.moveVelocity(0);
+      left_drive.moveVelocity(0);
+      Controllers controller = Controllers::NONE;
+      break;
+    }
+  }
 
-void userDrive(){
-  execute();
-  driveU();
+  // void userDrive(){
+  //   execute();
+  //   driveU();
 
-}
+
 
 
 

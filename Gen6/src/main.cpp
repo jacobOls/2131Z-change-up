@@ -28,6 +28,7 @@ void initialize() {
 	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	lift::motor.tarePosition();
 	tilter::motor.tarePosition();
+	lift::pulse();
 }
 
 /**

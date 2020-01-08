@@ -11,6 +11,7 @@ namespace lift{
   void init(void);
   void execute(void);
   void init(void);
+  void pulse(void);
   namespace auton{
     void lift(double pos, double velocity);
   }

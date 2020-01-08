@@ -107,8 +107,8 @@ namespace intake
       case Controllers::MACRO:
 
       intakegroup.moveVelocity(-35);
-      drive::left_drive.moveVelocity(-25);
-      drive::right_drive.moveVelocity(-25);
+      // drive::left_drive.moveVelocity(-25);
+      // drive::right_drive.moveVelocity(-25);
       break;
 
       case Controllers::DEINIT:

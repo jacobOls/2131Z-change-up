@@ -19,13 +19,13 @@ namespace drive{
         leftVel = 0;
       }
       else{
-        leftVel = (master.getAnalog(ControllerAnalog::leftY) * abs(200));
+        leftVel = (master.getAnalog(ControllerAnalog::leftY) * 200);
       }
       //  if(abs(master.getAnalog(ControllerAnalog::leftX)) < 0.05){
       //   // rightVel = 0;
       // }
       // else{
-        rightVel = (master.getAnalog(ControllerAnalog::rightY) * abs(200));
+        rightVel = (master.getAnalog(ControllerAnalog::rightY) * 200);
       // }
 
       right_drive.moveVelocity(rightVel);

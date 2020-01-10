@@ -15,14 +15,24 @@ namespace drive{
       left_drive.moveVelocity(-25);
     }
     else{
-      leftVel = (master.getAnalog(ControllerAnalog::leftY) * abs(200));
-      rightVel = (master.getAnalog(ControllerAnalog::rightY) * abs(200));
+      if(abs(master.getAnalog(ControllerAnalog::leftY)) < 0.05){
+        leftVel = 0;
+      }
+      else{
+        leftVel = (master.getAnalog(ControllerAnalog::leftY) * abs(200));
+      }
+      if(abs(master.getAnalog(ControllerAnalog::leftX)) < 0.05){
+        rightVel = 0;
+      }
+      else{
+        rightVel = (master.getAnalog(ControllerAnalog::rightY) * abs(200));
+      }
 
       right_drive.moveVelocity(rightVel);
       left_drive.moveVelocity(leftVel);
     }
   }
-  
+
   void execute(){
     switch(controller){
       case Controllers::DRIVE:

@@ -15,7 +15,7 @@ namespace drive{
       left_drive.moveVelocity(-25);
     }
     else{
-      if(master.getAnalog(ControllerAnalog::rightY) > 0.05 && master.getAnalog(ControllerAnalog::rightY) < 0 && master.getAnalog(ControllerAnalog::leftY) > 0){
+      if(master.getAnalog(ControllerAnalog::rightY) < 0.05 && master.getAnalog(ControllerAnalog::rightY) > 0 && master.getAnalog(ControllerAnalog::leftY) >= 0){
         leftVel = 0;
       }
       else{

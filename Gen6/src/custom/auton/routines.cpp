@@ -16,28 +16,45 @@ namespace auton{
     tilter::motor.tarePosition();
     drive::auton::resetPos();
     lift::pulse();
-    lift::auton::lift(500,200);
+    // lift::auton::lift(1000,200);
     intake::auton::intakeOn(-200);
     wait(200);
     intake::auton::intakeOn(200);
     wait(500);
-    lift::auton::lift(0,200);
+    // lift::auton::lift(0,200);
   }
+  //
+  // void redBig(){
+  //   startup();
+  //   drive::auton::drive(325,125);
+  //   intake::auton::intakeOff();
+  //   wait(300);
+  //   lift::auton::lift(2750,200);
+  //   intake::auton::intakeOn(200);
+  //   drive::auton::drive(40,50);
+  //   lift::auton::lift(0,200);
+  //   drive::auton::drive(75,-125);
+  //   drive::auton::turn(150,-100);
+  // }
 
-  void redBig(){
-    startup();
-    drive::auton::drive(325,125);
-    intake::auton::intakeOff();
-    wait(300);
-    lift::auton::lift(2750,200);
-    intake::auton::intakeOn(200);
-    drive::auton::drive(40,50);
-    lift::auton::lift(0,200);
-    drive::auton::drive(75,-125);
-    drive::auton::turn(150,-100);
-  }
+void redBig(){
+startup();
+drive::auton::drive(30,50);
+drive::auton::turn(40,-50);
+drive::auton::drive(125,100);
+drive::auton::turn(25,50);
+drive::auton::drive(135,125);
+  intake::auton::intakeOff();
+  wait(300);
+  lift::auton::lift(2750,200);
+  intake::auton::intakeOn(200);
+  drive::auton::drive(40,50);
+  lift::auton::lift(0,200);
+  drive::auton::drive(75,-125);
+  drive::auton::turn(150,-100);
 
 
+}
 
 
 

@@ -15,24 +15,26 @@ namespace auton{
     lift::motor.tarePosition();
     tilter::motor.tarePosition();
     drive::auton::resetPos();
+    lift::pulse();
+    lift::auton::lift(500,200);
     intake::auton::intakeOn(-200);
     wait(200);
     intake::auton::intakeOn(200);
     wait(500);
+    lift::auton::lift(0,200);
   }
 
   void redBig(){
     startup();
-    lift::pulse();
     drive::auton::drive(325,125);
     intake::auton::intakeOff();
     wait(300);
-    lift::auton::lift(2650,200);
+    lift::auton::lift(2750,200);
     intake::auton::intakeOn(200);
-    drive::auton::drive(50,50);
+    drive::auton::drive(40,50);
     lift::auton::lift(0,200);
     drive::auton::drive(75,-125);
-    drive::auton::turn(150,100);
+    drive::auton::turn(150,-100);
   }
 
 

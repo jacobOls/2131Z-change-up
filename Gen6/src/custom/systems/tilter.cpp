@@ -99,12 +99,25 @@ namespace tilter{
 
   namespace auton{
 
-    void tilter(int pos, int velocity){
-      if(motor.getPosition() > pos && velocity > 1){
-        velocity = -velocity;
-      }
-      motor.moveAbsolute(pos,velocity);
+        void tilter(int pos, int velocity){
 
+            while(motor.getPosition() <= pos){
+              motor.moveAbsolute(pos,velocity);
+              if(motor.getPosition() > pos){
+                motor.moveVelocity(0);
+                break;
+              }
+            }
+
+          }
+    void tilterDown(int pos, int velocity){
+      while(motor.getPosition() >= pos){
+        motor.moveAbsolute(pos,velocity);
+        if(motor.getPosition() < pos){
+          motor.moveVelocity(0);
+          break;
+        }
+      }
     }
   }
 }

@@ -67,10 +67,16 @@ namespace lift{
     void lift(int pos, int velocity){
       if(motor.getPosition() > pos && velocity > 1){
         velocity = -velocity;
+        while(motor.getPosition() > pos){
+          motor.moveAbsolute(pos,velocity);
+        }
       }
-      motor.moveAbsolute(pos,velocity);
+      else{
+        while(motor.getPosition() < pos){
+          motor.moveAbsolute(pos,velocity);
+        }
+      }
+
     }
-
-
   }
 }

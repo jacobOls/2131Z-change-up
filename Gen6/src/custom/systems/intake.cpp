@@ -161,7 +161,7 @@ namespace intake
       // drive::auton::resetPositions();
     }
 
-    bool intakeRunning = false;
+    // bool intakeRunning = false;
 
     void intakeOn(double targetVelocity){
       intakegroup.moveVelocity(targetVelocity);

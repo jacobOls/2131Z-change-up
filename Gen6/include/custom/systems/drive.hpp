@@ -11,6 +11,7 @@ NONE
   namespace auton{
     void drive(int distance, int velocity);
     void turn(int deg, int velocity);
+    void resetPos(void);
   }
 }
 

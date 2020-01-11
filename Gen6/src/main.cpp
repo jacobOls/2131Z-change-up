@@ -6,6 +6,8 @@
 #include "custom/setup/motors.hpp"
 #include "custom/setup/controller.hpp"
 #include "custom/setup/ramping.hpp"
+#include "custom/auton/selection.hpp"
+#include "custom/auton.hpp"
 /**
  * A callback function for LLEMU's center button.
  *
@@ -29,6 +31,9 @@ void initialize() {
 	lift::motor.tarePosition();
 	tilter::motor.tarePosition();
 	lift::pulse();
+
+	auton::screenInit();
+std::cout << "initialize " << std::endl;
 }
 
 /**
@@ -36,7 +41,10 @@ void initialize() {
  * the VEX Competition Switch, following either autonomous or opcontrol. When
  * the robot is enabled, this task will exit.
  */
-void disabled() {}
+void disabled() {
+	auton::autonTask.suspend();
+auton::set_auton(false);
+}
 
 /**
  * Runs after initialize(), and before autonomous when connected to the Field
@@ -60,7 +68,19 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+
+ namespace auton{
+ pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
+ TASK_STACK_DEPTH_DEFAULT, "AutonTask");
+ }
+
+
+void autonomous() {
+	auton::screenInit();
+auton::autonTask.resume();
+auton::set_auton(true);
+auton::execute();
+}
 
 /**
  * Runs the operator control code. This function will be started in its own task

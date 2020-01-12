@@ -3,7 +3,7 @@
 
 namespace auton{
 void redBig();
-
+void blueBig();
   
 }
 

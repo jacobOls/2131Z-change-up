@@ -79,6 +79,7 @@ namespace drive{
 
     void drive(int distance, int velocity){
       resetPos();
+      distance=abs(distance);
       while(abs(left_front.getPosition()) < distance || abs(right_front.getPosition()) < distance){
         left_drive.moveVelocity(LEFT_DRIVE.calculate(velocity));
         right_drive.moveVelocity(RIGHT_DRIVE.calculate(velocity));
@@ -102,6 +103,8 @@ namespace drive{
         right_drive.moveVelocity(-velocity);
 
       }
+      left_drive.moveVelocity(0);
+      right_drive.moveVelocity(0);
     }
   }
 }

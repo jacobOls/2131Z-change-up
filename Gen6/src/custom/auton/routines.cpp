@@ -37,7 +37,22 @@ namespace auton{
   //   drive::auton::turn(150,-100);
   // }
 
-  void redBig(){
+void redBig(){
+  startup();
+  drive::auton::drive(30,50);
+  drive::auton::turn(40,-50);
+  drive::auton::drive(126,100);
+  drive::auton::turn(30,50);
+  intake::auton::intakeOff();
+  lift::motor.moveAbsolute(2750,200);
+  drive::auton::drive(115,200);
+  intake::auton::intakeOn(200);
+  lift::auton::lift(0,-200);
+}
+
+
+
+  void redBigLOL(){
     startup();
     drive::auton::drive(30,50);
     drive::auton::turn(40,-50);

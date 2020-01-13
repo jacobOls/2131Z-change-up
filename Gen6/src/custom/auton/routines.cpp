@@ -41,14 +41,16 @@ void redBig(){
   startup();
   drive::auton::drive(30,50);
   drive::auton::turn(40,-50);
+  lift::motor.moveAbsolute(200,200);
   drive::auton::drive(126,100);
   lift::motor.moveAbsolute(2750,200);
   drive::auton::turn(30,50);
   intake::auton::intakeOff();
-  drive::auton::drive(135,200);
+  drive::auton::drive(145,200);
   intake::auton::intakeOn(200);
-  lift::auton::lift(0,200);
+  lift::auton::lift(250,200);
   drive::auton::turn(150,-100);
+  lift::auton::lift(0,200);
 }
 
 

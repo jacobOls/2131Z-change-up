@@ -39,19 +39,21 @@ namespace auton{
 
 void redBig(){
   startup();
-  drive::auton::drive(30,50);
-  drive::auton::turn(40,-50);
+  drive::auton::drive(30,100);
+  drive::auton::turn(40,-75);
   lift::motor.moveAbsolute(150,200);
   drive::auton::drive(126,100);
   lift::motor.moveAbsolute(2750,200);
-  drive::auton::turn(30,50);
+  drive::auton::turn(40,75);
   intake::auton::intakeOff();
-  drive::auton::drive(135,180);
+  drive::auton::drive(85,200);
   intake::auton::intakeOn(200);
-  lift::auton::lift(250,200);
-  drive::auton::turn(220,-100);
-  lift::auton::lift(0,200);
-  drive::auton::drive(220,200);
+  wait(300);
+  drive::auton::drive(35,200);
+  lift::auton::lift(300,200);
+  lift::motor.moveAbsolute(0,200);
+  drive::auton::turn(200,-150);
+  drive::auton::drive(320,200);
 }
 
 

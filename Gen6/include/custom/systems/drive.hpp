@@ -10,6 +10,9 @@ NONE
   };
   namespace auton{
     void drive(int distance, int velocity);
+    void driveNRE(int distance, int velocity);
+    void driveNRB(int distance, int velocity);
+
     void turn(int deg, int velocity);
     void resetPos(void);
   }

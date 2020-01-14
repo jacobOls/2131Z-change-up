@@ -20,7 +20,7 @@ namespace auton{
     intake::auton::intakeOn(-200);
     wait(200);
     intake::auton::intakeOn(200);
-    wait(500);
+    wait(800);
     // lift::auton::lift(0,200);
   }
   //
@@ -41,19 +41,22 @@ void redBig(){
   startup();
   drive::auton::drive(30,100);
   drive::auton::turn(40,-75);
-  lift::motor.moveAbsolute(150,200);
-  drive::auton::drive(145,100);
+  // lift::motor.moveAbsolute(150,200);
+  drive::auton::driveNRE(105,100);
   lift::motor.moveAbsolute(2750,200);
+  drive::auton::driveNRB(60,200);
   drive::auton::turn(35,75);
   intake::auton::intakeOff();
-  drive::auton::drive(85,200);
+  drive::auton::drive(95,200);
   intake::auton::intakeOn(200);
-  wait(300);
-  drive::auton::drive(35,200);
+  // wait(300);
+  // drive::auton::drive(35,200);
   lift::auton::lift(300,200);
   lift::motor.moveAbsolute(0,200);
-  drive::auton::turn(200,-200);
-  drive::auton::drive(320,200);
+  drive::auton::turn(245,-200);
+  drive::auton::driveNRE(220,200);
+  tilter::motor.moveAbsolute(875,50);
+  drive::auton::driveNRB(100,200);
 }
 
 

@@ -25,7 +25,7 @@ namespace drive{
       //   // rightVel = 0;
       // }
       // else{
-        rightVel = (master.getAnalog(ControllerAnalog::rightY) * 200);
+      rightVel = (master.getAnalog(ControllerAnalog::rightY) * 200);
       // }
 
       right_drive.moveVelocity(rightVel);
@@ -95,6 +95,40 @@ namespace drive{
       }
 
     }
+
+    void driveNRE(int distance, int velocity){
+      resetPos();
+      distance=abs(distance);
+      while(abs(left_front.getPosition()) < distance || abs(right_front.getPosition()) < distance){
+        left_drive.moveVelocity(LEFT_DRIVE.calculate(velocity));
+        right_drive.moveVelocity(RIGHT_DRIVE.calculate(velocity));
+        // LEFT_DRIVE.calculate(targetVelocity);
+        // RIGHT_DRIVE.calculate(targetVelocity);
+        pros::delay(LEFT_DRIVE.get_changeMsec());
+      }
+
+    }
+
+    void driveNRB(int distance, int velocity){
+      resetPos();
+      distance=abs(distance);
+      while(abs(left_front.getPosition()) < distance || abs(right_front.getPosition()) < distance){
+        left_drive.moveVelocity(velocity);
+        right_drive.moveVelocity(velocity);
+        // LEFT_DRIVE.calculate(targetVelocity);
+        // RIGHT_DRIVE.calculate(targetVelocity);
+        pros::delay(20);
+
+      }
+      while(LEFT_DRIVE.output() != 0){
+        left_drive.moveVelocity(LEFT_DRIVE.calculate(0));
+        right_drive.moveVelocity(RIGHT_DRIVE.calculate(0));
+        pros::delay(LEFT_DRIVE.get_changeMsec());
+      }
+
+    }
+
+
 
     void turn(int deg, int velocity){
       resetPos();

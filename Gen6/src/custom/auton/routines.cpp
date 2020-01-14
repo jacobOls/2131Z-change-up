@@ -15,7 +15,7 @@ namespace auton{
     lift::motor.tarePosition();
     tilter::motor.tarePosition();
     drive::auton::resetPos();
-    lift::pulse();
+    // lift::pulse();
     // lift::auton::lift(1000,200);
     intake::auton::intakeOn(-200);
     wait(200);
@@ -42,7 +42,7 @@ void redBig(){
   drive::auton::drive(30,100);
   drive::auton::turn(40,-75);
   lift::motor.moveAbsolute(150,200);
-  drive::auton::drive(135,100);
+  drive::auton::drive(145,100);
   lift::motor.moveAbsolute(2750,200);
   drive::auton::turn(35,75);
   intake::auton::intakeOff();

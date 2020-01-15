@@ -54,11 +54,11 @@ void redBig(){
   lift::auton::lift(300,200);
   lift::motor.moveAbsolute(0,200);
   drive::auton::turn(245,-200);
-  drive::auton::driveNRE(270,200);
+  drive::auton::driveNRE(300,200);
   tilter::motor.moveAbsolute(875,50);
-  intake::auton::intakeOff();
-  drive::auton::driveNRB(50,200);
-  intake::auton::intakeOn(-15);
+  // intake::auton::intakeOff();
+  drive::auton::driveNRB(25,200);
+  intake::auton::intakeOn(-25);
   tilter::auton::tilter(1200,50);
   intake::auton::stackReverseAuton(100, 35, 25);
   intake::auton::intakeOff();

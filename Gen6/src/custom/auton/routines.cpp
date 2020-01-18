@@ -37,6 +37,7 @@ namespace auton{
   //   drive::auton::turn(150,-100);
   // }
 
+  const int startTime = pros::millis();
 void redBig(){
   startup();
   drive::auton::drive(-30,-125);
@@ -44,29 +45,31 @@ void redBig(){
   drive::auton::turn(40,-75);
   // lift::motor.moveAbsolute(150,200);
   drive::auton::driveNRE(65,100);
-  lift::motor.moveAbsolute(2750,200);
+  lift::motor.moveAbsolute(2650,200);
   drive::auton::driveNRB(110,200);
   drive::auton::turn(48,75);
   // intake::auton::intakeOff();
-  drive::auton::drive(105,180);
+  drive::auton::drive(100,180);
   intake::auton::intakeOn(200);
   // wait(300);
   // drive::auton::drive(35,200);
-  lift::auton::lift(300,160);
-  drive::auton::turn(245,-200);
+  lift::auton::lift(300,160,startTime);
+  drive::auton::turn(250,-120);
   lift::motor.moveAbsolute(0,200);
   drive::auton::driveNRE(300,200);
-  tilter::motor.moveAbsolute(875,50);
-  // intake::auton::intakeOff();
+  tilter::motor.moveAbsolute(350,50);
   drive::auton::driveNRB(25,200);
+  intake::auton::intakeOff();
+  //stack
+  tilter::auton::tilter(650,95);
   intake::auton::intakeOn(-45);
-  tilter::auton::tilter(850,50);
+  tilter::auton::tilter(850,75);
   intake::auton::intakeOff();
   tilter::auton::tilter(1050,50);
   intake::auton::intakeOn(-15);
-  drive::auton::drive(-200,-35);
+  drive::auton::drive(-200,-85);
   tilter::motor.moveAbsolute(0,-200);
-  lift::auton::lift(2700,200);
+  lift::auton::lift(2700,200,14151);
 }
 
 
@@ -76,20 +79,20 @@ void redBig(){
     drive::auton::drive(30,50);
     drive::auton::turn(40,-50);
     drive::auton::drive(126,100);
-    drive::auton::turn(30,50);
-    drive::auton::drive(115,125);
-    intake::auton::intakeOff();
-    wait(300);
-    lift::auton::lift(2750,200);
-    intake::auton::intakeOn(200);
-    drive::auton::drive(40,50);
-    lift::auton::lift(250,200);
-    drive::auton::drive(-200,-125);
-    lift::auton::lift(0,200);
-    wait(150);
-    drive::auton::turn(150,-100);
-    drive::auton::drive(275,175);
-    intake::auton::intakeOn(0);
+    // drive::auton::turn(30,50);
+    // drive::auton::drive(115,125);
+    // intake::auton::intakeOff();
+    // wait(300);
+    // lift::auton::lift(2750,200);
+    // intake::auton::intakeOn(200);
+    // drive::auton::drive(40,50);
+    // lift::auton::lift(250,200);
+    // drive::auton::drive(-200,-125);
+    // lift::auton::lift(0,200);
+    // wait(150);
+    // drive::auton::turn(150,-100);
+    // drive::auton::drive(275,175);
+    // intake::auton::intakeOn(0);
     // drive::auton::turn(100,-100);
     // drive::auton::drive(80,100);
     // intake::auton::intakeOff();
@@ -107,26 +110,36 @@ void redBig(){
 
 void blueBig(){
   startup();
-  drive::auton::drive(30,50);
-  drive::auton::turn(40,50);
-  drive::auton::drive(126,100);
-  drive::auton::turn(30,-50);
-  drive::auton::drive(115,125);
-  intake::auton::intakeOff();
-  wait(300);
-  lift::auton::lift(2750,200);
-  intake::auton::intakeOn(200);
-  drive::auton::drive(40,50);
-  lift::auton::lift(250,200);
-  drive::auton::drive(-200,-125);
-  lift::auton::lift(0,200);
-  wait(150);
-  drive::auton::turn(145,100);
-  drive::auton::drive(275,175);
-  intake::auton::intakeOn(0);
-  // drive::auton::turn(100,100);
-  // drive::auton::drive(80,100);
+  drive::auton::drive(-30,-125);
+  drive::auton::drive(50,100);
+  drive::auton::turn(40,75);
+  // lift::motor.moveAbsolute(150,200);
+  drive::auton::driveNRE(65,100);
+  lift::motor.moveAbsolute(2650,200);
+  drive::auton::driveNRB(110,200);
+  drive::auton::turn(48,-75);
   // intake::auton::intakeOff();
+  drive::auton::drive(100,180);
+  intake::auton::intakeOn(200);
+  // wait(300);
+  // drive::auton::drive(35,200);
+  lift::auton::lift(300,160,startTime);
+  drive::auton::turn(250,120);
+  lift::motor.moveAbsolute(0,200);
+  drive::auton::driveNRE(300,200);
+  tilter::motor.moveAbsolute(350,50);
+  drive::auton::driveNRB(25,200);
+  intake::auton::intakeOff();
+  //stack
+  tilter::auton::tilter(650,95);
+  intake::auton::intakeOn(-45);
+  tilter::auton::tilter(850,75);
+  intake::auton::intakeOff();
+  tilter::auton::tilter(1050,50);
+  intake::auton::intakeOn(-15);
+  drive::auton::drive(-200,-85);
+  tilter::motor.moveAbsolute(0,-200);
+  lift::auton::lift(2700,200,14151);
 }
 
 

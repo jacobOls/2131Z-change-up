@@ -13,7 +13,7 @@ namespace lift{
   void init(void);
   void pulse(void);
   namespace auton{
-    void lift(int pos, int velocity);
+    void lift(int pos, int velocity,int startTime);
   }
 }
 

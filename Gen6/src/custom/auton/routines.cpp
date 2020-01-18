@@ -114,7 +114,7 @@ void blueBig(){
   drive::auton::drive(50,100);
   drive::auton::turn(40,75);
   // lift::motor.moveAbsolute(150,200);
-  drive::auton::driveNRE(65,100);
+  drive::auton::driveNRE(75,100);
   lift::motor.moveAbsolute(2650,200);
   drive::auton::driveNRB(110,200);
   drive::auton::turn(48,-75);

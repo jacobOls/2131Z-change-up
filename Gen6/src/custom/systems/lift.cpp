@@ -63,17 +63,28 @@ namespace lift{
   }
 
   namespace auton{
-
+double time(){
+  return pros::millis();
+}
+double stop = 9.5 - time();
+bool halt = false;
     void lift(int pos, int velocity){
+      // pros::millis();
       if(motor.getPosition() > pos && velocity > 1){
         velocity = -velocity;
         while(motor.getPosition() > pos){
           motor.moveAbsolute(pos,velocity);
+          if(stop <= 0){
+            break;
+          }
         }
       }
       else{
         while(motor.getPosition() < pos){
           motor.moveAbsolute(pos,velocity);
+          if(stop <= 0){
+            break;
+          }
         }
       }
 

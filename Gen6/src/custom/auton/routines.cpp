@@ -60,6 +60,8 @@ void redBig(){
   // intake::auton::intakeOff();
   drive::auton::driveNRB(25,200);
   intake::auton::intakeOn(-45);
+  tilter::auton::tilter(850,50);
+  intake::auton::intakeOff();
   tilter::auton::tilter(1050,50);
   intake::auton::intakeOn(-15);
   drive::auton::drive(-200,-35);

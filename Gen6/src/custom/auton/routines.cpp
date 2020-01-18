@@ -39,29 +39,31 @@ namespace auton{
 
 void redBig(){
   startup();
-  drive::auton::drive(30,100);
+  drive::auton::drive(-30,-125);
+  drive::auton::drive(50,100);
   drive::auton::turn(40,-75);
   // lift::motor.moveAbsolute(150,200);
-  drive::auton::driveNRE(105,100);
+  drive::auton::driveNRE(65,100);
   lift::motor.moveAbsolute(2750,200);
-  drive::auton::driveNRB(60,200);
+  drive::auton::driveNRB(110,200);
   drive::auton::turn(48,75);
-  intake::auton::intakeOff();
-  drive::auton::drive(100,200);
+  // intake::auton::intakeOff();
+  drive::auton::drive(105,180);
   intake::auton::intakeOn(200);
   // wait(300);
   // drive::auton::drive(35,200);
-  lift::auton::lift(300,200);
-  lift::motor.moveAbsolute(0,200);
+  lift::auton::lift(300,160);
   drive::auton::turn(245,-200);
+  lift::motor.moveAbsolute(0,200);
   drive::auton::driveNRE(300,200);
   tilter::motor.moveAbsolute(875,50);
   // intake::auton::intakeOff();
   drive::auton::driveNRB(25,200);
-  intake::auton::intakeOn(-25);
-  tilter::auton::tilter(1200,50);
-  intake::auton::stackReverseAuton(100, 35, 25);
-  intake::auton::intakeOff();
+  intake::auton::intakeOn(-45);
+  tilter::auton::tilter(1050,50);
+  intake::auton::intakeOn(-15);
+  drive::auton::drive(-200,-35);
+  tilter::motor.moveAbsolute(0,-200);
   lift::auton::lift(2700,200);
 }
 

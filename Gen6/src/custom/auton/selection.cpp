@@ -51,10 +51,10 @@ namespace auton{
   Options option = Options::NONE;
 
   std::string screenText[4][3] = {
-    {"Small Red", "", ""},
-    {"Big Red", "", ""},
-    {"Big Blue", "", ""},
-    {"Small Blue", "", ""},
+    {"Small Red", "", ""}, //small red
+    {"Big Red", "", ""},  //big red
+    {"Big Blue", "", ""},  //big blue
+    {"Small Blue", "", ""},  //small blue
   };
   void execute(){
     switch (positon){

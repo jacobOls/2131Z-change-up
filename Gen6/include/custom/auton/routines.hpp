@@ -8,6 +8,8 @@ namespace auton{
   void blueSmall();
   void doNothing();
   void driveABit();
+  void nothing();
+  void onePoint();
 }
 
 #endif /* end of include guard: ROUTINES_HPP */

@@ -72,6 +72,16 @@ namespace auton{
     lift::auton::lift(2700,200,14151);
   }
 
+void nothing(){
+
+}
+
+void onePoint(){
+  drive::auton::drive(300,-100);
+  drive::auton::drive(300,100);
+}
+
+
   void redSmall(){
     startup();
     drive::auton::drive(1100,70);

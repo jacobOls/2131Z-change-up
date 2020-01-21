@@ -6,6 +6,8 @@
 #include "custom/setup/motors.hpp"
 namespace auton{
 
+//managment stuff
+
   void wait(int time){
     pros::delay(time);
   }
@@ -23,19 +25,9 @@ namespace auton{
     wait(800);
     // lift::auton::lift(0,200);
   }
-  //
-  // void redBig(){
-  //   startup();
-  //   drive::auton::drive(325,125);
-  //   intake::auton::intakeOff();
-  //   wait(300);
-  //   lift::auton::lift(2750,200);
-  //   intake::auton::intakeOn(200);
-  //   drive::auton::drive(40,50);
-  //   lift::auton::lift(0,200);
-  //   drive::auton::drive(75,-125);
-  //   drive::auton::turn(150,-100);
-  // }
+
+
+//red autons
 
   void redBig(){
     const int startTime = pros::millis();
@@ -72,14 +64,7 @@ namespace auton{
     lift::auton::lift(2700,200,14151);
   }
 
-void nothing(){
 
-}
-
-void onePoint(){
-  drive::auton::drive(300,-100);
-  drive::auton::drive(300,100);
-}
 
 
   void redSmall(){
@@ -135,6 +120,8 @@ void onePoint(){
     // drive::auton::drive(100,-45);
     // intake::auton::intakeOn(-25);
   }
+
+//blue autons
 
   void blueBig(){
     const int startTime = pros::millis();
@@ -192,7 +179,7 @@ void onePoint(){
   }
 
 
-
+//misc autons
   void doNothing(){
     startup();
   }
@@ -202,4 +189,15 @@ void onePoint(){
     drive::auton::drive(150,150);
     drive::auton::drive(-150,-150);
   }
+
+  void nothing(){
+
+  }
+
+  void onePoint(){
+    drive::auton::drive(300,-100);
+    drive::auton::drive(300,100);
+  }
+
+
 }

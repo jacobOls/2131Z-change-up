@@ -45,7 +45,7 @@ namespace auton{
     intake::auton::intakeOn(200);
     // wait(300);
     // drive::auton::drive(35,200);
-    lift::auton::lift(300,160,startTime);
+    lift::auton::lift(300,160,startTime,9750);
     drive::auton::turn(250,-120);
     lift::motor.moveAbsolute(0,200);
     drive::auton::driveNRE(300,200);
@@ -61,7 +61,7 @@ namespace auton{
     intake::auton::intakeOn(-15);
     drive::auton::drive(-200,-85);
     tilter::motor.moveAbsolute(0,-200);
-    lift::auton::lift(2700,200,14151);
+    lift::auton::lift(2700,200,14151,1235);
   }
 
 
@@ -84,7 +84,6 @@ namespace auton{
     intake::auton::intakeOn(-15);
     drive::auton::drive(-200,-85);
     tilter::motor.moveAbsolute(0,-200);
-    lift::auton::lift(2700,200,14151);
   }
 
   void redBigLOL(){
@@ -139,7 +138,7 @@ namespace auton{
     intake::auton::intakeOn(200);
     // wait(300);
     // drive::auton::drive(35,200);
-    lift::auton::lift(300,160,startTime);
+    lift::auton::lift(300,160,startTime,9750);
     drive::auton::turn(250,120);
     lift::motor.moveAbsolute(0,200);
     drive::auton::driveNRE(300,200);
@@ -155,7 +154,7 @@ namespace auton{
     intake::auton::intakeOn(-15);
     drive::auton::drive(-200,-85);
     tilter::motor.moveAbsolute(0,-200);
-    lift::auton::lift(2700,200,14151);
+    lift::auton::lift(2700,200,14151,1234);
   }
 
   void blueSmall(){
@@ -175,7 +174,6 @@ namespace auton{
     intake::auton::intakeOn(-15);
     drive::auton::drive(-200,-85);
     tilter::motor.moveAbsolute(0,-200);
-    lift::auton::lift(2700,200,14151);
   }
 
 

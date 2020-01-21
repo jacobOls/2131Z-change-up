@@ -69,17 +69,17 @@ double time(){
 double stop = 9.75 - time();
 
 
-    void lift(int pos, int velocity,int startTime){
+    void lift(int pos, int velocity,int startTime, double stopTime){
 
       if(motor.getPosition() > pos && velocity > 1){
         velocity = -velocity;
-        while(motor.getPosition() > pos && pros::millis() - startTime < 9750){
+        while(motor.getPosition() > pos && pros::millis() - startTime < stopTime){
           motor.moveAbsolute(pos,velocity);
 
         }
       }
       else{
-        while(motor.getPosition() < pos && pros::millis() - startTime < 9750){
+        while(motor.getPosition() < pos && pros::millis() - startTime < stopTime){
           motor.moveAbsolute(pos,velocity);
 
         }

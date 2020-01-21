@@ -37,8 +37,8 @@ namespace auton{
   //   drive::auton::turn(150,-100);
   // }
 
-  const int startTime = pros::millis();
 void redBig(){
+  const int startTime = pros::millis();
   startup();
   drive::auton::drive(-30,-125);
   drive::auton::drive(50,100);
@@ -109,6 +109,7 @@ void redBig(){
   }
 
 void blueBig(){
+  const int startTime = pros::millis();
   startup();
   drive::auton::drive(-30,-125);
   drive::auton::drive(50,100);
@@ -142,7 +143,13 @@ void blueBig(){
   lift::auton::lift(2700,200,14151);
 }
 
+void doNothing(){
+  startup();
+}
 
-
-
+void driveABit(){
+startup();
+drive::auton::drive(150,150);
+drive::auton::drive(-150,-150);
+}
 }

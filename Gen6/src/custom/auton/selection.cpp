@@ -51,14 +51,15 @@ namespace auton{
   Options option = Options::NONE;
 
   std::string screenText[4][3] = {
-    {"Little Red", "", ""},
+    {"Do Nothing", "", ""},
     {"Big Red", "", ""},
-    {"Little Blue", "", ""},
     {"Big Blue", "", ""},
+    {"Little Drive", "", ""},
   };
   void execute(){
     switch (positon){
       case Positons::FRONTRED:
+      doNothing();
       break;
 
       case Positons::BACKRED:
@@ -70,6 +71,7 @@ namespace auton{
       break;
 
       case Positons::FRONTBLUE:
+      driveABit();
       break;
 
       case Positons::NONE:

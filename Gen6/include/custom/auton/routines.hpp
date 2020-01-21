@@ -2,8 +2,10 @@
 #define ROUTINES_HPP
 
 namespace auton{
-void redBig();
-void blueBig();
+  void redBig();
+  void redSmall();
+  void blueBig();
+  void blueSmall();
   void doNothing();
   void driveABit();
 }

@@ -71,15 +71,15 @@ namespace auton{
     tilter::motor.moveAbsolute(0,-200);
     lift::auton::lift(2700,200,14151);
   }
-  
+
   void redSmall(){
     startup();
-    drive::auton::driving(1100,70);
+    drive::auton::drive(1100,70);
     intake::auton::intakeOn(50);
-    drive::auton::driving(300,-200);
+    drive::auton::drive(300,-200);
     drive::auton::turn(360,75);
     intake::auton::intakeOn(-15);
-    drive::auton::driving(125,100);
+    drive::auton::drive(125,100);
     //stacking
     tilter::auton::tilter(650,95);
     intake::auton::intakeOn(-45);
@@ -163,12 +163,12 @@ namespace auton{
 
   void blueSmall(){
     startup();
-    drive::auton::driving(1100,70);
+    drive::auton::drive(1100,70);
     intake::auton::intakeOn(50);
-    drive::auton::driving(300,-200);
+    drive::auton::drive(300,-200);
     drive::auton::turn(360,-75);
     intake::auton::intakeOn(-15);
-    drive::auton::driving(125,100);
+    drive::auton::drive(125,100);
     //stacking
     tilter::auton::tilter(650,95);
     intake::auton::intakeOn(-45);

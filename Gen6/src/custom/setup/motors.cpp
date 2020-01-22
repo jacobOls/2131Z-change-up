@@ -15,6 +15,8 @@ namespace drive{
           Ramping LEFT_DRIVE(1, 10, 200, -200);
           Ramping RIGHT_DRIVE(1, 10, 200, -200);
 
+          pros::ADIGyro gyro(4);
+
 
         }
 

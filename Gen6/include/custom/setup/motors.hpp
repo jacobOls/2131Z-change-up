@@ -11,7 +11,7 @@ namespace drive{
   extern okapi::MotorGroup right_drive;
   extern Ramping LEFT_DRIVE;
   extern Ramping RIGHT_DRIVE;
-
+  extern pros::ADIGyro gyro;
 }
 
 namespace intake{

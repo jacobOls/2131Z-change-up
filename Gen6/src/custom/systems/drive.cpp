@@ -72,6 +72,10 @@ namespace drive{
 
   namespace auton{
 
+    int gyV(){
+      return gyro.get_value();
+    }
+
     void resetPos(){
       left_drive.tarePosition();
       right_drive.tarePosition();

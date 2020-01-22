@@ -63,10 +63,7 @@ namespace lift{
   }
 
   namespace auton{
-double time(){
-  return pros::millis();
-}
-double stop = 9.75 - time();
+
 
 
     void lift(int pos, int velocity,int startTime, double stopTime){

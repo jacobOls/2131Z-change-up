@@ -145,6 +145,12 @@ namespace auton{
 
 
 //misc autons
+
+void skills(){
+const int startTime = pros::millis();
+startup();
+}
+
   void doNothing(){
     startup();
   }

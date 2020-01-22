@@ -13,4 +13,5 @@ compile_commands.json
 temp.log
 temp.errors
 *.ini
+.text
 .d/

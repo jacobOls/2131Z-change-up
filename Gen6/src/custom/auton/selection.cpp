@@ -58,23 +58,23 @@ namespace auton{
   };
   void execute(){
     switch (positon){
-      case Positons::FRONTRED:
+      case Positons::FRONTRED: //small red
       redSmall();
       break;
 
-      case Positons::BACKRED:
+      case Positons::BACKRED: //big red
       redBig();
       break;
 
-      case Positons::BACKBLUE:
+      case Positons::BACKBLUE: //small blue
       blueBig();
       break;
 
-      case Positons::FRONTBLUE:
+      case Positons::FRONTBLUE: //big blue
       blueSmall();
       break;
 
-      case Positons::NONE:
+      case Positons::NONE: //nada
       break;
     }
   }

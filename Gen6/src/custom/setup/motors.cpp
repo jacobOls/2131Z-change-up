@@ -21,7 +21,7 @@ namespace drive{
         }
 
         namespace intake{
-          okapi::Motor left_motor(19, false, okapi::AbstractMotor::gearset::green, //left
+          okapi::Motor left_motor(16, false, okapi::AbstractMotor::gearset::green, //left
             okapi::AbstractMotor::encoderUnits::degrees);
             okapi::Motor right_motor(20, true, okapi::AbstractMotor::gearset::green, //right
               okapi::AbstractMotor::encoderUnits::degrees);

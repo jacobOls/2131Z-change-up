@@ -9,6 +9,7 @@
 #include "custom/setup/controller.hpp"
 #include <string>
 #include <iostream>
+#include "inertial"
 /**
 
 */
@@ -29,8 +30,8 @@ void initialize() {
 	tilter::motor.tarePosition();
 	pros::lcd::initialize();
 
-	auton::screenInit();
-	std::cout << "initialize " << std::endl;
+	// auton::screenInit();
+	// std::cout << "initialize " << std::endl;
 }
 
 /**
@@ -39,8 +40,8 @@ void initialize() {
 * the robot is enabled, this task will exit.
 */
 void disabled() {
-	auton::autonTask.suspend();
-	auton::set_auton(false);
+	// auton::autonTask.suspend();
+	// auton::set_auton(false);
 }
 
 /**
@@ -68,15 +69,15 @@ void competition_initialize() {
 * from where it left off.
 */
 namespace auton{
-pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
-TASK_STACK_DEPTH_DEFAULT, "AutonTask");
+// pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
+// TASK_STACK_DEPTH_DEFAULT, "AutonTask");
 }
 
 void autonomous() {
-	auton::screenInit();
-	auton::autonTask.resume();
-	auton::set_auton(true);
-	auton::execute();
+	// auton::screenInit();
+	// auton::autonTask.resume();
+	// auton::set_auton(true);
+	// auton::execute();
 }
 
 /**
@@ -96,8 +97,11 @@ void autonomous() {
 int temp;
 int temp2;
 
+pros::Imu imu_sensor(16);
+
 std::string temperature;
 std::string temperature2;
+
 void tempcheck(){
 	temp = intake::left_motor.getTemperature();
 	temp2 = intake::right_motor.getTemperature();

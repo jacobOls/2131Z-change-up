@@ -14,8 +14,8 @@ namespace intake{
 namespace tilter{
   okapi::ControllerButton BtnForward = master[okapi::ControllerDigital::up];
   okapi::ControllerButton BtnBackward = master[okapi::ControllerDigital::left];
-  okapi::ControllerButton BtnGoUp = master[okapi::ControllerDigital::right];
-  okapi::ControllerButton BtnReturn = master[okapi::ControllerDigital::Y];
+  // okapi::ControllerButton BtnGoUp = master[okapi::ControllerDigital::right];
+  okapi::ControllerButton BtnReturn = master[okapi::ControllerDigital::right];
 
 } // namespace tilter
 

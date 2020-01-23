@@ -14,6 +14,16 @@ namespace tilter{
     }
   }
 
+  void returnDown(){
+    if(BtnReturn.isPressed()){
+      controller = Controllers::RETURN;
+    }
+    else if(controller == Controllers::RETURN && motor.getActualVelocity() == 0){
+      controller = Controllers::DEINIT;
+    }
+  }
+
+
   void tilterDown(){
     if(BtnBackward.isPressed()){
       controller = Controllers::BACKWARD;
@@ -69,14 +79,7 @@ namespace tilter{
       break;
 
       case Controllers::RETURN:
-      if (lift::motor.getPosition() < 1250 && motor.getPosition() > 1520)
-      {
-        motor.moveVelocity(-100);
-      }
-      else if (motor.getPosition() > 1870)
-      {
-        motor.moveVelocity(-100);
-      }
+      motor.moveAbsolute(0,-200);
 
 
       break;
@@ -94,22 +97,23 @@ namespace tilter{
   void init(){
     tilterUp();
     tilterDown();
+    returnDown();
     execute();
   }
 
   namespace auton{
 
-        void tilter(int pos, int velocity){
+    void tilter(int pos, int velocity){
 
-            while(motor.getPosition() <= pos){
-              motor.moveAbsolute(pos,velocity);
-              if(motor.getPosition() > pos){
-                motor.moveVelocity(0);
-                break;
-              }
-            }
+      while(motor.getPosition() <= pos){
+        motor.moveAbsolute(pos,velocity);
+        if(motor.getPosition() > pos){
+          motor.moveVelocity(0);
+          break;
+        }
+      }
 
-          }
+    }
     void tilterDown(int pos, int velocity){
       while(motor.getPosition() >= pos){
         motor.moveAbsolute(pos,velocity);

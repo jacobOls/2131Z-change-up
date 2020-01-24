@@ -37,7 +37,7 @@ namespace auton{
     drive::auton::turn(40,-75);
     // lift::motor.moveAbsolute(150,200);
     drive::auton::driveNRE(65,100);
-    wait(100);
+    wait(200);
     lift::motor.moveAbsolute(2650,200);
     drive::auton::driveNRB(100,200);
     drive::auton::turn(48,70);
@@ -46,8 +46,8 @@ namespace auton{
     intake::auton::intakeOn(200);
     // wait(300);
     // drive::auton::drive(35,200);
-    lift::auton::lift(300,160,startTime,9750);
-    drive::auton::turn(268,-120);
+    lift::auton::lift(300,160,startTime,9500);
+    drive::auton::turn(260,-120);
     lift::motor.moveAbsolute(0,200);
     drive::auton::driveNRE(300,200);
     tilter::motor.moveAbsolute(350,50);
@@ -97,17 +97,18 @@ namespace auton{
     drive::auton::drive(50,100);
     drive::auton::turn(40,75);
     // lift::motor.moveAbsolute(150,200);
-    drive::auton::driveNRE(75,100);
+    drive::auton::driveNRE(65,100);
+    wait(200);
     lift::motor.moveAbsolute(2650,200);
-    drive::auton::driveNRB(110,200);
-    drive::auton::turn(48,-75);
+    drive::auton::driveNRB(100,200);
+    drive::auton::turn(48,-70);
     // intake::auton::intakeOff();
-    drive::auton::drive(100,180);
+    drive::auton::drive(90,170);
     intake::auton::intakeOn(200);
     // wait(300);
     // drive::auton::drive(35,200);
-    lift::auton::lift(300,160,startTime,9750);
-    drive::auton::turn(250,120);
+    lift::auton::lift(300,160,startTime,9500);
+    drive::auton::turn(260,120);
     lift::motor.moveAbsolute(0,200);
     drive::auton::driveNRE(300,200);
     tilter::motor.moveAbsolute(350,50);
@@ -122,7 +123,6 @@ namespace auton{
     intake::auton::intakeOn(-15);
     drive::auton::drive(-200,-85);
     tilter::motor.moveAbsolute(0,-200);
-    lift::auton::lift(2700,200,14151,1234);
   }
 
   void blueSmall(){

@@ -268,7 +268,7 @@ namespace auton{
         lift::execute();
         tilter::execute();
       }
-      std::cout << "T: "<< (pros::millis()-beg)/5 <<" BLv: " << drive::left_back.get_actual_velocity() << std::endl;
+      // std::cout << "T: "<< (pros::millis()-beg)/5 <<" BLv: " << drive::left_back.get_actual_velocity() << std::endl;
       pros::Task::delay_until(&test, 5); //delay for 5 millis exact
     }
   }

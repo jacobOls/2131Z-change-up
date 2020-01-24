@@ -9,7 +9,6 @@
 #include "custom/setup/controller.hpp"
 #include <string>
 #include <iostream>
-#include "inertial"
 /**
 
 */
@@ -20,6 +19,9 @@
 * All other competition modes are blocked by initialize; it is recommended
 * to keep execution time for this mode under a few seconds.
 */
+pros::Imu imu(16);
+
+
 void initialize() {
 	tilter::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	intake::right_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
@@ -28,6 +30,7 @@ void initialize() {
 	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	lift::motor.tarePosition();
 	tilter::motor.tarePosition();
+	imu.reset();
 	pros::lcd::initialize();
 
 	// auton::screenInit();
@@ -69,8 +72,8 @@ void competition_initialize() {
 * from where it left off.
 */
 namespace auton{
-// pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
-// TASK_STACK_DEPTH_DEFAULT, "AutonTask");
+	// pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
+	// TASK_STACK_DEPTH_DEFAULT, "AutonTask");
 }
 
 void autonomous() {
@@ -96,26 +99,33 @@ void autonomous() {
 
 int temp;
 int temp2;
-
-pros::Imu imu_sensor(16);
-
 std::string temperature;
 std::string temperature2;
+
+
+
+std::string zVal;
+void inertialTest(){
+	zVal = std::to_string(imu.get_rotation());
+	pros::lcd::set_text(1,zVal);
+	// pros::delay(5000);
+}
 
 void tempcheck(){
 	temp = intake::left_motor.getTemperature();
 	temp2 = intake::right_motor.getTemperature();
- std::string temperature = std::to_string(temp);
- std::string temperature2 = std::to_string(temp2);
- pros::lcd::set_text(1,temperature );
- pros::lcd::set_text(2,temperature2 );
- pros::delay(100);
- // pros::lcd::clear_line(1);
- // pros::lcd::clear_line(2);
+	std::string temperature = std::to_string(temp);
+	std::string temperature2 = std::to_string(temp2);
+	pros::lcd::set_text(1,temperature );
+	pros::lcd::set_text(2,temperature2 );
+	pros::delay(100);
+	// pros::lcd::clear_line(1);
+	// pros::lcd::clear_line(2);
 }
 void opcontrol() {
 
 	while (2131 == 2131){
+		inertialTest();
 		// tempcheck();
 		drive::drive();
 		// drive::straightIntake();

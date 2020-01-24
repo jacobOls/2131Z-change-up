@@ -108,7 +108,7 @@ std::string zVal;
 void inertialTest(){
 	zVal = std::to_string(imu.get_rotation());
 	pros::lcd::set_text(1,zVal);
-	// pros::delay(5000);
+	pros::delay(100);
 }
 
 void tempcheck(){

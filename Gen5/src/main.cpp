@@ -32,6 +32,7 @@ void initialize() {
 	tilter::motor.tarePosition();
 	imu.reset();
 	pros::lcd::initialize();
+	pros::delay(2000);
 
 	// auton::screenInit();
 	// std::cout << "initialize " << std::endl;
@@ -108,7 +109,7 @@ std::string zVal;
 void inertialTest(){
 	zVal = std::to_string(imu.get_rotation());
 	pros::lcd::set_text(1,zVal);
-	pros::delay(100);
+	pros::delay(20);
 }
 
 void tempcheck(){

@@ -40,14 +40,14 @@ namespace auton{
     wait(100);
     lift::motor.moveAbsolute(2650,200);
     drive::auton::driveNRB(100,200);
-    drive::auton::turn(48,75);
+    drive::auton::turn(48,70);
     // intake::auton::intakeOff();
     drive::auton::drive(90,170);
     intake::auton::intakeOn(200);
     // wait(300);
     // drive::auton::drive(35,200);
     lift::auton::lift(300,160,startTime,9750);
-    drive::auton::turn(260,-120);
+    drive::auton::turn(268,-120);
     lift::motor.moveAbsolute(0,200);
     drive::auton::driveNRE(300,200);
     tilter::motor.moveAbsolute(350,50);

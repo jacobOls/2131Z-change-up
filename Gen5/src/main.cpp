@@ -126,7 +126,7 @@ void tempcheck(){
 void opcontrol() {
 
 	while (2131 == 2131){
-		inertialTest();
+		// inertialTest();
 		// tempcheck();
 		drive::drive();
 		// drive::straightIntake();

@@ -109,7 +109,8 @@ namespace auton{
     // wait(300);
     // drive::auton::drive(35,200);
     lift::auton::lift(300,160,startTime,9500);
-    drive::auton::turn(265,120);
+    drive::auton::drive(-20,-100);
+    drive::auton::turn(260,120);
     lift::motor.moveAbsolute(0,200);
     drive::auton::driveNRE(300,200);
     tilter::motor.moveAbsolute(350,50);

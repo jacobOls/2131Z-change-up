@@ -97,13 +97,13 @@ namespace auton{
     drive::auton::drive(50,100);
     drive::auton::turn(37,75);
     // lift::motor.moveAbsolute(150,200);
-    drive::auton::driveNRE(65,100);
+    drive::auton::driveNRE(80,100);
     wait(200);
     lift::motor.moveAbsolute(2650,200);
-    drive::auton::driveNRB(90,200);
-    drive::auton::turn(44,-65);
+    drive::auton::driveNRB(85,200);
+    drive::auton::turn(31,-60);
     // intake::auton::intakeOff();
-    drive::auton::drive(90,170);
+    drive::auton::drive(90,150);
     intake::auton::intakeOn(200);
     // wait(300);
     // drive::auton::drive(35,200);

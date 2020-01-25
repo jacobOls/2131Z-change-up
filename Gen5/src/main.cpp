@@ -30,9 +30,9 @@ void initialize() {
 	lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	lift::motor.tarePosition();
 	tilter::motor.tarePosition();
-	imu.reset();
+	// imu.reset();
 	pros::lcd::initialize();
-	pros::delay(2000);
+	// pros::delay(2000);
 
 	// auton::screenInit();
 	// std::cout << "initialize " << std::endl;

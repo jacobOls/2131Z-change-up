@@ -108,11 +108,11 @@ namespace auton{
     // wait(300);
     // drive::auton::drive(35,200);
     lift::auton::lift(300,160,startTime,9500);
-    drive::auton::turn(270,120);
+    drive::auton::turn(300,120);
     lift::motor.moveAbsolute(0,200);
     drive::auton::driveNRE(300,200);
     tilter::motor.moveAbsolute(350,50);
-    drive::auton::driveNRB(25,200);
+    drive::auton::driveNRB(35,200);
     intake::auton::intakeOff();
     //stack
     tilter::auton::tilter(650,95);
@@ -126,7 +126,20 @@ namespace auton{
     lift::auton::lift(2700,200,14151,1235);
   }
 
-
+void safeBlue(){
+  startup();
+  drive::auton::drive(-30,-125);
+  drive::auton::drive(50,100);
+  drive::auton::turn(40,75);
+  // lift::motor.moveAbsolute(150,200);
+  drive::auton::drive(165,100);
+  drive::auton::turn(100,60);
+  drive::auton::drive(350,100);
+  drive::auton::turn(100,60);
+  drive::auton::drive(200,100);
+  intake::auton::intakeOn(-200);
+  lift::auton::lift(500,200,1234,1234);
+}
 
 
 

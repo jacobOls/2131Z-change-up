@@ -10,6 +10,7 @@ namespace auton{
   void driveABit();
   void nothing();
   void onePoint();
+  void safeBlue();
 }
 
 #endif /* end of include guard: ROUTINES_HPP */

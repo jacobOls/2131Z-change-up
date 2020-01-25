@@ -67,7 +67,7 @@ namespace auton{
       break;
 
       case Positons::BACKBLUE: //small blue
-      blueBig();
+      safeBlue();
       break;
 
       case Positons::FRONTBLUE: //big blue

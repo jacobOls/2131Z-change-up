@@ -11,6 +11,7 @@ namespace auton{
   void nothing();
   void onePoint();
   void safeBlue();
+  void safeRed();
 }
 
 #endif /* end of include guard: ROUTINES_HPP */

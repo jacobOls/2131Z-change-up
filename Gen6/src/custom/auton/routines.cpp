@@ -20,7 +20,7 @@ namespace auton{
     // lift::pulse();
     // lift::auton::lift(1000,200);
     intake::auton::intakeOn(-200);
-    wait(200);
+    wait(500);
     intake::auton::intakeOn(200);
     wait(800);
     // lift::auton::lift(0,200);
@@ -127,20 +127,37 @@ namespace auton{
   }
 
 void safeBlue(){
+  const int startTime = pros::millis();
   startup();
   drive::auton::drive(-30,-125);
   drive::auton::drive(50,100);
   drive::auton::turn(40,75);
   // lift::motor.moveAbsolute(150,200);
   drive::auton::drive(165,100);
-  drive::auton::turn(100,60);
+  drive::auton::turn(160,60);
   drive::auton::drive(350,100);
-  drive::auton::turn(100,60);
-  drive::auton::drive(200,100);
+  drive::auton::turn(90,60);
+  drive::auton::drive(150,100);
+  lift::auton::lift(400,200,1235,1234);
   intake::auton::intakeOn(-200);
-  lift::auton::lift(500,200,1234,1234);
 }
 
+
+void safeRed(){
+  const int startTime = pros::millis();
+  startup();
+  drive::auton::drive(-30,-125);
+  drive::auton::drive(50,100);
+  drive::auton::turn(40,-75);
+  // lift::motor.moveAbsolute(150,200);
+  drive::auton::drive(165,100);
+  drive::auton::turn(160,-60);
+  drive::auton::drive(350,100);
+  drive::auton::turn(90,-60);
+  drive::auton::drive(150,100);
+  lift::auton::lift(400,200,1235,1234);
+  intake::auton::intakeOn(-200);
+}
 
 
 /*

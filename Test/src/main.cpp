@@ -31,9 +31,7 @@ void initialize() {
 	lift::motor.tarePosition();
 	tilter::motor.tarePosition();
 	// lift::pulse();
-
-	auton::screenInit();
-std::cout << "initialize " << std::endl;
+	auton::selection::screenInit();
 }
 
 /**
@@ -41,9 +39,27 @@ std::cout << "initialize " << std::endl;
  * the VEX Competition Switch, following either autonomous or opcontrol. When
  * the robot is enabled, this task will exit.
  */
+  namespace auton {
+    pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
+                         TASK_STACK_DEPTH_DEFAULT, "AutonTask");
+  }
+  void autonomous() {
+
+    // puncher::motor.tarePosition();
+    auton::set_auton(true);
+    auton::autonTask.resume();
+
+    // drive::set_brakeMode(okapi::Motor::brakeMode::hold);
+    // intake::automatic::enable();
+    // drive::auton::reset();
+    auton::selection::execute();
+    // auton::routines::red::front::win();
+  }
+
+
 void disabled() {
 	auton::autonTask.suspend();
-auton::set_auton(false);
+  auton::set_auton(false);
 }
 
 /**
@@ -69,18 +85,6 @@ void competition_initialize() {}
  * from where it left off.
  */
 
- namespace auton{
- pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
- TASK_STACK_DEPTH_DEFAULT, "AutonTask");
- }
-
-
-void autonomous() {
-	auton::screenInit();
-auton::autonTask.resume();
-auton::set_auton(true);
-auton::execute();
-}
 
 /**
  * Runs the operator control code. This function will be started in its own task

@@ -1,4 +1,3 @@
-#include "custom/auton/selection.hpp"
 #include "display/lvgl.h"
 #include "custom/setup/controller.hpp"
 #include "custom/auton/routines.hpp"
@@ -8,6 +7,7 @@
 #include "custom/systems/drive.hpp"
 #include "custom/setup/motors.hpp"
 #include "custom/auton.hpp"
+#include "custom/auton/selection.hpp"
 #include <algorithm>
 #include <string>
 namespace auton {
@@ -49,10 +49,10 @@ namespace auton {
     lv_style_t style_config;
     // lv_style_t style_btn;
 
-    Positons positon = Positons::BR;
-    Shoots shoot = Shoots::FAR;
-    Flags flag = Flags::BOTH;
-    Options option = Options::PARK;
+    Positons positon = Positons::NONE;
+    Shoots shoot = Shoots::NONE;
+    Flags flag = Flags::NONE;
+    Options option = Options::NONE;
 
     std::string screenText[4][3] = {
         {"Front Red", "", ""},
@@ -145,7 +145,7 @@ namespace auton {
     }
 
     void ControllerScreen() {
-      controllerMaster.setText(0, 0, "");
+      master.setText(0, 0, "");
     }
     void testBtnPos(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Positons Positon) {
       if (pressedBtn == Btn) {

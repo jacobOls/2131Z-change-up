@@ -68,7 +68,7 @@ namespace auton{
 
 
 
-  void redSmall(){
+  void redSmall(){ //5 point
     startup();
     drive::auton::drive(1100,70);
     intake::auton::intakeOn(50);
@@ -138,7 +138,7 @@ void safeBlue(){
   drive::auton::drive(350,100);
   drive::auton::turn(90,60);
   drive::auton::drive(150,100);
-  lift::auton::lift(400,200,1235,1234);
+  lift::motor.moveAbsolute(400,200);
   intake::auton::intakeOn(-200);
 }
 
@@ -155,7 +155,7 @@ void safeRed(){
   drive::auton::drive(350,100);
   drive::auton::turn(90,-60);
   drive::auton::drive(150,100);
-  lift::auton::lift(400,200,1235,1234);
+  lift::motor.moveAbsolute(400,200);
   intake::auton::intakeOn(-200);
 }
 
@@ -196,7 +196,7 @@ intake::auton::intakeOn(-15);
 drive::auton::drive(-200,-85);
 tilter::motor.moveAbsolute(0,-200);
 */
-  void blueSmall(){
+  void blueSmall(){ //5 point
     startup();
     drive::auton::drive(1100,70);
     intake::auton::intakeOn(50);

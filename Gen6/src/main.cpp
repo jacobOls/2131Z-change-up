@@ -95,8 +95,25 @@ auton::execute();
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
+
+int temp;
+std::string temperature;
+void tempCheck(){
+	temp = lift::motor.getTemperature();
+std::string temperature = std::to_string(temp);
+pros::lcd::set_text(1,temperature);
+pros::lcd::set_text(2,temperature);
+pros::lcd::set_text(3,temperature);
+pros::lcd::set_text(4,temperature);
+pros::delay(20);
+// pros::lcd::clear_line(1);
+// pros::lcd::clear_line(2);
+}
+
+
 void opcontrol() {
 	while (true) {
+		// tempCheck();
 		drive::userDrive();
 		lift::init();
 		intake::init();

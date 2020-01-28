@@ -32,18 +32,18 @@ namespace lift{
   }
 
   void execute(){
-    if(motor.getPosition() < 5 && controller == Controllers::DOWN){
+    if(motor.getPosition() < 1 && controller == Controllers::DOWN){
       controller = Controllers::DEINIT;
     }
     switch (controller)
     {
 
       case Controllers::UP:
-      motor.moveVelocity(200);
+      motor.moveVelocity(100);
       break;
 
       case Controllers::DOWN:
-      motor.moveVelocity(-200);
+      motor.moveVelocity(-100);
 
       break;
       case Controllers::DEINIT:

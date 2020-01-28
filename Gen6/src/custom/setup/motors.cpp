@@ -39,7 +39,7 @@ namespace drive{
               } // namespace tilter
 
               namespace lift{
-                okapi::Motor motor(17, true, okapi::AbstractMotor::gearset::green,
+                okapi::Motor motor(17, true, okapi::AbstractMotor::gearset::red,
                   okapi::AbstractMotor::encoderUnits::degrees);
                   // pros::ADIAnalogIn liftSensor(1);
 

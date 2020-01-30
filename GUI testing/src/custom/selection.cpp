@@ -37,8 +37,6 @@ static lv_res_t btn_click_action(lv_obj_t * btn)
         // char buffer[100];
 
 	 std::cout << "loop iteration" << std::endl;
-   char buffer[100];
-  sprintf(buffer, "button was clicked %i milliseconds from start", pros::millis());
     }
 
     return LV_RES_OK;
@@ -54,18 +52,17 @@ void btnConfig(lv_obj_t*btn,  int row, int col){
   // lv_btn_set_toggle(btn, true);
   label = lv_label_create(btn, NULL);
   lv_label_set_text(label, btns[row][col].c_str());
-   lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, btn_click_action); //set function to be called on button click
 lv_btn_set_style(btn, LV_BTN_STYLE_REL, &relStyle); //set the relesed style
 lv_btn_set_style(btn, LV_BTN_STYLE_PR, &preStyle);
+lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, btn_click_action); //set function to be called on button click
   // lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, checkPress);
   // lv_btn_set_state(btn, LV_BTN_STATE_REL);
   std::cout << "creating button " << btns[row][col].c_str() << std::endl;
 }
 
-
 void btnToggled(lv_obj_t * btn, bool toggled)
 {
-    if(toggled != (lv_btn_get_state(btn) >= 2)) lv_btn_toggle(btn);
+    if(toggled != (lv_btn_get_state(btn) )) lv_btn_toggle(btn);
 }
 
 lv_obj_t *btn1 = lv_btn_create(lv_scr_act(), NULL);
@@ -91,6 +88,7 @@ lv_obj_t *btn17 = lv_btn_create(lv_scr_act(), NULL);
 lv_obj_t *btn18 = lv_btn_create(lv_scr_act(), NULL);
 lv_obj_t *btn19 = lv_btn_create(lv_scr_act(), NULL);
 lv_obj_t *btn20 = lv_btn_create(lv_scr_act(), NULL);
+
 
 void btnCreate(){
   // for (int row = 0; row < 5; row++) {
@@ -140,27 +138,33 @@ void btnCreate(){
 
 
 void btnChecker(){
+  // pros::delay(20);
   btnToggled(btn1, true);
   btnToggled(btn2, false);
   btnToggled(btn3, false);
   btnToggled(btn4, false);
   btnToggled(btn5, false);
-
+std::cout << "yeet" << std::endl;
 }
 
 
+void clickBtn(){
+// std::cout << "running" << std::endl;
+
+}
 
 void guiTask(void *param) {
   while(true) {
     std::uint32_t start = pros::millis();
     pros::Task::delay_until(&start, 10);
-    btnChecker();
-    pros::delay(10);
+    pros::delay(50);
     // std::cout << "loop iteration" << std::endl;
   }
 }
 
 void init(){
+  clickBtn();
+  btnChecker();
   btnCreate();
   std::cout << "starting task" << std::endl;
   pros::Task gui_task(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");

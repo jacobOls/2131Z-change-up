@@ -100,8 +100,7 @@ void btnCreate(){
    relStyle.body.main_color = LV_COLOR_MAKE(0, 0, 255);
    relStyle.body.radius = 3;
    relStyle.text.color = LV_COLOR_MAKE(150, 5,125);
-   lv_obj_set_free_num(btn1, 0 );
-   lv_btn_set_action(btn1, LV_BTN_ACTION_CLICK, btn_click_action);
+
 
 
 
@@ -150,7 +149,8 @@ void btnCreate(){
 
 void clickBtn(){
 // std::cout << "running" << std::endl;
-
+lv_obj_set_free_num(btn1, 0 );
+lv_btn_set_action(btn1, LV_BTN_ACTION_CLICK, btn_click_action);
 
 }
 
@@ -160,11 +160,11 @@ void guiTask(void *param) {
     pros::Task::delay_until(&start, 10);
     pros::delay(50);
     // std::cout << "loop iteration" << std::endl;
+    clickBtn();
   }
 }
 
 void init(){
-  clickBtn();
   // btnChecker();
   btnCreate();
   std::cout << "starting task" << std::endl;

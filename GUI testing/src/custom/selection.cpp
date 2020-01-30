@@ -89,12 +89,12 @@ void btnCreate(){
   //
   // }
   lv_style_copy(&relStyle, &lv_style_plain);
-   relStyle.body.main_color = LV_COLOR_MAKE(0, 255, 25);
+   relStyle.body.main_color = LV_COLOR_MAKE(0, 0, 255);
    relStyle.body.radius = 3;
    relStyle.text.color = LV_COLOR_MAKE(150, 5,125);
 
    lv_style_copy(&preStyle, &lv_style_plain);
-   preStyle.body.main_color = LV_COLOR_MAKE(255, 0, 0);
+   preStyle.body.main_color = LV_COLOR_MAKE(0, 255, 0);
    preStyle.body.radius = 3;
    preStyle.text.color = LV_COLOR_MAKE(0, 164, 255);
 
@@ -127,12 +127,11 @@ void btnCreate(){
 
 
 void btnChecker(){
-  // pros::delay(20);
-  // btnToggled(btn1, true);
-  // btnToggled(btn2, true);
-  // btnToggled(btn3, true);
-  // btnToggled(btn4, false);
-  // btnToggled(btn5, false);
+  btnToggled(btn1, true);
+  btnToggled(btn2, true);
+  btnToggled(btn3, true);
+  btnToggled(btn4, false);
+  btnToggled(btn5, false);
 // std::cout << "yeet" << std::endl;
 }
 
@@ -154,9 +153,7 @@ void guiTask(void *param) {
 
 void init(){
   clickBtn();
-  btnToggled(btn1, true);
-
-  // btnChecker();
+  btnChecker();
   btnCreate();
   std::cout << "starting task" << std::endl;
   pros::Task gui_task(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");

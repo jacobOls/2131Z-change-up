@@ -6,7 +6,12 @@
 #include <string>
 
 namespace selection{
-std::string btns[] = {"btn1", "btn2", "btn3", "btn4", "btn5", "btn6", "btn7", "btn8", "btn9", "btn10", "btn11", "btn12", "btn13", "btn14", "btn15", "btn16", "btn17", "btn18", "btn19", "btn20", };
+std::string btns[5][4] ={ {"BR ","SR ","BB ","SB "},
+                                      {"BR ","SR ","BB ","SB "},
+                                      {"BR ","SR ","BB" ,"SB "},
+                                      {"BR ","SR ","BB" ,"SB "},
+                                      {"BR ","SR ","BB" ,"SB "}
+                                    };
 
 void btnLocNSize(lv_obj_t*btn,  int row, int col){
   lv_obj_t *label;
@@ -16,7 +21,7 @@ void btnLocNSize(lv_obj_t*btn,  int row, int col){
   lv_obj_set_size(btn, 465 / 4, 240 / 5);
   lv_btn_set_toggle(btn, true);
   label = lv_label_create(btn, NULL);
-  lv_label_set_text(label, screenText[row].c_str());
+  lv_label_set_text(label, btns[row][col].c_str());
 
 }
 

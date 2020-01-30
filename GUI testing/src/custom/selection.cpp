@@ -28,26 +28,36 @@ void isPressed(_lv_obj_t *pressedBtn, _lv_obj_t *Btn){
 
 
 
-static lv_res_t checkPress(_lv_obj_t *pressedBtn){
-  // isPressed(pressedBtn, btn1);
-  std::cout << "running checkPress" <<  std::endl;
-  lv_btn_set_state(pressedBtn, LV_BTN_STATE_TGL_PR); //fa
-  return LV_RES_OK;
+static lv_res_t btn_click_action(lv_obj_t * btn)
+{
+    uint8_t id = lv_obj_get_free_num(btn); //id usefull when there are multiple buttons
+
+    if(id == 0)
+    {
+        // char buffer[100];
+
+	 std::cout << "loop iteration" << std::endl;
+   char buffer[100];
+  sprintf(buffer, "button was clicked %i milliseconds from start", pros::millis());
+    }
+
+    return LV_RES_OK;
 }
 
 
-void btnLocNSize(lv_obj_t*btn,  int row, int col){
+void btnConfig(lv_obj_t*btn,  int row, int col){
   lv_obj_t *label;
   int x = 465 / 4 * col;
   int y = 240 / 5 * row;
   lv_obj_set_pos(btn, x,y );
   lv_obj_set_size(btn, 465 / 4, 240 / 5);
-  lv_btn_set_toggle(btn, true);
+  // lv_btn_set_toggle(btn, true);
   label = lv_label_create(btn, NULL);
   lv_label_set_text(label, btns[row][col].c_str());
-  lv_btn_set_style(btn, LV_BTN_STYLE_REL, &relStyle); //set the relesed style
-   lv_btn_set_style(btn, LV_BTN_STYLE_PR, &preStyle); //set the pressed style
-  lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, checkPress);
+   lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, btn_click_action); //set function to be called on button click
+lv_btn_set_style(btn, LV_BTN_STYLE_REL, &relStyle); //set the relesed style
+lv_btn_set_style(btn, LV_BTN_STYLE_PR, &preStyle);
+  // lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, checkPress);
   // lv_btn_set_state(btn, LV_BTN_STATE_REL);
   std::cout << "creating button " << btns[row][col].c_str() << std::endl;
 }
@@ -86,55 +96,55 @@ void btnCreate(){
   // for (int row = 0; row < 5; row++) {
   //   for (int col = 0; col < 4; col++ ) {
   //         lv_obj_t* btn = lv_btn_create(lv_scr_act(), NULL);
-  //         btnLocNSize(btn ,row, col);
+  //         btnConfig(btn ,row, col);
   //
   //   }
   //
   // }
   lv_style_copy(&relStyle, &lv_style_plain);
-   relStyle.body.main_color = LV_COLOR_MAKE(150, 0, 0);
-   relStyle.body.radius = 0;
-   relStyle.text.color = LV_COLOR_MAKE(255, 255, 255);
+   relStyle.body.main_color = LV_COLOR_MAKE(0, 255, 25);
+   relStyle.body.radius = 3;
+   relStyle.text.color = LV_COLOR_MAKE(150, 5,125);
 
    lv_style_copy(&preStyle, &lv_style_plain);
    preStyle.body.main_color = LV_COLOR_MAKE(255, 0, 0);
-   preStyle.body.radius = 0;
-   preStyle.text.color = LV_COLOR_MAKE(255, 255, 255);
+   preStyle.body.radius = 3;
+   preStyle.text.color = LV_COLOR_MAKE(0, 164, 255);
 
 
-  btnLocNSize(btn1,0,0);
-  btnLocNSize(btn2,1,0);
-  btnLocNSize(btn3,2,0);
-  btnLocNSize(btn4,3,0);
-  btnLocNSize(btn5,4,0);
+  btnConfig(btn1,0,0);
+  btnConfig(btn2,1,0);
+  btnConfig(btn3,2,0);
+  btnConfig(btn4,3,0);
+  btnConfig(btn5,4,0);
 
-  btnLocNSize(btn6,0,1);
-  btnLocNSize(btn7,1,1);
-  btnLocNSize(btn8,2,1);
-  btnLocNSize(btn9,3,1);
-  btnLocNSize(btn10,4,1);
+  btnConfig(btn6,0,1);
+  btnConfig(btn7,1,1);
+  btnConfig(btn8,2,1);
+  btnConfig(btn9,3,1);
+  btnConfig(btn10,4,1);
 
-  btnLocNSize(btn11,0,2);
-  btnLocNSize(btn12,1,2);
-  btnLocNSize(btn13,2,2);
-  btnLocNSize(btn14,3,2);
-  btnLocNSize(btn15,4,2);
+  btnConfig(btn11,0,2);
+  btnConfig(btn12,1,2);
+  btnConfig(btn13,2,2);
+  btnConfig(btn14,3,2);
+  btnConfig(btn15,4,2);
 
-  btnLocNSize(btn16,0,3);
-  btnLocNSize(btn17,1,3);
-  btnLocNSize(btn18,2,3);
-  btnLocNSize(btn19,3,3);
-  btnLocNSize(btn20,4,3);
+  btnConfig(btn16,0,3);
+  btnConfig(btn17,1,3);
+  btnConfig(btn18,2,3);
+  btnConfig(btn19,3,3);
+  btnConfig(btn20,4,3);
 
 }
 
 
 void btnChecker(){
   btnToggled(btn1, true);
-  btnToggled(btn2, true);
-  btnToggled(btn3, true);
-  btnToggled(btn4, true);
-  btnToggled(btn5, true);
+  btnToggled(btn2, false);
+  btnToggled(btn3, false);
+  btnToggled(btn4, false);
+  btnToggled(btn5, false);
 
 }
 
@@ -142,8 +152,8 @@ void btnChecker(){
 
 void guiTask(void *param) {
   while(true) {
-    // std::uint32_t start = pros::millis();
-    // pros::Task::delay_until(&start, 10);
+    std::uint32_t start = pros::millis();
+    pros::Task::delay_until(&start, 10);
     btnChecker();
     pros::delay(10);
     // std::cout << "loop iteration" << std::endl;
@@ -155,7 +165,7 @@ void init(){
   std::cout << "starting task" << std::endl;
   pros::Task gui_task(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");
 
-  // gui_task.resume();
+  gui_task.resume();
 }
 /*
 LV_BTN_STYLE_REL - style of the released state. Default: lv_style_btn_rel.

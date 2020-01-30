@@ -31,10 +31,12 @@ void initialize() {
 	lift::motor.tarePosition();
 	tilter::motor.tarePosition();
 	// imu.reset();
-	pros::lcd::initialize();
+	// pros::lcd::initialize();
 	// pros::delay(2000);
 
 	// auton::screenInit();
+	auton::autonTask.suspend();
+	auton::set_auton(false);
 	// std::cout << "initialize " << std::endl;
 }
 
@@ -44,8 +46,6 @@ void initialize() {
 * the robot is enabled, this task will exit.
 */
 void disabled() {
-	// auton::autonTask.suspend();
-	// auton::set_auton(false);
 }
 
 /**
@@ -73,15 +73,15 @@ void competition_initialize() {
 * from where it left off.
 */
 namespace auton{
-	// pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
-	// TASK_STACK_DEPTH_DEFAULT, "AutonTask");
+	pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
+	TASK_STACK_DEPTH_DEFAULT, "AutonTask");
 }
 
 void autonomous() {
-	// auton::screenInit();
-	// auton::autonTask.resume();
-	// auton::set_auton(true);
-	// auton::execute();
+	auton::screenInit();
+	auton::autonTask.resume();
+	auton::set_auton(true);
+	auton::execute();
 }
 
 /**

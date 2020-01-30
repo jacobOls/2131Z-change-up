@@ -47,7 +47,7 @@ lv_style_t togStyle; //toggled  style
 
 void btnToggled(lv_obj_t * btn, bool toggled)
 {
-  if(toggled != (lv_btn_get_state(btn) >= 2)) lv_btn_toggle(btn);
+    if(toggled != (lv_btn_get_state(btn) >= 2)) lv_btn_toggle(btn);
 }
 
 static lv_res_t btn_click_action(lv_obj_t * btn)
@@ -67,7 +67,7 @@ void btnConfig(lv_obj_t*btn,  int row, int col){
   int y = 240 / 5 * row;
   lv_obj_set_pos(btn, x,y );
   lv_obj_set_size(btn, 465 / 4, 240 / 5);
-  lv_btn_set_toggle(btn, true);
+  // lv_btn_set_toggle(btn, true);
   label = lv_label_create(btn, NULL);
   lv_label_set_text(label, btns[row][col].c_str());
 lv_btn_set_style(btn, LV_BTN_STYLE_REL, &relStyle); //set the relesed style

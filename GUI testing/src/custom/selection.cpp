@@ -25,30 +25,40 @@ void btnLocNSize(lv_obj_t*btn,  int row, int col){
 
 }
 
+
+lv_obj_t *btn1 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn2 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn3 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn4 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn5 = lv_btn_create(lv_scr_act(), NULL);
+
+lv_obj_t *btn6 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn7 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn8 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn9 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn10 = lv_btn_create(lv_scr_act(), NULL);
+
+lv_obj_t *btn11 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn12 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn13 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn14 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn15 = lv_btn_create(lv_scr_act(), NULL);
+
+lv_obj_t *btn16 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn17 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn18 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn19 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t *btn20 = lv_btn_create(lv_scr_act(), NULL);
+
   void btnCreate(){
-    lv_obj_t *btn1 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn2 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn3 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn4 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn5 = lv_btn_create(lv_scr_act(), NULL);
-
-    lv_obj_t *btn6 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn7 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn8 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn9 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn10 = lv_btn_create(lv_scr_act(), NULL);
-
-    lv_obj_t *btn11 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn12 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn13 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn14 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn15 = lv_btn_create(lv_scr_act(), NULL);
-
-    lv_obj_t *btn16 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn17 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn18 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn19 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_t *btn20 = lv_btn_create(lv_scr_act(), NULL);
+    // for (int row = 0; row < 5; row++) {
+    //   for (int col = 0; col < 4; col++ ) {
+    //         lv_obj_t* btn = lv_btn_create(lv_scr_act(), NULL);
+    //         btnLocNSize(btn ,row, col);
+    //
+    //   }
+    //
+    // }
 
     btnLocNSize(btn1,0,0);
     btnLocNSize(btn2,1,0);
@@ -78,9 +88,41 @@ void btnLocNSize(lv_obj_t*btn,  int row, int col){
 
 
 
+
+void isPressed(_lv_obj_t *pressedBtn, _lv_obj_t *Btn){
+  if (pressedBtn == Btn)
+  {
+    lv_btn_set_state(Btn, LV_BTN_STATE_PR);
+  }
+  else{
+    lv_btn_set_state(Btn, LV_BTN_STATE_REL);
+  }
+}
+
+
+
+static lv_res_t checkPress(_lv_obj_t *pressedBtn){
+  isPressed(pressedBtn,btn1);
+  return LV_RES_OK;
+}
+
+
 void init(){
   btnCreate();
+  lv_btn_set_action(btn1, LV_BTN_ACTION_CLICK, checkPress);
 }
+/*
+LV_BTN_STYLE_REL - style of the released state. Default: lv_style_btn_rel.
+
+LV_BTN_STYLE_PR - style of the pressed state. Default: lv_style_btn_pr.
+
+LV_BTN_STYLE_TGL_REL - style of the toggled released state. Default: lv_style_btn_tgl_rel.
+
+LV_BTN_STYLE_TGL_PR - style of the toggled pressed state. Default: lv_style_btn_tgl_pr.
+
+LV_BTN_STYLE_INA - style of the inactive state. Default: lv_style_btn_ina.
+*/
+
 
 }
 

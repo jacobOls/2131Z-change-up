@@ -6,7 +6,8 @@
 #include <string>
 
 namespace selection{
-
+void clickBtn();
+  Autons auton = Autons::NONE;
 
   lv_obj_t *btn1 = lv_btn_create(lv_scr_act(), NULL);
   lv_obj_t *btn2 = lv_btn_create(lv_scr_act(), NULL);
@@ -49,7 +50,8 @@ lv_style_t preStyle; //pressed style
 static lv_res_t btn_click_action(lv_obj_t * btn)
 {
   std::cout << "button action" << std::endl;
-
+  // clickBtn();
+  Autons auton = Autons::ONE;
     return LV_RES_OK;
 }
 
@@ -141,29 +143,80 @@ void btnChecker(){
 
 
 void clickBtn(){
-// std::cout << "running" << std::endl;
-// lv_obj_set_free_num(btn1, 0 );
-// lv_btn_set_action(btn1, LV_BTN_ACTION_CLICK, btn_click_action);
+lv_btn_set_toggle(btn1,false);
+lv_btn_set_toggle(btn2,false);
+lv_btn_set_toggle(btn3,false);
+lv_btn_set_toggle(btn4,false);
+lv_btn_set_toggle(btn5,false);
+
+lv_btn_set_toggle(btn6,false);
+lv_btn_set_toggle(btn7,false);
+lv_btn_set_toggle(btn8,false);
+lv_btn_set_toggle(btn9,false);
+lv_btn_set_toggle(btn10,false);
+
+lv_btn_set_toggle(btn11,false);
+lv_btn_set_toggle(btn12,false);
+lv_btn_set_toggle(btn13,false);
+lv_btn_set_toggle(btn14,false);
+lv_btn_set_toggle(btn15,false);
+
+lv_btn_set_toggle(btn16,false);
+lv_btn_set_toggle(btn17,false);
+lv_btn_set_toggle(btn18,false);
+lv_btn_set_toggle(btn19,false);
+lv_btn_set_toggle(btn20,false);
 
 }
 
-void guiTask(void *param) {
-  while(true) {
-    std::uint32_t start = pros::millis();
-    pros::Task::delay_until(&start, 10);
-    pros::delay(50);
-    // std::cout << "loop iteration" << std::endl;
-    // clickBtn();
-  }
+
+
+void execute(){
+switch(auton){
+  case Autons::ONE:
+  lv_btn_toggle(btn3);
+
+  break;
+
+  case  Autons::TWO:
+
+  break;
+
+  case Autons::THREE:
+  break;
+
+  case  Autons::FOUR:
+
+  break;
+
+  case Autons::FIVE:
+  break;
+
+  case  Autons::NONE:
+
+  break;
 }
+
+}
+
+//
+// void guiTask(void *param) {
+//   while(true) {
+//     std::uint32_t start = pros::millis();
+//     pros::Task::delay_until(&start, 10);
+//     pros::delay(50);
+//     // std::cout << "loop iteration" << std::endl;
+//     // clickBtn();
+//   }
+// }
 
 void init(){
   // btnChecker();
   btnCreate();
   std::cout << "starting task" << std::endl;
-  pros::Task gui_task(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");
-
-  gui_task.resume();
+  // pros::Task gui_task(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");
+execute();
+  // gui_task.resume();
 }
 /*
 LV_BTN_STYLE_REL - style of the released state. Default: lv_style_btn_rel.

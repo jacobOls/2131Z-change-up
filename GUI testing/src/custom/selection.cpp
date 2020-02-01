@@ -52,14 +52,32 @@ void setCase(){
 
 static lv_res_t btn_click_action(lv_obj_t * btn)
 {
+    uint8_t id = lv_obj_get_free_num(btn);
+    if(id == 1){
+      if(auton == Autons::ONE){
+auton = Autons::NONE;
+      }
+      else{
+      auton = Autons::ONE;
+    }
+      id = 0;
+    }
+    else if (id ==2){
+        if(auton == Autons::TWO){
+  auton = Autons::NONE;
+        }
+        else{
+        auton = Autons::TWO;
+      }      id = 0;
+    }
   std::cout << "button action" << std::endl;
-  setCase();
+  // setCase();
   // clickBtn();
   return LV_RES_OK;
 }
 
 
-void btnConfig(lv_obj_t*btn,  int row, int col){
+void btnConfig(lv_obj_t*btn,  int row, int col, int id){
   lv_obj_t *label;
   int x = 465 / 4 * col;
   int y = 240 / 5 * row;
@@ -73,6 +91,7 @@ void btnConfig(lv_obj_t*btn,  int row, int col){
   lv_btn_set_style(btn, LV_BTN_STYLE_REL, &relStyle); //set the relesed style
   lv_btn_set_style(btn, LV_BTN_STYLE_PR, &preStyle); //set the pressed style
   lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, btn_click_action);
+  lv_obj_set_free_num(btn, id); //set button is to 0
   // lv_btn_set_state(btn, LV_BTN_STATE_TGL_REL);
   // std::cout << "creating button " << btns[row][col].c_str() << std::endl;
 }
@@ -108,29 +127,29 @@ void btnCreate(){
   preStyle.text.color = LV_COLOR_MAKE(0, 164, 255);
 
 
-  btnConfig(btn1,0,0); //collumn 1
-  btnConfig(btn2,1,0);
-  btnConfig(btn3,2,0);
-  btnConfig(btn4,3,0);
-  btnConfig(btn5,4,0);
+  btnConfig(btn1,0,0,1); //collumn 1
+  btnConfig(btn2,1,0,2);
+  btnConfig(btn3,2,0,3);
+  btnConfig(btn4,3,0,4);
+  btnConfig(btn5,4,0,5);
 
-  btnConfig(btn6,0,1); //collumn 2
-  btnConfig(btn7,1,1);
-  btnConfig(btn8,2,1);
-  btnConfig(btn9,3,1);
-  btnConfig(btn10,4,1);
+  btnConfig(btn6,0,1,6); //collumn 2
+  btnConfig(btn7,1,1,7);
+  btnConfig(btn8,2,1,8);
+  btnConfig(btn9,3,1,9);
+  btnConfig(btn10,4,1,10);
 
-  btnConfig(btn11,0,2); //collumn 3
-  btnConfig(btn12,1,2);
-  btnConfig(btn13,2,2);
-  btnConfig(btn14,3,2);
-  btnConfig(btn15,4,2);
+  btnConfig(btn11,0,2,11); //collumn 3
+  btnConfig(btn12,1,2,12);
+  btnConfig(btn13,2,2,13);
+  btnConfig(btn14,3,2,14);
+  btnConfig(btn15,4,2,15);
 
-  btnConfig(btn16,0,3); //collumn 4
-  btnConfig(btn17,1,3);
-  btnConfig(btn18,2,3);
-  btnConfig(btn19,3,3);
-  btnConfig(btn20,4,3);
+  btnConfig(btn16,0,3,16); //collumn 4
+  btnConfig(btn17,1,3,17);
+  btnConfig(btn18,2,3,18);
+  btnConfig(btn19,3,3,19);
+  btnConfig(btn20,4,3,20);
 
 }
 
@@ -177,11 +196,15 @@ void clickBtn(){
 void execute(){
   switch(auton){
     case Autons::ONE:
+    clickBtn();
+    lv_btn_set_toggle(btn1,true);
+
     // std::cout<<"case one"<<std::endl;
     break;
 
     case  Autons::TWO:
-
+    clickBtn();
+    lv_btn_set_toggle(btn2,true);
     break;
 
     case Autons::THREE:
@@ -195,7 +218,7 @@ void execute(){
     break;
 
     case  Autons::NONE:
-
+    clickBtn();
     break;
   }
 
@@ -206,7 +229,6 @@ void guiTask(void *param) {
   while(true) {
     std::uint32_t start = pros::millis();
     pros::Task::delay_until(&start, 10);
-    pros::delay(50);
     execute();
     // std::cout << "loop iteration" << std::endl;
     // clickBtn();

@@ -54,7 +54,48 @@ void setCase(){
 static lv_res_t btn_click_action(lv_obj_t * btn)
 {
   uint8_t id = lv_obj_get_free_num(btn);
-
+  active = false;
+  if(id == 1){
+    if(auton == Autons::ONE){
+      auton = Autons::NONE;
+    }
+    else{
+      auton = Autons::ONE;
+    }
+    id = 0;
+  }
+  else if (id ==2){
+    if(auton == Autons::TWO){
+      auton = Autons::NONE;
+    }
+    else{
+      auton = Autons::TWO;
+    }      id = 0;
+  }
+  if(id == 3){
+    if(auton == Autons::THREE){
+      auton = Autons::NONE;
+    }
+    else{
+      auton = Autons::THREE;
+    }
+    id = 0;
+  }
+  else if (id ==4){
+    if(auton == Autons::FOUR){
+      auton = Autons::NONE;
+    }
+    else{
+      auton = Autons::FOUR;
+    }      id = 0;
+  }
+  else if (id ==5){
+    if(auton == Autons::FIVE){
+      auton = Autons::NONE;
+    }
+    else{
+      auton = Autons::FIVE;
+    }      id = 0;
   }
   std::cout << "button action" << std::endl;
   // setCase();
@@ -180,53 +221,29 @@ void clickBtn(){
 
 void execute(){
   switch(auton){
-    case Autons::ONE:
-    if(!active){
-      clickBtn();
-      lv_btn_set_toggle(btn1,true);
-      active = true;
 
-    }
-    // std::cout<<"case one"<<std::endl;
+    case Autons::ONE:
+
     break;
 
     case  Autons::TWO:
-    if(!active){
-      clickBtn();
-      lv_btn_set_toggle(btn2,true);
-      active = true;
 
-    }    break;
+
+    break;
 
     case Autons::THREE:
-    if(!active){
-      clickBtn();
-      lv_btn_set_toggle(btn3,true);
-      active = true;
-
-    }
     break;
 
     case  Autons::FOUR:
-    if(!active){
-      clickBtn();
-      lv_btn_set_toggle(btn4,true);
-      active = true;
 
-    }
     break;
 
     case Autons::FIVE:
-    if(!active){
-      clickBtn();
-      lv_btn_set_toggle(btn5,true);
-      active = true;
 
-    }
+
     break;
 
     case  Autons::NONE:
-    clickBtn();
     break;
   }
 

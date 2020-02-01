@@ -6,8 +6,8 @@
 #include <string>
 
 namespace selection{
-void clickBtn();
   Autons auton = Autons::NONE;
+  void clickBtn();
 
   lv_obj_t *btn1 = lv_btn_create(lv_scr_act(), NULL);
   lv_obj_t *btn2 = lv_btn_create(lv_scr_act(), NULL);
@@ -45,14 +45,17 @@ lv_style_t preStyle; //pressed style
 
 
 
-
+void setCase(){
+  auton = Autons::ONE;
+  std::cout<<"caseset"<<std::endl;
+}
 
 static lv_res_t btn_click_action(lv_obj_t * btn)
 {
   std::cout << "button action" << std::endl;
+  setCase();
   // clickBtn();
-  Autons auton = Autons::ONE;
-    return LV_RES_OK;
+  return LV_RES_OK;
 }
 
 
@@ -65,18 +68,18 @@ void btnConfig(lv_obj_t*btn,  int row, int col){
   lv_btn_set_toggle(btn, true);
   label = lv_label_create(btn, NULL);
   lv_label_set_text(label, btns[row][col].c_str());
-lv_btn_set_style(btn, LV_BTN_STYLE_TGL_REL, &preStyle); //set the relesed style
-lv_btn_set_style(btn, LV_BTN_STYLE_TGL_PR, &preStyle); //set the pressed style
-lv_btn_set_style(btn, LV_BTN_STYLE_REL, &relStyle); //set the relesed style
-lv_btn_set_style(btn, LV_BTN_STYLE_PR, &preStyle); //set the pressed style
-lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, btn_click_action);
+  lv_btn_set_style(btn, LV_BTN_STYLE_TGL_REL, &preStyle); //set the relesed style
+  lv_btn_set_style(btn, LV_BTN_STYLE_TGL_PR, &preStyle); //set the pressed style
+  lv_btn_set_style(btn, LV_BTN_STYLE_REL, &relStyle); //set the relesed style
+  lv_btn_set_style(btn, LV_BTN_STYLE_PR, &preStyle); //set the pressed style
+  lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, btn_click_action);
   // lv_btn_set_state(btn, LV_BTN_STATE_TGL_REL);
   // std::cout << "creating button " << btns[row][col].c_str() << std::endl;
 }
 
 void btnToggled(lv_obj_t * btn, bool toggled)
 {
-    if(toggled != (lv_btn_get_state(btn) )) lv_btn_toggle(btn);
+  if(toggled != (lv_btn_get_state(btn) )) lv_btn_toggle(btn);
 }
 
 
@@ -92,17 +95,17 @@ void btnCreate(){
   //
   // }
   lv_style_copy(&relStyle, &lv_style_plain);
-   relStyle.body.main_color = LV_COLOR_MAKE(0, 0, 255);
-   relStyle.body.radius = 3;
-   relStyle.text.color = LV_COLOR_MAKE(150, 5,125);
+  relStyle.body.main_color = LV_COLOR_MAKE(0, 0, 255);
+  relStyle.body.radius = 3;
+  relStyle.text.color = LV_COLOR_MAKE(150, 5,125);
 
 
 
 
-   lv_style_copy(&preStyle, &lv_style_plain);
-   preStyle.body.main_color = LV_COLOR_MAKE(0, 255, 0);
-   preStyle.body.radius = 3;
-   preStyle.text.color = LV_COLOR_MAKE(0, 164, 255);
+  lv_style_copy(&preStyle, &lv_style_plain);
+  preStyle.body.main_color = LV_COLOR_MAKE(0, 255, 0);
+  preStyle.body.radius = 3;
+  preStyle.text.color = LV_COLOR_MAKE(0, 164, 255);
 
 
   btnConfig(btn1,0,0); //collumn 1
@@ -138,85 +141,84 @@ void btnChecker(){
   // btnToggled(btn3, true);
   // btnToggled(btn4, false);
   // btnToggled(btn5, false);
-// std::cout << "yeet" << std::endl;
+  // std::cout << "yeet" << std::endl;
 }
 
 
 void clickBtn(){
-lv_btn_set_toggle(btn1,false);
-lv_btn_set_toggle(btn2,false);
-lv_btn_set_toggle(btn3,false);
-lv_btn_set_toggle(btn4,false);
-lv_btn_set_toggle(btn5,false);
+  lv_btn_set_toggle(btn1,false);
+  lv_btn_set_toggle(btn2,false);
+  lv_btn_set_toggle(btn3,false);
+  lv_btn_set_toggle(btn4,false);
+  lv_btn_set_toggle(btn5,false);
 
-lv_btn_set_toggle(btn6,false);
-lv_btn_set_toggle(btn7,false);
-lv_btn_set_toggle(btn8,false);
-lv_btn_set_toggle(btn9,false);
-lv_btn_set_toggle(btn10,false);
+  lv_btn_set_toggle(btn6,false);
+  lv_btn_set_toggle(btn7,false);
+  lv_btn_set_toggle(btn8,false);
+  lv_btn_set_toggle(btn9,false);
+  lv_btn_set_toggle(btn10,false);
 
-lv_btn_set_toggle(btn11,false);
-lv_btn_set_toggle(btn12,false);
-lv_btn_set_toggle(btn13,false);
-lv_btn_set_toggle(btn14,false);
-lv_btn_set_toggle(btn15,false);
+  lv_btn_set_toggle(btn11,false);
+  lv_btn_set_toggle(btn12,false);
+  lv_btn_set_toggle(btn13,false);
+  lv_btn_set_toggle(btn14,false);
+  lv_btn_set_toggle(btn15,false);
 
-lv_btn_set_toggle(btn16,false);
-lv_btn_set_toggle(btn17,false);
-lv_btn_set_toggle(btn18,false);
-lv_btn_set_toggle(btn19,false);
-lv_btn_set_toggle(btn20,false);
+  lv_btn_set_toggle(btn16,false);
+  lv_btn_set_toggle(btn17,false);
+  lv_btn_set_toggle(btn18,false);
+  lv_btn_set_toggle(btn19,false);
+  lv_btn_set_toggle(btn20,false);
 
 }
 
 
 
 void execute(){
-switch(auton){
-  case Autons::ONE:
-  lv_btn_toggle(btn3);
+  switch(auton){
+    case Autons::ONE:
+    // std::cout<<"case one"<<std::endl;
+    break;
 
-  break;
+    case  Autons::TWO:
 
-  case  Autons::TWO:
+    break;
 
-  break;
+    case Autons::THREE:
+    break;
 
-  case Autons::THREE:
-  break;
+    case  Autons::FOUR:
 
-  case  Autons::FOUR:
+    break;
 
-  break;
+    case Autons::FIVE:
+    break;
 
-  case Autons::FIVE:
-  break;
+    case  Autons::NONE:
 
-  case  Autons::NONE:
-
-  break;
-}
+    break;
+  }
 
 }
 
 //
-// void guiTask(void *param) {
-//   while(true) {
-//     std::uint32_t start = pros::millis();
-//     pros::Task::delay_until(&start, 10);
-//     pros::delay(50);
-//     // std::cout << "loop iteration" << std::endl;
-//     // clickBtn();
-//   }
-// }
+void guiTask(void *param) {
+  while(true) {
+    std::uint32_t start = pros::millis();
+    pros::Task::delay_until(&start, 10);
+    pros::delay(50);
+    execute();
+    // std::cout << "loop iteration" << std::endl;
+    // clickBtn();
+  }
+}
 
 void init(){
   // btnChecker();
   btnCreate();
   std::cout << "starting task" << std::endl;
-  // pros::Task gui_task(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");
-execute();
-  // gui_task.resume();
+  pros::Task gui_task(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");
+  gui_task.resume();
 }
 /*
 LV_BTN_STYLE_REL - style of the released state. Default: lv_style_btn_rel.

@@ -52,7 +52,15 @@ namespace tilter{
     switch (controller)
     {
       case Controllers::FORWARD:
-      motor.moveVelocity(50);
+      if(lift::motor.getPosition() < 100){
+      motor.moveVelocity(75);
+    }
+    else if(lift::motor.getPosition() >= 100){
+      motor.moveVelocity(45);
+    }
+      if(lift::motor.getPosition() < 50 && motor.getPosition() > 130){
+        lift::motor.moveAbsolute(0,-200);
+      }
       // trayLock = false;
       break;
 

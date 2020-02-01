@@ -274,7 +274,7 @@
         },
         "upload_options": {
             "compress_bin": true,
-            "description": "Created with PROS",
+            "description": ":P",
             "remote_name": "test slot",
             "slot": 2
         }

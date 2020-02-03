@@ -1,276 +1,189 @@
+#include "main.h"
 #include "custom/auton/selection.hpp"
 #include "display/lvgl.h"
-#include "custom/setup/controller.hpp"
 #include "custom/auton/routines.hpp"
-#include "custom/systems/lift.hpp"
-#include "custom/systems/intake.hpp"
-#include "custom/systems/tilter.hpp"
-#include "custom/systems/drive.hpp"
-#include "custom/setup/motors.hpp"
-#include "custom/auton.hpp"
+#include <stdio.h>
 #include <algorithm>
 #include <string>
-namespace auton{
-  /*forward defs*/
-  void StyleInit();
-  void BtnInit(lv_obj_t *btn, lv_style_t *sty, int row, int col);
-  void BtnShow();
 
-  std::string RoutsToString(int one, int two);
-  void ControllerScreen();
-  void testBtnPos(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Positons Positon);
-  void testBtnSta(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Stacks Stack);
-  void testBtnOpt(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Options Option);
+namespace selection{
+  void clearBtns(lv_obj_t*);
 
-  static lv_res_t OnClickPos(_lv_obj_t *pressedBtn);
-  static lv_res_t OnClickSta(_lv_obj_t *pressedBtn);
-  static lv_res_t OnClickOpt(_lv_obj_t *pressedBtn);
+  const int BUTTON_COUNT = 20;
+//
+//   std::string btns[5][4] ={
+//    {"LR ","SR ","LB ","SB "},
+//   {"LR ","SR ","LB ","SB "},
+//   {"LR ","SR ","LB" ,"SB "},
+//   {"LR ","SR ","LB" ,"SB "},
+//   {"LR ","SR ","LB" ,"SB "}
+// };
+lv_style_t relStyle; //relesed style
+lv_style_t preStyle; //pressed style
 
-  lv_obj_t *Btn0_0 = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_t *Btn1_0 = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_t *Btn2_0 = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_t *Btn3_0 = lv_btn_create(lv_scr_act(), NULL);
+lv_obj_t ** allButtons;
 
-  lv_obj_t *Btn0_1 = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_t *Btn1_1 = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_t *Btn2_1 = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_t *Btn3_1 = lv_btn_create(lv_scr_act(), NULL);
+int selectedAuton = -1;
 
-  lv_obj_t *Btn0_2 = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_t *Btn1_2 = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_t *Btn2_2 = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_t *Btn3_2 = lv_btn_create(lv_scr_act(), NULL);
+void autonOne() {
+  std::cout <<  "running auton one" << std::endl;
+}
 
-  lv_style_t style_red;
-  lv_style_t style_blue;
-  lv_style_t style_config;
-  // lv_style_t style_btn;
+void autonTwo() {
+  std::cout <<  "running auton two" << std::endl;
+}
 
-  Positons positon = Positons::FRONTRED;
-  Stacks stack = Stacks::NONE;
-  Options option = Options::NONE;
+void autonThree(){
+  std::cout << "3" << std::endl;
+}
+std::string buttonLabels[BUTTON_COUNT] = {
+  "FRONT_RED",  // 1
+  "FRONT_BLUE", // 2
+  "LR 9 POINT" // 3
+};
 
-  std::string screenText[4][3] = {
-    {"Small Red", "", ""}, //small red
-    {"Big Red", "", ""},  //big red
-    {"Big Blue", "", ""},  //big blue
-    {"Small Blue", "", ""},  //small blue
-  };
-  void execute(){
-    switch (positon){
-      case Positons::FRONTRED: //small red
-      redSmall();
-      break;
+// auton function returns void and takes no args
+typedef  void (*autonFnPtr)(void);
 
-      case Positons::BACKRED: //big red
-      safeRed();
-      break;
 
-      case Positons::BACKBLUE: //small blue
-      safeBlue();
-      break;
+// std::string autonBtnState[BUTTON_COUNT] = {
+//   "FRONT_RED",  // 1
+//   "FRONT_BLUE", // 2
+//
+// };
 
-      case Positons::FRONTBLUE: //big blue
-      blueSmall();
-      break;
+autonFnPtr autonHandlers[BUTTON_COUNT] = {
+  autonOne,
+  autonTwo,
+  autonThree,
 
-      case Positons::NONE: //
-      break;
-    }
+};
+
+
+
+static lv_res_t btn_click_action(lv_obj_t * btn)
+{
+  clearBtns(btn);
+  lv_btn_set_state(btn, LV_BTN_STATE_PR);
+  uint32_t indexPos = lv_obj_get_free_num(btn);
+
+  selectedAuton = indexPos;
+
+  std::cout << "Toggled button with free_num of [" << indexPos << "] yo" <<  std::endl;
+  // std::cout << "Auton selected is " << autonBtnState[id] << std::endl;
+
+std::cout << "button action" << std::endl;
+// setCase();
+// clearBtns();
+return LV_RES_OK;
+}
+
+
+void btnConfig(lv_obj_t*btn,  int row, int col, int id){
+  lv_obj_t *label;
+  int x = 465 / 4 * col;
+  int y = 240 / 5 * row;
+  lv_obj_set_pos(btn, x,y );
+  lv_obj_set_size(btn, 465 / 4, 240 / 5);
+  lv_btn_set_toggle(btn, true);
+  label = lv_label_create(btn, NULL);
+  lv_label_set_text(label, buttonLabels[id].c_str());
+  lv_btn_set_style(btn, LV_BTN_STYLE_TGL_REL, &preStyle); //set the relesed style
+  lv_btn_set_style(btn, LV_BTN_STYLE_TGL_PR, &preStyle); //set the pressed style
+  lv_btn_set_style(btn, LV_BTN_STYLE_REL, &relStyle); //set the relesed style
+  lv_btn_set_style(btn, LV_BTN_STYLE_PR, &preStyle); //set the pressed style
+  lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, btn_click_action);
+  lv_obj_set_free_num(btn, id); //set button is to 0
+  // lv_btn_set_state(btn, LV_BTN_STATE_TGL_REL);
+  // std::cout << "creating button " << btns[row][col].c_str() << std::endl;
+}
+
+void btnToggled(lv_obj_t * btn, bool toggled)
+{
+  if(toggled != (lv_btn_get_state(btn) )) lv_btn_toggle(btn);
+}
+
+
+
+
+void btnCreate(){
+
+  allButtons = new lv_obj_t*[BUTTON_COUNT];
+
+  lv_style_copy(&relStyle, &lv_style_plain);
+  relStyle.body.main_color = LV_COLOR_MAKE(0, 0, 255);
+  relStyle.body.radius = 3;
+  relStyle.text.color = LV_COLOR_MAKE(150, 5,125);
+
+
+
+
+  lv_style_copy(&preStyle, &lv_style_plain);
+  preStyle.body.main_color = LV_COLOR_MAKE(0, 255, 0);
+  preStyle.body.radius = 3;
+  preStyle.text.color = LV_COLOR_MAKE(0, 164, 255);
+
+int ndx = 0;
+for (int row = 0; row < 5; row++) {
+  for (int col = 0; col < 4; col++) {
+    allButtons[ndx] =  lv_btn_create(lv_scr_act(), NULL);
+    btnConfig(allButtons[ndx], row, col, ndx);
+     std::cout << "Created button at pos " << ndx << std::endl;
+     ndx++;
   }
-  void screenInit(){
-    StyleInit();
+}
 
-    BtnInit(Btn0_0, &style_red, 0, 0);
-    BtnInit(Btn1_0, &style_red, 1, 0);
-    BtnInit(Btn2_0, &style_blue, 2, 0);
-    BtnInit(Btn3_0, &style_blue, 3, 0);
-    lv_btn_set_action(Btn0_0, LV_BTN_ACTION_CLICK, OnClickPos);
-    lv_btn_set_action(Btn1_0, LV_BTN_ACTION_CLICK, OnClickPos);
-    lv_btn_set_action(Btn2_0, LV_BTN_ACTION_CLICK, OnClickPos);
-    lv_btn_set_action(Btn3_0, LV_BTN_ACTION_CLICK, OnClickPos);
 
-    BtnInit(Btn0_1, &style_config, 0, 1);
-    BtnInit(Btn0_2, &style_config, 0, 2);
-    lv_btn_set_action(Btn0_1, LV_BTN_ACTION_CLICK, OnClickSta);
-    lv_btn_set_action(Btn0_2, LV_BTN_ACTION_CLICK, OnClickSta);
+}
 
-    BtnInit(Btn1_1, &style_config, 1, 1);
-    BtnInit(Btn2_1, &style_config, 2, 1);
+void clearBtns(lv_obj_t * toggledButton = NULL){
+  std::cout << "clearing  buttonts" << std::endl;
+  for (int i = 0; i < BUTTON_COUNT; i++) {
+     lv_obj_t * btn = allButtons[i];
+     if (btn != toggledButton) {
+       lv_btn_set_state(btn, LV_BTN_STATE_REL);
+     }
 
-    BtnInit(Btn3_1, &style_config, 3, 1);
-    lv_btn_set_action(Btn3_1, LV_BTN_ACTION_CLICK, OnClickOpt);
-
-    BtnInit(Btn1_2, &style_config, 1, 2);
-    BtnInit(Btn2_2, &style_config, 2, 2);
-    BtnInit(Btn3_2, &style_config, 3, 2);
-
-    BtnShow();
-    std::cout << "pos: " << static_cast<int>(positon) << " sta: " << static_cast<int>(stack) << " fla: "
-    << " opt: " << static_cast<int>(option) << std::endl;
   }
-  void StyleInit(){
-    lv_style_copy(&style_red, &lv_style_plain);
-    style_red.text.color = LV_COLOR_HEX(0xFF0000);
+    std::cout << "buttons cleared" << std::endl;
+}
 
-    lv_style_copy(&style_blue, &lv_style_plain);
-    style_blue.text.color = LV_COLOR_HEX(0x0000FF);
 
-    lv_style_copy(&style_config, &lv_style_plain);
-    style_config.text.color = LV_COLOR_HEX(0x00FF00);
+void execute(){
+autonFnPtr defaultAuton = autonOne;
 
-    // lv_style_copy(&style_btn, &lv_style_plain);
+ if (selectedAuton == -1) {
+   defaultAuton();
+   return;
+ }
+
+ autonFnPtr autonToRun = autonHandlers[selectedAuton];
+ if (autonToRun != NULL) {
+   autonToRun();
+   return;
+ } else {
+   defaultAuton();
+ }
+
+}
+
+//
+void guiTask(void *param) {
+  while(true) {
+    std::uint32_t start = pros::millis();
+    pros::Task::delay_until(&start, 10);
+    execute();
+    // std::cout << "loop iteration" << std::endl;
+    // clearBtns();
   }
-  void BtnInit(lv_obj_t *btn, lv_style_t *sty, int row, int col){
-    lv_obj_t *label;
-    int x = 465 / 3 * col;
-    int y = 240 / 4 * row;
-    lv_btn_set_toggle(btn, true);
-    lv_obj_set_pos(btn, x, y);
-    lv_obj_set_size(btn, 465 / 3, 240 / 4);
-    // lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, click());
+}
 
-    label = lv_label_create(btn, NULL);
-    lv_obj_set_style(label, sty);
-    lv_label_set_text(label, screenText[row][col].c_str());
+void init(){
+  // btnChecker();
+  btnCreate();
+  std::cout << "starting task" << std::endl;
+  pros::Task gui_task(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");
+  gui_task.resume();
+}
 
-    std::cout << "Btn on row " << row << " and col " << col << " Inited";
-    if (sty == &style_red)
-    std::cout << "red" << std::endl;
-    else
-    std::cout << "blue" << std::endl;
-  }
-  std::string RoutsToString(int one, int two){
-    return screenText[one][two];
-  }
-
-  void ControllerScreen(){
-    master.setText(0, 0, "");
-  }
-
-  void testBtnPos(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Positons Positon){
-    if (pressedBtn == Btn){
-      positon = Positon;
-    }
-    else{
-      lv_btn_set_state(Btn, LV_BTN_STATE_REL);
-    }
-  }
-  void testBtnSta(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Stacks Stack){
-    if (pressedBtn == Btn)
-    {
-      stack = Stack;
-    }
-    else{
-      lv_btn_set_state(Btn, LV_BTN_STATE_REL);
-    }
-  }
-
-  void testBtnOpt(_lv_obj_t *pressedBtn, _lv_obj_t *Btn, Options Option){
-    if (pressedBtn == Btn){
-      switch (option){
-        case Options::SKILLS:
-        option = Options::NOTSKILLS;
-        break;
-        case Options::NOTSKILLS:
-        option = Options::SKILLS;
-        break;
-        case Options::NONE:
-        option = Options::SKILLS;
-        break;
-      }
-    }
-    else{
-      lv_btn_set_state(Btn, LV_BTN_STATE_REL);
-    }
-  }
-  static lv_res_t OnClickPos(_lv_obj_t *pressedBtn){
-    testBtnPos(pressedBtn, Btn0_0, Positons::FRONTRED);
-    testBtnPos(pressedBtn, Btn1_0, Positons::BACKRED);
-    testBtnPos(pressedBtn, Btn2_0, Positons::BACKBLUE);
-    testBtnPos(pressedBtn, Btn3_0, Positons::FRONTBLUE);
-    ControllerScreen();
-    std::cout << "pos: " << static_cast<int>(positon) << " sta: " << static_cast<int>(stack) << " fla: "
-    << " opt: " << static_cast<int>(option) << std::endl;
-    return LV_RES_OK;
-  }
-  static lv_res_t OnClickSta(_lv_obj_t *pressedBtn){
-    testBtnSta(pressedBtn, Btn0_1, Stacks::LEFT);
-    testBtnSta(pressedBtn, Btn0_2, Stacks::RIGHT);
-    ControllerScreen();
-    std::cout << "pos: " << static_cast<int>(positon) << " sta: " << static_cast<int>(stack) << " fla: "
-    << " opt: " << static_cast<int>(option) << std::endl;
-    return LV_RES_OK;
-  }
-
-  static lv_res_t OnClickOpt(_lv_obj_t *pressedBtn){
-    testBtnOpt(pressedBtn, Btn3_1, Options::SKILLS);
-    ControllerScreen();
-    std::cout << "pos: " << static_cast<int>(positon) << " sta: " << static_cast<int>(stack) << " fla: "
-    << " opt: " << static_cast<int>(option) << std::endl;
-    return LV_RES_OK;
-  }
-
-  void BtnShow(){
-    switch (positon){
-      case Positons::FRONTRED:
-      lv_btn_set_state(Btn0_0, LV_BTN_STATE_TGL_PR); //fr
-      break;
-      case Positons::BACKRED:
-      lv_btn_set_state(Btn1_0, LV_BTN_STATE_TGL_PR); //br
-      break;
-      case Positons::BACKBLUE:
-      lv_btn_set_state(Btn2_0, LV_BTN_STATE_TGL_PR); //bb
-      break;
-      case Positons::FRONTBLUE:
-      lv_btn_set_state(Btn3_0, LV_BTN_STATE_TGL_PR); //fb
-      break;
-
-      case Positons::NONE:
-      break;
-    }
-    switch (stack){
-      case Stacks::LEFT:
-      lv_btn_set_state(Btn0_2, LV_BTN_STATE_TGL_PR); //far
-      break;
-      case Stacks::RIGHT:
-      lv_btn_set_state(Btn0_1, LV_BTN_STATE_TGL_PR); //mid
-      break;
-
-      case Stacks::NONE:
-      break;
-    }
-
-    switch (option){
-      case Options::SKILLS:
-      lv_btn_set_state(Btn3_1, LV_BTN_STATE_TGL_PR); //skills
-      break;
-      case Options::NOTSKILLS:
-      break;
-
-      case Options::NONE:
-      break;
-    }
-  }
-
-  bool inAuton = false;
-  void set_auton(bool b){
-    inAuton = b;
-  }
-  void Task(void *why)
-  {
-    std::uint32_t test = pros::millis(); //init delay
-    int beg = pros::millis();
-    while (1){
-      if (inAuton){
-        // drive::auton::ramping();
-        intake::execute();
-        lift::execute();
-        tilter::execute();
-      }
-      std::cout << "T: "<< (pros::millis()-beg)/5 <<" BLv: " << drive::left_back.get_actual_velocity() << std::endl;
-      pros::Task::delay_until(&test, 5); //delay for 5 millis exact
-    }
-  }
-
-} // namespace auton
+}

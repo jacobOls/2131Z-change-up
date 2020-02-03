@@ -17,10 +17,11 @@ namespace auton{
     lift::motor.tarePosition();
     tilter::motor.tarePosition();
     drive::auton::resetPos();
-    lift::pulse();
-    // lift::auton::lift(1000,200);
+    // lift::auton::lift(1000,200)
+    wait(100);
     intake::auton::intakeOn(-200);
-    wait(500);
+    lift::pulse();
+    // wait(200);
     intake::auton::intakeOn(200);
     wait(800);
     // lift::auton::lift(0,200);

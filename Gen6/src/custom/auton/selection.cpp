@@ -42,7 +42,7 @@ std::string buttonLabels[BUTTON_COUNT] = {
   "LR ",
   "LR",
 
-  "SR",  // small red
+  "SR  5",  // small red
   "SR",
   "SR ",
   "SR",
@@ -52,7 +52,7 @@ std::string buttonLabels[BUTTON_COUNT] = {
   "LB ",
   "LB",
 
-  "SB",  // small blue
+  "SB  5",  // small blue
   "SB",
   "SB ",
   "SB",
@@ -74,9 +74,25 @@ typedef  void (*autonFnPtr)(void);
 // };
 
 autonFnPtr autonHandlers[BUTTON_COUNT] = {
-  autonOne,
+  autonOne, //large red
   autonTwo,
   autonThree,
+ autonOne,
+
+auton:: redSmall, //small red
+auton:: redSmall,
+auton:: redSmall,
+auton:: redSmall,
+
+auton:: redSmall, //large blue
+auton:: redSmall,
+auton:: redSmall,
+auton:: redSmall,
+
+auton::blueSmall, //small blue
+auton:: blueSmall,
+auton:: blueSmall,
+auton:: blueSmall
 
 };
 
@@ -171,7 +187,7 @@ void clearBtns(lv_obj_t * toggledButton = NULL){
 
 
 void execute(){
-autonFnPtr defaultAuton = autonOne;
+autonFnPtr defaultAuton =auton:: redSmall;
 
  if (selectedAuton == -1) {
    defaultAuton();

@@ -66,17 +66,28 @@ namespace auton{
   }
 
 void redBig4(){
-startup();
-drive::auton::drive(-30,-125);
-drive::auton::drive(70,100);
+// startup();
+//deployment
+lift::motor.tarePosition();
+tilter::motor.tarePosition();
+drive::auton::resetPos();
+// lift::auton::lift(1000,200);
+intake::auton::intakeOn(-200);
+lift::pulse();
+// wait(500);
+intake::auton::intakeOn(200);
+// wait(800);
+//starting
+// drive::auton::drive(-30,-125);
+drive::auton::drive(70,150);
 drive::auton::turn(50,70);
-drive::auton::drive(100,100);
+drive::auton::drive(100,150);
 drive::auton::turn(130,70);
-drive::auton::drive(100,100);
-drive::auton::drive(-100,-100);
+drive::auton::drive(85,150);
+drive::auton::drive(-85,-150);
 drive::auton::turn(450,-100);
-drive::auton::drive(360,100);
-drive::auton::turn(80,-80);
+drive::auton::drive(200,150);
+drive::auton::turn(60,-70);
 //stack
 intake::auton::intakeOn(-15);
 drive::auton::drive(65,100);
@@ -91,6 +102,48 @@ drive::auton::drive(-200,-115);
 tilter::motor.moveAbsolute(0,-200);
 
 }
+
+
+void blueBig4(){
+// startup();
+//deployment
+lift::motor.tarePosition();
+tilter::motor.tarePosition();
+drive::auton::resetPos();
+// lift::auton::lift(1000,200);
+intake::auton::intakeOn(-200);
+lift::pulse();
+// wait(500);
+intake::auton::intakeOn(200);
+// wait(800);
+//starting
+// drive::auton::drive(-30,-125);
+drive::auton::drive(70,150);
+drive::auton::turn(50,-70);
+drive::auton::drive(100,150);
+drive::auton::turn(130,-70);
+drive::auton::drive(85,150);
+drive::auton::drive(-85,-150);
+drive::auton::turn(450,100);
+drive::auton::drive(200,150);
+drive::auton::turn(60,70);
+//stack
+intake::auton::intakeOn(-15);
+drive::auton::drive(65,100);
+//stacking
+tilter::auton::tilter(650,75);
+intake::auton::intakeOn(-45);
+tilter::auton::tilter(850,75);
+intake::auton::intakeOff();
+tilter::auton::tilter(1050,75);
+intake::auton::intakeOn(-15);
+drive::auton::drive(-200,-115);
+tilter::motor.moveAbsolute(0,-200);
+
+}
+
+
+
 void redBig5(){
   startup();
   drive::auton::drive(-30,-125);

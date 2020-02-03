@@ -14,6 +14,7 @@ namespace auton{
   void safeRed();
   void redBig5();
   void redBig4();
+  void blueBig4();
 }
 
 #endif /* end of include guard: ROUTINES_HPP */

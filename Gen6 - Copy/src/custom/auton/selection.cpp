@@ -47,7 +47,7 @@ namespace auton{
   lv_style_t style_config;
   // lv_style_t style_btn;
 
-  Positons positon = Positons::BACKRED;
+  Positons positon = Positons::BACKBLUE;
   Stacks stack = Stacks::NONE;
   Options option = Options::NONE;
 
@@ -68,7 +68,7 @@ namespace auton{
       break;
 
       case Positons::BACKBLUE: //small blue
-      safeBlue();
+      blueBig4();
       break;
 
       case Positons::FRONTBLUE: //big blue

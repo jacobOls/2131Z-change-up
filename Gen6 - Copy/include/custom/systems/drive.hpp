@@ -4,15 +4,15 @@
 namespace drive{
   void userDrive(void);
   enum class Controllers{
-DRIVE,
-DEINIT,
-NONE
+    DRIVE,
+    DEINIT,
+    NONE
   };
   namespace auton{
     void drive(int distance, int velocity);
     void driveNRE(int distance, int velocity);
     void driveNRB(int distance, int velocity);
-
+    void driveNR(int distance, int velocity);
     void turn(int deg, int velocity);
     void resetPos(void);
   }

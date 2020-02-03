@@ -101,7 +101,23 @@ namespace drive{
       }
 
     }
+void driveNR(int distance, int velocity){
+  resetPos();
+  distance=abs(distance);
+  while(abs(left_front.getPosition()) < distance || abs(right_front.getPosition()) < distance){
+    left_drive.moveVelocity(velocity);
+    right_drive.moveVelocity(velocity);
+    // LEFT_DRIVE.calculate(targetVelocity);
+    // RIGHT_DRIVE.calculate(targetVelocity);
+    pros::delay(20);
 
+  }
+  // while(LEFT_DRIVE.output() != 0){
+    left_drive.moveVelocity(0);
+    right_drive.moveVelocity(0);
+    pros::delay(20);
+  // }
+}
     void driveNRE(int distance, int velocity){
       resetPos();
       distance=abs(distance);

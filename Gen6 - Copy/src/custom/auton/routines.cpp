@@ -17,10 +17,10 @@ namespace auton{
     lift::motor.tarePosition();
     tilter::motor.tarePosition();
     drive::auton::resetPos();
-    lift::pulse();
     // lift::auton::lift(1000,200);
     intake::auton::intakeOn(-200);
-    wait(500);
+    lift::pulse();
+    // wait(500);
     intake::auton::intakeOn(200);
     wait(800);
     // lift::auton::lift(0,200);
@@ -70,20 +70,20 @@ namespace auton{
 
   void redSmall(){ //5 point
     startup();
-    drive::auton::drive(1100,70);
+    drive::auton::drive(1100,60);
     intake::auton::intakeOn(50);
     drive::auton::drive(300,-200);
     drive::auton::turn(360,75);
     intake::auton::intakeOn(-15);
     drive::auton::drive(125,100);
     //stacking
-    tilter::auton::tilter(650,95);
+    tilter::auton::tilter(650,75);
     intake::auton::intakeOn(-45);
     tilter::auton::tilter(850,75);
     intake::auton::intakeOff();
-    tilter::auton::tilter(1050,50);
+    tilter::auton::tilter(1050,75);
     intake::auton::intakeOn(-15);
-    drive::auton::drive(-200,-85);
+    drive::auton::drive(-200,-115);
     tilter::motor.moveAbsolute(0,-200);
   }
 
@@ -203,7 +203,7 @@ tilter::motor.moveAbsolute(0,-200);
     drive::auton::drive(300,-200);
     drive::auton::turn(360,-75);
     intake::auton::intakeOn(-15);
-    drive::auton::drive(125,100);
+       drive::auton::drive(125,100);
     //stacking
     tilter::auton::tilter(650,95);
     intake::auton::intakeOn(-45);
@@ -213,6 +213,16 @@ tilter::motor.moveAbsolute(0,-200);
     intake::auton::intakeOn(-15);
     drive::auton::drive(-200,-85);
     tilter::motor.moveAbsolute(0,-200);
+
+
+    // tilter::auton::tilter(800,75);
+    // intake::auton::intakeOn(-45); //Phase 2: first outake going up
+    // tilter::auton::tilter(950,75);
+    // intake::auton::intakeOff(); //Phase 3: outtake off for rest of stack
+    // tilter::auton::tilter(1050,75);
+    // intake::auton::intakeOn(-15); //Phase 4: outtake to back off
+    // drive::auton::drive(-200,-85);
+    // tilter::motor.moveAbsolute(0,-200);
   }
 
 

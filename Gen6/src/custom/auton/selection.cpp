@@ -37,9 +37,30 @@ void autonThree(){
   std::cout << "3" << std::endl;
 }
 std::string buttonLabels[BUTTON_COUNT] = {
-  "FRONT_RED",  // 1
-  "FRONT_BLUE", // 2
-  "LR 9 POINT" // 3
+  "LR",  // large red
+  "LR",
+  "LR ",
+  "LR",
+
+  "SR",  // small red
+  "SR",
+  "SR ",
+  "SR",
+
+  "LB",  // large blue
+  "LB",
+  "LB ",
+  "LB",
+
+  "SB",  // small blue
+  "SB",
+  "SB ",
+  "SB",
+
+  "nothhing",
+  "deploy only ",
+  "1 point",
+  "skills",
 };
 
 // auton function returns void and takes no args

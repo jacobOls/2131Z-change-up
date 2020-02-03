@@ -7,7 +7,6 @@
 #include "custom/setup/controller.hpp"
 #include "custom/setup/ramping.hpp"
 #include "custom/auton/selection.hpp"
-#include "custom/auton.hpp"
 /**
  * A callback function for LLEMU's center button.
  *
@@ -32,7 +31,7 @@ void initialize() {
 	tilter::motor.tarePosition();
 	lift::pulse();
 
-	auton::screenInit();
+selection::init();
 std::cout << "initialize " << std::endl;
 }
 
@@ -42,8 +41,7 @@ std::cout << "initialize " << std::endl;
  * the robot is enabled, this task will exit.
  */
 void disabled() {
-	auton::autonTask.suspend();
-auton::set_auton(false);
+
 }
 
 /**
@@ -69,17 +67,11 @@ void competition_initialize() {}
  * from where it left off.
  */
 
- namespace auton{
- pros::Task autonTask(::auton::Task, (void *)"test", TASK_PRIORITY_DEFAULT,
- TASK_STACK_DEPTH_DEFAULT, "AutonTask");
- }
+
 
 
 void autonomous() {
-	auton::screenInit();
-auton::autonTask.resume();
-auton::set_auton(true);
-auton::execute();
+
 }
 
 /**

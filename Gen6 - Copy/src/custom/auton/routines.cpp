@@ -338,12 +338,16 @@ wait(100);
 lift::motor.moveVelocity(0);
 lift::motor.moveAbsolute(40,20);
 drive::auton::drive(-30,-100);
-drive::auton::drive(700,100);
+drive::auton::drive(850,100);
 // lift::auton::lift(200,200,startTime,21034);
 // drive::auton::drive(80,50);
 // lift::motor.moveAbsolute(0,200);
 // wait(800);
-drive::auton::swingTurnRight(650,100);
+drive::auton::swingTurnRight(550,100);
+drive::auton::turn(200,50);
+drive::auton::swingTurnRight(250,100);
+
+
 }
 
   void doNothing(){

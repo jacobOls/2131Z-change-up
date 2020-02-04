@@ -1,9 +1,10 @@
 #ifndef SELECTION_HPP
 #define SELECTION_HPP
 #include "display/lvgl.h"
+#include "main.h"
 namespace selection{
 void init();
-extern void guiTask(void *param);
+extern pros::Task *gui_task;
 extern bool inAuton;
 }
 

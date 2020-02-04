@@ -15,8 +15,8 @@ namespace drive{
     void driveNR(int distance, int velocity);
     void turn(int deg, int velocity);
     void resetPos(void);
-    void swingTurnLeft(int distance, int velocity);
-    void swingTurnRight(int distance, int velocity);
+    void swingTurnLeft(int distance, int velocity, int rVel);
+    void swingTurnRight(int distance, int velocity, int lVel);
   }
 }
 

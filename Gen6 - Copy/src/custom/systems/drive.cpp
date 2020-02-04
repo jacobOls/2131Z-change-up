@@ -119,21 +119,21 @@ void driveNR(int distance, int velocity){
   // }
 }
 
-void swingTurnLeft(int distance, int velocity){
+void swingTurnLeft(int distance, int velocity, int rVel){
   resetPos();
   while(abs(right_front.getPosition()) < distance){
     right_drive.moveVelocity(velocity);
-
+    left_drive.moveVelocity(rVel);
   }
   left_drive.moveVelocity(0);
   right_drive.moveVelocity(0);
 }
 
-void swingTurnRight(int distance, int velocity){
+void swingTurnRight(int distance, int velocity, int lVel){
   resetPos();
   while(abs(left_front.getPosition()) < distance){
     left_drive.moveVelocity(velocity);
-
+right_drive.moveVelocity(lVel);
   }
   left_drive.moveVelocity(0);
   right_drive.moveVelocity(0);

@@ -10,6 +10,7 @@ namespace selection{
   void clearBtns(lv_obj_t*);
 
   const int BUTTON_COUNT = 20;
+  bool inAuton = false;
 //
 //   std::string btns[5][4] ={
 //    {"LR ","SR ","LB ","SB "},
@@ -206,7 +207,7 @@ autonFnPtr defaultAuton =auton:: redSmall;
 
 //
 void guiTask(void *param) {
-  while(true) {
+  while(inAuton == true) {
     std::uint32_t start = pros::millis();
     pros::Task::delay_until(&start, 10);
     execute();
@@ -219,8 +220,8 @@ void init(){
   // btnChecker();
   btnCreate();
   std::cout << "starting task" << std::endl;
-  pros::Task gui_task(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");
-  gui_task.resume();
-}
 
+  pros::Task gui_task(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");
+  gui_task.suspend();
+}
 }

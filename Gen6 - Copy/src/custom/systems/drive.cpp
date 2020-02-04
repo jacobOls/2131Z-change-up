@@ -118,6 +118,27 @@ void driveNR(int distance, int velocity){
     pros::delay(20);
   // }
 }
+
+void swingTurnLeft(int distance, int velocity){
+  resetPos();
+  while(abs(right_front.getPosition()) < distance){
+    right_drive.moveVelocity(velocity);
+
+  }
+  left_drive.moveVelocity(0);
+  right_drive.moveVelocity(0);
+}
+
+void swingTurnRight(int distance, int velocity){
+  resetPos();
+  while(abs(left_front.getPosition()) < distance){
+    left_drive.moveVelocity(velocity);
+
+  }
+  left_drive.moveVelocity(0);
+  right_drive.moveVelocity(0);
+}
+
     void driveNRE(int distance, int velocity){
       resetPos();
       distance=abs(distance);

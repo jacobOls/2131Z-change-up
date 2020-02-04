@@ -325,7 +325,25 @@ tilter::motor.moveAbsolute(0,-200);
 
 void skills(){
 const int startTime = pros::millis();
-startup();
+lift::motor.tarePosition();
+tilter::motor.tarePosition();
+drive::auton::resetPos();
+intake::auton::intakeOn(-200);
+wait(300);
+intake::auton::intakeOn(200);
+lift::pulse();
+//end startup
+lift::motor.moveVelocity(-100);
+wait(100);
+lift::motor.moveVelocity(0);
+lift::motor.moveAbsolute(40,20);
+drive::auton::drive(-30,-100);
+drive::auton::drive(700,100);
+// lift::auton::lift(200,200,startTime,21034);
+// drive::auton::drive(80,50);
+// lift::motor.moveAbsolute(0,200);
+// wait(800);
+drive::auton::swingTurnRight(650,100);
 }
 
   void doNothing(){

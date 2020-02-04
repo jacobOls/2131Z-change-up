@@ -30,9 +30,9 @@ void initialize() {
 	lift::motor.tarePosition();
 	tilter::motor.tarePosition();
 	lift::pulse();
-
+	std::cout << "initialize " << std::endl;
 selection::init();
-std::cout << "initialize " << std::endl;
+
 }
 
 /**
@@ -41,7 +41,7 @@ std::cout << "initialize " << std::endl;
  * the robot is enabled, this task will exit.
  */
 void disabled() {
-
+selection::inAuton = false;
 }
 
 /**
@@ -71,7 +71,8 @@ void competition_initialize() {}
 
 
 void autonomous() {
-
+selection::inAuton = true;
+// selection::gui_task.resume();
 }
 
 /**
@@ -104,6 +105,7 @@ pros::delay(20);
 
 
 void opcontrol() {
+	selection::inAuton = false;
 	while (true) {
 		// tempCheck();
 		drive::userDrive();

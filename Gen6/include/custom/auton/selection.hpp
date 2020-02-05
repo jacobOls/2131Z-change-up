@@ -4,7 +4,7 @@
 #include "main.h"
 namespace selection{
 void init();
-extern pros::Task *gui_task_ptr;
+extern pros::task_t *gui_task_ptr;
 extern bool inAuton;
 }
 

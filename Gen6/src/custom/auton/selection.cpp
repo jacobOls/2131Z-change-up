@@ -217,14 +217,17 @@ void guiTask(void *param) {
 }
 
 
-pros::Task *gui_task_ptr = NULL;
+// pros::Task *gui_task_ptr = NULL;
+pros::task_t* gui_ptr = pros::c::task_create(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");
+gui_ptr = pros::c::task_create(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");
+// gui_task_ptr = &gui_task_class;
+
+
 void init(){
   // btnChecker();
   btnCreate();
   std::cout << "starting task" << std::endl;
 
-  pros::Task gui_task_class(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");
-  gui_task_ptr = &gui_task_class;
 
 
   gui_task_class.resume();

@@ -338,11 +338,11 @@ wait(100);
 lift::motor.moveVelocity(0);
 lift::motor.moveAbsolute(40,20);
 drive::auton::drive(-30,-100);
-drive::auton::drive(950,60);
+drive::auton::drive(1150,60);
 
 drive::auton::swingTurnLeft(550,100,20);
-drive::auton::swingTurnLeft(850,100,20);
-drive::auton::drive(500,100);
+drive::auton::swingTurnLeft(750,100,20);
+drive::auton::drive(500,60);
 
 }
 

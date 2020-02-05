@@ -43,6 +43,7 @@ selection::init();
 void disabled() {
 selection::inAuton = false;
 selection::gui_task_ptr -> suspend();
+std::cout << "disabled" << std::endl;
 }
 
 /**
@@ -104,8 +105,9 @@ pros::delay(20);
 
 
 void opcontrol() {
-	selection::inAuton = false;
 	while (true) {
+		selection::inAuton = false;
+		std::cout << "opcontrol" << std::endl;
 		// tempCheck();
 		drive::userDrive();
 		lift::init();

@@ -217,7 +217,7 @@ void guiTask(void *param) {
 }
 
 
-pros::Task *gui_task_ptr;
+pros::Task *gui_task_ptr = NULL;
 void init(){
   // btnChecker();
   btnCreate();

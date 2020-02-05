@@ -42,7 +42,10 @@ selection::init();
  */
 void disabled() {
 selection::inAuton = false;
-selection::gui_task_ptr -> suspend();
+if(selection::gui_task_ptr != NULL){
+selection::gui_task_ptr -> resume();
+return;
+}
 std::cout << "disabled" << std::endl;
 }
 
@@ -71,8 +74,11 @@ void competition_initialize() {}
 
 
 void autonomous() {
+if(selection::gui_task_ptr != NULL){
+	selection::gui_task_ptr -> suspend();
+return;
+}
 selection::inAuton = true;
-selection::gui_task_ptr -> resume();
 }
 
 /**
@@ -108,10 +114,12 @@ void opcontrol() {
 	while (true) {
 		selection::inAuton = false;
 		std::cout << "opcontrol" << std::endl;
+		std::cout << "2things" << std::endl;
 		// tempCheck();
 		drive::userDrive();
 		lift::init();
 		intake::init();
 		tilter::init();
+		pros::delay(20);
 	}
 }

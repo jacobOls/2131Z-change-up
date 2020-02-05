@@ -227,7 +227,7 @@ void init(){
   gui_task_ptr = &gui_task_class;
 
 
-  gui_task_class.suspend();
+  gui_task_class.resume();
 }
 
 }

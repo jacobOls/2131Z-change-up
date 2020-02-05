@@ -69,7 +69,6 @@ void competition_initialize() {}
 
 
 
-
 void autonomous() {
 selection::inAuton = true;
 selection::gui_task -> resume();

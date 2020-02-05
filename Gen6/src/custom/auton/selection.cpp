@@ -221,7 +221,12 @@ void init(){
   btnCreate();
   std::cout << "starting task" << std::endl;
 
-  pros::Task gui_task(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");
-  gui_task.suspend();
+  pros::Task gui_task_class(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");
+
+  pros::Task *gui_task_ptr;
+  gui_task_ptr = &gui_task_class;
+
+  gui_task_class.suspend();
 }
+
 }

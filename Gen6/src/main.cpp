@@ -42,6 +42,7 @@ selection::init();
  */
 void disabled() {
 selection::inAuton = false;
+selection::gui_task_ptr -> suspend();
 }
 
 /**

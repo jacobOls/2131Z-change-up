@@ -343,7 +343,10 @@ drive::auton::drive(1150,60);
 drive::auton::swingTurnLeft(550,100,20);
 drive::auton::swingTurnLeft(750,100,20);
 drive::auton::drive(500,60);
-
+drive::auton::turn(140,-60);
+intake::auton::intakeOff();
+drive::auton::drive(440,80);
+tilter::auton::tilter(900,60);
 }
 
   void doNothing(){

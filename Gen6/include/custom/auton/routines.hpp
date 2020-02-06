@@ -12,6 +12,10 @@ namespace auton{
   void onePoint();
   void safeBlue();
   void safeRed();
+  void redBig5();
+  void redBig4();
+  void blueBig4();
+  void skills();
 }
 
 #endif /* end of include guard: ROUTINES_HPP */

@@ -38,23 +38,23 @@ namespace selection{
     std::cout << "3" << std::endl;
   }
   std::string buttonLabels[BUTTON_COUNT] = {
-    "LR",  // large red
-    "LR",
-    "LR ",
-    "LR",
+    "LR 7 nw",  // large red
+    "LR 5 nw",
+    "LR 4 works",
+    "LR3 works",
 
-    "SR  5",  // small red
-    "SR",
+    "SR  5 works",  // small red
+    "SR 9 WIP",
     "SR ",
     "SR",
 
-    "LB",  // large blue
-    "LB",
-    "LB ",
+    "LB 7 nw",  // large blue
+    "LB 4 works" ,
+    "LB 3 works",
     "LB",
 
-    "SB  5",  // small blue
-    "SB",
+    "SB  5 works",  // small blue
+    "SB 9 WIP",
     "SB ",
     "SB",
 
@@ -75,25 +75,25 @@ namespace selection{
   // };
 
   autonFnPtr autonHandlers[BUTTON_COUNT] = {
-    autonOne, //large red
-    autonTwo,
-    autonThree,
-    autonOne,
+    auton::redBig, //large red
+    auton::redBig5,
+    auton::redBig4,
+    auton::safeRed,
 
     auton:: redSmall, //small red
     auton:: redSmall,
     auton:: redSmall,
     auton:: redSmall,
 
-    auton:: redSmall, //large blue
-    auton:: redSmall,
-    auton:: redSmall,
+    auton:: blueBig, //large blue
+    auton:: blueBig4,
+    auton:: safeBlue,
     auton:: redSmall,
 
-    auton::blueSmall, //small blue
-    auton:: blueSmall,
-    auton:: blueSmall,
-    auton:: blueSmall
+    auton::nothing, //small blue
+    auton:: doNothing,
+    auton:: onePoint,
+    auton:: skills
 
   };
 

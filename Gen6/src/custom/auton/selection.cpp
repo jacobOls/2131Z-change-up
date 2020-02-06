@@ -11,14 +11,7 @@ namespace selection{
 
   const int BUTTON_COUNT = 20;
   volatile bool inAuton = false;
-  //
-  //   std::string btns[5][4] ={
-  //    {"LR ","SR ","LB ","SB "},
-  //   {"LR ","SR ","LB ","SB "},
-  //   {"LR ","SR ","LB" ,"SB "},
-  //   {"LR ","SR ","LB" ,"SB "},
-  //   {"LR ","SR ","LB" ,"SB "}
-  // };
+
   lv_style_t relStyle; //relesed style
   lv_style_t preStyle; //pressed style
 
@@ -67,12 +60,6 @@ namespace selection{
   // auton function returns void and takes no args
   typedef  void (*autonFnPtr)(void);
 
-
-  // std::string autonBtnState[BUTTON_COUNT] = {
-  //   "FRONT_RED",  // 1
-  //   "FRONT_BLUE", // 2
-  //
-  // };
 
   autonFnPtr autonHandlers[BUTTON_COUNT] = {
     auton::redBig, //large red
@@ -131,9 +118,8 @@ namespace selection{
     lv_btn_set_style(btn, LV_BTN_STYLE_REL, &relStyle); //set the relesed style
     lv_btn_set_style(btn, LV_BTN_STYLE_PR, &preStyle); //set the pressed style
     lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, btn_click_action);
-    lv_obj_set_free_num(btn, id); //set button is to 0
-    // lv_btn_set_state(btn, LV_BTN_STATE_TGL_REL);
-    // std::cout << "creating button " << btns[row][col].c_str() << std::endl;
+    lv_obj_set_free_num(btn, id); //set button is to an incrementing amount
+
   }
 
 
@@ -201,30 +187,13 @@ namespace selection{
     inAuton = false;
   }
 
-  //
-  // void guiTask(void *param) {
-  //   while(!inAuton) {
-  //     std::uint32_t start = pros::millis();
-  //     pros::Task::delay_until(&start, 10);
-  //     // execute();
-  //     // std::cout << "loop iteration" << std::endl;
-  //     // clearBtns();
-  //   }
-  // }
-
-
-  // pros::Task *gui_task_ptr = NULL;
-  // gui_task_ptr = &gui_task_class;
 
   static int timesCalled = 0;
   void init(){
     timesCalled++;
 
-    // btnChecker();
     btnCreate();
-    // gui_task_ptr = new pros::Task(guiTask, (void*)"some param", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "task name");
     std::cout << "starting task: " << timesCalled << " time" << std::endl;
-    // gui_task_ptr->resume();
   }
 
 }

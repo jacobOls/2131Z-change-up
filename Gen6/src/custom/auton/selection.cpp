@@ -58,7 +58,7 @@ namespace selection{
     "SB ",
     "SB",
 
-    "nothhing",
+    "nothing",
     "deploy only ",
     "1 point",
     "skills",

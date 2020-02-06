@@ -6,8 +6,7 @@
 #include <algorithm>
 #include <string>
 
-namespace selection
-{
+namespace selection{
 void clearBtns(lv_obj_t *);
 
 const int BUTTON_COUNT = 20;
@@ -20,18 +19,15 @@ lv_obj_t **allButtons;
 
 int selectedAuton = -1;
 
-void autonOne()
-{
+void autonOne(){
   std::cout << "running auton one" << std::endl;
 }
 
-void autonTwo()
-{
+void autonTwo(){
   std::cout << "running auton two" << std::endl;
 }
 
-void autonThree()
-{
+void autonThree(){
   std::cout << "3" << std::endl;
 }
 std::string buttonLabels[BUTTON_COUNT] = {
@@ -87,8 +83,7 @@ autonFnPtr autonHandlers[BUTTON_COUNT] = {
 
 };
 
-static lv_res_t btn_click_action(lv_obj_t *btn)
-{
+static lv_res_t btn_click_action(lv_obj_t *btn){
   clearBtns(btn);
   lv_btn_set_state(btn, LV_BTN_STATE_PR);
   uint32_t indexPos = lv_obj_get_free_num(btn);
@@ -104,8 +99,7 @@ static lv_res_t btn_click_action(lv_obj_t *btn)
   return LV_RES_OK;
 }
 
-void btnConfig(lv_obj_t *btn, int row, int col, int id)
-{
+void btnConfig(lv_obj_t *btn, int row, int col, int id){
   lv_obj_t *label;
   int x = 465 / 4 * col;
   int y = 240 / 5 * row;
@@ -122,8 +116,7 @@ void btnConfig(lv_obj_t *btn, int row, int col, int id)
   lv_obj_set_free_num(btn, id); //set button is to an incrementing amount
 }
 
-void btnCreate()
-{
+void btnCreate(){
 
   allButtons = new lv_obj_t *[BUTTON_COUNT];
 
@@ -138,10 +131,8 @@ void btnCreate()
   preStyle.text.color = LV_COLOR_MAKE(0, 164, 255);
 
   int ndx = 0;
-  for (int row = 0; row < 5; row++)
-  {
-    for (int col = 0; col < 4; col++)
-    {
+  for (int row = 0; row < 5; row++){
+    for (int col = 0; col < 4; col++){
       allButtons[ndx] = lv_btn_create(lv_scr_act(), NULL);
       btnConfig(allButtons[ndx], row, col, ndx);
       std::cout << "Created button at pos " << ndx << std::endl;
@@ -150,8 +141,7 @@ void btnCreate()
   }
 }
 
-void clearBtns(lv_obj_t *toggledButton = NULL)
-{
+void clearBtns(lv_obj_t *toggledButton = NULL){
   std::cout << "clearing  buttonts" << std::endl;
   for (int i = 0; i < BUTTON_COUNT; i++)
   {
@@ -164,26 +154,22 @@ void clearBtns(lv_obj_t *toggledButton = NULL)
   std::cout << "buttons cleared" << std::endl;
 }
 
-void execute()
-{
+void execute(){
   std::cout << "executing" << std::endl;
   autonFnPtr defaultAuton = autonOne;
   inAuton = true;
 
-  if (selectedAuton == -1)
-  {
+  if (selectedAuton == -1){
     defaultAuton();
     return;
   }
 
   autonFnPtr autonToRun = autonHandlers[selectedAuton];
-  if (autonToRun != NULL)
-  {
+  if (autonToRun != NULL){
     autonToRun();
     return;
   }
-  else
-  {
+  else{
     defaultAuton();
   }
 
@@ -191,8 +177,7 @@ void execute()
 }
 
 static int timesCalled = 0;
-void init()
-{
+void init(){
   timesCalled++;
 
   btnCreate();

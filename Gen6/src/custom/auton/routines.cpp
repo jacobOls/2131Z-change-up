@@ -4,19 +4,16 @@
 #include "custom/systems/tilter.hpp"
 #include "custom/systems/intake.hpp"
 #include "custom/setup/motors.hpp"
-namespace auton
-{
+namespace auton{
 
 //managment stuff
 
-void wait(int time)
-{
+void wait(int time){
   pros::delay(time);
 }
 //positive turn is left
 //negative turn is right
-void startup()
-{
+void startup(){
   lift::motor.tarePosition();
   tilter::motor.tarePosition();
   drive::auton::resetPos();
@@ -31,8 +28,7 @@ void startup()
 
 //red autons
 
-void redBig()
-{
+void redBig(){
   const int startTime = pros::millis();
   startup();
   drive::auton::drive(-30, -125);
@@ -68,8 +64,7 @@ void redBig()
   lift::auton::lift(2700, 200, 14151, 1235);
 }
 
-void redBig4()
-{
+void redBig4(){
   // startup();
   //deployment
   lift::motor.tarePosition();
@@ -106,8 +101,7 @@ void redBig4()
   tilter::motor.moveAbsolute(0, -200);
 }
 
-void blueBig4()
-{
+void blueBig4(){
   // startup();
   //deployment
   lift::motor.tarePosition();
@@ -144,8 +138,7 @@ void blueBig4()
   tilter::motor.moveAbsolute(0, -200);
 }
 
-void redBig5()
-{
+void redBig5(){
   startup();
   drive::auton::drive(-30, -125);
   drive::auton::drive(50, 100);
@@ -164,8 +157,7 @@ void redBig5()
   intake::auton::intakeOn(-200);
 }
 
-void redSmall()
-{ //5 point
+void redSmall(){ //5 point
   startup();
   drive::auton::drive(1100, 60);
   intake::auton::intakeOn(50);
@@ -186,8 +178,7 @@ void redSmall()
 
 //blue autons
 
-void blueBig()
-{
+void blueBig(){
   const int startTime = pros::millis();
   startup();
   drive::auton::drive(-30, -125);
@@ -223,8 +214,7 @@ void blueBig()
   lift::auton::lift(2700, 200, 14151, 1235);
 }
 
-void safeBlue()
-{
+void safeBlue(){
   const int startTime = pros::millis();
   startup();
   drive::auton::drive(-30, -125);
@@ -240,8 +230,7 @@ void safeBlue()
   intake::auton::intakeOn(-200);
 }
 
-void safeRed()
-{
+void safeRed(){
   const int startTime = pros::millis();
   startup();
   drive::auton::drive(-30, -125);
@@ -293,8 +282,7 @@ intake::auton::intakeOn(-15);
 drive::auton::drive(-200,-85);
 tilter::motor.moveAbsolute(0,-200);
 */
-void blueSmall()
-{ //5 point
+void blueSmall(){ //5 point
   startup();
   drive::auton::drive(1100, 70);
   intake::auton::intakeOn(50);
@@ -324,8 +312,7 @@ void blueSmall()
 
 //misc autons
 
-void skills()
-{
+void skills(){
   const int startTime = pros::millis();
   startup();
   drive::auton::drive(1050, 60);
@@ -345,24 +332,20 @@ void skills()
   tilter::auton::tilterDown(0, -100);
 }
 
-void doNothing()
-{
+void doNothing(){
   startup();
 }
 
-void driveABit()
-{
+void driveABit(){
   startup();
   drive::auton::drive(150, 150);
   drive::auton::drive(-150, -150);
 }
 
-void nothing()
-{
+void nothing(){
 }
 
-void onePoint()
-{
+void onePoint(){
   drive::auton::drive(300, -100);
   drive::auton::drive(300, 100);
 }

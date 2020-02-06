@@ -5,95 +5,73 @@
 #include "custom/systems/intake.hpp"
 #include "custom/systems/lift.hpp"
 
-namespace intake
-{
+namespace intake{
 
 Controllers controller = Controllers::NONE;
 int liftUp = 1300;
-bool bothButtonsPressed()
-{
+bool bothButtonsPressed(){
   return BtnLeft.isPressed() && BtnRight.isPressed();
 }
 
 bool slowOut = false;
-void intake()
-{
+void intake(){
 
-  if (BtnIn.isPressed())
-  {
+  if (BtnIn.isPressed()){
     controller = Controllers::IN;
   }
-  else if (controller == Controllers::IN)
-  {
+  else if (controller == Controllers::IN){
     controller = Controllers::DEINIT;
   }
 }
 
-void stackReverse()
-{
-  if (BtnBackUp.isPressed())
-  {
+void stackReverse(){
+  if (BtnBackUp.isPressed()){
 
     controller = Controllers::MACRO;
   }
-  else if (controller == Controllers::MACRO)
-  {
+  else if (controller == Controllers::MACRO){
     controller = Controllers::DEINIT;
   }
 }
 
-void outake()
-{
-  if (BtnOut.isPressed() || bothButtonsPressed())
-  {
+void outake(){
+  if (BtnOut.isPressed() || bothButtonsPressed()){
     controller = Controllers::OUT;
   }
-  else if (controller == Controllers::OUT)
-  {
+  else if (controller == Controllers::OUT){
     controller = Controllers::DEINIT;
   }
 }
 
-void spinR()
-{
-  if (BtnRight.isPressed())
-  {
+void spinR(){
+  if (BtnRight.isPressed()){
     controller = Controllers::SPINR;
   }
-  else if (controller == Controllers::SPINR)
-  {
+  else if (controller == Controllers::SPINR){
     controller = Controllers::DEINIT;
   }
 }
 
-void spinL()
-{
-  if (BtnLeft.isPressed())
-  {
+void spinL(){
+  if (BtnLeft.isPressed()){
     controller = Controllers::SPINL;
   }
-  else if (controller == Controllers::SPINL)
-  {
+  else if (controller == Controllers::SPINL){
     controller = Controllers::DEINIT;
   }
 }
 
-void slow()
-{
-  if (BtnSlowOut.isPressed())
-  {
+void slow(){
+  if (BtnSlowOut.isPressed()){
     controller = Controllers::SLOWOUT;
   }
-  else if (controller == Controllers::SLOWOUT)
-  {
+  else if (controller == Controllers::SLOWOUT){
     controller = Controllers::DEINIT;
   }
 }
 
-void execute()
-{
-  switch (controller)
-  {
+void execute(){
+  switch (controller){
 
   case Controllers::IN:
     // if (lift::liftSensor.get_value() > liftUp)
@@ -153,8 +131,7 @@ void execute()
   }
 }
 
-void init()
-{
+void init(){
   intake();
   outake();
   spinR();
@@ -163,14 +140,11 @@ void init()
   stackReverse();
   slow();
 }
-namespace auton
-{
+namespace auton{
 
-void stackReverseAuton(double distance, double driveSpeed, double intakeSpeed)
-{
+void stackReverseAuton(double distance, double driveSpeed, double intakeSpeed){
   drive::auton::resetPos();
-  while (abs(drive::left_front.getPosition()) < distance)
-  {
+  while (abs(drive::left_front.getPosition()) < distance){
     /* code */
     drive::left_drive.moveVelocity(-driveSpeed);
     drive::right_drive.moveVelocity(-driveSpeed);
@@ -184,15 +158,12 @@ void stackReverseAuton(double distance, double driveSpeed, double intakeSpeed)
 
 // bool intakeRunning = false;
 
-void intakeOn(double targetVelocity)
-{
+void intakeOn(double targetVelocity){
   intakegroup.moveVelocity(targetVelocity);
 }
 
-void intakeOff()
-{
-  if (intakegroup.getActualVelocity() > 0)
-  {
+void intakeOff(){
+  if (intakegroup.getActualVelocity() > 0){
     intakegroup.moveVelocity(0);
   }
 }

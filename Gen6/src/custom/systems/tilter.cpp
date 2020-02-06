@@ -3,47 +3,36 @@
 #include "custom/setup/controller.hpp"
 #include "custom/systems/tilter.hpp"
 
-namespace tilter
-{
+namespace tilter{
 Controllers controller = Controllers::NONE;
-void tilterUp()
-{
-  if (BtnForward.isPressed())
-  {
+void tilterUp(){
+  if (BtnForward.isPressed()){
     controller = Controllers::FORWARD;
   }
-  else if (controller == Controllers::FORWARD)
-  {
+  else if (controller == Controllers::FORWARD){
     controller = Controllers::DEINIT;
   }
 }
 
-void returnDown()
-{
-  if (BtnReturn.isPressed())
-  {
+void returnDown(){
+  if (BtnReturn.isPressed()){
     controller = Controllers::RETURN;
   }
-  else if (controller == Controllers::RETURN && motor.getActualVelocity() == 0)
-  {
+  else if (controller == Controllers::RETURN && motor.getActualVelocity() == 0){
     controller = Controllers::DEINIT;
   }
 }
 
-void tilterDown()
-{
-  if (BtnBackward.isPressed())
-  {
+void tilterDown(){
+  if (BtnBackward.isPressed()){
     controller = Controllers::BACKWARD;
   }
-  else if (controller == Controllers::BACKWARD)
-  {
+  else if (controller == Controllers::BACKWARD){
     controller = Controllers::DEINIT;
   }
 }
 
-void execute()
-{
+void execute(){
   // if (controller == Controllers::FORWARD && motor.getPosition() > 400)
   // {
   //   controller = Controllers::DEINIT;
@@ -52,27 +41,21 @@ void execute()
   // {
   //   controller = Controllers::DEINIT;
   // }
-  if (motor.getPosition() > 1750 && controller == Controllers::FORWARD)
-  {
+  if (motor.getPosition() > 1750 && controller == Controllers::FORWARD){
     controller = Controllers::DEINIT;
   }
-  if (motor.getPosition() < 5 && controller == Controllers::BACKWARD)
-  {
+  if (motor.getPosition() < 5 && controller == Controllers::BACKWARD){
     controller = Controllers::DEINIT;
   }
-  switch (controller)
-  {
+  switch (controller){
   case Controllers::FORWARD:
-    if (lift::motor.getPosition() < 100)
-    {
+    if (lift::motor.getPosition() < 100){
       motor.moveVelocity(75);
     }
-    else if (lift::motor.getPosition() >= 100)
-    {
+    else if (lift::motor.getPosition() >= 100){
       motor.moveVelocity(45);
     }
-    if (lift::motor.getPosition() < 50 && motor.getPosition() > 130)
-    {
+    if (lift::motor.getPosition() < 50 && motor.getPosition() > 130){
       lift::motor.moveAbsolute(0, -200);
     }
     // trayLock = false;
@@ -86,8 +69,7 @@ void execute()
 
   case Controllers::TOUP:
     // trayLock = true;
-    if (motor.getPosition() < 250)
-    {
+    if (motor.getPosition() < 250){
       motor.moveVelocity(50);
     }
     // if (sensor() < upPlace)
@@ -116,37 +98,29 @@ void execute()
   }
 }
 
-void init()
-{
+void init(){
   tilterUp();
   tilterDown();
   returnDown();
   execute();
 }
 
-namespace auton
-{
+namespace auton{
 
-void tilter(int pos, int velocity)
-{
+void tilter(int pos, int velocity){
 
-  while (motor.getPosition() <= pos)
-  {
+  while (motor.getPosition() <= pos){
     motor.moveAbsolute(pos, velocity);
-    if (motor.getPosition() > pos)
-    {
+    if (motor.getPosition() > pos){
       motor.moveVelocity(0);
       break;
     }
   }
 }
-void tilterDown(int pos, int velocity)
-{
-  while (motor.getPosition() >= pos)
-  {
+void tilterDown(int pos, int velocity){
+  while (motor.getPosition() >= pos){
     motor.moveAbsolute(pos, velocity);
-    if (motor.getPosition() < pos)
-    {
+    if (motor.getPosition() < pos){
       motor.moveVelocity(0);
       break;
     }

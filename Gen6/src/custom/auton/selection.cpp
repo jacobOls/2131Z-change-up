@@ -156,7 +156,7 @@ void clearBtns(lv_obj_t *toggledButton = NULL){
 
 void execute(){
   std::cout << "executing" << std::endl;
-  autonFnPtr defaultAuton = autonOne;
+  autonFnPtr defaultAuton = auton::skills;
   inAuton = true;
 
   if (selectedAuton == -1){

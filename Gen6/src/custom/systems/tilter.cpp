@@ -50,7 +50,7 @@ void execute(){
   switch (controller){
   case Controllers::FORWARD:
     if (lift::motor.getPosition() < 100){
-      motor.moveVelocity(75);
+      motor.moveVelocity(65);
     }
     else if (lift::motor.getPosition() >= 100){
       motor.moveVelocity(45);

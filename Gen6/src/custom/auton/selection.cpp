@@ -38,8 +38,8 @@ namespace selection{
     std::cout << "3" << std::endl;
   }
   std::string buttonLabels[BUTTON_COUNT] = {
-    "LR 7 nw",  // large red
-    "LR 5 nw",
+    "LR 7 fails",  // large red
+    "LR 5 fails",
     "LR 4 works",
     "LR3 works",
 
@@ -48,7 +48,7 @@ namespace selection{
     "SR ",
     "SR",
 
-    "LB 7 nw",  // large blue
+    "LB 7 fails",  // large blue
     "LB 4 works" ,
     "LB 3 works",
     "LB",

@@ -71,8 +71,11 @@ namespace auton{
 
   void redSmall(){ //5 point
     startup();
+    std::cout<<"startup"<<std::endl;
     drive::auton::drive(1100,70);
+    std::cout<<"drive"<<std::endl;
     intake::auton::intakeOn(50);
+    std::cout<<"intake"<<std::endl;
     drive::auton::drive(300,-200);
     drive::auton::turn(360,75);
     intake::auton::intakeOn(-15);

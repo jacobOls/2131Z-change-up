@@ -326,14 +326,21 @@ tilter::motor.moveAbsolute(0,-200);
 void skills(){
 const int startTime = pros::millis();
 startup();
-drive::auton::drive(1000,60);
+drive::auton::drive(1050,60);
 drive::auton::swingTurnLeft(550,100,20);
 drive::auton::swingTurnLeft(750,100,20);
 drive::auton::drive(520,60);
 drive::auton::turn(120,-60);
 intake::auton::intakeOff();
-drive::auton::drive(500,80);
-tilter::auton::tilter(1000,60);
+drive::auton::drive(450,200);
+tilter::auton::tilter(1100,60);
+intake::auton::intakeOn(200);
+wait(500);
+intake::auton::intakeOff();
+tilter::auton::tilter(1150,60);
+intake::auton::intakeOn(-15);
+drive::auton::drive(-200,-35);
+tilter::auton::tilterDown(0,-100);
 }
 
   void doNothing(){

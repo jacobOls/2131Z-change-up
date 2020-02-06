@@ -136,13 +136,6 @@ namespace selection{
     // std::cout << "creating button " << btns[row][col].c_str() << std::endl;
   }
 
-  void btnToggled(lv_obj_t * btn, bool toggled)
-  {
-    if(toggled != (lv_btn_get_state(btn) )) lv_btn_toggle(btn);
-  }
-
-
-
 
   void btnCreate(){
 

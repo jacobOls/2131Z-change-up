@@ -51,7 +51,7 @@ std::string buttonLabels[BUTTON_COUNT] = {
     "SB ",
     "SB",
 
-    "nothing",
+    "('>){",
     "deploy only ",
     "1 point",
     "skills",
@@ -67,13 +67,13 @@ autonFnPtr autonHandlers[BUTTON_COUNT] = {
     auton::noStack9,
 
     auton::redSmall, //small red
-    auton::blueSmall,
+    auton::skills,
     auton::blueSmall,
     auton::blueSmall,
 
-    auton::blueSmall, //small blue
-    auton::blueSmall,
-    auton::blueSmall,
+    auton::blueBig, //small blue
+    auton::blueBig4,
+    auton::safeBlue,
     auton::blueSmall,
 
 
@@ -82,10 +82,10 @@ autonFnPtr autonHandlers[BUTTON_COUNT] = {
     auton::blueSmall,
     auton::blueSmall,
 
-    auton::blueSmall, //random
-    auton::blueSmall,
-    auton::blueSmall,
-    auton::blueSmall
+    auton::nothing, //random
+    auton::doNothing,
+    auton::onePoint,
+    auton::skills
 };
 
 static lv_res_t btn_click_action(lv_obj_t *btn){
@@ -161,7 +161,7 @@ void clearBtns(lv_obj_t *toggledButton = NULL){
 
 void execute(){
   std::cout << "executing" << std::endl;
-  autonFnPtr defaultAuton = auton::skills;
+  autonFnPtr defaultAuton = auton::blueBig4;
   inAuton = true;
 
   if (selectedAuton == -1){

@@ -334,12 +334,21 @@ void blueSmall(){ //5 point
 
 void skills(){
   const int startTime = pros::millis();
-  startup();
+  lift::motor.tarePosition();
+  tilter::motor.tarePosition();
+  drive::auton::resetPos();
+  // lift::auton::lift(1000,200);
+  lift::pulse();
+  intake::auton::intakeOn(-200);
+  wait(400);
+  intake::auton::intakeOn(200);
+  wait(800);
+//end startup
   drive::auton::drive(1050, 60);
   drive::auton::swingTurnLeft(550, 100, 20);
   drive::auton::swingTurnLeft(750, 100, 20);
-  drive::auton::drive(550, 50);
-  drive::auton::turn(150, -60);
+  drive::auton::drive(570, 50);
+  drive::auton::turn(155, -60);
   drive::auton::driveNRE(150, 200);
   intake::auton::intakeOff();
   drive::auton::drive(230,200);

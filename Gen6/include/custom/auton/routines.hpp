@@ -16,6 +16,7 @@ namespace auton{
   void redBig4();
   void blueBig4();
   void skills();
+  void noStack9();
 }
 
 #endif /* end of include guard: ROUTINES_HPP */

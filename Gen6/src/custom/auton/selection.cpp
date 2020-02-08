@@ -34,7 +34,7 @@ std::string buttonLabels[BUTTON_COUNT] = {
     "LR 7 fails", // large red
     "LR 5 fails",
     "LR 4 works",
-    "LR3 works",
+    "LR 9 noStack",
 
     "SR  5 works", // small red
     "SR 9 WIP",
@@ -64,23 +64,28 @@ autonFnPtr autonHandlers[BUTTON_COUNT] = {
     auton::redBig, //large red
     auton::redBig5,
     auton::redBig4,
-    auton::safeRed,
+    auton::noStack9,
 
     auton::redSmall, //small red
-    auton::redSmall,
-    auton::redSmall,
-    auton::redSmall,
+    auton::blueSmall,
+    auton::blueSmall,
+    auton::blueSmall,
 
-    auton::blueBig, //large blue
-    auton::blueBig4,
-    auton::safeBlue,
-    auton::redSmall,
+    auton::blueSmall, //small blue
+    auton::blueSmall,
+    auton::blueSmall,
+    auton::blueSmall,
 
-    auton::nothing, //small blue
-    auton::doNothing,
-    auton::onePoint,
-    auton::skills
 
+    auton::blueSmall, //large blue
+    auton::blueSmall,
+    auton::blueSmall,
+    auton::blueSmall,
+
+    auton::blueSmall, //random
+    auton::blueSmall,
+    auton::blueSmall,
+    auton::blueSmall
 };
 
 static lv_res_t btn_click_action(lv_obj_t *btn){

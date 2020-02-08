@@ -107,6 +107,18 @@ void init(){
 
 namespace auton{
 
+void tilterTime(int pos, int velocity, int startTime, int stop){
+
+  while (motor.getPosition() <= pos && pros::millis() - startTime < stop){
+    motor.moveAbsolute(pos, velocity);
+    if (motor.getPosition() > pos){
+      motor.moveVelocity(0);
+      break;
+    }
+  }
+}
+
+
 void tilter(int pos, int velocity){
 
   while (motor.getPosition() <= pos){
@@ -117,6 +129,7 @@ void tilter(int pos, int velocity){
     }
   }
 }
+
 void tilterDown(int pos, int velocity){
   while (motor.getPosition() >= pos){
     motor.moveAbsolute(pos, velocity);

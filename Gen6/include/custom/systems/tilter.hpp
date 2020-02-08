@@ -13,6 +13,7 @@ namespace tilter{
   void execute(void);
   void init(void);
   namespace auton{
+    void tilterTime(int pos, int velocity,int  startTime, int stop);
     void tilter(int pos, int velocity);
     void tilterDown(int pos, int velocity);
   }

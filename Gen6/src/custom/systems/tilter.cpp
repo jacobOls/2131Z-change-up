@@ -32,7 +32,7 @@ void tilterDown(){
   }
 }
 
-int velR;
+int subtractor;
 void execute(){
   // if (controller == Controllers::FORWARD && motor.getPosition() > 400)
   // {
@@ -51,23 +51,23 @@ void execute(){
   switch (controller){
   case Controllers::FORWARD:
 
- velR = motor.getPosition()/35;
+ subtractor = motor.getPosition()/35;
 
     if (lift::motor.getPosition() < 100){
-      if(motor.getPosition() <= 550){
+      if(motor.getPosition() <= 600){
       motor.moveVelocity(100);
     }
-    else if(motor.getPosition() > 550){
-      motor.moveVelocity(100-velR);
+    else if(motor.getPosition() > 600){
+      motor.moveVelocity(100-subtractor);
     }
     }
 
     else if (lift::motor.getPosition() >= 100){
       motor.moveVelocity(45);
     }
-    if (lift::motor.getPosition() < 50 && motor.getPosition() > 130){
-      lift::motor.moveAbsolute(0, -200);
-    }
+    // if (lift::motor.getPosition() < 50 && motor.getPosition() > 130){
+    //   lift::motor.moveAbsolute(0, -200);
+    // }
 
 
 

@@ -54,10 +54,10 @@ void execute(){
  velR = motor.getPosition()/35;
 
     if (lift::motor.getPosition() < 100){
-      if(motor.getPosition() <= 900){
+      if(motor.getPosition() <= 550){
       motor.moveVelocity(100);
     }
-    else if(motor.getPosition() > 900){
+    else if(motor.getPosition() > 550){
       motor.moveVelocity(100-velR);
     }
     }

@@ -378,6 +378,43 @@ void skills(){
   intake::auton::intakeOn(-200);
 }
 
+void smallRed9(){
+  const int startTime = pros::millis();
+  lift::motor.tarePosition();
+  tilter::motor.tarePosition();
+  drive::auton::resetPos();
+  // lift::auton::lift(1000,200);
+  lift::pulse();
+  intake::auton::intakeOn(-200);
+  wait(400);
+  intake::auton::intakeOn(200);
+  wait(800);
+  //end startup
+  drive::auton::drive(1050, 90);
+  drive::auton::swingTurnLeft(550, 100, 20);
+  drive::auton::swingTurnLeft(750, 100, 20);
+  drive::auton::drive(620, 70);
+  drive::auton::turn(155, -60);
+  drive::auton::driveNRE(150, 200);
+  intake::auton::intakeOff();
+  drive::auton::drive(220,200);
+  //stack
+  // intake::auton::intakeOn(-10);
+  // tilter::motor.tarePosition();
+  const int stackTime = pros::millis();
+  tilter::auton::tilterTime(650, 60,stackTime, 700);
+  // tilter::motor.moveAbsolute(900,60);
+  intake::auton::intakeOn(-200);
+  wait(130);
+  intake::intakegroup.moveVelocity(0);
+  tilter::auton::tilter(1100, 55);
+  intake::auton::intakeOn(-15);
+  //end stack
+  drive::auton::drive(-150,-200);
+
+}
+
+
 void noStack9(){
   const int startTime = pros::millis();
   startup();

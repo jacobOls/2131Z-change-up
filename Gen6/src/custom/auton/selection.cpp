@@ -67,7 +67,7 @@ autonFnPtr autonHandlers[BUTTON_COUNT] = {
     auton::noStack9,
 
     auton::redSmall, //small red
-    auton::skills,
+    auton::smallRed9,
     auton::blueSmall,
     auton::blueSmall,
 

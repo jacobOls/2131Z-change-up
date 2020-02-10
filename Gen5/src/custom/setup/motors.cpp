@@ -33,6 +33,8 @@ namespace drive{
             namespace tilter{
               okapi::Motor motor(3, false, okapi::AbstractMotor::gearset::red,
                 okapi::AbstractMotor::encoderUnits::degrees);
+                Ramping TILTER(1, 10, 200, -200);
+
                 // pros::ADIAnalogIn tilterSensor(3);
 
               } // namespace tilter

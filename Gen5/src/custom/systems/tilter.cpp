@@ -43,7 +43,8 @@ namespace tilter{
     }
   }
 
-
+int tiltVel;
+std::string pos;
   void execute()
   {
     // if (controller == Controllers::FORWARD && motor.getPosition() > 400)
@@ -63,7 +64,15 @@ namespace tilter{
     switch (controller)
     {
       case Controllers::FORWARD:
-      motor.moveVelocity(50);
+      pos = std::to_string(motor.getPosition());
+      master.setText(1, 1, pos);
+      if(motor.getPosition() > 200){
+        tiltVel = motor.getPosition() /12;
+        motor.moveVelocity(100-tiltVel);
+      }
+      else if(motor.getPosition() < 200){
+      motor.moveVelocity(100);
+    }
       // trayLock = false;
       break;
 

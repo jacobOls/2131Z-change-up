@@ -23,6 +23,7 @@ namespace intake{
 
 namespace tilter{
   extern okapi::Motor motor;
+  extern Ramping TILTER;
   // extern pros::ADIAnalogIn tilterSensor;
 } // namespace tilter
 

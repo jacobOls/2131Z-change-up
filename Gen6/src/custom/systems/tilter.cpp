@@ -32,6 +32,7 @@ void tilterDown(){
   }
 }
 
+int velR;
 void execute(){
   // if (controller == Controllers::FORWARD && motor.getPosition() > 400)
   // {
@@ -49,15 +50,27 @@ void execute(){
   }
   switch (controller){
   case Controllers::FORWARD:
+
+ velR = motor.getPosition()/35;
+
     if (lift::motor.getPosition() < 100){
-      motor.moveVelocity(65);
+      if(motor.getPosition() <= 900){
+      motor.moveVelocity(100);
     }
+    else if(motor.getPosition() > 900){
+      motor.moveVelocity(100-velR);
+    }
+    }
+
     else if (lift::motor.getPosition() >= 100){
       motor.moveVelocity(45);
     }
     if (lift::motor.getPosition() < 50 && motor.getPosition() > 130){
       lift::motor.moveAbsolute(0, -200);
     }
+
+
+
     // trayLock = false;
     break;
 

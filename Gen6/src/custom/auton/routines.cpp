@@ -385,24 +385,26 @@ void smallRed9(){
   drive::auton::resetPos();
   // lift::auton::lift(1000,200);
   lift::pulse();
-  intake::auton::intakeOn(-200);
-  wait(400);
+  // intake::auton::intakeOn(-200);
+  // wait(400);
   intake::auton::intakeOn(200);
-  wait(800);
+  // wait(800);
   //end startup
-  drive::auton::drive(1050, 90);
-  drive::auton::swingTurnLeft(550, 100, 20);
-  drive::auton::swingTurnLeft(750, 100, 20);
-  drive::auton::drive(620, 70);
-  drive::auton::turn(155, -60);
+  drive::auton::drive(890, 90);
+  drive::auton::swingTurnLeft(550, 100, 0);
+  drive::auton::drive(100,100);
+  drive::auton::swingTurnLeft(850, 100, 20);
+  drive::auton::drive(570, 70);
+  wait(150);
+  drive::auton::turn(125, -60);
   drive::auton::driveNRE(150, 200);
   intake::auton::intakeOff();
-  drive::auton::drive(220,200);
+  drive::auton::drive(230,200);
   //stack
   // intake::auton::intakeOn(-10);
   // tilter::motor.tarePosition();
   const int stackTime = pros::millis();
-  tilter::auton::tilterTime(650, 60,stackTime, 700);
+  tilter::auton::tilterTime(850, 60,stackTime, 1100);
   // tilter::motor.moveAbsolute(900,60);
   intake::auton::intakeOn(-200);
   wait(130);

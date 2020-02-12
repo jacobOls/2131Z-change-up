@@ -391,12 +391,11 @@ void smallRed9(){
   // wait(800);
   //end startup
   drive::auton::drive(890, 90);
-  drive::auton::swingTurnLeft(550, 100, 0);
-  drive::auton::drive(100,100);
-  drive::auton::swingTurnLeft(850, 100, 20);
+  drive::auton::swingTurnLeft(550, 100, 20);
+  drive::auton::swingTurnLeft(750, 100, 20);
   drive::auton::drive(570, 70);
   wait(150);
-  drive::auton::turn(125, -60);
+  drive::auton::turn(135, -60);
   drive::auton::driveNRE(150, 200);
   intake::auton::intakeOff();
   drive::auton::drive(230,200);
@@ -410,9 +409,10 @@ void smallRed9(){
   wait(130);
   intake::intakegroup.moveVelocity(0);
   tilter::auton::tilter(1100, 55);
-  intake::auton::intakeOn(-15);
+  intake::auton::intakeOn(-35);
   //end stack
   drive::auton::drive(-150,-200);
+  tilter::auton::tilterDown(0,-100);
 
 }
 

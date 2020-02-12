@@ -166,6 +166,25 @@ void intakeOff(){
   if (intakegroup.getActualVelocity() > 0){
     intakegroup.moveVelocity(0);
   }
+/*
+void isIt8or9(int time1, int time2){
+if(inSensor.get_value > 1800){
+intake::auton::intakeOn(-200);
+wait(time1);
+intake::intakegroup.moveVelocity(0);
+}
+else if(inSensor.get_calue < 1800){
+intake::auton::intakeOn(-200);
+wait(time2);
+intake::intakegroup.moveVelocity(0);
+}
+
+}
+
+
+*/
+
+
 }
 } // namespace auton
 } // namespace intake

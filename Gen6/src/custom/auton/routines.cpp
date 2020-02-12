@@ -385,10 +385,10 @@ void smallRed9(){
   drive::auton::resetPos();
   // lift::auton::lift(1000,200);
   lift::pulse();
-  // intake::auton::intakeOn(-200);
-  // wait(400);
+  intake::auton::intakeOn(-200);
+  wait(400);
   intake::auton::intakeOn(200);
-  // wait(800);
+  wait(800);
   //end startup
   drive::auton::drive(890, 90);
   drive::auton::swingTurnLeft(550, 100, 20);

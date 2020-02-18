@@ -15,6 +15,7 @@ namespace intake{
   void init(void);
   void execute(void);
   namespace auton{
+    void isIt8or9(int time1, int time2);
     void stackReverseAuton(double distance, double driveSpeed, double intakeSpeed);
     void intakeOn(double targetVelocity);
     void intakeOff();

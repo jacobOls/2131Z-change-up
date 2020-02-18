@@ -27,7 +27,7 @@ namespace drive{
               okapi::AbstractMotor::encoderUnits::degrees);
 
               okapi::MotorGroup intakegroup({left_motor, right_motor});
-              // pros::ADIAnalogIn cubeSensor(2);
+              pros::ADIAnalogIn cubeSensor(1);
 
             } // namespace intake
 

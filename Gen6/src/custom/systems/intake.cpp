@@ -7,184 +7,189 @@
 
 namespace intake{
 
-Controllers controller = Controllers::NONE;
-int liftUp = 1300;
-bool bothButtonsPressed(){
-  return BtnLeft.isPressed() && BtnRight.isPressed();
-}
-
-bool slowOut = false;
-void intake(){
-
-  if (BtnIn.isPressed()){
-    controller = Controllers::IN;
+  Controllers controller = Controllers::NONE;
+  int liftUp = 1300;
+  bool bothButtonsPressed(){
+    return BtnLeft.isPressed() && BtnRight.isPressed();
   }
-  else if (controller == Controllers::IN){
-    controller = Controllers::DEINIT;
+
+  bool slowOut = false;
+  void intake(){
+
+    if (BtnIn.isPressed()){
+      controller = Controllers::IN;
+    }
+    else if (controller == Controllers::IN){
+      controller = Controllers::DEINIT;
+    }
   }
-}
 
-void stackReverse(){
-  if (BtnBackUp.isPressed()){
+  void stackReverse(){
+    if (BtnBackUp.isPressed()){
 
-    controller = Controllers::MACRO;
+      controller = Controllers::MACRO;
+    }
+    else if (controller == Controllers::MACRO){
+      controller = Controllers::DEINIT;
+    }
   }
-  else if (controller == Controllers::MACRO){
-    controller = Controllers::DEINIT;
+
+  void outake(){
+    if (BtnOut.isPressed() || bothButtonsPressed()){
+      controller = Controllers::OUT;
+    }
+    else if (controller == Controllers::OUT){
+      controller = Controllers::DEINIT;
+    }
   }
-}
 
-void outake(){
-  if (BtnOut.isPressed() || bothButtonsPressed()){
-    controller = Controllers::OUT;
+  void spinR(){
+    if (BtnRight.isPressed()){
+      controller = Controllers::SPINR;
+    }
+    else if (controller == Controllers::SPINR){
+      controller = Controllers::DEINIT;
+    }
   }
-  else if (controller == Controllers::OUT){
-    controller = Controllers::DEINIT;
+
+  void spinL(){
+    if (BtnLeft.isPressed()){
+      controller = Controllers::SPINL;
+    }
+    else if (controller == Controllers::SPINL){
+      controller = Controllers::DEINIT;
+    }
   }
-}
 
-void spinR(){
-  if (BtnRight.isPressed()){
-    controller = Controllers::SPINR;
+  void slow(){
+    if (BtnSlowOut.isPressed()){
+      controller = Controllers::SLOWOUT;
+    }
+    else if (controller == Controllers::SLOWOUT){
+      controller = Controllers::DEINIT;
+    }
   }
-  else if (controller == Controllers::SPINR){
-    controller = Controllers::DEINIT;
+
+  void execute(){
+    switch (controller){
+
+      case Controllers::IN:
+      // if (lift::liftSensor.get_value() > liftUp)
+      // {
+      // intakegroup.moveVelocity(0);
+      // }
+      // else
+      // {
+      intakegroup.moveVelocity(200);
+      // }
+      break;
+
+      case Controllers::OUT:
+      // if (lift::liftSensor.get_value() > liftUp && cubeSensor.get_value() < 2700)
+      // {
+      //   slowOut = true;
+      // }
+      // if (slowOut)
+      // {
+      //   intakegroup.moveVelocity(-47);
+      // }
+      // else
+      // {
+      intakegroup.moveVelocity(-200);
+      // }
+      break;
+
+      case Controllers::SPINL:
+      left_motor.moveVelocity(50);
+      right_motor.moveVelocity(-50);
+      break;
+
+      case Controllers::SPINR:
+      left_motor.moveVelocity(-50);
+      right_motor.moveVelocity(50);
+      break;
+
+      case Controllers::MACRO:
+
+      intakegroup.moveVelocity(-35);
+      // drive::left_drive.moveVelocity(-25);
+      // drive::right_drive.moveVelocity(-25);
+      break;
+
+      case Controllers::SLOWOUT:
+      intakegroup.moveVelocity(-35);
+      break;
+
+      case Controllers::DEINIT:
+      intakegroup.moveVelocity(0);
+      slowOut = false;
+      controller = Controllers::NONE;
+      break;
+
+      case Controllers::NONE:
+      break;
+    }
   }
-}
 
-void spinL(){
-  if (BtnLeft.isPressed()){
-    controller = Controllers::SPINL;
+  void init(){
+    intake();
+    outake();
+    spinR();
+    spinL();
+    execute();
+    stackReverse();
+    slow();
   }
-  else if (controller == Controllers::SPINL){
-    controller = Controllers::DEINIT;
-  }
-}
+  namespace auton{
 
-void slow(){
-  if (BtnSlowOut.isPressed()){
-    controller = Controllers::SLOWOUT;
-  }
-  else if (controller == Controllers::SLOWOUT){
-    controller = Controllers::DEINIT;
-  }
-}
+    void stackReverseAuton(double distance, double driveSpeed, double intakeSpeed){
+      drive::auton::resetPos();
+      while (abs(drive::left_front.getPosition()) < distance){
+        /* code */
+        drive::left_drive.moveVelocity(-driveSpeed);
+        drive::right_drive.moveVelocity(-driveSpeed);
+        intakegroup.moveVelocity(-intakeSpeed);
+      }
+      drive::left_drive.moveVelocity(0);
+      drive::right_drive.moveVelocity(0);
+      intakegroup.moveVelocity(0);
+      // drive::auton::resetPositions();
+    }
 
-void execute(){
-  switch (controller){
+    // bool intakeRunning = false;
 
-  case Controllers::IN:
-    // if (lift::liftSensor.get_value() > liftUp)
-    // {
-    // intakegroup.moveVelocity(0);
-    // }
-    // else
-    // {
-    intakegroup.moveVelocity(200);
-    // }
-    break;
+    void intakeOn(double targetVelocity){
+      intakegroup.moveVelocity(targetVelocity);
+    }
 
-  case Controllers::OUT:
-    // if (lift::liftSensor.get_value() > liftUp && cubeSensor.get_value() < 2700)
-    // {
-    //   slowOut = true;
-    // }
-    // if (slowOut)
-    // {
-    //   intakegroup.moveVelocity(-47);
-    // }
-    // else
-    // {
-    intakegroup.moveVelocity(-200);
-    // }
-    break;
+    void intakeOff(){
+      if (intakegroup.getActualVelocity() > 0){
+        intakegroup.moveVelocity(0);
+      }
 
-  case Controllers::SPINL:
-    left_motor.moveVelocity(50);
-    right_motor.moveVelocity(-50);
-    break;
+    }
 
-  case Controllers::SPINR:
-    left_motor.moveVelocity(-50);
-    right_motor.moveVelocity(50);
-    break;
+    void isIt8or9(int time1, int time2){
+      if(cubeSensor.get_value() > 1900){
+        intake::auton::intakeOn(-200);
+        pros::delay(time1);
+        intake::intakegroup.moveVelocity(0);
+      }
+      else if(cubeSensor.get_value() < 1500){
+        intake::auton::intakeOn(-200);
+        pros::delay(time2);
+        intake::intakegroup.moveVelocity(0);
+      }
+      
+      else{
 
-  case Controllers::MACRO:
-
-    intakegroup.moveVelocity(-35);
-    // drive::left_drive.moveVelocity(-25);
-    // drive::right_drive.moveVelocity(-25);
-    break;
-
-  case Controllers::SLOWOUT:
-    intakegroup.moveVelocity(-35);
-    break;
-
-  case Controllers::DEINIT:
-    intakegroup.moveVelocity(0);
-    slowOut = false;
-    controller = Controllers::NONE;
-    break;
-
-  case Controllers::NONE:
-    break;
-  }
-}
-
-void init(){
-  intake();
-  outake();
-  spinR();
-  spinL();
-  execute();
-  stackReverse();
-  slow();
-}
-namespace auton{
-
-void stackReverseAuton(double distance, double driveSpeed, double intakeSpeed){
-  drive::auton::resetPos();
-  while (abs(drive::left_front.getPosition()) < distance){
-    /* code */
-    drive::left_drive.moveVelocity(-driveSpeed);
-    drive::right_drive.moveVelocity(-driveSpeed);
-    intakegroup.moveVelocity(-intakeSpeed);
-  }
-  drive::left_drive.moveVelocity(0);
-  drive::right_drive.moveVelocity(0);
-  intakegroup.moveVelocity(0);
-  // drive::auton::resetPositions();
-}
-
-// bool intakeRunning = false;
-
-void intakeOn(double targetVelocity){
-  intakegroup.moveVelocity(targetVelocity);
-}
-
-void intakeOff(){
-  if (intakegroup.getActualVelocity() > 0){
-    intakegroup.moveVelocity(0);
-  }
-/*
-void isIt8or9(int time1, int time2){
-if(inSensor.get_value > 1800){
-intake::auton::intakeOn(-200);
-wait(time1);
-intake::intakegroup.moveVelocity(0);
-}
-else if(inSensor.get_calue < 1800){
-intake::auton::intakeOn(-200);
-wait(time2);
-intake::intakegroup.moveVelocity(0);
-}
-
-}
+      }
+    }
 
 
-*/
 
 
-}
-} // namespace auton
+
+
+  } // namespace auton
 } // namespace intake

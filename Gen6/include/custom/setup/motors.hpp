@@ -18,7 +18,7 @@ namespace intake{
   extern okapi::Motor left_motor;
   extern okapi::Motor right_motor;
   extern okapi::MotorGroup intakegroup;
-  // extern pros::ADIAnalogIn cubeSensor;
+  extern pros::ADIAnalogIn cubeSensor;
 } // namespace intake
 
 namespace tilter{

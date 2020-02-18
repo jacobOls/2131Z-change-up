@@ -376,16 +376,35 @@ namespace auton{
     intake::auton::intakeOn(-200);
   }
 
+void betterStartup(){
+  lift::motor.tarePosition();
+  tilter::motor.tarePosition();
+  drive::auton::resetPos();
+  // lift::auton::lift(1000,200);
+  // lift::pulse();
+  intake::auton::intakeOn(-200);
+  wait(100);
+  lift::motor.moveVelocity(-125);
+  wait(200);
+  intake::auton::intakeOn(200);
+  lift::motor.moveAbsolute(0,200);
+  wait(800);
+}
+
+
   void smallRed9(){
     const int startTime = pros::millis();
     lift::motor.tarePosition();
     tilter::motor.tarePosition();
     drive::auton::resetPos();
     // lift::auton::lift(1000,200);
-    lift::pulse();
+    // lift::pulse();
     intake::auton::intakeOn(-200);
-    wait(400);
+    wait(100);
+    lift::motor.moveVelocity(-125);
+    wait(200);
     intake::auton::intakeOn(200);
+    lift::motor.moveAbsolute(0,200);
     wait(800);
     //end startup
     drive::auton::drive(890, 90);

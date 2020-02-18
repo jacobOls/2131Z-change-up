@@ -14,6 +14,7 @@ namespace lift{
   void pulse(void);
   namespace auton{
     void lift(int pos, int velocity,int startTime, double stopTime);
+    void liftNoTime(int pos, int velocity);
   }
 }
 

@@ -80,5 +80,20 @@ void lift(int pos, int velocity, int startTime, double stopTime){
     }
   }
 }
+
+void liftNoTime(int pos, int velocity){
+  if (motor.getPosition() > pos && velocity > 1){
+    velocity = -velocity;
+    while (motor.getPosition() > pos){
+      motor.moveAbsolute(pos, velocity);
+    }
+  }
+  else{
+    while (motor.getPosition() < pos){
+      motor.moveAbsolute(pos, velocity);
+    }
+  }
+}
+
 } // namespace auton
 } // namespace lift

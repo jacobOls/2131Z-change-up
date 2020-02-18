@@ -361,9 +361,7 @@ namespace auton{
     const int stackTime = pros::millis();
     tilter::auton::tilterTime(650, 60,stackTime, 700);
     // tilter::motor.moveAbsolute(900,60);
-    intake::auton::intakeOn(-200);
-    wait(130);
-    intake::intakegroup.moveVelocity(0);
+    intake::auton::isIt8or9(130,400);
     tilter::auton::tilter(1100, 55);
     intake::auton::intakeOn(-15);
     //end stack

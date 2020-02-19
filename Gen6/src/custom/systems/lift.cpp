@@ -47,9 +47,9 @@ void execute(){
     break;
   case Controllers::DEINIT:
     motor.moveVelocity(0);
-    // if (motor.getPosition() < 40 && tilter::motor.getPosition() < 125){
-      // motor.moveAbsolute(40, 200);
-    // }
+    if (motor.getPosition() < 40 && tilter::motor.getPosition() < 125){
+      motor.moveAbsolute(40, 200);
+    }
     controller = Controllers::NONE;
     break;
 

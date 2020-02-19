@@ -118,6 +118,9 @@ void tempCheck(){
 
 
 void opcontrol() {
+	if(lift::motor.getPosition() < 40){
+	lift::motor.moveAbsolute(40,200);
+}
 	while (true) {
 		selection::inAuton = false;
 		std::cout << "opcontrol" << std::endl;

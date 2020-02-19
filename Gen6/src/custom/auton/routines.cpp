@@ -407,12 +407,12 @@ void betterStartup(){
     lift::motor.moveAbsolute(0,200);
     wait(800);
     //end startup
-    drive::auton::drive(890, 90);
+    drive::auton::drive(890, 80);
     drive::auton::swingTurnLeft(550, 100, 20);
     drive::auton::swingTurnLeft(750, 100, 20);
     drive::auton::drive(570, 70);
     wait(150);
-    drive::auton::turn(135, -60);
+    drive::auton::turn(155, -60);
     drive::auton::driveNRE(150, 200);
     intake::auton::intakeOff();
     drive::auton::drive(230,200);

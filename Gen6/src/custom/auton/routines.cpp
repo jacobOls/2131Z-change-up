@@ -213,15 +213,25 @@ void largeRed6(){
 drive::auton::drive(200,100);
 drive::auton::turn(40,-75);
 drive::auton::drive(700,100);
+//getting ready for slurping stack
 lift::motor.moveAbsolute(500,200);
 drive::auton::turn(100,50);
 lift::auton::liftNoTime(2650, 200);
 drive::auton::drive(300,100);
 lift::auton::liftNoTime(0,-200);
+//slurped stack
 drive::auton::turn(600,100);
 intake::auton::intakeOff();
 drive::auton::drive(800,100);
-
+//stacking
+tilter::auton::tilter(750, 75);
+intake::auton::intakeOn(-85);
+tilter::auton::tilter(850, 75);
+intake::auton::intakeOff();
+tilter::auton::tilter(1050, 75);
+intake::auton::intakeOn(-15);
+drive::auton::drive(-125, -115);
+tilter::motor.moveAbsolute(0, -200);
 }
 
   //blue autons

@@ -27,6 +27,20 @@ namespace auton{
   }
 
   //red autons
+  void betterStartup(){
+    lift::motor.tarePosition();
+    tilter::motor.tarePosition();
+    drive::auton::resetPos();
+    // lift::auton::lift(1000,200);
+    // lift::pulse();
+    intake::auton::intakeOn(-200);
+    wait(100);
+    lift::motor.moveVelocity(-125);
+    wait(200);
+    intake::auton::intakeOn(200);
+    lift::motor.moveAbsolute(0,200);
+    wait(800);
+  }
 
   void redBig(){
     const int startTime = pros::millis();
@@ -188,6 +202,27 @@ namespace auton{
     drive::auton::drive(-125, -115);
     tilter::motor.moveAbsolute(0, -200);
   }
+
+
+
+void largeRed6(){
+  betterStartup();
+
+  drive::auton::drive(50,100);
+  drive::auton::turn(40, 75);
+drive::auton::drive(200,100);
+drive::auton::turn(40,-75);
+drive::auton::drive(700,100);
+lift::motor.moveAbsolute(500,200);
+drive::auton::turn(100,50);
+lift::auton::liftNoTime(2650, 200);
+drive::auton::drive(300,100);
+lift::auton::liftNoTime(0,-200);
+drive::auton::turn(600,100);
+intake::auton::intakeOff();
+drive::auton::drive(800,100);
+
+}
 
   //blue autons
 
@@ -376,20 +411,7 @@ namespace auton{
     intake::auton::intakeOn(-200);
   }
 
-void betterStartup(){
-  lift::motor.tarePosition();
-  tilter::motor.tarePosition();
-  drive::auton::resetPos();
-  // lift::auton::lift(1000,200);
-  // lift::pulse();
-  intake::auton::intakeOn(-200);
-  wait(100);
-  lift::motor.moveVelocity(-125);
-  wait(200);
-  intake::auton::intakeOn(200);
-  lift::motor.moveAbsolute(0,200);
-  wait(800);
-}
+
 
 
   void smallRed9(){

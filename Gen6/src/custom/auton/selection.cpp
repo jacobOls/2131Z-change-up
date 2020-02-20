@@ -34,7 +34,7 @@ std::string buttonLabels[BUTTON_COUNT] = {
     "LR 7 fails", // large red
     "LR 5 fails",
     "LR 4 works",
-    "LR 9 noStack",
+    "LR 6 WIP",
 
     "SR  5 works", // small red
     "SR 9 WIP",
@@ -64,7 +64,7 @@ autonFnPtr autonHandlers[BUTTON_COUNT] = {
     auton::redBig, //large red
     auton::redBig5,
     auton::redBig4,
-    auton::noStack9,
+    auton::largeRed6,
 
     auton::redSmall, //small red
     auton::smallRed9,

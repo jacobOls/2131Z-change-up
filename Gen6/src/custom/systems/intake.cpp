@@ -62,12 +62,12 @@ namespace intake{
   }
 
   void slow(){
-    if (BtnSlowOut.isPressed()){
-      controller = Controllers::SLOWOUT;
-    }
-    else if (controller == Controllers::SLOWOUT){
-      controller = Controllers::DEINIT;
-    }
+    // if (BtnSlowOut.isPressed()){
+    //   controller = Controllers::SLOWOUT;
+    // }
+    // else if (controller == Controllers::SLOWOUT){
+    //   controller = Controllers::DEINIT;
+    // }
   }
 
   void execute(){
@@ -180,7 +180,7 @@ namespace intake{
         pros::delay(time2);
         intake::intakegroup.moveVelocity(0);
       }
-      
+
       else{
 
       }

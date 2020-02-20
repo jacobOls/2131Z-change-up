@@ -8,7 +8,6 @@ namespace intake{
   extern okapi::ControllerButton BtnRight;
   extern okapi::ControllerButton BtnLeft;
   extern okapi::ControllerButton BtnBackUp;
-  extern okapi::ControllerButton BtnSlowOut;
 } // namespace intake
 namespace drive{
   extern okapi::ControllerButton BtnHold;
@@ -25,5 +24,6 @@ namespace tilter{
 namespace lift{
   extern okapi::ControllerButton BtnUp;
   extern okapi::ControllerButton BtnDown;
+  extern okapi::ControllerButton BtnSlowDown;
 }
 #endif /* end of include guard: CONTROLLER_HPP */

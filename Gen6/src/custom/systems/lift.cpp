@@ -23,6 +23,17 @@ void down(){
   }
 }
 
+void slowDown(){
+
+  if (BtnSlowDown.isPressed()){
+    controller = Controllers::SLOW;
+  }
+  else if (controller == Controllers::SLOW){
+    controller = Controllers::DEINIT;
+  }
+
+}
+
 void pulse(){
   motor.moveVelocity(-125);
   pros::delay(300);
@@ -45,11 +56,19 @@ void execute(){
     motor.moveVelocity(-100);
 
     break;
+
+    case Controllers::SLOW:
+    motor.moveVelocity(-75);
+   intake::intakegroup.moveVelocity(200);
+    break;
+
+
   case Controllers::DEINIT:
     motor.moveVelocity(0);
-    if (motor.getPosition() < 40 && tilter::motor.getPosition() < 125){
-      motor.moveAbsolute(40, 200);
+    if (motor.getPosition() < 60 && tilter::motor.getPosition() < 125){
+      motor.moveAbsolute(60, 100);
     }
+    intake::intakegroup.moveVelocity(0);
     controller = Controllers::NONE;
     break;
 
@@ -61,6 +80,7 @@ void execute(){
 void init(){
   up();
   down();
+  slowDown();
   execute();
 }
 

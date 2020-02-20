@@ -66,7 +66,7 @@ namespace tilter{
         motor.moveVelocity(45);
       }
 
-      if (lift::motor.getPosition() < 50 && motor.getPosition() > 130){
+      if (lift::motor.getPosition() < 70 && motor.getPosition() > 130){
         lift::motor.moveAbsolute(0, -200);
       }
 

@@ -5,6 +5,7 @@ namespace lift{
   enum class Controllers{
     UP,
     DOWN,
+    SLOW,
     DEINIT,
     NONE
   };

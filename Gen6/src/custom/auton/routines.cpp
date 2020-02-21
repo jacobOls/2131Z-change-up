@@ -130,6 +130,7 @@ namespace auton{
     lift::pulse();
     // wait(500);
     intake::auton::intakeOn(200);
+    lift::motor.moveAbsolute(60,200);
     wait(300);
     //starting
     // drive::auton::drive(-30,-125);
@@ -139,12 +140,15 @@ namespace auton{
     drive::auton::turn(130, -70);
     drive::auton::drive(85, 150);
     drive::auton::drive(-85, -150);
-    drive::auton::turn(480, 100);
+    drive::auton::turn(490, 100);
     drive::auton::drive(200, 150);
-    drive::auton::turn(60, 70);
+    drive::auton::turn(50, 70);
     //stack
+    intake::auton::intakeOn(-25);
+    lift::motor.moveAbsolute(0,-200);
+    drive::auton::drive(70, 100);
     intake::auton::intakeOff();
-    drive::auton::drive(65, 100);
+    intake::auton::intakeOn(0);
     //stacking
     tilter::auton::tilter(750, 75);
     intake::auton::intakeOn(-65);

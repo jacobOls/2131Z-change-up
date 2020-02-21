@@ -58,7 +58,7 @@ void execute(){
     break;
 
     case Controllers::SLOW:
-    motor.moveVelocity(-75);
+    motor.moveVelocity(-65);
    intake::intakegroup.moveVelocity(200);
     break;
 

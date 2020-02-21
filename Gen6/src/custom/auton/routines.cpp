@@ -87,6 +87,7 @@ namespace auton{
     // lift::auton::lift(1000,200);
     intake::auton::intakeOn(-200);
     lift::pulse();
+    lift::motor.moveAbsolute(60,200);
     // wait(500);
     intake::auton::intakeOn(200);
     // wait(800);
@@ -95,15 +96,18 @@ namespace auton{
     drive::auton::drive(70, 150);
     drive::auton::turn(50, 70);
     drive::auton::drive(100, 150);
-    drive::auton::turn(160, 70);
+    drive::auton::turn(130, 70);
     drive::auton::drive(85, 150);
     drive::auton::drive(-85, -150);
     drive::auton::turn(450, -100);
     drive::auton::drive(200, 150);
     drive::auton::turn(75, -70);
     //stack
+    intake::auton::intakeOn(-25);
+    lift::motor.moveAbsolute(0,-200);
+    drive::auton::drive(70, 100);
     intake::auton::intakeOff();
-    drive::auton::drive(65, 100);
+    intake::auton::intakeOn(0);
     //stacking
     tilter::auton::tilter(750, 75);
     intake::auton::intakeOn(-65);
@@ -381,44 +385,24 @@ tilter::motor.moveAbsolute(0, -200);
   //misc autons
 
   void skills(){
-    const int startTime = pros::millis();
     lift::motor.tarePosition();
     tilter::motor.tarePosition();
     drive::auton::resetPos();
     // lift::auton::lift(1000,200);
     lift::pulse();
     intake::auton::intakeOn(-200);
-    wait(400);
+    wait(300);
     intake::auton::intakeOn(200);
     wait(800);
-    //end startup
-    drive::auton::drive(1050, 60);
-    drive::auton::swingTurnLeft(550, 100, 20);
-    drive::auton::swingTurnLeft(750, 100, 20);
-    drive::auton::drive(620, 30);
-    drive::auton::turn(155, -60);
-    drive::auton::driveNRE(150, 200);
-    intake::auton::intakeOff();
-    drive::auton::drive(220,200);
-    //stack
-    // intake::auton::intakeOn(-10);
-    // tilter::motor.tarePosition();
-    const int stackTime = pros::millis();
-    tilter::auton::tilterTime(650, 60,stackTime, 700);
-    // tilter::motor.moveAbsolute(900,60);
-    intake::auton::isIt8or9(130,400);
-    tilter::auton::tilter(1100, 55);
-    intake::auton::intakeOn(-15);
-    //end stack
-    drive::auton::drive(-200, -35);
-    tilter::auton::tilterDown(0, -100);
-    //end match for when copying
-    drive::auton::turn(500,80);
-    intake::auton::intakeOn(200);
-    drive::auton::drive(500,200);
-    drive::auton::drive(-25,-25);
-    lift::auton::lift(600,200,startTime,22000);
-    intake::auton::intakeOn(-200);
+
+    drive::auton::drive(1000,60);
+    drive::auton::turn(75,-50);
+    drive::auton::drive(-450,-150);
+    drive::auton::turn(100,50);
+    drive::auton::drive(900,60);
+    drive::auton::drive(-700,-60);
+    drive::auton::turn(150,50);
+    drive::auton::drive(300,50);
   }
 
 
@@ -475,6 +459,13 @@ tilter::motor.moveAbsolute(0, -200);
     drive::auton::driveNRE(150, 200);
     intake::auton::intakeOff();
     drive::auton::drive(230,200);
+    //stacking
+    // const int stackTime = pros::millis();
+    tilter::auton::tilter(850, 60);
+    intake::auton::isIt8or9(130,130);
+    tilter::auton::tilter(1100, 55);
+    intake::auton::intakeOn(-35);
+    drive::auton::drive(-100,-35);
   }
 
 
@@ -495,5 +486,44 @@ tilter::motor.moveAbsolute(0, -200);
     drive::auton::drive(300, -100);
     drive::auton::drive(300, 100);
   }
+
+
+//old skills
+  // const int startTime = pros::millis();
+  // lift::motor.tarePosition();
+  // tilter::motor.tarePosition();
+  // drive::auton::resetPos();
+  // // lift::auton::lift(1000,200);
+  // lift::pulse();
+  // intake::auton::intakeOn(-200);
+  // wait(300);
+  // intake::auton::intakeOn(200);
+  // wait(1000);
+  // // betterStartup();
+  // //end startup
+  // drive::auton::drive(1050, 60);
+  // drive::auton::swingTurnLeft(550, 100, 20);
+  // drive::auton::swingTurnLeft(750, 100, 20);
+  // drive::auton::drive(620, 30);
+  // drive::auton::turn(165, -60);
+  // drive::auton::driveNRE(150, 200);
+  // intake::auton::intakeOff();
+  // drive::auton::drive(240,200);
+  // //stack
+  // const int stackTime = pros::millis();
+  // tilter::auton::tilterTime(850, 60,stackTime, 1100);
+  // // tilter::motor.moveAbsolute(900,60);
+  // intake::auton::isIt8or9(130,130);
+  // tilter::auton::tilter(1100, 55);
+  // intake::auton::intakeOn(-35);
+  // drive::auton::drive(-100,-35);
+  // //end match for when copying
+  // drive::auton::turn(500,80);
+  // intake::auton::intakeOn(200);
+  // drive::auton::drive(500,200);
+  // drive::auton::drive(-25,-25);
+  // lift::auton::lift(600,200,startTime,22000);
+  // intake::auton::intakeOn(-200);
+
 
 } // namespace auton

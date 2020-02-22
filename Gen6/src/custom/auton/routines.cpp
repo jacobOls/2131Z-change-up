@@ -196,16 +196,21 @@ namespace auton{
     intake::auton::intakeOn(50);
     drive::auton::drive(300,-200);
     drive::auton::turn(360,75);
-    intake::auton::intakeOff();
+    intake::auton::intakeOn(-20);
     drive::auton::driveNRE(65,100);
     // intake::auton::intakeOn(-15);
+    lift::motor.moveAbsolute(0,-100);
     drive::auton::drive(60,100);
     //stacking
+    intake::auton::intakeOn(0);
     tilter::auton::tilter(750, 75);
-    intake::auton::intakeOn(-85);
+    intake::auton::intakeOn(-65);
     tilter::auton::tilter(850, 75);
     intake::auton::intakeOff();
     tilter::auton::tilter(1050, 75);
+    intake::auton::intakeOn(-15);
+
+
     intake::auton::intakeOn(-15);
     drive::auton::drive(-125, -115);
     tilter::motor.moveAbsolute(0, -200);
@@ -406,27 +411,38 @@ tilter::motor.moveAbsolute(0, -200);
     drive::auton::turn(75,50);
     //end z turn
     drive::auton::drive(1000,40);
-    drive::auton::turn(35,-10);
+    drive::auton::turn(25,-10);
     drive::auton::drive(100,40);
     drive::auton::drive(100,-40);
-    drive::auton::turn(35,10);
+    drive::auton::turn(25,10);
     drive::auton::drive(-500,-100);
     drive::auton::turn(350,50);
+    lift::motor.moveAbsolute(0,-100);
+    intake::auton::intakeOff();
+    intake::auton::intakeOn(0);
     drive::auton::drive(250,50);
     //stack
     const int stackTime = pros::millis();
-    tilter::auton::tilterTime(850, 60,stackTime, 1100);
+tilter::auton::tilterTime(650, 60,stackTime, 1100);
     // tilter::motor.moveAbsolute(900,60);
-    intake::auton::isIt8or9(130,130);
+    intake::auton::isIt8or9(130,700);
     tilter::auton::tilterTime(1100, 55,stackTime,4000);
     intake::auton::intakeOn(-35);
     //end stacking
     drive::auton::drive(200,-35);
-    intake::auton::intakeOff();
+    intake::auton::intakeOn(0);
     tilter::auton::tilterDown(0, -100);
   }
 
-
+/*
+intake::auton::intakeOn(0);
+tilter::auton::tilter(750, 75);
+intake::auton::intakeOn(-65);
+tilter::auton::tilter(850, 75);
+intake::auton::intakeOff();
+tilter::auton::tilter(1050, 75);
+intake::auton::intakeOn(-15);
+*/
 
 
   void smallRed9(){

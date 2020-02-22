@@ -170,12 +170,12 @@ namespace intake{
     }
 
     void isIt8or9(int time1, int time2){
-      if(cubeSensor.get_value() > 1900){
+      if(cubeSensor.get_value() < 2000){
         intake::auton::intakeOn(-200);
         pros::delay(time1);
         intake::intakegroup.moveVelocity(0);
       }
-      else if(cubeSensor.get_value() < 1500){
+      else if(cubeSensor.get_value() > 2000){
         intake::auton::intakeOn(-200);
         pros::delay(time2);
         intake::intakegroup.moveVelocity(0);

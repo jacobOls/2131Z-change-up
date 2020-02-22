@@ -399,7 +399,6 @@ tilter::motor.moveAbsolute(0, -200);
     lift::motor.moveAbsolute(60,100);
     intake::auton::intakeOn(200);
     wait(1000);
-
     drive::auton::drive(1000,60);
     drive::auton::turn(75,-50);
     drive::auton::drive(-450,-150);

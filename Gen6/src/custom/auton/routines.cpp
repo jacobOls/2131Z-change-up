@@ -85,52 +85,86 @@ namespace auton{
     tilter::motor.tarePosition();
     drive::auton::resetPos();
     // lift::auton::lift(1000,200);
-    // intake::auton::intakeOn(-200);
+    intake::auton::intakeOn(-200);
     lift::pulse();
     lift::motor.moveAbsolute(60,200);
-    // // wait(500);
-    // intake::auton::intakeOn(200);
     // wait(500);
-    // //starting
-    // // drive::auton::drive(-30,-125);
-    // drive::auton::drive(70, 150);
-    // drive::auton::turn(50, 70);
-    // drive::auton::drive(100, 150);
-    // drive::auton::turn(130, 70);
-    // drive::auton::drive(85, 150);
-    // drive::auton::drive(-85, -150);
-    // drive::auton::turn(450, -100);
-    // drive::auton::drive(200, 150);
-    // drive::auton::turn(75, -70);
-    // //stack
-    // intake::auton::intakeOn(-25);
-    // lift::motor.moveAbsolute(0,-200);
-    // drive::auton::drive(90, 100);
-    // intake::auton::intakeOff();
-    // intake::auton::intakeOn(0);
-    // //stacking
-    // tilter::auton::tilter(750, 75);
-    // intake::auton::intakeOn(-65);
-    // tilter::auton::tilter(850, 75);
-    // intake::auton::intakeOff();
-    // tilter::auton::tilter(1050, 75);
-    // intake::auton::intakeOn(-15);
+    intake::auton::intakeOn(200);
+    wait(500);
+    //starting
+    // drive::auton::drive(-30,-125);
+    drive::auton::drive(70, 150);
+    drive::auton::turn(50, 70);
+    drive::auton::drive(100, 150);
+    drive::auton::turn(130, 70);
+    drive::auton::drive(85, 150);
+    drive::auton::drive(-85, -150);
+    drive::auton::turn(450, -100);
+    drive::auton::drive(200, 150);
+    drive::auton::turn(75, -70);
+    //stack
+    intake::auton::intakeOn(-25);
+    lift::motor.moveAbsolute(0,-200);
+    drive::auton::drive(90, 100);
+    intake::auton::intakeOff();
+    intake::auton::intakeOn(0);
+    //stacking
+    tilter::auton::tilter(750, 75);
+    intake::auton::intakeOn(-65);
+    tilter::auton::tilter(850, 75);
+    intake::auton::intakeOff();
+    tilter::auton::tilter(1050, 75);
+    intake::auton::intakeOn(-15);
     //end stacking
-    drive::auton::drive(-125, -115);
+    drive::auton::drive(-150, -115);
     tilter::motor.moveAbsolute(0, -200);
     drive::auton::turn(375,70);
-    drive::auton::drive(-200,-75);
+    drive::auton::drive(-200,-100);
 
     int voltThing = pros::millis();
 
     drive::auton::driveVolt(voltThing, 500, -4000);
     intake::auton::intakeOn(200);
-    drive::auton::drive(900,100);
+    drive::auton::drive(575,200);
     drive::auton::drive(50,-100);
     intake::auton::intakeOn(100);
     lift::auton::liftNoTime(1100,100);
-    drive::auton::drive(75,100);
+    drive::auton::drive(60,100);
+
     intake::auton::intakeOn(-200);
+    wait(500);
+    intake::auton::intakeOn(0);
+    drive::auton::drive(-50,-50);
+    lift::motor.moveAbsolute(60,-100);
+    wait(800);
+
+
+    // drive::auton::turn(30,-40);
+    intake::auton::intakeOn(200);
+    // drive::auton::drive(200,30);
+    // drive::auton::drive(-200,-30);
+    drive::auton::turn(250,50);
+    drive::auton::drive(575,60);
+drive::auton::turn(270,-50);
+lift::auton::liftNoTime(700,100);
+    drive::auton::drive(200,80);
+    drive::auton::drive(-35,-25);
+    lift::motor.moveAbsolute(200,-65);
+    wait(900);
+
+drive::auton::drive(100,-50);
+intake::auton::intakeOn(25);
+drive::auton::turn(448,-50);
+lift::motor.moveAbsolute(800,100);
+intake::auton::intakeOn(0);
+drive::auton::drive(650,100);
+intake::auton::intakeOn(-200);
+wait(500);
+intake::auton::intakeOn(25);
+drive::auton::drive(-25,-10);
+drive::auton::turn(370,-50);
+drive::auton::drive(200,100);
+intake::auton::intakeOn(-200);
   }
 
   void blueBig4(){

@@ -369,15 +369,20 @@ tilter::motor.moveAbsolute(0, -200);
     intake::auton::intakeOn(50);
     drive::auton::drive(300, -200);
     drive::auton::turn(360, -75);
-    intake::auton::intakeOff();
-    drive::auton::drive(125, 100);
+    intake::auton::intakeOn(-20);
+    drive::auton::driveNRE(65,100);
+    // intake::auton::intakeOn(-15);
+    lift::motor.moveAbsolute(0,-100);
+    drive::auton::drive(60,100);
     //stacking
+    intake::auton::intakeOn(0);
     tilter::auton::tilter(750, 75);
-    intake::auton::intakeOn(-85);
+    intake::auton::intakeOn(-65);
     tilter::auton::tilter(850, 75);
     intake::auton::intakeOff();
     tilter::auton::tilter(1050, 75);
     intake::auton::intakeOn(-15);
+
     drive::auton::drive(-125, -115);
     tilter::motor.moveAbsolute(0, -200);
 

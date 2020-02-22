@@ -10,6 +10,7 @@ namespace drive{
   };
   namespace auton{
     void drive(int distance, int velocity);
+    void driveVolt(int startTime, int time, int velocity);
     void driveNRE(int distance, int velocity);
     void driveNRB(int distance, int velocity);
     void driveNR(int distance, int velocity);

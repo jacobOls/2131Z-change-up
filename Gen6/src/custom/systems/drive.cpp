@@ -86,6 +86,23 @@ void drive(int distance, int velocity){
     pros::delay(LEFT_DRIVE.get_changeMsec());
   }
 }
+
+void driveVolt(int startTime, int time,  int velocity){
+  resetPos();
+  while (startTime - pros::millis() > time){
+    left_drive.moveVoltage(velocity);
+    right_drive.moveVoltage(velocity);
+    // LEFT_DRIVE.calculate(targetVelocity);
+    // RIGHT_DRIVE.calculate(targetVelocity);
+    pros::delay(20);;
+  }
+
+    left_drive.moveVelocity(0);
+    right_drive.moveVelocity(0);
+  }
+
+
+
 void driveNR(int distance, int velocity){
   resetPos();
   distance = abs(distance);

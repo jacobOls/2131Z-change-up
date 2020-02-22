@@ -400,17 +400,30 @@ tilter::motor.moveAbsolute(0, -200);
     intake::auton::intakeOn(200);
     wait(1000);
     drive::auton::drive(1000,60);
-    drive::auton::turn(75,-50);
+    //z turn
+    drive::auton::turn(70,-50);
     drive::auton::drive(-450,-150);
-    drive::auton::turn(100,50);
-    drive::auton::drive(900,50);
-    drive::auton::turn(15,-10);
+    drive::auton::turn(75,50);
+    //end z turn
+    drive::auton::drive(1000,40);
+    drive::auton::turn(35,-10);
     drive::auton::drive(100,40);
     drive::auton::drive(100,-40);
-    drive::auton::turn(15,10);
+    drive::auton::turn(35,10);
     drive::auton::drive(-500,-100);
     drive::auton::turn(350,50);
-    drive::auton::drive(150,50);
+    drive::auton::drive(250,50);
+    //stack
+    const int stackTime = pros::millis();
+    tilter::auton::tilterTime(850, 60,stackTime, 1100);
+    // tilter::motor.moveAbsolute(900,60);
+    intake::auton::isIt8or9(130,130);
+    tilter::auton::tilterTime(1100, 55,stackTime,4000);
+    intake::auton::intakeOn(-35);
+    //end stacking
+    drive::auton::drive(200,-35);
+    intake::auton::intakeOff();
+    tilter::auton::tilterDown(0, -100);
   }
 
 

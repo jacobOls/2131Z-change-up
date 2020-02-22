@@ -396,17 +396,22 @@ tilter::motor.moveAbsolute(0, -200);
     lift::pulse();
     intake::auton::intakeOn(-200);
     wait(300);
+    lift::motor.moveAbsolute(60,100);
     intake::auton::intakeOn(200);
-    wait(800);
+    wait(1000);
 
     drive::auton::drive(1000,60);
     drive::auton::turn(75,-50);
     drive::auton::drive(-450,-150);
     drive::auton::turn(100,50);
-    drive::auton::drive(900,60);
-    drive::auton::drive(-700,-60);
-    drive::auton::turn(150,50);
-    drive::auton::drive(300,50);
+    drive::auton::drive(900,50);
+    drive::auton::turn(15,-10);
+    drive::auton::drive(100,40);
+    drive::auton::drive(100,-40);
+    drive::auton::turn(15,10);
+    drive::auton::drive(-500,-100);
+    drive::auton::turn(350,50);
+    drive::auton::drive(150,50);
   }
 
 

@@ -426,7 +426,7 @@ tilter::motor.moveAbsolute(0, -200);
     intake::auton::intakeOn(0);
     tilter::auton::tilter(500, 75);
     intake::auton::intakeOn(-65);
-    tilter::auton::tilter(600, 75);
+    tilter::auton::tilter(550, 75);
     intake::auton::intakeOff();
     tilter::auton::tilter(1050, 75);
     intake::auton::intakeOn(-15);
@@ -457,18 +457,18 @@ tilter::motor.moveAbsolute(0, -200);
     lift::motor.moveAbsolute(60,100);
     intake::auton::intakeOn(200);
     wait(1000);
-    drive::auton::drive(1000,60);
+    drive::auton::drive(1100,50);
     //z turn
     drive::auton::turn(70,-50);
     drive::auton::drive(-450,-150);
     drive::auton::turn(75,50);
     //end z turn
     drive::auton::drive(1000,40);
-    drive::auton::turn(25,-10);
+    drive::auton::turn(20,-10);
     drive::auton::drive(100,40);
     drive::auton::drive(100,-40);
-    drive::auton::turn(25,10);
-    drive::auton::drive(-500,-100);
+    drive::auton::turn(20,10);
+    drive::auton::drive(-380,-150);
     drive::auton::turn(350,50);
     lift::motor.moveAbsolute(0,-100);
     intake::auton::intakeOff();
@@ -478,13 +478,60 @@ tilter::motor.moveAbsolute(0, -200);
     const int stackTime = pros::millis();
 tilter::auton::tilterTime(650, 60,stackTime, 1100);
     // tilter::motor.moveAbsolute(900,60);
-    intake::auton::isIt8or9(130,700);
+    intake::auton::isIt8or9(130,130);
     tilter::auton::tilterTime(1100, 55,stackTime,4000);
     intake::auton::intakeOn(-35);
+    wait(500);
     //end stacking
-    drive::auton::drive(200,-35);
+    drive::auton::drive(-140, -115);
+    tilter::motor.moveAbsolute(0, -200);
+    drive::auton::turn(375,70);
+    drive::auton::drive(-200,-100);
+
+    int voltThing = pros::millis();
+
+    drive::auton::driveVolt(voltThing, 500, -4000);
+    intake::auton::intakeOn(200);
+    drive::auton::drive(575,200);
+    drive::auton::drive(50,-100);
+    intake::auton::intakeOn(100);
+    lift::auton::liftNoTime(1100,100);
+    drive::auton::drive(60,100);
+
+    intake::auton::intakeOn(-200);
+    wait(500);
     intake::auton::intakeOn(0);
-    tilter::auton::tilterDown(0, -100);
+    drive::auton::drive(-50,-50);
+    lift::motor.moveAbsolute(60,-100);
+    wait(800);
+
+
+    // drive::auton::turn(30,-40);
+    intake::auton::intakeOn(200);
+    // drive::auton::drive(200,30);
+    // drive::auton::drive(-200,-30);
+    drive::auton::turn(250,50);
+    drive::auton::drive(570,60);
+drive::auton::turn(260,-50);
+lift::auton::liftNoTime(700,100);
+    drive::auton::drive(200,80);
+    drive::auton::drive(-20,-25);
+    lift::motor.moveAbsolute(200,-65);
+    wait(900);
+
+drive::auton::drive(100,-50);
+intake::auton::intakeOn(25);
+drive::auton::turn(475,-50);
+lift::motor.moveAbsolute(800,100);
+intake::auton::intakeOn(0);
+drive::auton::drive(650,100);
+intake::auton::intakeOn(-200);
+wait(500);
+intake::auton::intakeOn(25);
+drive::auton::drive(-25,-10);
+drive::auton::turn(370,-50);
+drive::auton::drive(200,100);
+intake::auton::intakeOn(-200);
   }
 
 /*

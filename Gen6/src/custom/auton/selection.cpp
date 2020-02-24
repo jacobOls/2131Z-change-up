@@ -31,6 +31,7 @@ void autonTwo(){
 void autonThree(){
   std::cout << "3" << std::endl;
 }
+std::string defaultThing = "";
 std::string buttonLabels[BUTTON_COUNT] = {
     "LR 7 fails", // large red
     "LR 5 fails",
@@ -164,6 +165,7 @@ void clearBtns(lv_obj_t *toggledButton = NULL){
 void execute(){
   std::cout << "executing" << std::endl;
   autonFnPtr defaultAuton = auton::redBig4;
+  defaultThing = "LR 4 Works";
   inAuton = true;
 
   if (selectedAuton == -1){
@@ -186,7 +188,7 @@ void execute(){
 static int timesCalled = 0;
 void init(){
   timesCalled++;
-  master.setText(1,1,"default");
+  master.setText(1,1,defaultThing);
   btnCreate();
   std::cout << "starting task: " << timesCalled << " time" << std::endl;
 }

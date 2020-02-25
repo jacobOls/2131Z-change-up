@@ -31,7 +31,7 @@ void autonTwo(){
 void autonThree(){
   std::cout << "3" << std::endl;
 }
-std::string defaultThing = "";
+std::string defaultThing = "foo";
 std::string buttonLabels[BUTTON_COUNT] = {
     "LR 7 fails", // large red
     "LR 5 fails",
@@ -95,8 +95,9 @@ static lv_res_t btn_click_action(lv_obj_t *btn){
   lv_btn_set_state(btn, LV_BTN_STATE_PR);
   uint32_t indexPos = lv_obj_get_free_num(btn);
   master.clear();
-master.setText(1,1,buttonLabels[indexPos]);
+  master.setText(0,0,"banana");
   selectedAuton = indexPos;
+  master.setText(0,0,buttonLabels[selectedAuton]);
 
   std::cout << "Toggled button with free_num of [" << indexPos << "] yo" << std::endl;
   // std::cout << "Auton selected is " << autonBtnState[id] << std::endl;
@@ -188,7 +189,7 @@ void execute(){
 static int timesCalled = 0;
 void init(){
   timesCalled++;
-  master.setText(1,1,defaultThing);
+  // master.setText(0,0,defaultThing);
   btnCreate();
   std::cout << "starting task: " << timesCalled << " time" << std::endl;
 }

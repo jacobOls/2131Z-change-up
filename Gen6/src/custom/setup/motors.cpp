@@ -19,7 +19,7 @@ namespace drive{
 
 
         }
-//16 and 18 burned
+//16 and 18 burned and 3
         namespace intake{
           okapi::Motor left_motor(2, false, okapi::AbstractMotor::gearset::green, //left
             okapi::AbstractMotor::encoderUnits::degrees);
@@ -40,7 +40,7 @@ namespace drive{
               } // namespace tilter
 
               namespace lift{
-                okapi::Motor motor(3, true, okapi::AbstractMotor::gearset::red,
+                okapi::Motor motor(5, true, okapi::AbstractMotor::gearset::red,
                   okapi::AbstractMotor::encoderUnits::degrees);
                   // pros::ADIAnalogIn liftSensor(1);
 

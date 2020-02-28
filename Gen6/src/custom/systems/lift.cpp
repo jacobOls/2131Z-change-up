@@ -65,9 +65,9 @@ void execute(){
 
   case Controllers::DEINIT:
     motor.moveVelocity(0);
-    if (motor.getPosition() < 60 && tilter::motor.getPosition() < 125){
-      motor.moveAbsolute(60, 100);
-    }
+    // if (motor.getPosition() < 60 && tilter::motor.getPosition() < 125){
+    //   motor.moveAbsolute(60, 100);
+    // }
     intake::intakegroup.moveVelocity(0);
     controller = Controllers::NONE;
     break;

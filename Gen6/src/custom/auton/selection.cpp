@@ -95,7 +95,7 @@ static lv_res_t btn_click_action(lv_obj_t *btn){
   lv_btn_set_state(btn, LV_BTN_STATE_PR);
   uint32_t indexPos = lv_obj_get_free_num(btn);
   master.clear();
-  master.setText(0,0,"banana");
+  master.setText(0,0,"test");
   selectedAuton = indexPos;
   master.setText(0,0,buttonLabels[selectedAuton]);
 
@@ -189,7 +189,7 @@ void execute(){
 static int timesCalled = 0;
 void init(){
   timesCalled++;
-  // master.setText(0,0,defaultThing);
+  master.setText(0,0,defaultThing);
   btnCreate();
   std::cout << "starting task: " << timesCalled << " time" << std::endl;
 }

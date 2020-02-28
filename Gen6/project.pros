@@ -275,7 +275,7 @@
         "upload_options": {
             "compress_bin": true,
             "description": ":P",
-            "remote_name": "test slot",
+            "remote_name": "no bump",
             "slot": 2
         }
     }

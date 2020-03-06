@@ -2,6 +2,7 @@
 #include "custom/setup/controller.hpp"
 #include "custom/setup/motors.hpp"
 #include "custom/systems/drive.hpp"
+#include "custom/systems/intake.hpp"
 #include "custom/systems/lift.hpp"
 #include "custom/systems/tilter.hpp"
 
@@ -19,6 +20,7 @@ void opcontrol() { // runs while in user control
     drive::userDrive();
     tilter::init();
     lift::init();
+    intake::init();
     pros::delay(20);
   }
 }

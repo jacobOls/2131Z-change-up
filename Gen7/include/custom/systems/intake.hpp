@@ -2,7 +2,7 @@
 #define INTAKE_HPP
 
 namespace intake {
-enum class State { IN, OUT, DEINIT, NONE };
+enum class State { IN, OUT, STACK, DEINIT, NONE };
 void init(void);
 } // namespace intake
 

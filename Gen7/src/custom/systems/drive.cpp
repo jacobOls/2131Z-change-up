@@ -8,9 +8,13 @@ namespace drive {
 double lVel, rVel;
 
 void userDrive() {
-  lVel = master.getAnalog(ControllerAnalog::leftY) * 200;
-  rVel = master.getAnalog(ControllerAnalog::rightY) * 200;
-
+  if (!intake::BtnBackUp.isPressed()) {
+    lVel = master.getAnalog(ControllerAnalog::leftY) * 200;
+    rVel = master.getAnalog(ControllerAnalog::rightY) * 200;
+  } else if (intake::BtnBackUp.isPressed()) {
+    lVel = -40;
+    rVel = -40;
+  }
   left_drive.moveVelocity(lVel);
   right_drive.moveVelocity(rVel);
 }

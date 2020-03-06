@@ -21,6 +21,14 @@ void out() {
   }
 }
 
+void stack() {
+  if (BtnBackUp.isPressed()) {
+    state = State::STACK;
+  } else if (state == State::STACK) {
+    state = State::DEINIT;
+  }
+}
+
 void execute() {
   switch (state) {
 
@@ -30,6 +38,10 @@ void execute() {
 
   case State::OUT:
     intakegroup.moveVelocity(-200);
+    break;
+
+  case State::STACK:
+    intakegroup.moveVelocity(-35);
     break;
 
   case State::DEINIT:
@@ -45,6 +57,7 @@ void execute() {
 void init() {
   in();
   out();
+  stack();
   execute();
 }
 

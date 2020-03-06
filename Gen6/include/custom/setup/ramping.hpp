@@ -1,19 +1,19 @@
 #ifndef RAMPING_HPP
 #define RAMPING_HPP
-//needs to remove gate
-class Ramping{
+// needs to remove gate
+class Ramping {
 protected:
-  double changeVal = 1; //the amout of Val change per execute
-  int changeMsec = 5;   //the amount of time inbetween executes
+  double changeVal = 1; // the amout of Val change per execute
+  int changeMsec = 5;   // the amount of time inbetween executes
 
-  double valRequested = 0; //used to request value
-  double valOutput = 0;    //val output
-  double Max = 100;        //maximum value
-  double Min = -100;       //minimum value
+  double valRequested = 0; // used to request value
+  double valOutput = 0;    // val output
+  double Max = 100;        // maximum value
+  double Min = -100;       // minimum value
 
 public:
   bool enabled = false;
-  //need to move to prvotected
+  // need to move to prvotected
 
   Ramping(double CV, double CM, double max, double min);
 

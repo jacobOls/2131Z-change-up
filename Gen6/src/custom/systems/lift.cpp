@@ -1,40 +1,36 @@
-#include "main.h"
-#include "custom/setup/motors.hpp"
-#include "custom/setup/controller.hpp"
 #include "custom/systems/lift.hpp"
+#include "custom/setup/controller.hpp"
+#include "custom/setup/motors.hpp"
+#include "main.h"
 
-namespace lift{
+namespace lift {
 Controllers controller = Controllers::NONE;
-void up(){
-  if (BtnUp.isPressed()){
+void up() {
+  if (BtnUp.isPressed()) {
     controller = Controllers::UP;
-  }
-  else if (controller == Controllers::UP){
+  } else if (controller == Controllers::UP) {
     controller = Controllers::DEINIT;
   }
 }
 
-void down(){
-  if (BtnDown.isPressed()){
+void down() {
+  if (BtnDown.isPressed()) {
     controller = Controllers::DOWN;
-  }
-  else if (controller == Controllers::DOWN){
+  } else if (controller == Controllers::DOWN) {
     controller = Controllers::DEINIT;
   }
 }
 
-void slowDown(){
+void slowDown() {
 
-  if (BtnSlowDown.isPressed()){
+  if (BtnSlowDown.isPressed()) {
     controller = Controllers::SLOW;
-  }
-  else if (controller == Controllers::SLOW){
+  } else if (controller == Controllers::SLOW) {
     controller = Controllers::DEINIT;
   }
-
 }
 
-void pulse(){
+void pulse() {
   motor.moveVelocity(-125);
   pros::delay(300);
   motor.moveAbsolute(0, 125);
@@ -42,11 +38,11 @@ void pulse(){
   motor.moveVelocity(0);
 }
 
-void execute(){
-  if (motor.getPosition() < 1 && controller == Controllers::DOWN){
+void execute() {
+  if (motor.getPosition() < 1 && controller == Controllers::DOWN) {
     controller = Controllers::DEINIT;
   }
-  switch (controller){
+  switch (controller) {
 
   case Controllers::UP:
     motor.moveVelocity(100);
@@ -54,14 +50,12 @@ void execute(){
 
   case Controllers::DOWN:
     motor.moveVelocity(-100);
-
     break;
 
-    case Controllers::SLOW:
+  case Controllers::SLOW:
     motor.moveVelocity(-65);
-   intake::intakegroup.moveVelocity(200);
+    intake::intakegroup.moveVelocity(200);
     break;
-
 
   case Controllers::DEINIT:
     motor.moveVelocity(0);
@@ -77,39 +71,37 @@ void execute(){
   }
 }
 
-void init(){
+void init() {
   up();
   down();
   slowDown();
   execute();
 }
 
-namespace auton{
+namespace auton {
 
-void lift(int pos, int velocity, int startTime, double stopTime){
+void lift(int pos, int velocity, int startTime, double stopTime) {
 
-  if (motor.getPosition() > pos && velocity > 1){
+  if (motor.getPosition() > pos && velocity > 1) {
     velocity = -velocity;
-    while (motor.getPosition() > pos && pros::millis() - startTime < stopTime){
+    while (motor.getPosition() > pos && pros::millis() - startTime < stopTime) {
       motor.moveAbsolute(pos, velocity);
     }
-  }
-  else{
-    while (motor.getPosition() < pos && pros::millis() - startTime < stopTime){
+  } else {
+    while (motor.getPosition() < pos && pros::millis() - startTime < stopTime) {
       motor.moveAbsolute(pos, velocity);
     }
   }
 }
 
-void liftNoTime(int pos, int velocity){
-  if (motor.getPosition() > pos && velocity > 1){
+void liftNoTime(int pos, int velocity) {
+  if (motor.getPosition() > pos && velocity > 1) {
     velocity = -velocity;
-    while (motor.getPosition() > pos){
+    while (motor.getPosition() > pos) {
       motor.moveAbsolute(pos, velocity);
     }
-  }
-  else{
-    while (motor.getPosition() < pos){
+  } else {
+    while (motor.getPosition() < pos) {
       motor.moveAbsolute(pos, velocity);
     }
   }

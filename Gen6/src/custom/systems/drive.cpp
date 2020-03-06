@@ -1,25 +1,24 @@
-#include "main.h"
 #include "custom/systems/drive.hpp"
-#include "custom/systems/lift.hpp"
-#include "custom/setup/motors.hpp"
 #include "custom/setup/controller.hpp"
+#include "custom/setup/motors.hpp"
 #include "custom/setup/ramping.hpp"
+#include "custom/systems/lift.hpp"
+#include "main.h"
 
-namespace drive{
+namespace drive {
 int rightVel;
 int leftVel;
 Controllers controller = Controllers::NONE;
-void userDrive(){
-  if (intake::BtnBackUp.isPressed()){
+void userDrive() {
+  if (intake::BtnBackUp.isPressed()) {
     right_drive.moveVelocity(-25);
     left_drive.moveVelocity(-25);
-  }
-  else
-  {
-    if (master.getAnalog(ControllerAnalog::rightY) < 0.05 && master.getAnalog(ControllerAnalog::rightY) > 0 && master.getAnalog(ControllerAnalog::leftY) >= 0){
+  } else {
+    if (master.getAnalog(ControllerAnalog::rightY) < 0.05 &&
+        master.getAnalog(ControllerAnalog::rightY) > 0 &&
+        master.getAnalog(ControllerAnalog::leftY) >= 0) {
       leftVel = 0;
-    }
-    else{
+    } else {
       leftVel = (master.getAnalog(ControllerAnalog::leftY) * 200);
     }
     //  if(abs(master.getAnalog(ControllerAnalog::leftX)) < 0.05){
@@ -34,8 +33,8 @@ void userDrive(){
   }
 }
 
-void execute(){
-  switch (controller){
+void execute() {
+  switch (controller) {
   case Controllers::DRIVE:
     leftVel = (master.getAnalog(ControllerAnalog::leftY) * abs(200));
     rightVel = (master.getAnalog(ControllerAnalog::rightY) * abs(200));
@@ -59,54 +58,53 @@ void execute(){
 //   execute();
 //   driveU();
 
-namespace auton{
+namespace auton {
 
-int gyV(){
-  return gyro.get_value();
-}
+int gyV() { return gyro.get_value(); }
 
-void resetPos(){
+void resetPos() {
   left_drive.tarePosition();
   right_drive.tarePosition();
 }
 
-void drive(int distance, int velocity){
+void drive(int distance, int velocity) {
   resetPos();
   distance = abs(distance);
-  while (abs(left_front.getPosition()) < distance || abs(right_front.getPosition()) < distance){
+  while (abs(left_front.getPosition()) < distance ||
+         abs(right_front.getPosition()) < distance) {
     left_drive.moveVelocity(LEFT_DRIVE.calculate(velocity));
     right_drive.moveVelocity(RIGHT_DRIVE.calculate(velocity));
     // LEFT_DRIVE.calculate(targetVelocity);
     // RIGHT_DRIVE.calculate(targetVelocity);
     pros::delay(LEFT_DRIVE.get_changeMsec());
   }
-  while (LEFT_DRIVE.output() != 0){
+  while (LEFT_DRIVE.output() != 0) {
     left_drive.moveVelocity(LEFT_DRIVE.calculate(0));
     right_drive.moveVelocity(RIGHT_DRIVE.calculate(0));
     pros::delay(LEFT_DRIVE.get_changeMsec());
   }
 }
 
-void driveVolt(int startTime, int time,  int velocity){
+void driveVolt(int startTime, int time, int velocity) {
   resetPos();
-  while (startTime - pros::millis() > time){
+  while (startTime - pros::millis() > time) {
     left_drive.moveVoltage(velocity);
     right_drive.moveVoltage(velocity);
     // LEFT_DRIVE.calculate(targetVelocity);
     // RIGHT_DRIVE.calculate(targetVelocity);
-    pros::delay(20);;
+    pros::delay(20);
+    ;
   }
 
-    left_drive.moveVelocity(0);
-    right_drive.moveVelocity(0);
-  }
+  left_drive.moveVelocity(0);
+  right_drive.moveVelocity(0);
+}
 
-
-
-void driveNR(int distance, int velocity){
+void driveNR(int distance, int velocity) {
   resetPos();
   distance = abs(distance);
-  while (abs(left_front.getPosition()) < distance || abs(right_front.getPosition()) < distance){
+  while (abs(left_front.getPosition()) < distance ||
+         abs(right_front.getPosition()) < distance) {
     left_drive.moveVelocity(velocity);
     right_drive.moveVelocity(velocity);
     // LEFT_DRIVE.calculate(targetVelocity);
@@ -120,9 +118,9 @@ void driveNR(int distance, int velocity){
   // }
 }
 
-void swingTurnLeft(int distance, int velocity, int rVel){
+void swingTurnLeft(int distance, int velocity, int rVel) {
   resetPos();
-  while (abs(right_front.getPosition()) < distance){
+  while (abs(right_front.getPosition()) < distance) {
     right_drive.moveVelocity(velocity);
     left_drive.moveVelocity(rVel);
   }
@@ -130,9 +128,9 @@ void swingTurnLeft(int distance, int velocity, int rVel){
   right_drive.moveVelocity(0);
 }
 
-void swingTurnRight(int distance, int velocity, int lVel){
+void swingTurnRight(int distance, int velocity, int lVel) {
   resetPos();
-  while (abs(left_front.getPosition()) < distance){
+  while (abs(left_front.getPosition()) < distance) {
     left_drive.moveVelocity(velocity);
     right_drive.moveVelocity(lVel);
   }
@@ -140,10 +138,11 @@ void swingTurnRight(int distance, int velocity, int lVel){
   right_drive.moveVelocity(0);
 }
 
-void driveNRE(int distance, int velocity){
+void driveNRE(int distance, int velocity) {
   resetPos();
   distance = abs(distance);
-  while (abs(left_front.getPosition()) < distance || abs(right_front.getPosition()) < distance){
+  while (abs(left_front.getPosition()) < distance ||
+         abs(right_front.getPosition()) < distance) {
     left_drive.moveVelocity(LEFT_DRIVE.calculate(velocity));
     right_drive.moveVelocity(RIGHT_DRIVE.calculate(velocity));
     // LEFT_DRIVE.calculate(targetVelocity);
@@ -152,26 +151,27 @@ void driveNRE(int distance, int velocity){
   }
 }
 
-void driveNRB(int distance, int velocity){
+void driveNRB(int distance, int velocity) {
   resetPos();
   distance = abs(distance);
-  while (abs(left_front.getPosition()) < distance || abs(right_front.getPosition()) < distance){
+  while (abs(left_front.getPosition()) < distance ||
+         abs(right_front.getPosition()) < distance) {
     left_drive.moveVelocity(velocity);
     right_drive.moveVelocity(velocity);
     // LEFT_DRIVE.calculate(targetVelocity);
     // RIGHT_DRIVE.calculate(targetVelocity);
     pros::delay(20);
   }
-  while (LEFT_DRIVE.output() != 0){
+  while (LEFT_DRIVE.output() != 0) {
     left_drive.moveVelocity(LEFT_DRIVE.calculate(0));
     right_drive.moveVelocity(RIGHT_DRIVE.calculate(0));
     pros::delay(LEFT_DRIVE.get_changeMsec());
   }
 }
 
-void turn(int deg, int velocity){
+void turn(int deg, int velocity) {
   resetPos();
-  while (abs(left_front.getPosition()) < deg){
+  while (abs(left_front.getPosition()) < deg) {
     left_drive.moveVelocity(velocity);
     right_drive.moveVelocity(-velocity);
   }

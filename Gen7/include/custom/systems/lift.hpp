@@ -2,6 +2,6 @@
 #define LIFT_HPP
 namespace lift {
 enum class State { UP, DOWN, RECYCLE, DEINIT, NONE };
-void init();
+void init(void);
 } // namespace lift
 #endif /* end of include guard: LIFT_HPP */

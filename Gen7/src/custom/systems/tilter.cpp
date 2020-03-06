@@ -14,6 +14,22 @@ void up() {
   }
 }
 
+void down() {
+
+  if (BtnForward.isPressed()) {
+    state = State::DOWN;
+  } else if (state == State::DOWN) {
+    state = State::DEINIT;
+  }
+}
+
+void returnDown() {
+  if (BtnForward.isPressed()) {
+    state = State::RETURN;
+  } else if (state == State::RETURN && motor.getActualVelocity() == 0) {
+    state = State::DEINIT;
+  }
+}
 void execute() {
 
   int subtractor;
@@ -36,17 +52,28 @@ void execute() {
     break;
 
   case State::DOWN:
+    motor.moveVelocity(-100);
     break;
 
   case State::RETURN:
+    motor.moveAbsolute(0, -100);
     break;
 
   case State::DEINIT:
+    motor.moveVelocity(0);
+    state = State::NONE;
     break;
 
   case State::NONE:
     break;
   }
+}
+
+void init() {
+  execute();
+  up();
+  down();
+  returnDown();
 }
 
 } // namespace tilter

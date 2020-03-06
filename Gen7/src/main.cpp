@@ -1,7 +1,9 @@
 #include "main.h"
 #include "custom/setup/controller.hpp"
 #include "custom/setup/motors.hpp"
+#include "custom/systems/drive.hpp"
 #include "custom/systems/lift.hpp"
+#include "custom/systems/tilter.hpp"
 
 void initialize() {} // runs when program start and is not disabled
 
@@ -14,6 +16,8 @@ void autonomous() {} // runs when in auton
 void opcontrol() { // runs while in user control
 
   while (true) {
+    drive::userDrive();
+    tilter::init();
     lift::init();
     pros::delay(20);
   }

@@ -1,6 +1,5 @@
 #include "custom/setup/ramping.hpp"
 #include "custom/setup/motors.hpp"
-#include "custom/systems/lift.hpp"
 #include "main.h"
 
 ramping::ramping(double changeRate, double changeVal, int minimum,

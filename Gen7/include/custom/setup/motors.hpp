@@ -9,6 +9,7 @@ extern okapi::Motor right_back;
 extern okapi::Motor right_front;
 extern okapi::MotorGroup left_drive;
 extern okapi::MotorGroup right_drive;
+extern okapi::MotorGroup driveAll;
 
 } // namespace drive
 

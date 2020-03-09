@@ -13,6 +13,7 @@ okapi::Motor right_front(13, false, okapi::AbstractMotor::gearset::green,
 
 okapi::MotorGroup left_drive({left_front, left_back});
 okapi::MotorGroup right_drive({right_front, right_back});
+okapi::MotorGroup driveAll({right_front, right_back, left_front, left_back});
 
 } // namespace drive
 namespace intake {

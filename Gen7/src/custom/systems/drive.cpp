@@ -37,6 +37,7 @@ void exDrive(int vel, int distance) { // eponential ramping drive
 }
 
 void linDrive(int vel, int distance) { // linear ramping drive
+  driveAll.tarePosition();
   int velocity = 1;
   driveAll.moveVelocity(velocity);
   while (abs(driveAll.getPosition()) < abs(distance)) {
@@ -49,4 +50,43 @@ void linDrive(int vel, int distance) { // linear ramping drive
   }
 }
 
+void swingTurnLeft(int distance, int velocity, int rVel) {
+  driveAll.tarePosition();
+  while (abs(right_front.getPosition()) < distance) {
+    right_drive.moveVelocity(velocity);
+    left_drive.moveVelocity(rVel);
+  }
+  left_drive.moveVelocity(0);
+  right_drive.moveVelocity(0);
+}
+
+void swingTurnRight(int distance, int velocity, int lVel) {
+  driveAll.tarePosition();
+  while (abs(left_front.getPosition()) < distance) {
+    left_drive.moveVelocity(velocity);
+    right_drive.moveVelocity(lVel);
+  }
+  left_drive.moveVelocity(0);
+  right_drive.moveVelocity(0);
+}
+
+void leftTurn(int deg, int velocity) {
+  driveAll.tarePosition();
+  while (abs(left_front.getPosition()) < deg) {
+    left_drive.moveVelocity(velocity);
+    right_drive.moveVelocity(-velocity);
+  }
+  left_drive.moveVelocity(0);
+  right_drive.moveVelocity(0);
+}
+
+void rightTurn(int deg, int velocity) {
+  driveAll.tarePosition();
+  while (abs(right_front.getPosition()) < deg) {
+    left_drive.moveVelocity(-velocity);
+    right_drive.moveVelocity(velocity);
+  }
+  left_drive.moveVelocity(0);
+  right_drive.moveVelocity(0);
+}
 } // namespace drive

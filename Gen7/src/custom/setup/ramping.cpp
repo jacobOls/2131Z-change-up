@@ -21,6 +21,7 @@ void ramping::accelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
   }
 
   vel = pow(changeVal, timesLooped);
+
   if (requested < 0) {
     vel = -vel;
   }

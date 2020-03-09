@@ -76,4 +76,11 @@ void init() {
   returnDown();
 }
 
+void tilt(int pos, int vel) {
+  motor.moveVelocity(1);
+  while (motor.getActualVelocity() != 0) {
+    motor.moveAbsolute(pos, vel);
+  }
+}
+
 } // namespace tilter

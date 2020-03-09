@@ -4,6 +4,7 @@
 namespace intake {
 enum class State { IN, OUT, STACK, DEINIT, NONE };
 void init(void);
+void runIntake(int velocity);
 } // namespace intake
 
 #endif /* end of include guard: INTAKE_HPP */

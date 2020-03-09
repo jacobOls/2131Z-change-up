@@ -71,4 +71,15 @@ void init() {
   execute();
 }
 
+void lift(int pos, int vel) {
+  while (motor.getPosition() < pos - 5 && motor.getPosition() > pos + 5) {
+    motor.moveVelocity(vel);
+  }
+}
+void liftTimed(int pos, int vel, int time) {
+  int started = pros::millis();
+  while (motor.getPosition() != pos || pros::millis() - started < time) {
+    motor.moveVelocity(vel);
+  }
+}
 } // namespace lift

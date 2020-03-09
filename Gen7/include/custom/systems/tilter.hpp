@@ -4,6 +4,7 @@
 namespace tilter {
 enum class State { UP, DOWN, RETURN, DEINIT, NONE };
 void init(void);
+void tilt(int pos, int vel);
 } // namespace tilter
 
 #endif /* end of include guard: TILTER_HPP */

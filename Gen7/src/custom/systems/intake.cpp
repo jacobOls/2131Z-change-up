@@ -61,4 +61,6 @@ void init() {
   execute();
 }
 
+void runIntake(int velocity) { intakegroup.moveVelocity(velocity); }
+
 } // namespace intake

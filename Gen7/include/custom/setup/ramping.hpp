@@ -1,7 +1,7 @@
 #ifndef RAMPING_HPP
 #define RAMPING_HPP
 #include "main.h"
-double timesLooped = 0; // times looped
+extern double timesLooped; // times looped
 
 class ramping {
 

@@ -3,6 +3,7 @@
 #include "main.h"
 #include <math.h>
 
+double timesLooped = 0;
 ramping::ramping(double changeRate, double changeVal, int minimum,
                  int maximum) {
 

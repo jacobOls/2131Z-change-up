@@ -1,6 +1,7 @@
 #include "custom/systems/tilter.hpp"
 #include "custom/setup/controller.hpp"
 #include "custom/setup/motors.hpp"
+#include "custom/systems/intake.hpp"
 #include "main.h"
 
 namespace tilter {
@@ -80,6 +81,19 @@ void tilt(int pos, int vel) {
   motor.moveVelocity(1);
   while (motor.getActualVelocity() != 0) {
     motor.moveAbsolute(pos, vel);
+  }
+}
+
+void stack(int pos) {
+  int subtractor = motor.getPosition() / 35;
+  while (motor.getPosition() < pos / 2) {
+    motor.moveVelocity(100);
+  }
+  intake::runIntake(150);
+  pros::delay(50);
+  intake::runIntake(0);
+  while (motor.getPosition() < pos) {
+    motor.moveVelocity(100 - subtractor);
   }
 }
 

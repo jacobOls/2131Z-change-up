@@ -71,6 +71,8 @@ void init() {
   execute();
 }
 
+// autons
+
 void lift(int pos, int vel) {
   while (motor.getPosition() < pos - 5 && motor.getPosition() > pos + 5) {
     motor.moveVelocity(vel);

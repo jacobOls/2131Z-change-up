@@ -77,6 +77,8 @@ void init() {
   returnDown();
 }
 
+// autons
+
 void tilt(int pos, int vel) {
   motor.moveVelocity(1);
   while (motor.getActualVelocity() != 0) {

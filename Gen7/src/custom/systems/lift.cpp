@@ -75,11 +75,13 @@ void lift(int pos, int vel) {
   while (motor.getPosition() < pos - 5 && motor.getPosition() > pos + 5) {
     motor.moveVelocity(vel);
   }
+  motor.moveVelocity(0);
 }
 void liftTimed(int pos, int vel, int time) {
   int started = pros::millis();
   while (motor.getPosition() != pos || pros::millis() - started < time) {
     motor.moveVelocity(vel);
   }
+  motor.moveVelocity(0);
 }
 } // namespace lift

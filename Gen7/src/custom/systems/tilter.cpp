@@ -84,17 +84,18 @@ void tilt(int pos, int vel) {
   }
 }
 
-void stack(int pos) {
+void stack(int pos, int time) {
   int subtractor = motor.getPosition() / 35;
-  while (motor.getPosition() < pos / 2) {
+  while (motor.getPosition() < pos / 2.25) {
     motor.moveVelocity(100);
   }
   intake::runIntake(150);
-  pros::delay(50);
+  pros::delay(time);
   intake::runIntake(0);
   while (motor.getPosition() < pos) {
     motor.moveVelocity(100 - subtractor);
   }
+  motor.moveVelocity(0);
 }
 
 } // namespace tilter

@@ -17,11 +17,12 @@ void ramping::accelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
                         int requested) {
   int i = 1; // initial velocity
   double vel = 1;
+
+  vel = pow(changeVal, timesLooped);
+
   if (vel > abs(requested)) {
     vel = requested;
   }
-
-  vel = pow(changeVal, timesLooped);
 
   if (requested < 0) {
     vel = -vel;

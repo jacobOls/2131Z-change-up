@@ -23,7 +23,7 @@ void userDrive() {
 
 // autons
 
-void exDrive(int vel, int distance) { // eponential ramping drive
+void exDrive(int distance, int vel) { // eponential ramping drive
   driveAll.tarePosition();
   while (abs(driveAll.getPosition()) < abs(distance)) {
     drive.accelMath(accel, &driveAll, 200);
@@ -36,9 +36,19 @@ void exDrive(int vel, int distance) { // eponential ramping drive
   }
 }
 
-void linDrive(int vel, int distance) { // linear ramping drive
+void noRampEnd(int distance, int vel) { // eponential ramping drive
   driveAll.tarePosition();
-  int velocity = 1;
+  while (abs(driveAll.getPosition()) < abs(distance)) {
+    drive.accelMath(accel, &driveAll, 200);
+    timesLooped++;
+    pros::delay(drive.rateOfChange);
+  }
+  timesLooped = 0;
+}
+
+void linDrive(int distance, int vel) { // linear ramping drive
+  driveAll.tarePosition();
+  int velocity = driveAll.getActualVelocity();
   driveAll.moveVelocity(velocity);
   while (abs(driveAll.getPosition()) < abs(distance)) {
     velocity += drive.changeVal;

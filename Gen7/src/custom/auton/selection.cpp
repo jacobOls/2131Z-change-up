@@ -27,38 +27,38 @@ void autonTwo() { std::cout << "running auton two" << std::endl; }
 void autonThree() { std::cout << "3" << std::endl; }
 std::string defaultThing = "foo";
 std::string buttonLabels[BUTTON_COUNT] = {
-    "blank", // large red
-    "blank", "blank",  "blank",
+    "LR 7 WIP", // large red
+    "blank",    "blank",  "blank",
 
-    "blank", // small red
-    "blank", "blank ", "blank",
+    "SR 5 WIP", // small red
+    "blank",    "blank ", "blank",
 
-    "blank", // large blue
-    "blank", "blank",  "blank",
+    "LB 7 WIP", // large blue
+    "blank",    "blank",  "blank",
 
-    "blank", // small blue
-    "blank", "blank ", "blank",
+    "SB 5 WIP", // small blue
+    "blank",    "blank ", "blank",
 
-    "('>){", "blank ", "blank", "blank",
+    "('>){",    "blank ", "blank", "blank",
 };
 
 // auton function returns void and takes no args
 typedef void (*autonFnPtr)(void);
 
-autonFnPtr autonHandlers[BUTTON_COUNT] = {autonOne, // large red
-                                          autonOne, autonOne, autonOne,
+autonFnPtr autonHandlers[BUTTON_COUNT] = {redLargeSeven, // large red
+                                          autonOne,       autonOne, autonOne,
 
-                                          autonOne, // small red
-                                          autonOne, autonOne, autonOne,
+                                          redSmallFive, // small red
+                                          autonOne,       autonOne, autonOne,
 
-                                          autonOne, // small blue
-                                          autonOne, autonOne, autonOne,
+                                          blueSmallFive, // small blue
+                                          autonOne,       autonOne, autonOne,
 
-                                          autonOne, // large blue
-                                          autonOne, autonOne, autonOne,
+                                          blueLargeSeven, // large blue
+                                          autonOne,       autonOne, autonOne,
 
                                           autonOne, // random
-                                          autonOne, autonOne, autonOne};
+                                          autonOne,       autonOne, autonOne};
 
 static lv_res_t btn_click_action(lv_obj_t *btn) {
   clearBtns(btn);

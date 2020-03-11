@@ -137,7 +137,7 @@ void clearBtns(lv_obj_t *toggledButton = NULL) {
 
 void execute() {
   std::cout << "executing" << std::endl;
-  autonFnPtr defaultAuton = auton::redBig4;
+  autonFnPtr defaultAuton = auton::skills;
   defaultThing = "LR 4 Works";
   inAuton = true;
 

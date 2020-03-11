@@ -118,6 +118,9 @@ void opcontrol() {
   // 	lift::motor.moveAbsolute(60,100);
   // }
   while (true) {
+    if (intake::BtnRight.isPressed()) {
+      selection::execute();
+    }
     selection::inAuton = false;
     std::cout << "opcontrol" << std::endl;
     std::cout << "2things" << std::endl;

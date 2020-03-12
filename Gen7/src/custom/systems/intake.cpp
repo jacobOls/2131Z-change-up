@@ -21,7 +21,7 @@ void out() {
   }
 }
 
-void stack() {
+void backOff() {
   if (BtnBackUp.isPressed()) {
     state = State::STACK;
   } else if (state == State::STACK) {
@@ -57,7 +57,7 @@ void execute() {
 void init() {
   in();
   out();
-  stack();
+  backOff();
   execute();
 }
 

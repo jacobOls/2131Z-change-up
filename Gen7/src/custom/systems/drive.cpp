@@ -51,7 +51,12 @@ void linDrive(int distance, int vel) { // linear ramping drive
   int velocity = driveAll.getActualVelocity();
   driveAll.moveVelocity(velocity);
   while (abs(driveAll.getPosition()) < abs(distance)) {
-    velocity += drive.changeVal;
+    if (velocity < abs(vel)) {
+      velocity += drive.changeVal;
+    }
+    if (vel < 0) {
+      velocity = -velocity;
+    }
     driveAll.moveVelocity(velocity);
     pros::delay(drive.rateOfChange);
   }

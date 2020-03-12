@@ -23,7 +23,7 @@ void down() {
   }
 }
 void recycle() {
-  if (BtnUp.isPressed()) {
+  if (BtnSlowDown.isPressed()) {
     state = State::RECYCLE;
   } else if (state == State::RECYCLE) {
     state = State::RECYCLE;

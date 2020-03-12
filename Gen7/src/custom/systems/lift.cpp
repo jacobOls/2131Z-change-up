@@ -74,8 +74,8 @@ void init() {
 // autons
 
 void lift(int pos, int vel) {
-  while (motor.getPosition() < pos - 5 && motor.getPosition() > pos + 5) {
-    motor.moveVelocity(vel);
+  while (motor.getActualVelocity() != 0) {
+    motor.moveAbsolute(pos, vel);
   }
   motor.moveVelocity(0);
 }

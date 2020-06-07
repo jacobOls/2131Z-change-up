@@ -5,7 +5,7 @@
 
 namespace wheel {
 State state = State::NONE;
-void in() {
+void pull() {
   if (BtnIn.isPressed()) {
     state = State::IN;
   } else if (state == State::IN) {
@@ -13,7 +13,7 @@ void in() {
   }
 }
 
-void out() {
+void eject() {
   if (BtnOut.isPressed()) {
     state = State::OUT;
   } else if (state == State::OUT) {
@@ -44,11 +44,11 @@ void execute() {
 }
 
 void init() {
-  in();
-  out();
+  pull();
+  eject();
   execute();
 }
 
-void runWheel(int velocity) { wheelGroup.moveVelocity(velocity); }
+// void runWheel(int velocity) { wheelGroup.moveVelocity(velocity); }
 
-} // namespace intake
+} // namespace wheel

@@ -4,7 +4,7 @@
 namespace wheel {
 enum class State { IN, OUT, DEINIT, NONE };
 void init(void);
-void runWheel(int velocity);
+// void runWheel(int velocity);
 } // namespace wheel
 
 #endif /* end of include guard: WHEEL_HPP */

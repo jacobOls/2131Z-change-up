@@ -1,7 +1,7 @@
 #include "main.h"
 #include "custom/systems/drive.hpp"
-#include "custom/systems/intake.cpp"
-#include "custom/systems/wheel.cpp"
+#include "custom/systems/intake.hpp"
+#include "custom/systems/wheel.hpp"
 #include "custom/settup/motors.hpp"
 /**
  * A callback function for LLEMU's center button.

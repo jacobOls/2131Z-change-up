@@ -1,5 +1,7 @@
 #include "main.h"
 #include "custom/systems/drive.hpp"
+#include "custom/systems/intake.cpp"
+#include "custom/systems/wheel.cpp"
 #include "custom/settup/motors.hpp"
 /**
  * A callback function for LLEMU's center button.
@@ -82,8 +84,10 @@ void opcontrol() {
 
 
 	while (true) {
- drive::userDrive();
- record();
+    intake::init();
+    wheel::init();
+    drive::userDrive();
+    record();
 		pros::delay(20);
 	}
 }

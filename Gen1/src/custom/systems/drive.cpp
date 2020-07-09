@@ -15,7 +15,7 @@ if(abs(master.getAnalog(ControllerAnalog::leftX)) < 0.05){
   left_strafe.moveVelocity(0);
 }
 else if(abs(master.getAnalog(ControllerAnalog::leftY)) < abs(master.getAnalog(ControllerAnalog::leftX))){
-  left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 200);
+  left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 150);
 }
 
 // right drive Y axis
@@ -30,7 +30,7 @@ if(abs(master.getAnalog(ControllerAnalog::rightX)) < 0.05){
   right_strafe.moveVelocity(0);
 }
 else if(abs(master.getAnalog(ControllerAnalog::rightY)) < abs(master.getAnalog(ControllerAnalog::rightX))){
-  right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 200);
+  right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 150);
 }
 
 

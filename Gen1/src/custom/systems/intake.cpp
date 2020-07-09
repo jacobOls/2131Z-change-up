@@ -21,7 +21,6 @@ void out() {
   }
 }
 
-
 void execute() {
   switch (state) {
 

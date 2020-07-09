@@ -28,37 +28,37 @@ void autonThree() { std::cout << "3" << std::endl; }
 std::string defaultThing = "foo";
 std::string buttonLabels[BUTTON_COUNT] = {
     "blank", // tbd
-    "blank",    "blank",  "blank",
+    "blank", "blank",  "blank",
 
     "blank", // tbd
-    "blank",    "blank ", "blank",
+    "blank", "blank ", "blank",
 
     "blank", // tbd
-    "blank",    "blank",  "blank",
+    "blank", "blank",  "blank",
 
     "blank", // tbd
-    "blank",    "blank ", "blank",
+    "blank", "blank ", "blank",
 
-    "blank",    "blank ", "blank", "blank",
+    "blank", "blank ", "blank", "blank",
 };
 
 // auton function returns void and takes no args
 typedef void (*autonFnPtr)(void);
 
 autonFnPtr autonHandlers[BUTTON_COUNT] = {autonOne, // tbd
-                                          autonOne,       autonOne, autonOne,
+                                          autonOne, autonOne, autonOne,
 
                                           autonOne, // tbd
-                                          autonOne,       autonOne, autonOne,
+                                          autonOne, autonOne, autonOne,
 
                                           autonOne, // tbd
-                                          autonOne,       autonOne, autonOne,
+                                          autonOne, autonOne, autonOne,
 
                                           autonOne, // tbd
-                                          autonOne,       autonOne, autonOne,
+                                          autonOne, autonOne, autonOne,
 
                                           autonOne, // tbd
-                                          autonOne,       autonOne, autonOne};
+                                          autonOne, autonOne, autonOne};
 
 static lv_res_t btn_click_action(lv_obj_t *btn) {
   clearBtns(btn);

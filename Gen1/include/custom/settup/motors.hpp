@@ -20,5 +20,5 @@ namespace wheel {
 extern okapi::Motor left_motor;
 extern okapi::Motor right_motor;
 extern okapi::MotorGroup wheelGroup;
-} // namespace intake2
+} // namespace wheel
 #endif /* end of include guard: MOTORS_HPP */

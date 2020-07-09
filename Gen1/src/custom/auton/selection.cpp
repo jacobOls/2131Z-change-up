@@ -39,7 +39,7 @@ std::string buttonLabels[BUTTON_COUNT] = {
     "blank", // tbd
     "blank",    "blank ", "blank",
 
-    "('>){",    "blank ", "blank", "blank",
+    "blank",    "blank ", "blank", "blank",
 };
 
 // auton function returns void and takes no args

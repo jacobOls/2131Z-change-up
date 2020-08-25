@@ -8,7 +8,7 @@ State state = State::NONE;
 void leftDriveStraight() {
   if (abs(master.getAnalog(ControllerAnalog::leftY)) >
           abs(master.getAnalog(ControllerAnalog::leftX)) &&
-      abs(master.getAnalog(ControllerAnalog::leftY)) > 0.02) {
+      abs(master.getAnalog(ControllerAnalog::leftY)) > 0.05) {
     state = State::LEFTSTRAIGHT;
   } else if (state == State::LEFTSTRAIGHT) {
     state = State::DEINIT;
@@ -18,7 +18,7 @@ void leftDriveStraight() {
 void rightDriveStraight() {
   if (abs(master.getAnalog(ControllerAnalog::rightY)) >
           abs(master.getAnalog(ControllerAnalog::rightX)) &&
-      abs(master.getAnalog(ControllerAnalog::rightY)) > 0.02) {
+      abs(master.getAnalog(ControllerAnalog::rightY)) > 0.05) {
     state = State::RIGHTSTRAIGHT;
   } else if (state == State::RIGHTSTRAIGHT) {
     state = State::DEINIT;
@@ -28,7 +28,7 @@ void rightDriveStraight() {
 void leftStrafeDrive() {
   if (abs(master.getAnalog(ControllerAnalog::leftX)) >
           abs(master.getAnalog(ControllerAnalog::leftY)) &&
-      abs(master.getAnalog(ControllerAnalog::leftX)) > 0.02) {
+      abs(master.getAnalog(ControllerAnalog::leftX)) > 0.05) {
     state = State::LEFTSTRAFE;
   } else if (state == State::LEFTSTRAFE) {
     state = State::DEINIT;
@@ -38,7 +38,7 @@ void leftStrafeDrive() {
 void rightStrafeDrive() {
   if (abs(master.getAnalog(ControllerAnalog::rightX)) >
           abs(master.getAnalog(ControllerAnalog::rightY)) &&
-      abs(master.getAnalog(ControllerAnalog::rightX)) > 0.02) {
+      abs(master.getAnalog(ControllerAnalog::rightX)) > 0.05) {
     state = State::RIGHTSTRAFE;
   } else if (state == State::RIGHTSTRAFE) {
     state = State::DEINIT;
@@ -55,7 +55,7 @@ void execute() {
   }
 
   case State::LEFTSTRAFE: {
-
+    left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 200);
     break;
   }
 
@@ -66,7 +66,8 @@ void execute() {
   }
 
   case State::RIGHTSTRAFE: {
-
+    right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::rightX) *
+                              -200);
     break;
   }
 
@@ -88,6 +89,8 @@ void userDrive() {
   // std::cout << "init" << std::endl;
   leftDriveStraight();
   rightDriveStraight();
+  leftStrafeDrive();
+  rightStrafeDrive();
   execute();
 }
 } // namespace drive

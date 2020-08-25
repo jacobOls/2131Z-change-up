@@ -1,36 +1,61 @@
+#include "custom/systems/drive.hpp"
 #include "custom/settup/controller.hpp"
 #include "custom/settup/motors.hpp"
 #include "main.h"
 namespace drive {
-void userDrive() {
-  // left drive Y axis
-  if (abs(master.getAnalog(ControllerAnalog::leftY)) < 0.05) {
-    left_drive.moveVelocity(0);
-  } else if (master.getAnalog(ControllerAnalog::leftY) >
-             master.getAnalog(ControllerAnalog::leftX)) {
-    left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) * 200);
-  }
-  // left drive X axis
-  if (abs(master.getAnalog(ControllerAnalog::leftX)) < 0.05) {
-    left_strafe.moveVelocity(0);
-  } else if (abs(master.getAnalog(ControllerAnalog::leftY)) <
-             abs(master.getAnalog(ControllerAnalog::leftX))) {
-    left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 150);
-  }
+State state = State::NONE;
 
-  // right drive Y axis
-  if (abs(master.getAnalog(ControllerAnalog::rightY)) < 0.05) {
-    right_drive.moveVelocity(0);
-  } else if (master.getAnalog(ControllerAnalog::rightY) >
-             master.getAnalog(ControllerAnalog::rightX)) {
+void leftDriveStraight() {
+  if (master.getAnalog(ControllerAnalog::leftY) >
+          master.getAnalog(ControllerAnalog::leftX) &&
+      master.getAnalog(ControllerAnalog::leftY) > 0.05) {
+    State state = State::LEFTSTRAIGHT;
+  } else if (state == State::LEFTSTRAIGHT) {
+    State state = State::DEINIT;
+  }
+}
+
+void rightDriveStraight() {
+  if (master.getAnalog(ControllerAnalog::rightY) >
+          master.getAnalog(ControllerAnalog::rightX) &&
+      master.getAnalog(ControllerAnalog::rightY) > 0.05) {
+    State state = State::RIGHTSTRAIGHT;
+  } else if (state == State::RIGHTSTRAIGHT) {
+    State state = State::DEINIT;
+  }
+}
+
+void execute() {
+  switch (state) {
+
+  case State::NONE:
+    break;
+
+  case State::LEFTSTRAIGHT:
+    left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) * 200);
+    break;
+
+  case State::LEFTSTRAFE:
+
+    break;
+
+  case State::RIGHTSTRAIGHT:
     right_drive.moveVelocity(master.getAnalog(ControllerAnalog::rightY) * 200);
+    break;
+
+  case State::RIGHTSTRAFE:
+
+    break;
+
+  case State::DEINIT:
+    left_drive.moveVelocity(0);
+    right_drive.moveVelocity(0);
+    State state = State::NONE;
+    break;
   }
-  // right drive X axis
-  if (abs(master.getAnalog(ControllerAnalog::rightX)) < 0.05) {
-    right_strafe.moveVelocity(0);
-  } else if (abs(master.getAnalog(ControllerAnalog::rightY)) <
-             abs(master.getAnalog(ControllerAnalog::rightX))) {
-    right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 150);
-  }
+}
+void userDrive() {
+  leftDriveStraight();
+  rightDriveStraight();
 }
 } // namespace drive

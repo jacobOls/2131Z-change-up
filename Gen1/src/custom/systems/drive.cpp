@@ -58,7 +58,8 @@ void execute() {
     break;
 
   case Right::STRAFE:
-    right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::rightX) * 200);
+    right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::rightX) *
+                              -200);
 
     break;
 

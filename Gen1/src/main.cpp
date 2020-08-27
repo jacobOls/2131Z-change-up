@@ -5,7 +5,7 @@
 #include "custom/systems/intake.hpp"
 #include "custom/systems/wheel.hpp"
 
-void initialize() {}
+void initialize() { selection::init(); }
 
 void disabled() {}
 

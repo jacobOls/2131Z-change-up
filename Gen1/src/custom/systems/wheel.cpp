@@ -5,7 +5,7 @@
 
 namespace wheel {
 State state = State::NONE;
-void pull() {
+void in() {
   if (BtnIn.isPressed()) {
     state = State::IN;
   } else if (state == State::IN) {
@@ -13,7 +13,7 @@ void pull() {
   }
 }
 
-void eject() {
+void out() {
   if (BtnOut.isPressed()) {
     state = State::OUT;
   } else if (state == State::OUT) {
@@ -43,8 +43,8 @@ void execute() {
 }
 
 void init() {
-  pull();
-  eject();
+  in();
+  out();
   execute();
 }
 

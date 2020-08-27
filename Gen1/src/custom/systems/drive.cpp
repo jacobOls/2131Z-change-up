@@ -28,7 +28,7 @@ void leftStraight() {
     left = Left::NONE;
   }
 }
-//
+
 void rightStraight() {
   if (abs(master.getAnalog(ControllerAnalog::rightY)) >
           abs(master.getAnalog(ControllerAnalog::rightX)) &&

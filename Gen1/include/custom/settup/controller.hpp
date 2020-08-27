@@ -2,7 +2,9 @@
 #define CONTROLLER_HPP
 #include "main.h"
 extern okapi::Controller master;
-namespace drive {}
+namespace drive {
+extern okapi::ControllerButton BtnBrake;
+}
 namespace intake {
 extern okapi::ControllerButton BtnIn;
 extern okapi::ControllerButton BtnOut;

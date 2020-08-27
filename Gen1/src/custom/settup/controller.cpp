@@ -1,7 +1,9 @@
 #include "main.h"
 okapi::Controller master;
 
-namespace drive {}
+namespace drive {
+okapi::ControllerButton BtnBrake = master[okapi::ControllerDigital::B];
+}
 
 namespace intake {
 okapi::ControllerButton BtnIn = master[okapi::ControllerDigital::R1];

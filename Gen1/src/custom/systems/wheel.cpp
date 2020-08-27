@@ -21,7 +21,7 @@ void out() {
   }
 }
 
-void back() {
+void back() { // enters back(ejection) state
   if (BtnBack.isPressed()) {
     state = State::BACK;
   } else if (state == State::BACK) {
@@ -29,7 +29,7 @@ void back() {
   }
 }
 
-void unjam() {
+void unjam() { // enters unjam state
   if (Unjam.isPressed()) {
     state = State::UNJAM;
   } else if (state == State::UNJAM) {

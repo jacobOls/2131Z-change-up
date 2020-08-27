@@ -4,16 +4,16 @@
 extern okapi::Controller master;
 namespace drive {
 extern okapi::ControllerButton BtnBrake;
-}
+} // end namespace drive
 namespace intake {
 extern okapi::ControllerButton BtnIn;
 extern okapi::ControllerButton BtnOut;
-} // namespace intake
+} // end namespace intake
 namespace wheel {
 extern okapi::ControllerButton BtnIn;
 extern okapi::ControllerButton BtnOut;
 extern okapi::ControllerButton BtnBack;
 extern okapi::ControllerButton Unjam;
 
-} // namespace wheel
+} // end namespace wheel
 #endif /* end of include guard: CONTROLLER_HPP */

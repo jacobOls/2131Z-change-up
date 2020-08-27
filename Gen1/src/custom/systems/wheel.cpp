@@ -70,6 +70,8 @@ void execute() {
 }
 
 void init() {
+  back();
+  unjam();
   in();
   out();
   execute();

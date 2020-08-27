@@ -21,6 +21,22 @@ void out() {
   }
 }
 
+void back() {
+  if (BtnBack.isPressed()) {
+    state = State::BACK;
+  } else if (state == State::BACK) {
+    state = State::DEINIT;
+  }
+}
+
+void unjam() {
+  if (Unjam.isPressed()) {
+    state = State::UNJAM;
+  } else if (state == State::UNJAM) {
+    state = State::DEINIT;
+  }
+}
+
 void execute() {
   switch (state) {
 

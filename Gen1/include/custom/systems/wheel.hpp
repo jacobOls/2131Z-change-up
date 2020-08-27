@@ -2,7 +2,7 @@
 #define WHEEL_HPP
 
 namespace wheel {
-enum class State { IN, OUT, DEINIT, NONE };
+enum class State { IN, OUT, UNJAM, BACK, DEINIT, NONE };
 void init(void);
 // void runWheel(int velocity);
 } // namespace wheel

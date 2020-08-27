@@ -26,10 +26,21 @@ void execute() {
 
   case State::IN:
     wheelGroup.moveVelocity(200);
+    intake::intakeGroup.moveVelocity(200);
     break;
 
   case State::OUT:
     wheelGroup.moveVelocity(-200);
+    intake::intakeGroup.moveVelocity(-200);
+    break;
+
+  case State::BACK:
+    left_motor.moveVelocity(200);
+    right_motor.moveVelocity(-200);
+    break;
+
+  case State::UNJAM:
+    wheelGroup.moveVelocity(-100);
     break;
 
   case State::DEINIT:

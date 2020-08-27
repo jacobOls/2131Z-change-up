@@ -34,12 +34,12 @@ void execute() {
     intake::intakeGroup.moveVelocity(-200);
     break;
 
-  case State::BACK:
+  case State::BACK: // moves wheel motors to eject ball out back
     left_motor.moveVelocity(200);
     right_motor.moveVelocity(-200);
     break;
 
-  case State::UNJAM:
+  case State::UNJAM: // moves wheel alone to unjam
     wheelGroup.moveVelocity(-100);
     break;
 

@@ -10,8 +10,8 @@ void initialize() {
   drive::left_drive.setBrakeMode(
       okapi::AbstractMotor::brakeMode::coast); // set motor break type
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-  intake::intakeGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-  wheel::wheelGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+  intake::intakeGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  wheel::wheelGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   selection::init(); // selection screen init
 }
 

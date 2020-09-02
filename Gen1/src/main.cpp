@@ -6,7 +6,14 @@
 #include "custom/systems/intake.hpp"
 #include "custom/systems/wheel.hpp"
 
-void initialize() { selection::init(); }
+void initialize() {
+  drive::left_drive.setBrakeMode(
+      okapi::AbstractMotor::brakeMode::coast); // set motor break type
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+  intake::intakeGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+  wheel::wheelGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+  selection::init(); // selection screen init
+}
 
 void disabled() {}
 

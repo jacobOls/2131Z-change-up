@@ -21,7 +21,7 @@ void record() {
     fprintf(txtWrite, "pros::delay(20);");
     fclose(txtWrite);
   }
-  // pros::delay(20);\n
+  pros::delay(20);
 }
 
 } // namespace record

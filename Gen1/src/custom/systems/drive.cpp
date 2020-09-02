@@ -13,6 +13,7 @@ void brake() {
     right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
     inBrake = true;
   } else if (BtnBrake.isPressed()) {
+    inBrake = false;
     left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
     right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   }

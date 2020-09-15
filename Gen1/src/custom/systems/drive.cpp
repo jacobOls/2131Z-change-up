@@ -114,9 +114,10 @@ void drive(int distance, int velocity) {
     drive::leftDrive.accelMath(accel, &drive::left_drive, velocity);
     drive::rightDrive.accelMath(accel, &drive::right_drive, velocity);
   }
-  drive::leftDrive.deAccelMath(accel, &drive::left_drive, 0);
-  drive::rightDrive.deAccelMath(accel, &drive::right_drive, 0);
-
+  while (drive::left_front.getActualVelocity() < 0) {
+    drive::leftDrive.deAccelMath(accel, &drive::left_drive, 0);
+    drive::rightDrive.deAccelMath(accel, &drive::right_drive, 0);
+  }
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
 }
@@ -137,6 +138,12 @@ void strafe(int distance, int velocity, std::string direction) {
       drive::left_strafe.moveVelocity(-velocity);
     }
   }
+  while (drive::left_front.getActualVelocity() < 0) {
+    drive::right_strafe.moveVelocity(0);
+    drive::left_strafe.moveVelocity(0);
+  }
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
 }
 
 void turn(int turnAmount, int velocity, std::string direction) {
@@ -152,6 +159,12 @@ void turn(int turnAmount, int velocity, std::string direction) {
       drive::left_drive.moveVelocity(velocity);
     }
   }
+  while (drive::left_front.getActualVelocity() < 0) {
+    drive::right_strafe.moveVelocity(0);
+    drive::left_strafe.moveVelocity(0);
+  }
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
 }
 
 } // namespace auton

@@ -48,6 +48,10 @@ void init() {
   execute();
 }
 
-void runIntake(int velocity) { intakeGroup.moveVelocity(velocity); }
-
 } // namespace intake
+
+namespace auton {
+
+void runIntake(int velocity) { intake::intakeGroup.moveVelocity(velocity); }
+
+} // namespace auton

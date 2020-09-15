@@ -104,3 +104,55 @@ void userDrive() {
   execute();
 }
 } // namespace drive
+
+namespace auton {
+
+void drive(int distance, int velocity) {
+  // need to replace drives with ramping later
+
+  while (abs(drive::left_front.getPosition()) <= abs(distance)) {
+
+    drive::left_drive.moveVelocity(velocity);
+    drive::right_drive.moveVelocity(velocity);
+  }
+  drive::left_drive.moveVelocity(0);
+  drive::right_drive.moveVelocity(0);
+
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
+}
+
+void strafe(int distance, int velocity, std::string direction) {
+
+  while (abs(drive::left_front.getPosition()) <= abs(distance)) {
+
+    if (direction == "left") {
+
+      drive::left_strafe.moveVelocity(velocity);
+      drive::right_strafe.moveVelocity(-velocity);
+    }
+
+    else if (direction == "right") {
+
+      drive::right_strafe.moveVelocity(velocity);
+      drive::left_strafe.moveVelocity(-velocity);
+    }
+  }
+}
+
+void turn(int turnAmount, int velocity, std::string direction) {
+
+  while (abs(drive::left_front.getPosition()) <= abs(turnAmount)) {
+    if (direction == "left") {
+      drive::left_drive.moveVelocity(-velocity);
+      drive::right_drive.moveVelocity(velocity);
+    }
+
+    else if (direction == "right") {
+      drive::right_drive.moveVelocity(-velocity);
+      drive::left_drive.moveVelocity(velocity);
+    }
+  }
+}
+
+} // namespace auton

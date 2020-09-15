@@ -5,7 +5,7 @@
 #include "main.h"
 namespace auton {
 
-void redAuton() {
+void redAuton() { // start between middle and right tower
   strafe(360, 200, "left");
   drive(310, 200);
   turn(600, 120, "right");

@@ -6,5 +6,8 @@ enum class State { IN, OUT, UNJAM, BACK, DEINIT, NONE };
 void init(void);
 // void runWheel(int velocity);
 } // namespace wheel
-
+namespace auton {
+void runWheel(int velocity);
+void back(int velocity);
+} // namespace auton
 #endif /* end of include guard: WHEEL_HPP */

@@ -80,3 +80,12 @@ void init() {
 // void runWheel(int velocity) { wheelGroup.moveVelocity(velocity); }
 
 } // namespace wheel
+
+namespace auton {
+void runWheel(int velocity) { wheel::wheelGroup.moveVelocity(velocity); }
+void back(int velocity) {
+  wheel::left_motor.moveVelocity(velocity);
+  wheel::right_motor.moveVelocity(-velocity);
+}
+
+} // namespace auton

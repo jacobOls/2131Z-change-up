@@ -15,7 +15,6 @@ ramping::ramping(double changeRate, double changeVal, int minimum,
 
 void ramping::accelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
                         int requested) {
-  int i = 1; // initial velocity
   double vel = 1;
 
   vel = pow(changeVal, timesLooped);

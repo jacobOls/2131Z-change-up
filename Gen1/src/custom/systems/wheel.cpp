@@ -56,7 +56,7 @@ void execute() {
     break;
 
   case State::UNJAM: // moves wheel alone to unjam
-    wheelGroup.moveVelocity(-100);
+    wheelGroup.moveVelocity(-20);
     break;
 
   case State::DEINIT:

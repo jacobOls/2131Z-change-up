@@ -108,15 +108,14 @@ void userDrive() {
 namespace auton {
 
 void drive(int distance, int velocity) {
-  // need to replace drives with ramping later
 
   while (abs(drive::left_front.getPosition()) <= abs(distance)) {
 
-    drive::left_drive.moveVelocity(velocity);
-    drive::right_drive.moveVelocity(velocity);
+    drive::leftDrive.accelMath(accel, &drive::left_drive, velocity);
+    drive::rightDrive.accelMath(accel, &drive::right_drive, velocity);
   }
-  drive::left_drive.moveVelocity(0);
-  drive::right_drive.moveVelocity(0);
+  drive::leftDrive.deAccelMath(accel, &drive::left_drive, 0);
+  drive::rightDrive.deAccelMath(accel, &drive::right_drive, 0);
 
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();

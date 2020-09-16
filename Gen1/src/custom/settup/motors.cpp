@@ -1,11 +1,11 @@
 #include "custom/settup/ramping.hpp"
 #include "main.h"
 namespace drive {
-okapi::Motor left_back(1, false, okapi::AbstractMotor::gearset::green,
+okapi::Motor left_back(2, false, okapi::AbstractMotor::gearset::green,
                        okapi::AbstractMotor::encoderUnits::degrees);
-okapi::Motor left_front(2, false, okapi::AbstractMotor::gearset::green,
+okapi::Motor left_front(3, false, okapi::AbstractMotor::gearset::green,
                         okapi::AbstractMotor::encoderUnits::degrees);
-okapi::Motor right_back(3, true, okapi::AbstractMotor::gearset::green,
+okapi::Motor right_back(1, true, okapi::AbstractMotor::gearset::green,
                         okapi::AbstractMotor::encoderUnits::degrees);
 okapi::Motor right_front(4, true, okapi::AbstractMotor::gearset::green,
                          okapi::AbstractMotor::encoderUnits::degrees);
@@ -19,7 +19,7 @@ ramping rightDrive = ramping(20, 3, -200, 200);
 
 } // end namespace drive
 namespace intake {
-okapi::Motor left_motor(16, false, okapi::AbstractMotor::gearset::green, // left
+okapi::Motor left_motor(17, false, okapi::AbstractMotor::gearset::green, // left
                         okapi::AbstractMotor::encoderUnits::degrees);
 okapi::Motor right_motor(15, true,
                          okapi::AbstractMotor::gearset::green, // right
@@ -30,9 +30,9 @@ okapi::MotorGroup intakeGroup({left_motor, right_motor});
 } // end namespace intake
 
 namespace wheel {
-okapi::Motor left_motor(9, false, okapi::AbstractMotor::gearset::green, // left
+okapi::Motor left_motor(19, false, okapi::AbstractMotor::gearset::green, // left
                         okapi::AbstractMotor::encoderUnits::degrees);
-okapi::Motor right_motor(11, false,
+okapi::Motor right_motor(20, false,
                          okapi::AbstractMotor::gearset::green, // right
                          okapi::AbstractMotor::encoderUnits::degrees);
 

@@ -113,8 +113,8 @@ void btnCreate() {
   preStyle.text.color = LV_COLOR_MAKE(0, 164, 255);
 
   int ndx = 0;
-  for (int row = 0; row < 5; row++) {
-    for (int col = 0; col < 4; col++) {
+  for (int row = 0; row < 4; row++) {
+    for (int col = 0; col < 5; col++) {
       allButtons[ndx] = lv_btn_create(lv_scr_act(), NULL);
       btnConfig(allButtons[ndx], row, col, ndx);
       std::cout << "Created button at pos " << ndx << std::endl;

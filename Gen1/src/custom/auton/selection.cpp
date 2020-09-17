@@ -27,19 +27,19 @@ void autonTwo() { std::cout << "running auton two" << std::endl; }
 void autonThree() { std::cout << "3" << std::endl; }
 std::string defaultThing = "foo";
 std::string buttonLabels[BUTTON_COUNT] = {
-    "redTestAuton", // tbd
-    "blank",        "blank",  "blank",
+    "redDraft", // tbd
+    "blank",    "blank",  "blank",
 
     "blank", // tbd
-    "blank",        "blank ", "blank",
+    "blank",    "blank ", "blank",
 
     "blank", // tbd
-    "blank",        "blank",  "blank",
+    "blank",    "blank",  "blank",
 
     "blank", // tbd
-    "blank",        "blank ", "blank",
+    "blank",    "blank ", "blank",
 
-    "}(*)",         "blank ", "blank", "blank",
+    "}(*)",     "blank ", "blank", "blank",
 };
 
 // auton function returns void and takes no args

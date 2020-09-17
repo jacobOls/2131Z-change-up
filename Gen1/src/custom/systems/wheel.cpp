@@ -41,26 +41,27 @@ void execute() {
   switch (state) {
 
   case State::IN:
-    wheelGroup.moveVelocity(20);
-    intake::intakeGroup.moveVelocity(20);
+    wheelGroup.moveVelocity(200);
+    intake::intakeGroup.moveVelocity(200);
     break;
 
   case State::OUT:
-    wheelGroup.moveVelocity(-20);
-    intake::intakeGroup.moveVelocity(-20);
+    wheelGroup.moveVelocity(-200);
+    intake::intakeGroup.moveVelocity(-200);
     break;
 
   case State::BACK: // moves wheel motors to eject ball out back
-    left_motor.moveVelocity(20);
-    right_motor.moveVelocity(-20);
+    left_motor.moveVelocity(200);
+    right_motor.moveVelocity(-200);
     break;
 
   case State::UNJAM: // moves wheel alone to unjam
-    wheelGroup.moveVelocity(-20);
+    wheelGroup.moveVelocity(-200);
     break;
 
   case State::DEINIT:
     wheelGroup.moveVelocity(0);
+    intake::intakeGroup.moveVelocity(0);
     state = State::NONE;
     break;
 

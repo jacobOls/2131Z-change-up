@@ -33,7 +33,6 @@ void redAuton() { // start between middle and right tower
 } // namespace auton
 
 /*front left strafe 360
-reset motors
 forward 310
 turn 600
 spit in

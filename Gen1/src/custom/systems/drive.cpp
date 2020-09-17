@@ -19,6 +19,19 @@ void brake() {
   }
 }
 
+void autoBrake() { // this will not be used unless requested, but i am bored lol
+  if (abs(master.getAnalog(ControllerAnalog::leftY)) < 0.05 &&
+      abs(master.getAnalog(ControllerAnalog::rightY)) < 0.05 &&
+      abs(master.getAnalog(ControllerAnalog::leftX)) < 0.05 &&
+      abs(master.getAnalog(ControllerAnalog::rightX)) < 0.05) {
+    left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+    right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  } else {
+    left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+    right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+  }
+}
+
 void leftStraight() {
   if (abs(master.getAnalog(ControllerAnalog::leftY)) >
           abs(master.getAnalog(ControllerAnalog::leftX)) &&

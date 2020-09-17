@@ -81,8 +81,8 @@ static lv_res_t btn_click_action(lv_obj_t *btn) {
 
 void btnConfig(lv_obj_t *btn, int row, int col, int id) {
   lv_obj_t *label;
-  int x = 465 / 4 * col;
-  int y = 240 / 5 * row;
+  int x = 465 / 5 * col;
+  int y = 240 / 4 * row;
   lv_obj_set_pos(btn, x, y);
   lv_obj_set_size(btn, 465 / 4, 240 / 5);
   lv_btn_set_toggle(btn, true);

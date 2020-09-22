@@ -40,6 +40,7 @@ void redAuton() { // start between middle and right tower
 void testFunctions() {
   drive(500, 200);
   strafe(400, 100, "left");
+  turn(400, 100, "right");
   runWheel(200);
   runIntake(200);
   wait(500);

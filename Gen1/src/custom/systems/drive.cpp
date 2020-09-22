@@ -5,19 +5,6 @@
 namespace drive {
 Left left = Left::NONE;
 Right right = Right::NONE;
-bool inBrake = false;
-
-void brake() {
-  if (BtnBrake.isPressed() && inBrake == false) {
-    left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-    right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-    inBrake = true;
-  } else if (BtnBrake.isPressed()) {
-    inBrake = false;
-    left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-    right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-  }
-}
 
 void autoBrake() { // this will not be used unless requested, but i am bored lol
   if (abs(master.getAnalog(ControllerAnalog::leftY)) < 0.05 &&

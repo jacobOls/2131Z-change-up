@@ -7,6 +7,8 @@
 #include "custom/systems/wheel.hpp"
 
 void initialize() {
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
   drive::left_drive.setBrakeMode(
       okapi::AbstractMotor::brakeMode::coast); // set motor break type
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);

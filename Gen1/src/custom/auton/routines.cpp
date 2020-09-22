@@ -1,4 +1,5 @@
 #include "custom/auton/routines.hpp"
+#include "custom/settup/motors.hpp"
 #include "custom/systems/drive.hpp"
 #include "custom/systems/intake.hpp"
 #include "custom/systems/wheel.hpp"
@@ -38,14 +39,11 @@ void redAuton() { // start between middle and right tower
 }
 
 void testFunctions() {
-  drive(500, 200);
-  strafe(400, 100, "left");
-  turn(400, 100, "right");
-  runWheel(200);
-  runIntake(200);
-  wait(500);
-  runWheel(0);
-  runIntake(0);
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
+  drive(500, 100);
+  // strafe(800, 200, "left");
+  // strafe(800, 200, "right");
 }
 } // namespace auton
 

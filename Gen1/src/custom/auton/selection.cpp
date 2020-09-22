@@ -91,8 +91,8 @@ static lv_res_t btn_click_action(lv_obj_t *btn) {
 
 void btnConfig(lv_obj_t *btn, int row, int col, int id) {
   lv_obj_t *label;
-  int x = 465 / 5 * col;
-  int y = 240 / 4 * row;
+  int x = 465 / 4 * col;
+  int y = 240 / 5 * row;
   lv_obj_set_pos(btn, x, y);
   lv_obj_set_size(btn, 465 / 4, 240 / 5);
   lv_btn_set_toggle(btn, true);
@@ -123,8 +123,8 @@ void btnCreate() {
   preStyle.text.color = LV_COLOR_MAKE(0, 164, 255);
 
   int ndx = 0;
-  for (int row = 0; row < 4; row++) {
-    for (int col = 0; col < 5; col++) {
+  for (int row = 0; row < 5; row++) {
+    for (int col = 0; col < 4; col++) {
       allButtons[ndx] = lv_btn_create(lv_scr_act(), NULL);
       btnConfig(allButtons[ndx], row, col, ndx);
       std::cout << "Created button at pos " << ndx << std::endl;

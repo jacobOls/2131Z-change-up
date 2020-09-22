@@ -126,10 +126,13 @@ void drive(int distance, int velocity) {
 
     drive::leftDrive.accelMath(accel, &drive::left_drive, velocity);
     drive::rightDrive.accelMath(accel, &drive::right_drive, velocity);
+    pros::delay(drive::leftDrive.rateOfChange);
   }
   while (drive::left_front.getActualVelocity() < 0) {
-    drive::leftDrive.deAccelMath(accel, &drive::left_drive, 0);
-    drive::rightDrive.deAccelMath(accel, &drive::right_drive, 0);
+    // drive::leftDrive.deAccelMath(accel, &drive::left_drive, 0);
+    // drive::rightDrive.deAccelMath(accel, &drive::right_drive, 0);
+    drive::left_drive.moveVelocity(0);
+    drive::right_drive.moveVelocity(0);
   }
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
@@ -137,15 +140,16 @@ void drive(int distance, int velocity) {
 
 void strafe(int distance, int velocity, std::string direction) {
 
-  while (abs(drive::left_front.getPosition()) <= abs(distance)) {
+  while (abs(drive::left_front.getPosition()) <= abs(distance) ||
+         abs(drive::right_front.getPosition()) <= abs(distance)) {
 
-    if (direction == "left") {
+    if (direction == "right") {
 
       drive::left_strafe.moveVelocity(velocity);
       drive::right_strafe.moveVelocity(-velocity);
     }
 
-    else if (direction == "right") {
+    else if (direction == "left") {
 
       drive::right_strafe.moveVelocity(velocity);
       drive::left_strafe.moveVelocity(-velocity);
@@ -155,8 +159,8 @@ void strafe(int distance, int velocity, std::string direction) {
     drive::right_strafe.moveVelocity(0);
     drive::left_strafe.moveVelocity(0);
   }
-  drive::left_drive.tarePosition();
-  drive::right_drive.tarePosition();
+  drive::left_strafe.tarePosition();
+  drive::right_strafe.tarePosition();
 }
 
 void turn(int turnAmount, int velocity, std::string direction) {
@@ -172,7 +176,7 @@ void turn(int turnAmount, int velocity, std::string direction) {
       drive::left_drive.moveVelocity(velocity);
     }
   }
-  while (drive::left_front.getActualVelocity() < 0) {
+  while (drive::left_front.getActualVelocity() > 0) {
     drive::right_strafe.moveVelocity(0);
     drive::left_strafe.moveVelocity(0);
   }

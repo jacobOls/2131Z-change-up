@@ -9,7 +9,9 @@ void wait(int time) { pros::delay(time); }
 void redAuton() { // start between middle and right tower
   strafe(360, 200, "left");
   drive(310, 200);
+  runIntake(200);
   turn(600, 120, "right");
+  runIntake(0);
   runWheel(200);
   wait(100);
   runWheel(0);
@@ -29,6 +31,16 @@ void redAuton() { // start between middle and right tower
   wait(100);
   runWheel(0);
   drive(-200, -200);
+}
+
+void testFunctions() {
+  drive(500, 200);
+  strafe(400, 100, "left");
+  runWheel(200);
+  runIntake(200);
+  wait(500);
+  runWheel(0);
+  runIntake(0);
 }
 } // namespace auton
 

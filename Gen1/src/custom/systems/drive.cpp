@@ -100,7 +100,6 @@ void userDrive() {
   rightStraight();
   leftStrafe();
   rightStrafe();
-  brake();
   execute();
 }
 } // namespace drive

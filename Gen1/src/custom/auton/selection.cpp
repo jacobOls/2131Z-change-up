@@ -25,7 +25,6 @@ void autonOne() { std::cout << "running auton one" << std::endl; }
 void autonTwo() { std::cout << "running auton two" << std::endl; }
 
 void autonThree() { std::cout << "3" << std::endl; }
-std::string defaultThing = "foo";
 std::string buttonLabels[BUTTON_COUNT] = {
     "redDraft", // tbd
     "testingThings", "blank",  "blank",
@@ -41,6 +40,7 @@ std::string buttonLabels[BUTTON_COUNT] = {
 
     "}(*)",          "blank ", "blank", "blank",
 };
+std::string defaultThing = "default";
 
 // auton function returns void and takes no args
 typedef void (*autonFnPtr)(void);
@@ -147,7 +147,7 @@ void clearBtns(lv_obj_t *toggledButton = NULL) {
 void execute() {
   std::cout << "executing" << std::endl;
   autonFnPtr defaultAuton = autonOne;
-  defaultThing = "LR 4 Works";
+  defaultThing = "Things work and not";
   inAuton = true;
 
   if (selectedAuton == -1) {

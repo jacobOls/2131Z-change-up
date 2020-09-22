@@ -123,10 +123,11 @@ namespace auton {
 void drive(int distance, int velocity) {
 
   while (abs(drive::left_front.getPosition()) <= abs(distance)) {
-
-    drive::leftDrive.accelMath(accel, &drive::left_drive, velocity);
-    drive::rightDrive.accelMath(accel, &drive::right_drive, velocity);
-    pros::delay(drive::leftDrive.rateOfChange);
+    if (drive::left_front.getActualVelocity() <= velocity) {
+      drive::leftDrive.accelMath(accel, &drive::left_drive, velocity);
+      drive::rightDrive.accelMath(accel, &drive::right_drive, velocity);
+      pros::delay(drive::leftDrive.rateOfChange);
+    }
   }
   while (drive::left_front.getActualVelocity() < 0) {
     // drive::leftDrive.deAccelMath(accel, &drive::left_drive, 0);

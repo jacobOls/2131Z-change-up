@@ -17,16 +17,20 @@ void redAuton() { // start between middle and right tower
   runWheel(0);
   drive(-200, -150);
   turn(40, 30, "right");
-  strafe(400, 150, "left");
+  strafe(400, 150, "left"); // reckoning
   strafe(1750, 200, "right");
+  runIntake(200);
   drive(330, 150);
+  runIntake(0);
   runWheel(200);
   wait(100);
   runWheel(0);
   drive(-330, -150);
   strafe(1060, 200, "right");
   turn(480, 100, "left");
+  runIntake(200);
   drive(275, 100);
+  runIntake(0);
   runWheel(200);
   wait(100);
   runWheel(0);

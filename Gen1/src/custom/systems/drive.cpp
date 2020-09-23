@@ -118,7 +118,7 @@ void drive(int distance, int velocity) {
     std::cout << "looping" << std::endl;
   }
   std::cout << "stopping" << std::endl;
-  while (drive::left_front.getActualVelocity() < 0) {
+  while (abs(drive::left_front.getActualVelocity()) > 0) {
     // drive::leftDrive.deAccelMath(accel, &drive::left_drive, 0);
     // drive::rightDrive.deAccelMath(accel, &drive::right_drive, 0);
     drive::left_drive.moveVelocity(0);

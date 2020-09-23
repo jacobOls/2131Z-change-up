@@ -113,8 +113,11 @@ void drive(int distance, int velocity) {
       drive::leftDrive.accelMath(accel, &drive::left_drive, velocity);
       drive::rightDrive.accelMath(accel, &drive::right_drive, velocity);
       pros::delay(drive::leftDrive.rateOfChange);
+      std::cout << "ramping" << std::endl;
     }
+    std::cout << "looping" << std::endl;
   }
+  std::cout << "stopping" << std::endl;
   while (drive::left_front.getActualVelocity() < 0) {
     // drive::leftDrive.deAccelMath(accel, &drive::left_drive, 0);
     // drive::rightDrive.deAccelMath(accel, &drive::right_drive, 0);

@@ -119,10 +119,10 @@ void drive(int distance, int velocity) {
   }
   std::cout << "stopping" << std::endl;
   while (abs(drive::left_front.getActualVelocity()) > 0) {
-    // drive::leftDrive.deAccelMath(accel, &drive::left _drive, 0);
-    // drive::rightDrive.deAccelMath(accel, &drive::right_drive, 0);
-    drive::left_drive.moveVelocity(0);
-    drive::right_drive.moveVelocity(0);
+    drive::leftDrive.deAccelMath(accel, &drive::left_drive, 0);
+    drive::rightDrive.deAccelMath(accel, &drive::right_drive, 0);
+    // drive::left_drive.moveVelocity(0);
+    // drive::right_drive.moveVelocity(0);
     pros::delay(drive::leftDrive.rateOfChange);
   }
   drive::left_drive.tarePosition();

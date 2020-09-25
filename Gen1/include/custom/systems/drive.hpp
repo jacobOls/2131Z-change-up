@@ -2,8 +2,8 @@
 #define DRIVE_HPP
 #include "main.h"
 namespace drive {
-enum class Left { STRAIGHT, STRAFE, NONE };
-enum class Right { STRAIGHT, STRAFE, NONE };
+enum class Left { STRAIGHT, STRAFE, DEINIT, NONE };
+enum class Right { STRAIGHT, STRAFE, DEINIT, NONE };
 void userDrive(void);
 } // namespace drive
 namespace auton {

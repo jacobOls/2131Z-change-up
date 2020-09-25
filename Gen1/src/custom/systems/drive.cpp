@@ -26,7 +26,8 @@ void leftStraight() {
     left = Left::STRAIGHT;
   } else if (left == Left::STRAIGHT) {
     left_drive.moveVelocity(0);
-    left = Left::NONE;
+    left = Left::DEINIT;
+    left_drive.moveVelocity(0);
   }
 }
 
@@ -37,7 +38,8 @@ void rightStraight() {
     right = Right::STRAIGHT;
   } else if (right == Right::STRAIGHT) {
     right_drive.moveVelocity(0);
-    right = Right::NONE;
+    right = Right::DEINIT;
+    right_drive.moveVelocity(0);
   }
 }
 
@@ -48,7 +50,8 @@ void leftStrafe() {
     left = Left::STRAFE;
   } else if (left == Left::STRAFE) {
     left_strafe.moveVelocity(0);
-    left = Left::NONE;
+    left = Left::DEINIT;
+    left_strafe.moveVelocity(0);
   }
 }
 
@@ -59,7 +62,8 @@ void rightStrafe() {
     right = Right::STRAFE;
   } else if (right == Right::STRAFE) {
     right_strafe.moveVelocity(0);
-    right = Right::NONE;
+    right = Right::DEINIT;
+    right_strafe.moveVelocity(0);
   }
 }
 
@@ -76,6 +80,10 @@ void execute() {
 
     break;
 
+  case Right::DEINIT:
+    right = Right::NONE;
+    break;
+
   case Right::NONE:
     break;
   }
@@ -88,6 +96,10 @@ void execute() {
 
   case Left::STRAFE:
     left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 200);
+    break;
+
+  case Left::DEINIT:
+    left = Left::NONE;
     break;
 
   case Left::NONE:

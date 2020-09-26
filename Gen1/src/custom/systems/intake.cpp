@@ -5,6 +5,8 @@
 
 namespace intake {
 State state = State::NONE;
+pros::ADIAnalogIn intakeEntry(8);
+pros::ADIAnalogIn midElevator(2);
 void in() {
   if (BtnIn.isPressed()) {
     state = State::IN;
@@ -25,7 +27,18 @@ void execute() {
   switch (state) {
 
   case State::IN:
-    intakeGroup.moveVelocity(200);
+    if (intakeEntry.get_value() > 1500 && midElevator.get_value() > 1500) {
+      intakeGroup.moveVelocity(200);
+    } else if (intakeEntry.get_value() < 1500 &&
+               midElevator.get_value() > 1500) {
+      intakeGroup.moveVelocity(200);
+      wheel::wheelGroup.moveVelocity(50);
+    } else if (intakeEntry.get_value() > 1500 &&
+               midElevator.get_value() < 1500) {
+      intakeGroup.moveVelocity(200);
+    } else {
+      state = State::DEINIT;
+    }
     break;
 
   case State::OUT:
@@ -43,7 +56,6 @@ void execute() {
 }
 
 void init() {
-  in();
   out();
   execute();
 }

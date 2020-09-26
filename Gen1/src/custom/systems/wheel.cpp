@@ -37,6 +37,14 @@ void unjam() { // enters unjam state
   }
 }
 
+void up() {
+  if (UpOnly.isPressed()) {
+    state = State::UP;
+  } else if (state == State::UNJAM) {
+    state = State::DEINIT;
+  }
+}
+
 void execute() {
   switch (state) {
 
@@ -59,6 +67,10 @@ void execute() {
     wheelGroup.moveVelocity(-200);
     break;
 
+  case State::UP:
+    wheelGroup.moveVelocity(200);
+    break;
+
   case State::DEINIT:
     wheelGroup.moveVelocity(0);
     intake::intakeGroup.moveVelocity(0);
@@ -73,6 +85,7 @@ void execute() {
 void init() {
   back();
   unjam();
+  up();
   in();
   out();
   execute();

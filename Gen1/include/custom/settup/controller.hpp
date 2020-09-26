@@ -14,6 +14,7 @@ extern okapi::ControllerButton BtnIn;
 extern okapi::ControllerButton BtnOut;
 extern okapi::ControllerButton BtnBack;
 extern okapi::ControllerButton Unjam;
+extern okapi::ControllerButton UpOnly;
 
 } // end namespace wheel
 #endif /* end of include guard: CONTROLLER_HPP */

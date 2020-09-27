@@ -27,16 +27,16 @@ void execute() {
   switch (state) {
 
   case State::IN:
-    if (intakeEntry.get_value() > 2850 && midElevator.get_value() > 2700) {
+    if (intakeEntry.get_value() > 2550 && midElevator.get_value() > 2450) {
       std::cout << "nothing" << std::endl;
       intakeGroup.moveVelocity(200);
-    } else if (intakeEntry.get_value() < 2850 &&
-               midElevator.get_value() > 2700) {
+    } else if (intakeEntry.get_value() < 2550 &&
+               midElevator.get_value() > 2450) {
       std::cout << "ball in" << std::endl;
       intakeGroup.moveVelocity(200);
       wheel::wheelGroup.moveVelocity(200);
-    } else if (intakeEntry.get_value() > 2850 &&
-               midElevator.get_value() < 2700) {
+    } else if (intakeEntry.get_value() > 2550 &&
+               midElevator.get_value() < 2450) {
       std::cout << "ball in elevator" << std::endl;
       intakeGroup.moveVelocity(200);
       wheel::wheelGroup.moveVelocity(0);

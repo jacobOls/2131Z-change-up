@@ -40,7 +40,7 @@ void unjam() { // enters unjam state
 void up() {
   if (UpOnly.isPressed()) {
     state = State::UP;
-  } else if (state == State::UNJAM) {
+  } else if (state == State::UP) {
     state = State::DEINIT;
   }
 }

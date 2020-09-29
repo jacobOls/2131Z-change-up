@@ -7,6 +7,7 @@ namespace intake {
 State state = State::NONE;
 pros::ADIAnalogIn intakeEntry(8);
 pros::ADIAnalogIn midElevator(2);
+pros::ADIAnalogIn highElevator(5);
 void in() {
   if (BtnIn.isPressed()) {
     state = State::IN;
@@ -27,25 +28,26 @@ void execute() {
   switch (state) {
 
   case State::IN:
-    if (intakeEntry.get_value() > 2550 && midElevator.get_value() > 2450) {
-      std::cout << "nothing" << std::endl;
-      intakeGroup.moveVelocity(200);
-    } else if (intakeEntry.get_value() < 2550 &&
-               midElevator.get_value() > 2450) {
-      std::cout << "ball in" << std::endl;
-      intakeGroup.moveVelocity(200);
-      wheel::wheelGroup.moveVelocity(200);
-    } else if (intakeEntry.get_value() > 2550 &&
-               midElevator.get_value() < 2450) {
-      std::cout << "ball in elevator" << std::endl;
-      intakeGroup.moveVelocity(200);
-      wheel::wheelGroup.moveVelocity(0);
-    } else {
-      std::cout << "ball in both" << std::endl;
-      intakeGroup.moveVelocity(0);
-      wheel::wheelGroup.moveVelocity(0);
-      state = State::DEINIT;
-    }
+    // if (intakeEntry.get_value() > 2800 && midElevator.get_value() > 2900) {
+    //   std::cout << "nothing" << std::endl;
+    //   intakeGroup.moveVelocity(200);
+    // } else if (intakeEntry.get_value() < 2800 &&
+    //            midElevator.get_value() > 2900) {
+    //   std::cout << "ball in" << std::endl;
+    //   intakeGroup.moveVelocity(200);
+    //   wheel::wheelGroup.moveVelocity(200);
+    // } else if (intakeEntry.get_value() > 2800 &&
+    //            midElevator.get_value() < 2900) {
+    //   std::cout << "ball in elevator" << std::endl;
+    //   intakeGroup.moveVelocity(200);
+    //   wheel::wheelGroup.moveVelocity(0);
+    // } else {
+    //   std::cout << "ball in both" << std::endl;
+    //   intakeGroup.moveVelocity(0);
+    //   wheel::wheelGroup.moveVelocity(0);
+    //   state = State::DEINIT;
+    // }
+    intake::intakeGroup.moveVelocity(200);
     break;
 
   case State::OUT:

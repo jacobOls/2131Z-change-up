@@ -55,6 +55,24 @@ void rightStrafe() {
 }
 
 void execute() {
+
+  switch (left) {
+
+  case Left::STRAIGHT:
+    left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) * 200);
+    break;
+
+  case Left::STRAFE:
+    left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 200);
+    break;
+
+  case Left::DEINIT:
+    left = Left::NONE;
+    break;
+
+  case Left::NONE:
+    break;
+  }
   switch (right) {
 
   case Right::STRAIGHT:
@@ -72,24 +90,6 @@ void execute() {
     break;
 
   case Right::NONE:
-    break;
-  }
-
-  switch (left) {
-
-  case Left::STRAIGHT:
-    left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) * 200);
-    break;
-
-  case Left::STRAFE:
-    left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 200);
-    break;
-
-  case Left::DEINIT:
-    left = Left::NONE;
-    break;
-
-  case Left::NONE:
     break;
   }
 }

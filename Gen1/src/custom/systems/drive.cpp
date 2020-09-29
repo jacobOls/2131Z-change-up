@@ -8,49 +8,45 @@ Right right = Right::NONE;
 
 void leftStraight() {
   if (abs(master.getAnalog(ControllerAnalog::leftY)) >
-          abs(master.getAnalog(ControllerAnalog::leftX)) &&
+          abs(master.getAnalog(ControllerAnalog::leftX)) + 0.01 &&
       abs(master.getAnalog(ControllerAnalog::leftY)) > 0.05) {
     left = Left::STRAIGHT;
   } else if (left == Left::STRAIGHT) {
     left_drive.moveVelocity(0);
     left = Left::DEINIT;
-    left_drive.moveVelocity(0);
   }
 }
 
 void rightStraight() {
   if (abs(master.getAnalog(ControllerAnalog::rightY)) >
-          abs(master.getAnalog(ControllerAnalog::rightX)) &&
+          abs(master.getAnalog(ControllerAnalog::rightX)) + 0.01 &&
       abs(master.getAnalog(ControllerAnalog::rightY)) > 0.05) {
     right = Right::STRAIGHT;
   } else if (right == Right::STRAIGHT) {
     right_drive.moveVelocity(0);
     right = Right::DEINIT;
-    right_drive.moveVelocity(0);
   }
 }
 
 void leftStrafe() {
   if (abs(master.getAnalog(ControllerAnalog::leftX)) >
-          abs(master.getAnalog(ControllerAnalog::leftY)) &&
+          abs(master.getAnalog(ControllerAnalog::leftY)) + 0.01 &&
       abs(master.getAnalog(ControllerAnalog::leftX)) > 0.05) {
     left = Left::STRAFE;
   } else if (left == Left::STRAFE) {
     left_strafe.moveVelocity(0);
     left = Left::DEINIT;
-    left_strafe.moveVelocity(0);
   }
 }
 
 void rightStrafe() {
   if (abs(master.getAnalog(ControllerAnalog::rightX)) >
-          abs(master.getAnalog(ControllerAnalog::rightY)) &&
+          abs(master.getAnalog(ControllerAnalog::rightY)) + 0.01 &&
       abs(master.getAnalog(ControllerAnalog::rightX)) > 0.05) {
     right = Right::STRAFE;
   } else if (right == Right::STRAFE) {
     right_strafe.moveVelocity(0);
     right = Right::DEINIT;
-    right_strafe.moveVelocity(0);
   }
 }
 

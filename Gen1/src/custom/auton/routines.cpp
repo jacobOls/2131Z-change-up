@@ -8,32 +8,35 @@ namespace auton {
 void wait(int time) { pros::delay(time); }
 
 void redAuton() { // start between middle and right tower
-  strafe(360, 200, "left");
-  drive(310, 200);
+  strafe(475, 200, "left");
   runIntake(200);
-  turn(600, 120, "right");
+  turn(180, 90, "right");
+  runWheel(25);
+  drive(600, 140);
   runIntake(0);
   runWheel(200);
-  wait(100);
+  wait(700);
   runWheel(0);
-  drive(-200, -150);
-  turn(40, 30, "right");
-  strafe(400, 150, "left"); // reckoning
-  strafe(1750, 200, "right");
+  drive(150, -150);
+  turn(240, 100, "right");
+  strafe(850, 120, "left"); // reckoning
+  strafe(1800, 200, "right");
   runIntake(200);
-  drive(330, 150);
+  drive(275, 150);
   runIntake(0);
   runWheel(200);
-  wait(100);
+  wait(800);
   runWheel(0);
-  drive(-330, -150);
+  runIntake(-100);
+  drive(-100, -150);
+  runIntake(0);
   strafe(1060, 200, "right");
-  turn(480, 100, "left");
+  turn(210, 100, "right");
   runIntake(200);
-  drive(275, 100);
+  drive(800, 100);
   runIntake(0);
   runWheel(200);
-  wait(100);
+  wait(1000);
   runWheel(0);
   drive(-200, -200);
 }
@@ -47,9 +50,9 @@ void skills() {
   drive(540, 100);
   drive(250, -100);
   turn(250, 100, "right");
-  runIntake(100);
+  runIntake(140);
   runWheel(20);
-  drive(725, 100);
+  drive(700, 100);
   runWheel(200);
   wait(500);
   runWheel(-25);
@@ -58,7 +61,7 @@ void skills() {
   runWheel(0);
   runIntake(0);
   turn(710, 100, "left");
-  strafe(1500, 100, "left");
+  strafe(1700, 100, "left");
   runIntake(200);
   runWheel(50);
   drive(400, 100);

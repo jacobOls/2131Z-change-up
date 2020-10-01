@@ -124,7 +124,8 @@ void drive(int distance, int velocity) {
 }
 
 void strafe(int distance, int velocity, std::string direction) {
-
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
   while (abs(drive::left_front.getPosition()) <= abs(distance) ||
          abs(drive::right_front.getPosition()) <= abs(distance)) {
 

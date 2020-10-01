@@ -16,7 +16,6 @@ okapi::MotorGroup right_strafe({right_front, left_back});
 
 ramping leftDrive = ramping(20, 3, -200, 200);
 ramping rightDrive = ramping(20, 3, -200, 200);
-
 } // end namespace drive
 namespace intake {
 okapi::Motor left_motor(17, false, okapi::AbstractMotor::gearset::green, // left

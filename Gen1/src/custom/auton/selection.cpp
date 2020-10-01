@@ -27,18 +27,29 @@ void autonTwo() { std::cout << "running auton two" << std::endl; }
 void autonThree() { std::cout << "3" << std::endl; }
 std::string buttonLabels[BUTTON_COUNT] = {
     "RedHome", // tbd
-    "testingThings", "blank",   "blank",
+    "testingThings",
+    "ඞ ",
+    "ඞ ",
 
     "BlueHome", // tbd
-    "blank",         "blank ",  "blank",
+    "ඞ ",
+    "ඞ  ",
+    "ඞ ",
 
-    "blank", // tbd
-    "blank",         "blank",   "blank",
+    "ඞ ", // tbd
+    "ඞ ",
+    "ඞ ",
+    "ඞ ",
 
-    "blank", // tbd
-    "blank",         "blank ",  "blank",
+    "ඞ ", // tbd
+    "ඞ ",
+    "ඞ  ",
+    "ඞ ",
 
-    "}(*)",          "skills ", "skills", "also skills",
+    "}(*)",
+    "skills ",
+    "skills",
+    "also skills",
 };
 std::string defaultThing = "default";
 

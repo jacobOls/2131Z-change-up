@@ -82,7 +82,7 @@ void skills() {
   turn(450, 100, "right");
   drive(540, 100);
   drive(250, -100);
-  turn(250, 100, "right");
+  turn(270, 90, "right");
   runIntake(140);
   runWheel(20);
   drive(700, 100);
@@ -93,6 +93,28 @@ void skills() {
   drive(275, -100);
   runWheel(0);
   runIntake(0);
+  turn(240, 100, "right");
+  strafe(625, 120, "left"); // reckoning
+  strafe(1800, 200, "right");
+  runIntake(200);
+  drive(250, 150);
+  runIntake(0);
+  runWheel(200);
+  wait(800);
+  runWheel(0);
+  runIntake(-100);
+  drive(-100, -150);
+  runIntake(0);
+  strafe(1060, 200, "right");
+  turn(210, 100, "right");
+  runIntake(200);
+  drive(800, 100);
+  runIntake(0);
+  runWheel(200);
+  wait(1000);
+  runWheel(0);
+  drive(-200, -200);
+  /*
   turn(710, 100, "left");
   strafe(1700, 100, "left");
   runIntake(200);
@@ -104,6 +126,7 @@ void skills() {
   runWheel(200);
   wait(700);
   runWheel(0);
+  */
 }
 void testFunctions() {
   drive::left_drive.tarePosition();

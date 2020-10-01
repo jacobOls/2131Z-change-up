@@ -45,21 +45,30 @@ std::string defaultThing = "default";
 // auton function returns void and takes no args
 typedef void (*autonFnPtr)(void);
 
-autonFnPtr autonHandlers[BUTTON_COUNT] = {
-    auton::redAuton, // tbd
-    auton::redAuton, autonOne,      autonOne,
+autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::redAuton, // tbd
+                                          auton::testFunctions,
+                                          autonOne,
+                                          autonOne,
 
-    auton::blueHome, // tbd
-    autonOne,        autonOne,      autonOne,
+                                          auton::blueHome, // tbd
+                                          autonOne,
+                                          autonOne,
+                                          autonOne,
 
-    autonOne, // tbd
-    autonOne,        autonOne,      autonOne,
+                                          autonOne, // tbd
+                                          autonOne,
+                                          autonOne,
+                                          autonOne,
 
-    autonOne, // tbd
-    autonOne,        autonOne,      autonOne,
+                                          autonOne, // tbd
+                                          autonOne,
+                                          autonOne,
+                                          autonOne,
 
-    auton::skills, // tbd
-    auton::skills,   auton::skills, auton::skills};
+                                          auton::skills, // tbd
+                                          auton::skills,
+                                          auton::skills,
+                                          auton::skills};
 
 static lv_res_t btn_click_action(lv_obj_t *btn) {
   clearBtns(btn);

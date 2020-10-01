@@ -41,6 +41,39 @@ void redAuton() { // start between middle and right tower
   drive(-200, -200);
 }
 
+void blueHome() {
+  strafe(475, 200, "right");
+  runIntake(200);
+  turn(180, 90, "left");
+  runWheel(25);
+  drive(600, 140);
+  runIntake(0);
+  runWheel(200);
+  wait(700);
+  runWheel(0);
+  drive(150, -150);
+  turn(240, 100, "left");
+  strafe(850, 120, "right"); // reckoning
+  strafe(1800, 200, "left");
+  runIntake(200);
+  drive(275, 150);
+  runIntake(0);
+  runWheel(200);
+  wait(800);
+  runWheel(0);
+  runIntake(-100);
+  drive(-100, -150);
+  runIntake(0);
+  strafe(1060, 200, "left");
+  turn(210, 100, "left");
+  runIntake(200);
+  drive(800, 100);
+  runIntake(0);
+  runWheel(200);
+  wait(1000);
+  runWheel(0);
+  drive(-200, -200);
+}
 void skills() {
   runIntake(200);
   runWheel(60);

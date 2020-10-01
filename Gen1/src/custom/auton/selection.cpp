@@ -26,10 +26,10 @@ void autonTwo() { std::cout << "running auton two" << std::endl; }
 
 void autonThree() { std::cout << "3" << std::endl; }
 std::string buttonLabels[BUTTON_COUNT] = {
-    "redDraft", // tbd
+    "RedHome", // tbd
     "testingThings", "blank",   "blank",
 
-    "blank", // tbd
+    "BlueHome", // tbd
     "blank",         "blank ",  "blank",
 
     "blank", // tbd
@@ -49,7 +49,7 @@ autonFnPtr autonHandlers[BUTTON_COUNT] = {
     auton::redAuton, // tbd
     auton::redAuton, autonOne,      autonOne,
 
-    autonOne, // tbd
+    auton::blueHome, // tbd
     autonOne,        autonOne,      autonOne,
 
     autonOne, // tbd

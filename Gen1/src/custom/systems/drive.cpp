@@ -102,14 +102,13 @@ void userDrive() {
 namespace auton {
 
 void drive(int distance, int velocity) {
-
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
   while (abs(drive::left_front.getPosition()) <= abs(distance)) {
-    if (drive::left_front.getActualVelocity() <= velocity) {
-      drive::leftDrive.accelMath(accel, &drive::left_drive, velocity);
-      drive::rightDrive.accelMath(accel, &drive::right_drive, velocity);
-      pros::delay(drive::leftDrive.rateOfChange);
-      // std::cout << "ramping" << std::endl;
-    }
+    drive::leftDrive.accelMath(accel, &drive::left_drive, velocity);
+    drive::rightDrive.accelMath(accel, &drive::right_drive, velocity);
+    pros::delay(drive::leftDrive.rateOfChange);
+    // std::cout << "ramping" << std::endl;
     // std::cout << "looping" << std::endl;
   }
   // std::cout << "stopping" << std::endl;

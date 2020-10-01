@@ -38,10 +38,41 @@ void redAuton() { // start between middle and right tower
   drive(-200, -200);
 }
 
+void skills() {
+  runIntake(200);
+  runWheel(60);
+  drive(700, 100);
+  runWheel(0);
+  turn(450, 100, "right");
+  drive(540, 100);
+  drive(250, -100);
+  turn(250, 100, "right");
+  runIntake(100);
+  runWheel(20);
+  drive(725, 100);
+  runWheel(200);
+  wait(500);
+  runWheel(-25);
+  runIntake(-25);
+  drive(275, -100);
+  runWheel(0);
+  runIntake(0);
+  turn(710, 100, "left");
+  strafe(1500, 100, "left");
+  runIntake(200);
+  runWheel(50);
+  drive(400, 100);
+  runIntake(0);
+  runWheel(0);
+  drive(500, 200);
+  runWheel(200);
+  wait(700);
+  runWheel(0);
+}
 void testFunctions() {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
-  drive(500, 100);
+  drive(500, -100);
   // strafe(800, 200, "left");
   // strafe(800, 200, "right");
 }

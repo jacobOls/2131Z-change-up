@@ -17,20 +17,7 @@ void initialize() {
   wheel::wheelGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   selection::init(); // selection screen init
 }
-namespace drive {
-bool inBrake = false;
-void brake() {
-  if (BtnBrake.isPressed() && inBrake == false) {
-    left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-    right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-    inBrake = true;
-  } else if (BtnBrake.isPressed()) {
-    inBrake = false;
-    left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-    right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-  }
-}
-} // namespace drive
+
 void disabled() {}
 
 void competition_initialize() {}
@@ -43,7 +30,6 @@ void opcontrol() {
     intake::init();
     wheel::init();
     drive::userDrive();
-    drive::brake();
     record::record();
     pros::delay(20);
   }

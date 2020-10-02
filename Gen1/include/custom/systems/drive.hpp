@@ -4,6 +4,7 @@
 namespace drive {
 enum class Left { STRAIGHT, STRAFE, DEINIT, NONE };
 enum class Right { STRAIGHT, STRAFE, DEINIT, NONE };
+enum class Brake { BRAKE, NONE };
 void userDrive(void);
 } // namespace drive
 namespace auton {

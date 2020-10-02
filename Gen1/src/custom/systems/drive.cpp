@@ -5,7 +5,7 @@
 namespace drive {
 Left left = Left::NONE;
 Right right = Right::NONE;
-
+Brake brake = Brake::NONE;
 void leftStraight() {
   if (abs(master.getAnalog(ControllerAnalog::leftY)) >
           abs(master.getAnalog(ControllerAnalog::leftX)) + 0.01 &&
@@ -49,7 +49,15 @@ void rightStrafe() {
     right = Right::DEINIT;
   }
 }
-
+void driveBrake() {
+  if (BtnBrake.isPressed()) {
+    drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+    drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+  } else {
+    drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+  }
+}
 void execute() {
 
   switch (left) {
@@ -95,6 +103,7 @@ void userDrive() {
   rightStraight();
   leftStrafe();
   rightStrafe();
+  driveBrake();
   execute();
 }
 } // namespace drive

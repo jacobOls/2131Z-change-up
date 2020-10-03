@@ -10,6 +10,7 @@ void userDrive(void);
 namespace auton {
 void drive(int distance, int velocity);
 void strafe(int distance, int velocity, std::string direction);
+void timeStrafe(int voltage, int time, std::string direction);
 void turn(int turnAmount, int velocity, std::string direction);
 } // namespace auton
 #endif /* end of include guard: DRIVE_HPP */

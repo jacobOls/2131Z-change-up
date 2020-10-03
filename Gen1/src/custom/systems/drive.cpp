@@ -134,25 +134,42 @@ void drive(int distance, int velocity) {
 void strafe(int distance, int velocity, std::string direction) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
-  while (abs(drive::left_front.getPosition()) <= abs(distance) ||
-         abs(drive::right_front.getPosition()) <= abs(distance)) {
+  while (abs(drive::left_front.getPosition()) <= abs(distance)) {
 
     if (direction == "right") {
 
-      drive::left_strafe.moveVelocity(velocity);
-      drive::right_strafe.moveVelocity(-velocity);
+      drive::leftDrive.accelMath(accel, &drive::left_strafe, velocity);
+      drive::rightDrive.accelMath(accel, &drive::right_strafe, -velocity);
+      pros::delay(drive::leftDrive.rateOfChange);
     }
 
     else if (direction == "left") {
 
-      drive::right_strafe.moveVelocity(velocity);
-      drive::left_strafe.moveVelocity(-velocity);
+      drive::leftDrive.accelMath(accel, &drive::left_strafe, -velocity);
+      drive::rightDrive.accelMath(accel, &drive::right_strafe, velocity);
+      pros::delay(drive::leftDrive.rateOfChange);
     }
   }
   while (abs(drive::left_front.getActualVelocity()) > 0) {
-    drive::right_strafe.moveVelocity(0);
-    drive::left_strafe.moveVelocity(0);
+    drive::leftDrive.deAccelMath(accel, &drive::left_strafe, 0);
+    drive::rightDrive.deAccelMath(accel, &drive::right_strafe, 0);
+    pros::delay(drive::leftDrive.rateOfChange);
   }
+  drive::left_strafe.tarePosition();
+  drive::right_strafe.tarePosition();
+}
+
+void timeStrafe(int voltage, int time, std::string direction) {
+  if (direction == "right") {
+    drive::left_strafe.moveVoltage(voltage);
+    drive::right_strafe.moveVoltage(-voltage);
+  } else if (direction == "left") {
+    drive::left_strafe.moveVoltage(-voltage);
+    drive::right_strafe.moveVoltage(voltage);
+  }
+  pros::delay(time);
+  drive::right_strafe.moveVelocity(0);
+  drive::left_strafe.moveVelocity(0);
   drive::left_strafe.tarePosition();
   drive::right_strafe.tarePosition();
 }

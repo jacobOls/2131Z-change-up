@@ -8,37 +8,63 @@ namespace auton {
 void wait(int time) { pros::delay(time); }
 
 void redAuton() { // start between middle and right tower
-  strafe(475, 200, "left");
+  strafe(100, 50, "left");
   runIntake(200);
-  turn(180, 90, "right");
-  runWheel(25);
-  drive(600, 140);
+  drive(100, 50);
+  turn(80, 90, "right");
+  drive(100, 50);
   runIntake(0);
   runWheel(200);
   wait(700);
   runWheel(0);
-  drive(150, -150);
-  turn(240, 100, "right");
-  strafe(850, 120, "left"); // reckoning
-  strafe(1800, 200, "right");
-  runIntake(200);
-  drive(275, 150);
-  runIntake(0);
+  drive(130, -100);
+  turn(765, 100, "right");
+  runWheel(25);
+  drive(675, 200);
   runWheel(200);
-  wait(800);
+  wait(700);
   runWheel(0);
-  runIntake(-100);
-  drive(-100, -150);
-  runIntake(0);
-  strafe(1060, 200, "right");
-  turn(210, 100, "right");
+  drive(50, -100);
+  strafe(900, 150, "right");
+  turn(20, 25, "left");
   runIntake(200);
-  drive(800, 100);
-  runIntake(0);
+  drive(1700, 170);
   runWheel(200);
   wait(1000);
+  runIntake(0);
   runWheel(0);
-  drive(-200, -200);
+  drive(200, -200);
+
+  // runIntake(200);
+  // drive(100, 50);
+  // turn(80, 90, "right");
+  // drive(100, 50);
+  // runIntake(0);
+  // runWheel(200);
+  // wait(700);
+  // runWheel(0);
+  // drive(150, -175);
+  // turn(240, 100, "right");
+  // timeStrafe(9000, 1500, "left"); // reckoning
+  // strafe(1800, 200, "right");
+  // runIntake(200);
+  // drive(180, 200);
+  // runIntake(0);
+  // runWheel(200);
+  // wait(1200);
+  // runWheel(0);
+  // runIntake(-100);
+  // drive(-100, -175);
+  // runIntake(0);
+  // strafe(1060, 200, "right");
+  // turn(180, 100, "right");
+  // runIntake(200);
+  // drive(650, 200);
+  // runIntake(0);
+  // runWheel(200);
+  // wait(1000);
+  // runWheel(0);
+  // drive(-200, -200);
 }
 
 void blueHome() {

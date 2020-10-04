@@ -8,7 +8,7 @@ namespace selection {
 void clearBtns(lv_obj_t *);
 
 const int BUTTON_COUNT = 20;
-volatile bool inAuton = false;
+// volatile bool inAuton = false;
 
 lv_style_t relStyle; // relesed style
 lv_style_t preStyle; // pressed style
@@ -155,7 +155,7 @@ void execute() {
   std::cout << "executing" << std::endl;
   autonFnPtr defaultAuton = auton::redAuton;
   defaultThing = "Things work and not";
-  inAuton = true;
+  // inAuton = true;
 
   if (selectedAuton == -1) {
     defaultAuton();
@@ -170,7 +170,7 @@ void execute() {
     defaultAuton();
   }
 
-  inAuton = false;
+  // inAuton = false;
 }
 
 static int timesCalled = 0;

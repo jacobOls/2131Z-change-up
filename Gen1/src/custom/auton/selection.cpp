@@ -3,9 +3,6 @@
 #include "custom/settup/controller.hpp"
 #include "display/lvgl.h"
 #include "main.h"
-#include <algorithm>
-#include <stdio.h>
-#include <string>
 
 namespace selection {
 void clearBtns(lv_obj_t *);
@@ -85,7 +82,6 @@ static lv_res_t btn_click_action(lv_obj_t *btn) {
   clearBtns(btn);
   lv_btn_set_state(btn, LV_BTN_STATE_PR);
   uint32_t indexPos = lv_obj_get_free_num(btn);
-  master.clear();
   master.setText(0, 0, "test");
   selectedAuton = indexPos;
   master.setText(0, 0, buttonLabels[selectedAuton]);

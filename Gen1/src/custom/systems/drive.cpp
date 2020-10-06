@@ -147,6 +147,7 @@ void userDrive() {
 } // namespace drive
 
 namespace auton {
+int remDist;
 void drive(int distance, int velocity) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();

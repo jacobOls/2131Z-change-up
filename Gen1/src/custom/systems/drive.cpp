@@ -166,8 +166,9 @@ void drive(int distance, int velocity) {
     if (velocity < 0)
       remDist *= -1;
 
-    drive::left_drive.moveVelocity(remDist);
-    drive::right_drive.moveVelocity(remDist);
+    drive::leftDrive.deAccelMath(accel, &drive::left_drive, remDist);
+    drive::rightDrive.deAccelMath(accel, &drive::right_drive, remDist);
+    pros::delay(drive::leftDrive.rateOfChange);
   }
   std::cout << drive::left_drive.getPosition() << std::endl;
   drive::left_drive.moveVelocity(0);
@@ -233,7 +234,8 @@ void timeStrafe(int voltage, int time, std::string direction) {
 }
 
 void turn(int turnAmount, int velocity, std::string direction) {
-
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
   while (abs(drive::left_front.getPosition()) <= abs(turnAmount)) {
     if (direction == "left") {
       drive::left_drive.moveVelocity(-velocity);

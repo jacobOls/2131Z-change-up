@@ -8,43 +8,54 @@ namespace auton {
 void wait(int time) { pros::delay(time); }
 
 void redAuton() {
+  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   strafe(450, 125, "left");
   runIntake(200);
   // drive(100, 50);
-  turn(210, 90, "right");
-  drive(420, 75);
+  turn(260, 90, "right");
+  drive(475, 75);
   runIntake(0);
   runWheel(200);
   wait(700);
   runWheel(40);
   // runIntake(-100);
-  drive(110, -100);
+  drive(275, -100);
   runWheel(0);
   runIntake(0);
-  turn(670, 100, "right");
+  turn(275, 100, "right");
   runWheel(30);
   runIntake(50);
-  drive(740, 200);
+  strafe(1350, 200, "right");
   runIntake(0);
-  strafe(150, 50, "left");
-  drive(50, 10);
+  drive(50, 20);
+  wait(450);
+  // strafe(100, 50, "left");
   runWheel(200);
-  wait(500);
+  wait(1100);
   runWheel(0);
-  drive(50, -100);
-  strafe(750, 150, "right");
-  turn(50, 10, "left");
+  // drive(50, -100);
+  drive(35, -20);
+  strafe(1250, 150, "right");
+  turn(235, 90, "right");
   runIntake(200);
-  drive(1875, 200);
-  strafe(100, 50, "left");
+  runWheel(200);
+  drive(550, 190);
+  drive(50, 20);
+  // runIntake(0);
+  wait(1500);
+  drive(200, -50);
+  /*
+  runIntake(200);
+  // drive(1875, 200);
+  // strafe(150, 50, "left");
   runIntake(0);
   runWheel(200);
-  // drive(25, 25);
   // turn(100, 50, "left");
   wait(1200);
   runWheel(0);
   drive(200, -200);
-
+*/
   // runIntake(200);
   // drive(100, 50);
   // turn(80, 90, "right");

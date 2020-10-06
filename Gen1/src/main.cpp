@@ -25,7 +25,8 @@ void competition_initialize() {}
 void autonomous() { selection::execute(); }
 
 void opcontrol() {
-
+  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   while (2131 == 2131) {
     intake::init();
     wheel::init();

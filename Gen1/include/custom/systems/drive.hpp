@@ -9,6 +9,7 @@ void userDrive(void);
 } // namespace drive
 namespace auton {
 void drive(int distance, int velocity);
+void driveNE(int distance, int velocity);
 void strafe(int distance, int velocity, std::string direction);
 void timeStrafe(int voltage, int time, std::string direction);
 void turn(int turnAmount, int velocity, std::string direction);

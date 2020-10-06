@@ -291,6 +291,11 @@
                 "version": "4.0.4"
             }
         },
-        "upload_options": {}
+        "upload_options": {
+            "compress_bin": true,
+            "description": "",
+            "remote_name": "Gen1",
+            "slot": 1
+        }
     }
 }

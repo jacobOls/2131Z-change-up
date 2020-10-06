@@ -51,11 +51,11 @@ void rightStrafe() {
 }
 void driveBrake() {
   if (BtnBrake.isPressed()) {
-    drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-    drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-  } else {
     drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
     drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+  } else {
+    drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+    drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   }
 }
 void execute() {
@@ -63,11 +63,27 @@ void execute() {
   switch (left) {
 
   case Left::STRAIGHT:
-    left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) * 200);
+    if (abs(master.getAnalog(ControllerAnalog::leftY)) < 0.6) {
+      left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) * 100);
+
+    } else if (abs(master.getAnalog(ControllerAnalog::leftY)) < 0.8) {
+      left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) * 150);
+
+    } else {
+      left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) * 200);
+    }
     break;
 
   case Left::STRAFE:
-    left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 200);
+    if (abs(master.getAnalog(ControllerAnalog::leftX)) < 0.6) {
+      left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 100);
+
+    } else if (abs(master.getAnalog(ControllerAnalog::leftX)) < 0.8) {
+      left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 150);
+
+    } else {
+      left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 200);
+    }
     break;
 
   case Left::DEINIT:
@@ -80,12 +96,34 @@ void execute() {
   switch (right) {
 
   case Right::STRAIGHT:
-    right_drive.moveVelocity(master.getAnalog(ControllerAnalog::rightY) * 200);
+    if (abs(master.getAnalog(ControllerAnalog::rightY)) < 0.6) {
+      right_drive.moveVelocity(master.getAnalog(ControllerAnalog::rightY) *
+                               100);
+
+    } else if (abs(master.getAnalog(ControllerAnalog::rightY)) < 0.8) {
+      right_drive.moveVelocity(master.getAnalog(ControllerAnalog::rightY) *
+                               150);
+
+    } else {
+      right_drive.moveVelocity(master.getAnalog(ControllerAnalog::rightY) *
+                               200);
+    }
     break;
 
   case Right::STRAFE:
-    right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::rightX) *
-                              -200);
+    if (abs(master.getAnalog(ControllerAnalog::rightX)) < 0.6) {
+      right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) *
+                                -100);
+
+    } else if (abs(master.getAnalog(ControllerAnalog::rightX)) < 0.8) {
+      right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::rightX) *
+                                -150);
+
+    } else {
+      right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::rightX) *
+                                -200);
+    }
+    break;
 
     break;
 
@@ -109,8 +147,35 @@ void userDrive() {
 } // namespace drive
 
 namespace auton {
-
+int remDist;
 void drive(int distance, int velocity) {
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
+  while (abs(drive::left_front.getPosition()) <= abs((distance)*7 / 10)) {
+    drive::leftDrive.accelMath(accel, &drive::left_drive, velocity);
+    drive::rightDrive.accelMath(accel, &drive::right_drive, velocity);
+    pros::delay(drive::leftDrive.rateOfChange);
+    // std::cout << "ramping" << std::endl;
+    // std::cout << "looping" << std::endl;
+  }
+  // std::cout << "stopping" << std::endl;
+  while (abs(drive::left_front.getPosition()) <= abs(distance)) {
+    remDist = distance - abs(drive::left_front.getPosition());
+    if (abs(remDist) > abs(velocity))
+      remDist = velocity;
+    if (velocity < 0)
+      remDist *= -1;
+
+    drive::left_drive.moveVelocity(remDist);
+    drive::right_drive.moveVelocity(remDist);
+  }
+  std::cout << drive::left_drive.getPosition() << std::endl;
+  drive::left_drive.moveVelocity(0);
+  drive::right_drive.moveVelocity(0);
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
+}
+void driveNE(int distance, int velocity) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
   while (abs(drive::left_front.getPosition()) <= abs(distance)) {
@@ -119,14 +184,6 @@ void drive(int distance, int velocity) {
     pros::delay(drive::leftDrive.rateOfChange);
     // std::cout << "ramping" << std::endl;
     // std::cout << "looping" << std::endl;
-  }
-  // std::cout << "stopping" << std::endl;
-  while (abs(drive::left_front.getActualVelocity()) > 0) {
-    drive::leftDrive.deAccelMath(accel, &drive::left_drive, 0);
-    drive::rightDrive.deAccelMath(accel, &drive::right_drive, 0);
-    // drive::left_drive.moveVelocity(0);
-    // drive::right_drive.moveVelocity(0);
-    pros::delay(drive::leftDrive.rateOfChange);
   }
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();

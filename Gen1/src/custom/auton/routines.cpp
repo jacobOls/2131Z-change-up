@@ -7,31 +7,41 @@
 namespace auton {
 void wait(int time) { pros::delay(time); }
 
-void redAuton() { // start between middle and right tower
-  strafe(100, 50, "left");
+void redAuton() {
+  strafe(450, 125, "left");
   runIntake(200);
-  drive(100, 50);
-  turn(80, 90, "right");
-  drive(100, 50);
+  // drive(100, 50);
+  turn(210, 90, "right");
+  drive(420, 75);
   runIntake(0);
   runWheel(200);
   wait(700);
+  runWheel(40);
+  // runIntake(-100);
+  drive(110, -100);
   runWheel(0);
-  drive(130, -100);
-  turn(765, 100, "right");
-  runWheel(25);
-  drive(675, 200);
+  runIntake(0);
+  turn(670, 100, "right");
+  runWheel(30);
+  runIntake(50);
+  drive(740, 200);
+  runIntake(0);
+  strafe(150, 50, "left");
+  drive(50, 10);
   runWheel(200);
-  wait(700);
+  wait(500);
   runWheel(0);
   drive(50, -100);
-  strafe(900, 150, "right");
-  turn(20, 25, "left");
+  strafe(750, 150, "right");
+  turn(50, 10, "left");
   runIntake(200);
-  drive(1700, 170);
-  runWheel(200);
-  wait(1000);
+  drive(1875, 200);
+  strafe(100, 50, "left");
   runIntake(0);
+  runWheel(200);
+  // drive(25, 25);
+  // turn(100, 50, "left");
+  wait(1200);
   runWheel(0);
   drive(200, -200);
 
@@ -155,9 +165,9 @@ void skills() {
   */
 }
 void testFunctions() {
-  drive::left_drive.tarePosition();
-  drive::right_drive.tarePosition();
-  drive(500, -100);
+  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive(600, -150);
   // strafe(800, 200, "left");
   // strafe(800, 200, "right");
 }

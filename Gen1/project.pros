@@ -294,8 +294,8 @@
         "upload_options": {
             "compress_bin": true,
             "description": "",
-            "remote_name": "Gen1",
-            "slot": 1
+            "remote_name": "test",
+            "slot": 2
         }
     }
 }

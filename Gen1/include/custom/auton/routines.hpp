@@ -2,6 +2,7 @@
 #define ROUTINES_HPP
 namespace auton {
 void redAuton();
+void twoTowers();
 void blueHome();
 void testFunctions();
 void skills();

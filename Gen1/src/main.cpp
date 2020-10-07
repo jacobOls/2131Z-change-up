@@ -28,6 +28,9 @@ void opcontrol() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   while (2131 == 2131) {
+    int temp = wheel::left_motor.getTemperature();
+    std::string temperature = std::to_string(temp);
+    master.setText(0, 0, temperature);
     intake::init();
     wheel::init();
     drive::userDrive();

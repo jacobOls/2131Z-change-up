@@ -23,9 +23,9 @@ void autonTwo() { std::cout << "running auton two" << std::endl; }
 
 void autonThree() { std::cout << "3" << std::endl; }
 std::string buttonLabels[BUTTON_COUNT] = {
-    "RedHome", // tbd
+    "skills", // tbd
     "testingThings",
-    "ඞ ",
+    "two towers ",
     "ඞ ",
 
     "BlueHome", // tbd
@@ -55,7 +55,7 @@ typedef void (*autonFnPtr)(void);
 
 autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::redAuton, // tbd
                                           auton::testFunctions,
-                                          autonOne,
+                                          auton::twoTowers,
                                           autonOne,
 
                                           auton::blueHome, // tbd
@@ -82,9 +82,7 @@ static lv_res_t btn_click_action(lv_obj_t *btn) {
   clearBtns(btn);
   lv_btn_set_state(btn, LV_BTN_STATE_PR);
   uint32_t indexPos = lv_obj_get_free_num(btn);
-  master.setText(0, 0, "test");
   selectedAuton = indexPos;
-  master.setText(0, 0, buttonLabels[selectedAuton]);
 
   std::cout << "Toggled button with free_num of [" << indexPos << "] yo"
             << std::endl;
@@ -176,7 +174,6 @@ void execute() {
 static int timesCalled = 0;
 void init() {
   timesCalled++;
-  master.setText(0, 0, defaultThing);
   btnCreate();
   std::cout << "starting task: " << timesCalled << " time" << std::endl;
 }

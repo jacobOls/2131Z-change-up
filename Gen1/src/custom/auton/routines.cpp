@@ -45,47 +45,36 @@ void redAuton() {
   // runIntake(0);
   wait(1500);
   drive(200, -50);
-  /*
+}
+void twoTowers() {
+  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  strafe(450, 125, "left");
   runIntake(200);
-  // drive(1875, 200);
-  // strafe(150, 50, "left");
+  // drive(100, 50);
+  turn(260, 90, "right");
+  drive(475, 40);
   runIntake(0);
   runWheel(200);
-  // turn(100, 50, "left");
-  wait(1200);
-  runWheel(0);
-  drive(200, -200);
-*/
-  // runIntake(200);
-  // drive(100, 50);
-  // turn(80, 90, "right");
-  // drive(100, 50);
-  // runIntake(0);
-  // runWheel(200);
-  // wait(700);
-  // runWheel(0);
-  // drive(150, -175);
-  // turn(240, 100, "right");
-  // timeStrafe(9000, 1500, "left"); // reckoning
-  // strafe(1800, 200, "right");
-  // runIntake(200);
-  // drive(180, 200);
-  // runIntake(0);
-  // runWheel(200);
-  // wait(1200);
-  // runWheel(0);
+  wait(700);
+  runWheel(40);
   // runIntake(-100);
-  // drive(-100, -175);
-  // runIntake(0);
-  // strafe(1060, 200, "right");
-  // turn(180, 100, "right");
-  // runIntake(200);
-  // drive(650, 200);
-  // runIntake(0);
-  // runWheel(200);
-  // wait(1000);
-  // runWheel(0);
-  // drive(-200, -200);
+  drive(275, -100);
+  runWheel(0);
+  runIntake(0);
+  turn(275, 100, "right");
+  runWheel(30);
+  runIntake(50);
+  strafe(1350, 200, "right");
+  runIntake(0);
+  drive(50, 20);
+  wait(450);
+  // strafe(100, 50, "left");
+  runWheel(200);
+  wait(1100);
+  runWheel(0);
+  // drive(50, -100);
+  drive(35, -20);
 }
 
 void blueHome() {

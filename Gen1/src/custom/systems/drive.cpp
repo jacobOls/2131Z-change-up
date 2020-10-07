@@ -59,31 +59,36 @@ void driveBrake() {
   }
 }
 void execute() {
+  int pie = master.getAnalog(ControllerAnalog::leftY) * 20;
 
   switch (left) {
 
   case Left::STRAIGHT:
-    if (abs(master.getAnalog(ControllerAnalog::leftY)) < 0.6) {
-      left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) * 100);
-
-    } else if (abs(master.getAnalog(ControllerAnalog::leftY)) < 0.8) {
-      left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) * 150);
-
-    } else {
-      left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) * 200);
-    }
+    // if (abs(master.getAnalog(ControllerAnalog::leftY)) < 0.6) {
+    //   left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) *
+    //   100);
+    //
+    // } else if (abs(master.getAnalog(ControllerAnalog::leftY)) < 0.8) {
+    //   left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) *
+    //   150);
+    //
+    // } else {
+    left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) * 200);
+    // }
     break;
 
   case Left::STRAFE:
-    if (abs(master.getAnalog(ControllerAnalog::leftX)) < 0.6) {
-      left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 100);
-
-    } else if (abs(master.getAnalog(ControllerAnalog::leftX)) < 0.8) {
-      left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 150);
-
-    } else {
-      left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 200);
-    }
+    // if (abs(master.getAnalog(ControllerAnalog::leftX)) < 0.6) {
+    //   left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) *
+    //   100);
+    //
+    // } else if (abs(master.getAnalog(ControllerAnalog::leftX)) < 0.8) {
+    //   left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) *
+    //   150);
+    //
+    // } else {
+    left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 200);
+    // }
     break;
 
   case Left::DEINIT:
@@ -96,33 +101,32 @@ void execute() {
   switch (right) {
 
   case Right::STRAIGHT:
-    if (abs(master.getAnalog(ControllerAnalog::rightY)) < 0.6) {
-      right_drive.moveVelocity(master.getAnalog(ControllerAnalog::rightY) *
-                               100);
-
-    } else if (abs(master.getAnalog(ControllerAnalog::rightY)) < 0.8) {
-      right_drive.moveVelocity(master.getAnalog(ControllerAnalog::rightY) *
-                               150);
-
-    } else {
-      right_drive.moveVelocity(master.getAnalog(ControllerAnalog::rightY) *
-                               200);
-    }
+    // if (abs(master.getAnalog(ControllerAnalog::rightY)) < 0.6) {
+    //   right_drive.moveVelocity(master.getAnalog(ControllerAnalog::rightY) *
+    //                            100);
+    //
+    // } else if (abs(master.getAnalog(ControllerAnalog::rightY)) < 0.8) {
+    //   right_drive.moveVelocity(master.getAnalog(ControllerAnalog::rightY) *
+    //                            150);
+    //
+    // } else {
+    right_drive.moveVelocity(master.getAnalog(ControllerAnalog::rightY) * 200);
+    // }
     break;
 
   case Right::STRAFE:
-    if (abs(master.getAnalog(ControllerAnalog::rightX)) < 0.6) {
-      right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) *
-                                -100);
-
-    } else if (abs(master.getAnalog(ControllerAnalog::rightX)) < 0.8) {
-      right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::rightX) *
-                                -150);
-
-    } else {
-      right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::rightX) *
-                                -200);
-    }
+    // if (abs(master.getAnalog(ControllerAnalog::rightX)) < 0.6) {
+    //   right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) *
+    //                             -100);
+    //
+    // } else if (abs(master.getAnalog(ControllerAnalog::rightX)) < 0.8) {
+    //   right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::rightX) *
+    //                             -150);
+    //
+    // } else {
+    right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::rightX) *
+                              -200);
+    // }
     break;
 
     break;
@@ -163,7 +167,7 @@ void drive(int distance, int velocity) {
     remDist = distance - abs(drive::left_front.getPosition());
     if (abs(remDist) > abs(velocity))
       remDist = velocity;
-    if (velocity < 0)
+    if (velocity < 0 && remDist > 0)
       remDist *= -1;
 
     drive::leftDrive.deAccelMath(accel, &drive::left_drive, remDist);

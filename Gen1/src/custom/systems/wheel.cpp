@@ -54,9 +54,8 @@ void execute() {
     break;
 
   case State::OUT:
-    left_motor.moveVelocity(200);
-    right_motor.moveVelocity(-200);
-    intake::intakeGroup.moveVelocity(200);
+    wheelGroup.moveVelocity(-200);
+    intake::intakeGroup.moveVelocity(-200);
     break;
 
   case State::BACK: // moves wheel motors to eject ball out back

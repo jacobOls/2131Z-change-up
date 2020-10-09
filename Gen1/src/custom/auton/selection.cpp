@@ -23,10 +23,10 @@ void autonTwo() { std::cout << "running auton two" << std::endl; }
 
 void autonThree() { std::cout << "3" << std::endl; }
 std::string buttonLabels[BUTTON_COUNT] = {
-    "skills", // tbd
+    "wip", // tbd
     "testingThings",
     "two towers ",
-    "ඞ ",
+    "one tower ",
 
     "BlueHome", // tbd
     "ඞ ",
@@ -53,10 +53,10 @@ std::string defaultThing = "default";
 // auton function returns void and takes no args
 typedef void (*autonFnPtr)(void);
 
-autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::redAuton, // tbd
+autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::skills, // tbd
                                           auton::testFunctions,
                                           auton::twoTowers,
-                                          autonOne,
+                                          auton::oneTower,
 
                                           auton::blueHome, // tbd
                                           autonOne,
@@ -151,7 +151,7 @@ void clearBtns(lv_obj_t *toggledButton = NULL) {
 
 void execute() {
   std::cout << "executing" << std::endl;
-  autonFnPtr defaultAuton = auton::redAuton;
+  autonFnPtr defaultAuton = auton::twoTowers;
   defaultThing = "Things work and not";
   // inAuton = true;
 

@@ -3,6 +3,7 @@
 namespace auton {
 void redAuton();
 void twoTowers();
+void oneTower();
 void blueHome();
 void testFunctions();
 void skills();

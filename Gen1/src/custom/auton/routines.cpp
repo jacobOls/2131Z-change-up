@@ -6,8 +6,12 @@
 #include "main.h"
 namespace auton {
 void wait(int time) { pros::delay(time); }
-
+bool fail = false;
+void dont() {}
 void redAuton() {
+  if (fail) {
+    dont();
+  }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   strafe(450, 125, "left");
@@ -184,7 +188,7 @@ void skills() {
 void testFunctions() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  drive(200, -150);
+  strafe(600, 100, "left");
   // strafe(800, 200, "left");
   // strafe(800, 200, "right");
 }

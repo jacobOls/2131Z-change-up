@@ -39,8 +39,6 @@ void ramping::deAccelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
   }
   if (requested > 0) {
     vel -= changeValue * 8;
-  } else {
-    vel += changeValue * 8;
   }
   (*handler)(MotorGroup, vel);
 }

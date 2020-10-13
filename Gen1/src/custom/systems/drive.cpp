@@ -197,33 +197,39 @@ void driveNE(int distance, int velocity) {
 void strafe(int distance, int velocity, std::string direction) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
-  /*
-  drive::left_strafe.moveVelocity(5);
-  drive::right_strafe.moveVelocity(5);
-  pros::delay(100);
-  */
-  while (abs(drive::left_front.getPosition()) <= abs(distance)) {
+
+  while (abs(drive::left_front.getPosition()) <= abs(distance) * (7 / 10)) {
 
     if (direction == "right") {
-
       drive::leftDrive.accelMath(accel, &drive::left_strafe, velocity);
       drive::rightDrive.accelMath(accel, &drive::right_strafe, -velocity);
       pros::delay(drive::leftDrive.rateOfChange);
     }
 
     else if (direction == "left") {
-
       drive::leftDrive.accelMath(accel, &drive::left_strafe, -velocity);
       drive::rightDrive.accelMath(accel, &drive::right_strafe, velocity);
       pros::delay(drive::leftDrive.rateOfChange);
     }
   }
-  while (abs(drive::left_front.getActualVelocity()) > 0) {
-    drive::leftDrive.deAccelMath(accel, &drive::left_strafe, 0);
-    drive::rightDrive.deAccelMath(accel, &drive::right_strafe, 0);
+  while (abs(drive::left_front.getPosition()) <= abs(distance)) {
+    remDist = distance - abs(drive::left_front.getPosition());
+    if (abs(remDist) > abs(velocity))
+      remDist = velocity;
+    if (velocity < 0 && remDist > 0)
+      remDist *= -1;
+    if (direction == "right") {
+      drive::leftDrive.deAccelMath(accel, &drive::left_strafe, remDist);
+      drive::rightDrive.deAccelMath(accel, &drive::right_strafe, -remDist);
+    } else if (direction == "left") {
+      drive::leftDrive.deAccelMath(accel, &drive::left_strafe, -remDist);
+      drive::rightDrive.deAccelMath(accel, &drive::right_strafe, remDist);
+    }
     pros::delay(drive::leftDrive.rateOfChange);
   }
   std::cout << drive::left_front.getPosition() << std::endl;
+  drive::left_strafe.moveVelocity(0);
+  drive::right_strafe.moveVelocity(0);
   drive::left_strafe.tarePosition();
   drive::right_strafe.tarePosition();
 }
@@ -259,7 +265,7 @@ void turn(int turnAmount, int velocity, std::string direction) {
       pros::delay(drive::leftDrive.rateOfChange);
     }
   }
-  while (abs(drive::left_front.getPosition()) <= abs(turnAmount)) {
+  while (abs(drive::left_front.getPosition()) <= abs(turnAmount) - 2) {
     remDist = turnAmount - abs(drive::left_front.getPosition());
     if (abs(remDist) > abs(velocity))
       remDist = velocity;

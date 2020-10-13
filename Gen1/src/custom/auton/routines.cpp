@@ -7,7 +7,7 @@
 namespace auton {
 void wait(int time) { pros::delay(time); }
 bool fail = false;
-void dont() {}
+void dont() { fail = false; }
 void redAuton() {
   if (fail) {
     dont();

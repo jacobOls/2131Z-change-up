@@ -23,60 +23,40 @@ void autonTwo() { std::cout << "running auton two" << std::endl; }
 
 void autonThree() { std::cout << "3" << std::endl; }
 std::string buttonLabels[BUTTON_COUNT] = {
-    "wip", // tbd
-    "testingThings",
-    "two towers ",
-    "one tower ",
+    "Home Row", // right red, left blue
+    "Two Towers",  "One tower ",  "nothing ",
 
-    "BlueHome", // tbd
-    "ඞ ",
-    "ඞ  ",
-    "ඞ ",
+    "Home Row", // left red, right blue
+    "Two Towers ", "One Tower  ", "Nothing ",
 
-    "ඞ ", // tbd
-    "ඞ ",
-    "ඞ ",
-    "ඞ ",
+    "ඞ ", // combo autons
+    "ඞ ",          "ඞ ",          "ඞ ",
 
-    "ඞ ", // tbd
-    "ඞ ",
-    "ඞ  ",
-    "ඞ ",
+    "ඞ ", // too many rows
+    "ඞ ",          "ඞ  ",         "ඞ ",
 
-    "}(*)",
-    "skills ",
-    "skills",
-    "also skills",
+    "}(*)", // miscellaneous      "skills ",    "skills",   "also skills",
 };
 std::string defaultThing = "default";
 
 // auton function returns void and takes no args
 typedef void (*autonFnPtr)(void);
 
-autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::skills, // tbd
-                                          auton::testFunctions,
-                                          auton::twoTowers,
-                                          auton::oneTower,
+autonFnPtr autonHandlers[BUTTON_COUNT] = {
+    auton::redAuton, // tbd
+    auton::twoTowers, auton::oneTower, autonOne,
 
-                                          auton::blueHome, // tbd
-                                          autonOne,
-                                          autonOne,
-                                          autonOne,
+    auton::blueHome, // tbd
+    autonOne,         autonOne,        autonOne,
 
-                                          autonOne, // tbd
-                                          autonOne,
-                                          autonOne,
-                                          autonOne,
+    autonOne, // tbd
+    autonOne,         autonOne,        autonOne,
 
-                                          autonOne, // tbd
-                                          autonOne,
-                                          autonOne,
-                                          autonOne,
+    autonOne, // tbd
+    autonOne,         autonOne,        autonOne,
 
-                                          auton::skills, // tbd
-                                          auton::skills,
-                                          auton::skills,
-                                          auton::skills};
+    auton::skills, // tbd
+    auton::skills,    auton::skills,   auton::skills};
 
 static lv_res_t btn_click_action(lv_obj_t *btn) {
   clearBtns(btn);

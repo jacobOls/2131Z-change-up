@@ -218,6 +218,7 @@ void strafe(int distance, int velocity, std::string direction) {
     drive::rightDrive.deAccelMath(accel, &drive::right_strafe, 0);
     pros::delay(drive::leftDrive.rateOfChange);
   }
+  std::cout << drive::left_front.getPosition() << std::endl;
   drive::left_strafe.tarePosition();
   drive::right_strafe.tarePosition();
 }

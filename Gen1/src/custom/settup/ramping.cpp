@@ -34,9 +34,13 @@ void ramping::accelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
 void ramping::deAccelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
                           int requested) {
   double vel = MotorGroup->getActualVelocity();
-  vel -= 3 * 8;
-  if (vel < abs(requested)) {
+  if (abs(vel) < abs(requested)) {
     vel = requested;
+  }
+  if (requested > 0) {
+    vel -= 3 * 8;
+  } else {
+    vel += 3 * 8;
   }
   (*handler)(MotorGroup, vel);
 }

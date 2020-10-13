@@ -197,6 +197,11 @@ void driveNE(int distance, int velocity) {
 void strafe(int distance, int velocity, std::string direction) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
+  /*
+  drive::left_strafe.moveVelocity(5);
+  drive::right_strafe.moveVelocity(5);
+  pros::delay(100);
+  */
   while (abs(drive::left_front.getPosition()) <= abs(distance)) {
 
     if (direction == "right") {

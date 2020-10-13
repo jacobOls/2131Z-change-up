@@ -51,6 +51,9 @@ void redAuton() {
   drive(200, -50);
 }
 void twoTowers() {
+  if (fail) {
+    dont();
+  }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   strafe(450, 125, "left");
@@ -82,6 +85,9 @@ void twoTowers() {
 }
 
 void oneTower() {
+  if (fail) {
+    dont();
+  }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   strafe(450, 125, "left");
@@ -99,6 +105,9 @@ void oneTower() {
   runIntake(0);
 }
 void blueHome() {
+  if (fail) {
+    dont();
+  }
   strafe(475, 200, "right");
   runIntake(200);
   turn(180, 90, "left");
@@ -132,6 +141,9 @@ void blueHome() {
   drive(-200, -200);
 }
 void skills() {
+  if (fail) {
+    dont();
+  }
   runIntake(200);
   runWheel(60);
   drive(700, 100);

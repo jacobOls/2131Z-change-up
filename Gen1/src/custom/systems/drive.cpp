@@ -241,21 +241,35 @@ void timeStrafe(int voltage, int time, std::string direction) {
 void turn(int turnAmount, int velocity, std::string direction) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
-  while (abs(drive::left_front.getPosition()) <= abs(turnAmount)) {
+  while (abs(drive::left_front.getPosition()) <= abs(turnAmount) * (7 / 10)) {
     if (direction == "left") {
-      drive::left_drive.moveVelocity(-velocity);
-      drive::right_drive.moveVelocity(velocity);
+      drive::leftDrive.accelMath(accel, &drive::left_drive, -velocity);
+      drive::rightDrive.accelMath(accel, &drive::right_drive, velocity);
+      pros::delay(drive::leftDrive.rateOfChange);
     }
 
     else if (direction == "right") {
-      drive::right_drive.moveVelocity(-velocity);
-      drive::left_drive.moveVelocity(velocity);
+      drive::leftDrive.accelMath(accel, &drive::left_drive, velocity);
+      drive::rightDrive.accelMath(accel, &drive::right_drive, -velocity);
+      pros::delay(drive::leftDrive.rateOfChange);
     }
   }
-  while (drive::left_front.getActualVelocity() > 0) {
-    drive::right_strafe.moveVelocity(0);
-    drive::left_strafe.moveVelocity(0);
+  while (abs(drive::left_front.getPosition()) <= abs(turnAmount)) {
+    remDist = turnAmount - abs(drive::left_front.getPosition());
+    if (abs(remDist) > abs(velocity))
+      remDist = velocity;
+    if (direction == "left") {
+      drive::leftDrive.deAccelMath(accel, &drive::left_drive, -remDist);
+      drive::rightDrive.deAccelMath(accel, &drive::right_drive, remDist);
+    } else if (direction == "right") {
+      drive::leftDrive.deAccelMath(accel, &drive::left_drive, remDist);
+      drive::rightDrive.deAccelMath(accel, &drive::right_drive, -remDist);
+    }
+    pros::delay(drive::leftDrive.rateOfChange);
   }
+  std::cout << drive::left_drive.getPosition() << std::endl;
+  drive::left_drive.moveVelocity(0);
+  drive::right_drive.moveVelocity(0);
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
 }

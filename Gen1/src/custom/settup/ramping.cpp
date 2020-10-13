@@ -8,7 +8,7 @@ ramping::ramping(double changeRate, double changeVal, int minimum,
                  int maximum) {
 
   rateOfChange = changeRate;
-  changeVal = changeVal;
+  changeValue = changeVal;
   min = minimum;
   max = maximum;
 }
@@ -17,7 +17,7 @@ double vel;
 void ramping::accelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
                         int requested) {
 
-  vel = pow(3, timesLooped);
+  vel = pow(changeValue, timesLooped);
 
   if (abs(vel) > abs(requested)) {
     vel = requested;
@@ -38,9 +38,9 @@ void ramping::deAccelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
     vel = requested;
   }
   if (requested > 0) {
-    vel -= 3 * 8;
+    vel -= changeValue * 8;
   } else {
-    vel += 3 * 8;
+    vel += changeValue * 8;
   }
   (*handler)(MotorGroup, vel);
 }

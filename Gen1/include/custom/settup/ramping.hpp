@@ -9,7 +9,7 @@ class ramping {
 
 public:
   double rateOfChange; // rate of change
-  double changeVal;    // change value
+  double changeValue;  // change value
   int min, max;
 
   ramping(double changeRate, double changeVal, int minimum, int maximum);

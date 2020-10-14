@@ -6,147 +6,33 @@ namespace drive {
 Left left = Left::NONE;
 Right right = Right::NONE;
 Brake brake = Brake::NONE;
-void leftStraight() {
-  if (abs(master.getAnalog(ControllerAnalog::leftY)) >
-          abs(master.getAnalog(ControllerAnalog::leftX)) + 0.01 &&
-      abs(master.getAnalog(ControllerAnalog::leftY)) > 0.05) {
-    left = Left::STRAIGHT;
-  } else if (left == Left::STRAIGHT) {
-    left_drive.moveVelocity(0);
-    left = Left::DEINIT;
-  }
-}
 
-void rightStraight() {
-  if (abs(master.getAnalog(ControllerAnalog::rightY)) >
-          abs(master.getAnalog(ControllerAnalog::rightX)) + 0.01 &&
-      abs(master.getAnalog(ControllerAnalog::rightY)) > 0.05) {
-    right = Right::STRAIGHT;
-  } else if (right == Right::STRAIGHT) {
-    right_drive.moveVelocity(0);
-    right = Right::DEINIT;
-  }
-}
-
-void leftStrafe() {
-  if (abs(master.getAnalog(ControllerAnalog::leftX)) >
-          abs(master.getAnalog(ControllerAnalog::leftY)) + 0.01 &&
-      abs(master.getAnalog(ControllerAnalog::leftX)) > 0.05) {
-    left = Left::STRAFE;
-  } else if (left == Left::STRAFE) {
-    left_strafe.moveVelocity(0);
-    left = Left::DEINIT;
-  }
-}
-
-void rightStrafe() {
-  if (abs(master.getAnalog(ControllerAnalog::rightX)) >
-          abs(master.getAnalog(ControllerAnalog::rightY)) + 0.01 &&
-      abs(master.getAnalog(ControllerAnalog::rightX)) > 0.05) {
-    right = Right::STRAFE;
-  } else if (right == Right::STRAFE) {
-    right_strafe.moveVelocity(0);
-    right = Right::DEINIT;
-  }
-}
-void driveBrake() {
-  if (BtnBrake.isPressed()) {
-    drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
-    drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
-  } else {
-    drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-    drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-  }
-}
-void execute() {
-  int pie = master.getAnalog(ControllerAnalog::leftY) * 20;
-
-  switch (left) {
-
-  case Left::STRAIGHT:
-    // if (abs(master.getAnalog(ControllerAnalog::leftY)) < 0.6) {
-    //   left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) *
-    //   100);
-    //
-    // } else if (abs(master.getAnalog(ControllerAnalog::leftY)) < 0.8) {
-    //   left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) *
-    //   150);
-    //
-    // } else {
-    left_drive.moveVelocity(master.getAnalog(ControllerAnalog::leftY) * 200);
-    // }
-    break;
-
-  case Left::STRAFE:
-    // if (abs(master.getAnalog(ControllerAnalog::leftX)) < 0.6) {
-    //   left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) *
-    //   100);
-    //
-    // } else if (abs(master.getAnalog(ControllerAnalog::leftX)) < 0.8) {
-    //   left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) *
-    //   150);
-    //
-    // } else {
-    left_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) * 200);
-    // }
-    break;
-
-  case Left::DEINIT:
-    left = Left::NONE;
-    break;
-
-  case Left::NONE:
-    break;
-  }
-  switch (right) {
-
-  case Right::STRAIGHT:
-    // if (abs(master.getAnalog(ControllerAnalog::rightY)) < 0.6) {
-    //   right_drive.moveVelocity(master.getAnalog(ControllerAnalog::rightY) *
-    //                            100);
-    //
-    // } else if (abs(master.getAnalog(ControllerAnalog::rightY)) < 0.8) {
-    //   right_drive.moveVelocity(master.getAnalog(ControllerAnalog::rightY) *
-    //                            150);
-    //
-    // } else {
-    right_drive.moveVelocity(master.getAnalog(ControllerAnalog::rightY) * 200);
-    // }
-    break;
-
-  case Right::STRAFE:
-    // if (abs(master.getAnalog(ControllerAnalog::rightX)) < 0.6) {
-    //   right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::leftX) *
-    //                             -100);
-    //
-    // } else if (abs(master.getAnalog(ControllerAnalog::rightX)) < 0.8) {
-    //   right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::rightX) *
-    //                             -150);
-    //
-    // } else {
-    right_strafe.moveVelocity(master.getAnalog(ControllerAnalog::rightX) *
-                              -200);
-    // }
-    break;
-
-    break;
-
-  case Right::DEINIT:
-    right = Right::NONE;
-    break;
-
-  case Right::NONE:
-    break;
-  }
-}
 void userDrive() {
-  // std::cout << "init" << std::endl;
-  leftStraight();
-  rightStraight();
-  leftStrafe();
-  rightStrafe();
-  driveBrake();
-  execute();
+  left_front.moveVelocity(
+      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,
+                       0.05) +
+       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX), -0.05,
+                       0.05)) *
+      200);
+  left_back.moveVelocity(
+      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,
+                       0.05) -
+       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX), -0.05,
+                       0.05)) *
+      200);
+
+  right_front.moveVelocity(
+      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY), -0.05,
+                       0.05) -
+       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightX), -0.05,
+                       0.05)) *
+      200);
+  right_back.moveVelocity(
+      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY), -0.05,
+                       0.05) +
+       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightX), -0.05,
+                       0.05)) *
+      200);
 }
 } // namespace drive
 

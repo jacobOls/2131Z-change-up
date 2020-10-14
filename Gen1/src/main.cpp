@@ -23,11 +23,15 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() { selection::execute(); }
-
+bool running;
+void win() { bool winner = true; }
 void opcontrol() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   while (2131 == 2131) {
+    if (running) {
+      win();
+    }
     int temp = wheel::left_motor.getTemperature();
     std::string temperature = std::to_string(temp);
     master.setText(0, 0, temperature);

@@ -1,7 +1,7 @@
 #include "custom/systems/vision.hpp"
 #include "main.h"
 namespace vision {
-pros::Vision visionSensor(1);
+pros::Vision visionSensor(11);
 
 void init() {
   visionSensor.set_wifi_mode(0);
@@ -11,5 +11,10 @@ void init() {
       2, -3551, -2285, -2918, 7295, 15009, 11152, 3.000, 0);
 }
 pros::vision_object_s_t rtn = visionSensor.get_by_sig(0, 1);
-void execute() { std::cout << "sig: " << rtn.signature << std::endl; }
+void execute() {
+  int n = visionSensor.get_object_count();
+  if (rtn.signature != 255)
+    std::cout << "sig: " << rtn.signature << std::endl;
+  // std::cout << n << std::endl;
+}
 } // namespace vision

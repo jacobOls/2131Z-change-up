@@ -5,6 +5,7 @@
 #include "custom/settup/record.hpp"
 #include "custom/systems/drive.hpp"
 #include "custom/systems/intake.hpp"
+#include "custom/systems/vision.hpp"
 #include "custom/systems/wheel.hpp"
 
 void initialize() {
@@ -37,6 +38,7 @@ void opcontrol() {
     master.setText(0, 0, temperature);
     intake::init();
     wheel::init();
+    vision::execute();
     drive::userDrive();
     record::record();
     pros::delay(20);

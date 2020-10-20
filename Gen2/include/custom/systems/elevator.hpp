@@ -7,7 +7,7 @@ void init(void);
 // void runWheel(int velocity);
 } // namespace elevator
 namespace auton {
-void runWheel(int velocity);
+void runElevator(int velocity);
 void back(int velocity);
 } // namespace auton
 #endif /* end of include guard: ELEVATOR_HPP */

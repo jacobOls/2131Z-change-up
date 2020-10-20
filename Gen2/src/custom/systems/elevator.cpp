@@ -96,7 +96,7 @@ void init() {
 } // namespace elevator
 
 namespace auton {
-void runWheel(int velocity) { elevator::elevGroup.moveVelocity(velocity); }
+void runElevator(int velocity) { elevator::elevGroup.moveVelocity(velocity); }
 void back(int velocity) {
   elevator::upperMotor.moveVelocity(velocity);
   elevator::lowerMotor.moveVelocity(-velocity);

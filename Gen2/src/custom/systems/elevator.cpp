@@ -21,7 +21,7 @@ void out() {
   }
 }
 
-void back() { // enters back(ejection) state
+void eject() {
   if (BtnBack.isPressed()) {
     state = State::BACK;
   } else if (state == State::BACK) {
@@ -29,7 +29,7 @@ void back() { // enters back(ejection) state
   }
 }
 
-void unjam() { // enters unjam state
+void lower() {
   if (Unjam.isPressed()) {
     state = State::UNJAM;
   } else if (state == State::UNJAM) {
@@ -83,8 +83,8 @@ void execute() {
 }
 
 void init() {
-  back();
-  unjam();
+  eject();
+  lower();
   up();
   in();
   out();

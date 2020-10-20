@@ -37,7 +37,7 @@ void opcontrol() {
     // int temp = wheel::left_motor.getTemperature();
     // std::string temperature = std::to_string(temp);
     // master.setText(0, 0, temperature);
-    // intake::init();
+    intake::init();
     // wheel::init();
     // vision::execute();
     selection::colorSwap();

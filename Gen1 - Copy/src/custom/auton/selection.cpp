@@ -176,7 +176,7 @@ void init() {
 
 bool blue = false;
 void colorSwap() {
-  if (BtnSwap.changedToReleased()) {
+  if (BtnSwap.changedToPressed()) {
     if (blue) {
       for (int i = 0; i < BUTTON_COUNT; i++) {
         lv_btn_set_style(allButtons[i], LV_BTN_STYLE_REL,

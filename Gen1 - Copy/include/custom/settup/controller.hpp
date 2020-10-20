@@ -5,6 +5,9 @@ extern okapi::Controller master;
 namespace drive {
 extern okapi::ControllerButton BtnBrake;
 } // end namespace drive
+namespace selection {
+extern okapi::ControllerButton BtnSwap;
+} // end namespace selection
 namespace intake {
 extern okapi::ControllerButton BtnIn;
 extern okapi::ControllerButton BtnOut;

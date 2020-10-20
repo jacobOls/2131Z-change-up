@@ -5,6 +5,7 @@
 namespace selection {
 void init();
 void execute();
+void colorSwap();
 // extern pros::Task *gui_task_ptr;
 } // namespace selection
 

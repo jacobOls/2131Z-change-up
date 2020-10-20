@@ -12,6 +12,7 @@ const int BUTTON_COUNT = 20;
 
 lv_style_t relStyle; // relesed style
 lv_style_t preStyle; // pressed style
+lv_style_t redRelStyle;
 
 lv_obj_t **allButtons;
 
@@ -73,7 +74,7 @@ static lv_res_t btn_click_action(lv_obj_t *btn) {
   uint32_t indexPos = lv_obj_get_free_num(btn);
   selectedAuton = indexPos;
 
-  std::cout << "Toggled button with free_num of [" << indexPos << "] yo"
+  std::cout << "Toggled button with free_num of [" << indexPos << "] "
             << std::endl;
   // std::cout << "Auton selected is " << autonBtnState[id] << std::endl;
 
@@ -96,8 +97,9 @@ void btnConfig(lv_obj_t *btn, int row, int col, int id) {
                    &preStyle); // set the relesed style
   lv_btn_set_style(btn, LV_BTN_STYLE_TGL_PR, &preStyle); // set the pressed
                                                          // style
-  lv_btn_set_style(btn, LV_BTN_STYLE_REL, &relStyle); // set the relesed style
-  lv_btn_set_style(btn, LV_BTN_STYLE_PR, &preStyle);  // set the pressed style
+  lv_btn_set_style(btn, LV_BTN_STYLE_REL,
+                   &redRelStyle);                    // set the relesed style
+  lv_btn_set_style(btn, LV_BTN_STYLE_PR, &preStyle); // set the pressed style
   lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, btn_click_action);
   lv_obj_set_free_num(btn, id); // set button is to an incrementing amount
 }
@@ -115,6 +117,11 @@ void btnCreate() {
   preStyle.body.main_color = LV_COLOR_MAKE(0, 255, 0);
   preStyle.body.radius = 3;
   preStyle.text.color = LV_COLOR_MAKE(0, 164, 255);
+
+  lv_style_copy(&redRelStyle, &lv_style_plain);
+  redRelStyle.body.main_color = LV_COLOR_MAKE(139, 0, 0);
+  redRelStyle.body.radius = 3;
+  redRelStyle.text.color = LV_COLOR_MAKE(139, 20, 20);
 
   int ndx = 0;
   for (int row = 0; row < 5; row++) {
@@ -165,6 +172,25 @@ void init() {
   timesCalled++;
   btnCreate();
   std::cout << "starting task: " << timesCalled << " time" << std::endl;
+}
+
+bool blue = false;
+void colorSwap() {
+  if (BtnSwap.changedToReleased()) {
+    if (blue) {
+      for (int i = 0; i < BUTTON_COUNT; i++) {
+        lv_btn_set_style(allButtons[i], LV_BTN_STYLE_REL,
+                         &redRelStyle); // set the relesed style
+      }
+      blue = false;
+    } else if (!blue) {
+      for (int i = 0; i < BUTTON_COUNT; i++) {
+        lv_btn_set_style(allButtons[i], LV_BTN_STYLE_REL,
+                         &relStyle); // set the relesed style
+      }
+      blue = true;
+    }
+  }
 }
 
 } // namespace selection

@@ -37,10 +37,11 @@ void opcontrol() {
     // int temp = wheel::left_motor.getTemperature();
     // std::string temperature = std::to_string(temp);
     // master.setText(0, 0, temperature);
-    intake::init();
-    wheel::init();
+    // intake::init();
+    // wheel::init();
     // vision::execute();
-    drive::userDrive();
+    selection::colorSwap();
+    // drive::userDrive();
     record::record();
     pros::delay(20);
   }

@@ -30,8 +30,7 @@ void out() {
   }
 }
 bool red = true;
-
-void execute() {
+void autoElev() {
   pros::vision_object_s_t rtn = visionSensor.get_by_sig(0, 1);
   pros::vision_object_s_t rtn2 = visionSensor.get_by_sig(0, 2);
   if (selection::BtnSwap.changedToReleased()) {
@@ -39,23 +38,6 @@ void execute() {
       red = false;
     else if (!red)
       red = true;
-  }
-  switch (state) {
-  case State::IN:
-
-    if (low() < lThresh && high() < hThresh) {
-      intakeGroup.moveVelocity(200);
-    } else if (low() >= lThresh) {
-      intakeGroup.moveVelocity(200);
-      elevator::elevGroup.moveVelocity(200);
-    } else if (high() >= hThresh) {
-      elevator::elevGroup.moveVelocity(0);
-      intakeGroup.moveVelocity(200);
-    } else if (low() > lThresh && high() > hThresh) {
-      elevator::elevGroup.moveVelocity(0);
-      intakeGroup.moveVelocity(0);
-    }
-
     if (red) {
       if (high() < hThresh) {
         if (rtn.signature == 1) {
@@ -67,7 +49,8 @@ void execute() {
       } else if (high() >= hThresh && rtn2.signature == 2) {
         elevator::upperMotor.moveVelocity(200);
         elevator::lowerMotor.moveVelocity(-200);
-      } else {
+      } else if (high() >= hThresh && rtn.signature == 1) {
+        elevator::elevGroup.moveVelocity(0);
       }
     } else if (!red) {
       if (high() < hThresh) {
@@ -80,8 +63,28 @@ void execute() {
       } else if (high() >= hThresh && rtn.signature == 1) {
         elevator::upperMotor.moveVelocity(200);
         elevator::lowerMotor.moveVelocity(-200);
-      } else {
+      } else if (high() >= hThresh && rtn2.signature == 2) {
+        elevator::elevGroup.moveVelocity(0);
       }
+    }
+  }
+}
+void execute() {
+
+  switch (state) {
+  case State::IN:
+
+    if (low() < lThresh && high() < hThresh) {
+      intakeGroup.moveVelocity(200);
+    } else if (low() >= lThresh) {
+      intakeGroup.moveVelocity(200);
+      autoElev();
+    } else if (high() >= hThresh) {
+      autoElev();
+      intakeGroup.moveVelocity(200);
+    } else if (low() > lThresh && high() > hThresh) {
+      elevator::elevGroup.moveVelocity(0);
+      intakeGroup.moveVelocity(0);
     }
 
     break;

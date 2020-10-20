@@ -91,8 +91,6 @@ void init() {
   execute();
 }
 
-// void runWheel(int velocity) { wheelGroup.moveVelocity(velocity); }
-
 } // namespace elevator
 
 namespace auton {

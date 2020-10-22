@@ -16,7 +16,7 @@ namespace elevator {
 extern okapi::ControllerButton BtnIn;
 extern okapi::ControllerButton BtnOut;
 extern okapi::ControllerButton BtnBack;
-extern okapi::ControllerButton Unjam;
+extern okapi::ControllerButton Down;
 extern okapi::ControllerButton UpOnly;
 
 } // namespace elevator

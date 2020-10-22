@@ -2,7 +2,7 @@
 #define ELEVATOR_HPP
 
 namespace elevator {
-enum class State { IN, OUT, UNJAM, UP, BACK, DEINIT, NONE };
+enum class State { IN, OUT, DOWN, UP, BACK, DEINIT, NONE };
 void init(void);
 // void runWheel(int velocity);
 } // namespace elevator

@@ -30,9 +30,9 @@ void eject() {
 }
 
 void lower() {
-  if (Unjam.isPressed()) {
-    state = State::UNJAM;
-  } else if (state == State::UNJAM) {
+  if (Down.isPressed()) {
+    state = State::DOWN;
+  } else if (state == State::DOWN) {
     state = State::DEINIT;
   }
 }
@@ -63,7 +63,7 @@ void execute() {
     lowerMotor.moveVelocity(-200);
     break;
 
-  case State::UNJAM: // moves wheel alone to unjam
+  case State::DOWN: // moves wheel alone downward
     elevGroup.moveVelocity(-200);
     break;
 

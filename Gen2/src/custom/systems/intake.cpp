@@ -38,37 +38,38 @@ void autoElev() {
       red = false;
     else if (!red)
       red = true;
-    if (red) {
-      if (high() < hThresh) {
-        if (rtn.signature == 1) {
-          elevator::elevGroup.moveVelocity(200);
-        } else if (rtn2.signature == 2) {
-          elevator::upperMotor.moveVelocity(200);
-          elevator::lowerMotor.moveVelocity(-200);
-        }
-      } else if (high() >= hThresh && rtn2.signature == 2) {
+  }
+  if (red) {
+    if (high() < hThresh) {
+      if (rtn.signature == 1) {
+        elevator::elevGroup.moveVelocity(200);
+      } else if (rtn2.signature == 2) {
         elevator::upperMotor.moveVelocity(200);
         elevator::lowerMotor.moveVelocity(-200);
-      } else if (high() >= hThresh && rtn.signature == 1) {
-        elevator::elevGroup.moveVelocity(0);
       }
-    } else if (!red) {
-      if (high() < hThresh) {
-        if (rtn2.signature == 2) {
-          elevator::elevGroup.moveVelocity(200);
-        } else if (rtn.signature == 1) {
-          elevator::upperMotor.moveVelocity(200);
-          elevator::lowerMotor.moveVelocity(-200);
-        }
-      } else if (high() >= hThresh && rtn.signature == 1) {
+    } else if (high() >= hThresh && rtn2.signature == 2) {
+      elevator::upperMotor.moveVelocity(200);
+      elevator::lowerMotor.moveVelocity(-200);
+    } else if (high() >= hThresh && rtn.signature == 1) {
+      elevator::elevGroup.moveVelocity(0);
+    }
+  } else if (!red) {
+    if (high() < hThresh) {
+      if (rtn2.signature == 2) {
+        elevator::elevGroup.moveVelocity(200);
+      } else if (rtn.signature == 1) {
         elevator::upperMotor.moveVelocity(200);
         elevator::lowerMotor.moveVelocity(-200);
-      } else if (high() >= hThresh && rtn2.signature == 2) {
-        elevator::elevGroup.moveVelocity(0);
       }
+    } else if (high() >= hThresh && rtn.signature == 1) {
+      elevator::upperMotor.moveVelocity(200);
+      elevator::lowerMotor.moveVelocity(-200);
+    } else if (high() >= hThresh && rtn2.signature == 2) {
+      elevator::elevGroup.moveVelocity(0);
     }
   }
 }
+
 void execute() {
 
   switch (state) {

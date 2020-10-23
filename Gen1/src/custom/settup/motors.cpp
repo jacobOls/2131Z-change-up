@@ -1,3 +1,4 @@
+#include "custom/settup/motors.hpp"
 #include "custom/settup/ramping.hpp"
 #include "main.h"
 namespace drive {
@@ -13,6 +14,11 @@ okapi::MotorGroup left_drive({left_front, left_back});
 okapi::MotorGroup right_drive({right_front, right_back});
 okapi::MotorGroup left_strafe({left_front, right_back});
 okapi::MotorGroup right_strafe({right_front, left_back});
+
+okapi::MotorGroup leftFront({left_front});
+okapi::MotorGroup rightFront({right_front});
+okapi::MotorGroup leftBack({left_back});
+okapi::MotorGroup rightBack({right_back});
 
 ramping leftDrive = ramping(20, 3, -200, 200);
 ramping rightDrive = ramping(20, 3, -200, 200);

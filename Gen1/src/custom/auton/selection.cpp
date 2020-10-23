@@ -33,9 +33,9 @@ std::string buttonLabels[BUTTON_COUNT] = {
     "ඞ ",          "ඞ ",          "ඞ ",
 
     "test ", // too many rows
-    "ඞ ",          "ඞ  ",         "ඞ ",
+    "userGen ",    "ඞ  ",         "ඞ ",
 
-    "}(*)", // miscellaneous      "skills ",    "skills",   "also skills",
+    "}(*)",        "skills ",     "skills",   "also skills",
 };
 std::string defaultThing = "default";
 
@@ -58,7 +58,7 @@ autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::redAuton, // tbd
                                           autonOne,
 
                                           auton::testFunctions, // tbd
-                                          autonOne,
+                                          auton::userGen,
                                           autonOne,
                                           autonOne,
 
@@ -140,7 +140,7 @@ void clearBtns(lv_obj_t *toggledButton = NULL) {
 
 void execute() {
   std::cout << "executing" << std::endl;
-  autonFnPtr defaultAuton = auton::twoTowers;
+  autonFnPtr defaultAuton = auton::userGen;
   defaultThing = "Things work and not";
   // inAuton = true;
 

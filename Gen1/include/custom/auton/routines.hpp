@@ -7,6 +7,7 @@ void oneTower();
 void blueHome();
 void testFunctions();
 void skills();
+void userGen();
 
 } // namespace auton
 

@@ -33,9 +33,9 @@ void opcontrol() {
     if (running) {
       win();
     }
-    int temp = wheel::left_motor.getTemperature();
-    std::string temperature = std::to_string(temp);
-    master.setText(0, 0, temperature);
+    // int temp = wheel::left_motor.getTemperature();
+    // std::string temperature = std::to_string(temp);
+    // master.setText(0, 0, temperature);
     intake::init();
     wheel::init();
     vision::execute();

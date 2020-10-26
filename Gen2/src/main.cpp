@@ -1,6 +1,8 @@
 #include "main.h"
 #include "custom/auton/selection.hpp"
 #include "custom/systems/drive.hpp"
+#include "custom/systems/elevator.hpp"
+#include "custom/systems/intake.hpp"
 
 void initialize() { selection::init(); }
 
@@ -15,6 +17,8 @@ void opcontrol() {
   while (true) {
     drive::userDrive();
     drive::brake();
+    intake::init();
+    elevator::init();
     pros::delay(20);
   }
 }

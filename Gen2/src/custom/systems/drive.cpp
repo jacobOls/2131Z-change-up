@@ -31,18 +31,13 @@ void userDrive() {
                        0.05)) *
       200);
 }
-bool isBrake = false;
 void brake() {
-  if (BtnBrake.changedToReleased()) {
-    if (isBrake) {
-      drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
-      drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
-      isBrake = true;
-    } else if (!isBrake) {
-      drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-      drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-      isBrake = false;
-    }
+  if (BtnBrake.isPressed()) {
+    drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+  } else {
+    drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+    drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   }
 }
 } // namespace drive

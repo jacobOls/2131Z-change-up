@@ -49,31 +49,31 @@ void execute() {
   switch (state) {
 
   case State::IN:
-    elevGroup.moveVelocity(200);
-    intake::intakeGroup.moveVelocity(200);
+    elevGroup.moveVoltage(12000);
+    intake::intakeGroup.moveVoltage(12000);
     break;
 
   case State::OUT:
-    elevGroup.moveVelocity(-200);
-    intake::intakeGroup.moveVelocity(-200);
+    elevGroup.moveVelocity(-12000);
+    intake::intakeGroup.moveVelocity(-12000);
     break;
 
   case State::BACK: // moves wheel motors to eject ball out back
-    upperMotor.moveVelocity(200);
-    lowerMotor.moveVelocity(-200);
+    upperMotor.moveVoltage(12000);
+    lowerMotor.moveVelocity(-12000);
     break;
 
   case State::DOWN: // moves wheel alone downward
-    elevGroup.moveVelocity(-200);
+    elevGroup.moveVelocity(-12000);
     break;
 
   case State::UP:
-    elevGroup.moveVelocity(200);
+    elevGroup.moveVoltage(12000);
     break;
 
   case State::DEINIT:
-    elevGroup.moveVelocity(0);
-    intake::intakeGroup.moveVelocity(0);
+    elevGroup.moveVoltage(0);
+    intake::intakeGroup.moveVoltage(0);
     state = State::NONE;
     break;
 
@@ -94,9 +94,9 @@ void init() {
 } // namespace elevator
 
 namespace auton {
-void runElevator(int velocity) { elevator::elevGroup.moveVelocity(velocity); }
+void runElevator(int velocity) { elevator::elevGroup.moveVoltage(velocity); }
 void back(int velocity) {
-  elevator::upperMotor.moveVelocity(velocity);
+  elevator::upperMotor.moveVoltage(velocity);
   elevator::lowerMotor.moveVelocity(-velocity);
 }
 

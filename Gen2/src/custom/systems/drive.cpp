@@ -5,31 +5,31 @@
 namespace drive {
 
 void userDrive() {
-  leftFront.moveVelocity(
+  leftFront.moveVoltage(
       (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,
                        0.05) +
        okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX), -0.05,
                        0.05)) *
-      200);
-  leftBack.moveVelocity(
+      12000);
+  leftBack.moveVoltage(
       (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,
                        0.05) -
        okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX), -0.05,
                        0.05)) *
-      200);
+      12000);
 
-  rightFront.moveVelocity(
+  rightFront.moveVoltage(
       (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY), -0.05,
                        0.05) -
        okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightX), -0.05,
                        0.05)) *
-      200);
-  rightBack.moveVelocity(
+      12000);
+  rightBack.moveVoltage(
       (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY), -0.05,
                        0.05) +
        okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightX), -0.05,
                        0.05)) *
-      200);
+      12000);
 }
 void brake() {
   if (BtnBrake.isPressed()) {

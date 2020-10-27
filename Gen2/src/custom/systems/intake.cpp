@@ -42,30 +42,30 @@ void autoElev() {
   if (red) {
     if (high() < hThresh) {
       if (rtn.signature == 1) {
-        elevator::elevGroup.moveVelocity(200);
+        elevator::elevGroup.moveVoltage(12000);
       } else if (rtn2.signature == 2) {
-        elevator::upperMotor.moveVelocity(200);
-        elevator::lowerMotor.moveVelocity(-200);
+        elevator::upperMotor.moveVoltage(12000);
+        elevator::lowerMotor.moveVoltage(-12000);
       }
     } else if (high() >= hThresh && rtn2.signature == 2) {
-      elevator::upperMotor.moveVelocity(200);
-      elevator::lowerMotor.moveVelocity(-200);
+      elevator::upperMotor.moveVoltage(12000);
+      elevator::lowerMotor.moveVelocity(-12000);
     } else if (high() >= hThresh && rtn.signature == 1) {
-      elevator::elevGroup.moveVelocity(0);
+      elevator::elevGroup.moveVoltage(0);
     }
   } else if (!red) {
     if (high() < hThresh) {
       if (rtn2.signature == 2) {
-        elevator::elevGroup.moveVelocity(200);
+        elevator::elevGroup.moveVoltage(12000);
       } else if (rtn.signature == 1) {
-        elevator::upperMotor.moveVelocity(200);
-        elevator::lowerMotor.moveVelocity(-200);
+        elevator::upperMotor.moveVoltage(12000);
+        elevator::lowerMotor.moveVelocity(-12000);
       }
     } else if (high() >= hThresh && rtn.signature == 1) {
-      elevator::upperMotor.moveVelocity(200);
-      elevator::lowerMotor.moveVelocity(-200);
+      elevator::upperMotor.moveVoltage(12000);
+      elevator::lowerMotor.moveVelocity(-12000);
     } else if (high() >= hThresh && rtn2.signature == 2) {
-      elevator::elevGroup.moveVelocity(0);
+      elevator::elevGroup.moveVoltage(0);
     }
   }
 }
@@ -76,27 +76,27 @@ void execute() {
   case State::IN:
 
     if (low() < lThresh && high() < hThresh) {
-      intakeGroup.moveVelocity(200);
+      intakeGroup.moveVoltage(12000);
     } else if (low() >= lThresh) {
-      intakeGroup.moveVelocity(200);
+      intakeGroup.moveVoltage(12000);
       autoElev();
     } else if (high() >= hThresh) {
       autoElev();
-      intakeGroup.moveVelocity(200);
+      intakeGroup.moveVoltage(12000);
     } else if (low() > lThresh && high() > hThresh) {
-      elevator::elevGroup.moveVelocity(0);
-      intakeGroup.moveVelocity(0);
+      elevator::elevGroup.moveVoltage(0);
+      intakeGroup.moveVoltage(0);
     }
 
     break;
 
   case State::OUT:
-    intakeGroup.moveVelocity(-200);
+    intakeGroup.moveVelocity(-12000);
     break;
 
   case State::DEINIT:
-    intakeGroup.moveVelocity(0);
-    elevator::elevGroup.moveVelocity(0);
+    intakeGroup.moveVoltage(0);
+    elevator::elevGroup.moveVoltage(0);
     state = State::NONE;
     break;
 
@@ -115,6 +115,6 @@ void init() {
 
 namespace auton {
 
-void runIntake(int velocity) { intake::intakeGroup.moveVelocity(velocity); }
+void runIntake(int velocity) { intake::intakeGroup.moveVoltage(velocity); }
 
 } // namespace auton

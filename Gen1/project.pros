@@ -294,7 +294,7 @@
         "upload_options": {
             "compress_bin": true,
             "description": "",
-            "remote_name": "test",
+            "remote_name": "volt test",
             "slot": 2
         }
     }

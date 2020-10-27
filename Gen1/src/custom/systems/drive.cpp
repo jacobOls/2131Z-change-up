@@ -8,31 +8,31 @@ Right right = Right::NONE;
 Brake brake = Brake::NONE;
 
 void userDrive() {
-  left_front.moveVelocity(
+  left_front.moveVoltage(
       (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,
                        0.05) +
        okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX), -0.05,
                        0.05)) *
-      200);
-  left_back.moveVelocity(
+      12000);
+  left_back.moveVoltage(
       (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,
                        0.05) -
        okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX), -0.05,
                        0.05)) *
-      200);
+      12000);
 
-  right_front.moveVelocity(
+  right_front.moveVoltage(
       (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY), -0.05,
                        0.05) -
        okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightX), -0.05,
                        0.05)) *
-      200);
-  right_back.moveVelocity(
+      12000);
+  right_back.moveVoltage(
       (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY), -0.05,
                        0.05) +
        okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightX), -0.05,
                        0.05)) *
-      200);
+      12000);
 }
 } // namespace drive
 

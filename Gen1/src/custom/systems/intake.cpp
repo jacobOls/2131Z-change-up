@@ -47,16 +47,16 @@ void execute() {
     //   wheel::wheelGroup.moveVelocity(0);
     //   state = State::DEINIT;
     // }
-    intake::intakeGroup.moveVelocity(200);
+    intake::intakeGroup.moveVoltage(12000);
     break;
 
   case State::OUT:
-    intakeGroup.moveVelocity(-200);
+    intakeGroup.moveVoltage(-12000);
     break;
 
   case State::DEINIT:
-    intakeGroup.moveVelocity(0);
-    wheel::wheelGroup.moveVelocity(0);
+    intakeGroup.moveVoltage(0);
+    wheel::wheelGroup.moveVoltage(0);
     state = State::NONE;
     break;
 

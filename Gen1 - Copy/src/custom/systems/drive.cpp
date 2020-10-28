@@ -58,7 +58,7 @@ void drive(int distance, int velocity) {
 
     drive::leftDrive.deAccelMath(accel, &drive::left_drive, remDist);
     drive::rightDrive.deAccelMath(accel, &drive::right_drive, remDist);
-    pros::delay(drive::leftDrive.rateOfChange);
+    // pros::delay(drive::leftDrive.rateOfChange);
   }
   std::cout << drive::left_drive.getPosition() << std::endl;
   drive::left_drive.moveVelocity(0);

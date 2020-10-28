@@ -33,18 +33,18 @@ void ramping::accelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
 
 void ramping::deAccelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
                           int requested) {
-  double vel = MotorGroup->getActualVelocity();
+  double vel = MotorGroup->getVoltage();
   if (abs(vel) < abs(requested)) {
     vel = requested;
   }
   if (requested > 0) {
-    vel -= changeValue * 8;
+    vel -= changeValue * 300;
   }
   (*handler)(MotorGroup, vel);
 }
 
 void accel(okapi::MotorGroup *MotorGroup, int vel) {
-  MotorGroup->moveVelocity(vel);
+  MotorGroup->moveVoltage(vel);
 }
 
 // ramping ramper = ramping(5, 5, -200, 200);

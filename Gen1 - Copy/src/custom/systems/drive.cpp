@@ -49,20 +49,20 @@ void drive(int distance, int velocity) {
     // std::cout << "looping" << std::endl;
   }
   // std::cout << "stopping" << std::endl;
-  while (abs(drive::left_front.getPosition()) <= abs(distance)) {
+  while (abs(drive::left_front.getPosition()) < abs(distance)) {
     remDist = distance - abs(drive::left_front.getPosition());
     if (abs(remDist) > abs(velocity))
       remDist = velocity;
     if (velocity < 0 && remDist > 0)
       remDist *= -1;
 
-    drive::leftDrive.deAccelMath(accel, &drive::left_drive, remDist);
-    drive::rightDrive.deAccelMath(accel, &drive::right_drive, remDist);
+    drive::leftDrive.deAccelMath(accel, &drive::left_drive, remDist * 50);
+    drive::rightDrive.deAccelMath(accel, &drive::right_drive, remDist * 50);
     // pros::delay(drive::leftDrive.rateOfChange);
   }
   std::cout << drive::left_drive.getPosition() << std::endl;
-  drive::left_drive.moveVelocity(0);
-  drive::right_drive.moveVelocity(0);
+  drive::left_drive.moveVoltage(0);
+  drive::right_drive.moveVoltage(0);
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
 }

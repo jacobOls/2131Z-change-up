@@ -33,23 +33,21 @@ void ramping::accelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
 
 void ramping::deAccelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
                           int requested, int startVel) {
-  double vel = MotorGroup->getActualVelocity();
-  if (vel > .4 * startVel) {
-    vel -= changeValue * timesLooped;
-    if (vel < .4 * startVel)
-      vel = .4 * startVel;
-  } else if (vel > .3 * startVel && vel <= .5 * startVel) {
-    vel -= changeValue;
+  if (vel < 0) {
+    vel *= -1;
   }
-
-  else if (vel >= requested) {
-    // if(timeSlow >= 2 * changeValue){
-    //   timeSlow-= 1;
-    // }
+  if (vel > .4 * abs(startVel)) {
+    vel -= changeValue * timesLooped;
+    if (vel < .4 * abs(startVel))
+      vel = .4 * abs(startVel);
+  } else if (vel > .3 * startVel && vel <= .5 * abs(startVel)) {
+    vel -= changeValue;
+  } else if (vel >= requested) {
     vel *= 0.7;
   }
-  // if(vel < requested)
-  // vel = requested;
+  if (startVel < 0) {
+    vel *= -1;
+  }
   // std::cout << vel << std::endl;
   // cout<<timesLooped<<endl;
   (*handler)(MotorGroup, vel);

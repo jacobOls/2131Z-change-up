@@ -18,7 +18,7 @@ public:
                  int requested);
 
   void deAccelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
-                   int requested);
+                   int requested, int startVel);
 };
 void accel(okapi::MotorGroup *MotorGroup, int requested);
 

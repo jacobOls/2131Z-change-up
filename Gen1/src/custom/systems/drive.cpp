@@ -41,7 +41,16 @@ int remDist;
 void drive(int distance, int velocity) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
-  while (abs(drive::left_front.getPosition()) <= abs((distance)*8 / 10)) {
+  int epsilon;
+  if (velocity == 200 || velocity == -200)
+    epsilon = 300;
+  else if (velocity == 150 || velocity == -150)
+    epsilon = 300;
+  else if (velocity == 100 || velocity == -100)
+    epsilon = 300;
+  else if (velocity == 50 || velocity == -50)
+    epsilon = 300;
+  while (abs(drive::left_front.getPosition()) <= abs((distance)) - epsilon) {
     drive::accelDrive.accelMath(accel, &drive::left_drive, velocity);
     drive::accelDrive.accelMath(accel, &drive::right_drive, velocity);
     pros::delay(drive::accelDrive.rateOfChange);
@@ -49,7 +58,7 @@ void drive(int distance, int velocity) {
     // std::cout << "looping" << std::endl;
   }
   // std::cout << "stopping" << std::endl;
-  while (abs(drive::left_front.getPosition()) <= abs(distance)) {
+  while (abs(drive::left_front.getActualVelocity()) != 0) {
 
     // std::cout << drive::left_drive.getPosition() << std::endl;
     drive::deAccelDrive.deAccelMath(accel, &drive::left_drive, 0, velocity);

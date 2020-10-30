@@ -43,7 +43,7 @@ void drive(int distance, int velocity) {
   drive::right_drive.tarePosition();
   int epsilon;
   if (velocity == 200 || velocity == -200)
-    epsilon = 400;
+    epsilon = 350;
   else if (velocity == 150 || velocity == -150)
     epsilon = 250;
   else if (velocity == 100 || velocity == -100)
@@ -66,6 +66,7 @@ void drive(int distance, int velocity) {
     drive::driveGroup.moveVelocity(velocity);
   }
   std::cout << "stopping " << drive::driveGroup.getPosition() << std::endl;
+  reset();
   while (abs(drive::left_front.getPosition()) < distance) {
 
     // std::cout << drive::left_drive.getPosition() << std::endl;

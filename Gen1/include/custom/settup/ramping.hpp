@@ -2,7 +2,7 @@
 #define RAMPING_HPP
 #include "main.h"
 extern double timesLooped; // times looped
-
+void reset();
 class ramping {
 
   typedef void (*rampMotor)(okapi::MotorGroup *, int);

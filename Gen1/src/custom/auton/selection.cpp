@@ -121,7 +121,7 @@ void btnCreate() {
     for (int col = 0; col < 4; col++) {
       allButtons[ndx] = lv_btn_create(lv_scr_act(), NULL);
       btnConfig(allButtons[ndx], row, col, ndx);
-      std::cout << "Created button at pos " << ndx << std::endl;
+      // std::cout << "Created button at pos " << ndx << std::endl;
       ndx++;
     }
   }

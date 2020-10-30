@@ -11,7 +11,7 @@ extern okapi::MotorGroup left_drive;
 extern okapi::MotorGroup right_drive;
 extern okapi::MotorGroup left_strafe;
 extern okapi::MotorGroup right_strafe;
-
+extern okapi::MotorGroup driveGroup;
 extern okapi::MotorGroup leftFront;
 extern okapi::MotorGroup leftBack;
 extern okapi::MotorGroup rightFront;

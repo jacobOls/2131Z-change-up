@@ -14,14 +14,15 @@ okapi::MotorGroup left_drive({left_front, left_back});
 okapi::MotorGroup right_drive({right_front, right_back});
 okapi::MotorGroup left_strafe({left_front, right_back});
 okapi::MotorGroup right_strafe({right_front, left_back});
+okapi::MotorGroup driveGroup({right_front, right_back, left_front, left_back});
 
 okapi::MotorGroup leftFront({left_front});
 okapi::MotorGroup rightFront({right_front});
 okapi::MotorGroup leftBack({left_back});
 okapi::MotorGroup rightBack({right_back});
 
-ramping accelDrive = ramping(20, 2, -200, 200);
-ramping deAccelDrive = ramping(6, 2, -200, 200);
+ramping accelDrive = ramping(15, 2, -200, 200);
+ramping deAccelDrive = ramping(12, 2, -200, 200);
 } // end namespace drive
 namespace intake {
 okapi::Motor left_motor(17, false, okapi::AbstractMotor::gearset::green, // left

@@ -43,33 +43,43 @@ void drive(int distance, int velocity) {
   drive::right_drive.tarePosition();
   int epsilon;
   if (velocity == 200 || velocity == -200)
-    epsilon = 300;
+    epsilon = 400;
   else if (velocity == 150 || velocity == -150)
-    epsilon = 300;
+    epsilon = 250;
   else if (velocity == 100 || velocity == -100)
-    epsilon = 300;
+    epsilon = 200;
   else if (velocity == 50 || velocity == -50)
-    epsilon = 300;
-  while (abs(drive::left_front.getPosition()) <= abs((distance)) - epsilon) {
-    drive::accelDrive.accelMath(accel, &drive::left_drive, velocity);
-    drive::accelDrive.accelMath(accel, &drive::right_drive, velocity);
-    pros::delay(drive::accelDrive.rateOfChange);
+    epsilon = 150;
+  while (abs(drive::driveGroup.getPosition()) <= abs((distance)) - epsilon) {
+    if (abs(drive::driveGroup.getPosition()) >= distance - epsilon) {
+      break;
+    }
+    drive::accelDrive.accelMath(accel, &drive::driveGroup, velocity);
+    // if (abs(drive::driveGroup.getPosition()) <= distance - epsilon) {
+    //   break;
+    // }
+    // pros::delay(drive::accelDrive.rateOfChange);
     // std::cout << "ramping" << std::endl;
     // std::cout << "looping" << std::endl;
   }
-  // std::cout << "stopping" << std::endl;
-  while (abs(drive::left_front.getActualVelocity()) != 0) {
+  if (drive::driveGroup.getActualVelocity() < velocity) {
+    drive::driveGroup.moveVelocity(velocity);
+  }
+  std::cout << "stopping " << drive::driveGroup.getPosition() << std::endl;
+  while (abs(drive::left_front.getPosition()) < distance) {
 
     // std::cout << drive::left_drive.getPosition() << std::endl;
-    drive::deAccelDrive.deAccelMath(accel, &drive::left_drive, 0, velocity);
-    drive::deAccelDrive.deAccelMath(accel, &drive::right_drive, 0, velocity);
+    drive::deAccelDrive.deAccelMath(accel, &drive::driveGroup, 5, velocity);
+    if (drive::driveGroup.getPosition() >= distance) {
+      break;
+    }
     pros::delay(drive::deAccelDrive.rateOfChange);
   }
-  std::cout << drive::left_drive.getPosition() << std::endl;
-  // drive::left_drive.moveVelocity(0);
-  // drive::right_drive.moveVelocity(0);
-  drive::left_drive.tarePosition();
-  drive::right_drive.tarePosition();
+  std::cout << "end " << drive::driveGroup.getPosition() << std::endl;
+  std::cout << "vel " << drive::left_front.getActualVelocity() << std::endl;
+  reset();
+  drive::driveGroup.moveVelocity(0);
+  drive::driveGroup.tarePosition();
 }
 
 void driveNE(int distance, int velocity) {

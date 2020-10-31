@@ -200,7 +200,7 @@ void skills() {
 void testFunctions() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  strafe(800, 150, "left");
+  turn(500, 100, "left");
   // strafe(800, 200, "left");
   // strafe(800, 200, "right");
 }

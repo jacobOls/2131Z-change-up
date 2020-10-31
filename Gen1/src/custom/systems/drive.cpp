@@ -148,7 +148,7 @@ void timeStrafe(int voltage, int time, std::string direction) {
 void turn(int turnAmount, int velocity, std::string direction) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
-  int epsilon = velocity * 1.125;
+  int epsilon = velocity * 0.8;
   while (abs(drive::left_front.getPosition()) <= turnAmount - epsilon) {
     if (direction == "left") {
       drive::accelDrive.accelMath(accel, &drive::left_drive, -velocity);
@@ -178,14 +178,14 @@ void turn(int turnAmount, int velocity, std::string direction) {
   while (abs(drive::left_front.getActualVelocity()) != 12349) {
 
     if (direction == "left") {
-      drive::accelDrive.deAccelMath(accel, &drive::left_drive, -20,
+      drive::accelDrive.deAccelMath(accel, &drive::left_drive, -10,
                                     velocity * .4);
-      drive::accelDrive.deAccelMath(accel, &drive::right_drive, 20,
+      drive::accelDrive.deAccelMath(accel, &drive::right_drive, 10,
                                     velocity * .4);
     } else if (direction == "right") {
-      drive::accelDrive.deAccelMath(accel, &drive::left_drive, 20,
+      drive::accelDrive.deAccelMath(accel, &drive::left_drive, 10,
                                     velocity * .4);
-      drive::accelDrive.deAccelMath(accel, &drive::right_drive, -20,
+      drive::accelDrive.deAccelMath(accel, &drive::right_drive, -10,
                                     velocity * .4);
     }
     if (abs(drive::left_front.getPosition()) >= turnAmount) {

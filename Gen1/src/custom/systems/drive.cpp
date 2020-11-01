@@ -42,7 +42,7 @@ void drive(int distance, int velocity) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
   int epsilon = velocity * 1.725;
-
+  int req = 5;
   while (abs(drive::driveGroup.getPosition()) <= abs((distance)) - epsilon) {
     if (abs(drive::driveGroup.getPosition()) >= distance - epsilon) {
       break;
@@ -56,10 +56,12 @@ void drive(int distance, int velocity) {
   std::cout << "stopping " << drive::driveGroup.getPosition() << std::endl;
   reset();
   while (abs(drive::left_front.getActualVelocity()) != 5000) {
-
+    if (velocity < 0 && req > 0) {
+      req *= 1;
+    }
     // std::cout << drive::left_drive.getPosition() << std::endl;
-    drive::deAccelDrive.deAccelMath(accel, &drive::driveGroup, 5, velocity);
-    if (drive::driveGroup.getPosition() >= distance) {
+    drive::deAccelDrive.deAccelMath(accel, &drive::driveGroup, req, velocity);
+    if (abs(drive::driveGroup.getPosition()) >= distance) {
       std::cout << " break early " << drive::driveGroup.getPosition()
                 << std::endl;
       break;

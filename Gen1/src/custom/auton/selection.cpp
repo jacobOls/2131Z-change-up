@@ -140,8 +140,7 @@ void clearBtns(lv_obj_t *toggledButton = NULL) {
 
 void execute() {
   std::cout << "executing" << std::endl;
-  autonFnPtr defaultAuton = auton::testFunctions;
-  defaultThing = "Things work and not";
+  autonFnPtr defaultAuton = auton::redAuton;
   // inAuton = true;
 
   if (selectedAuton == -1) {

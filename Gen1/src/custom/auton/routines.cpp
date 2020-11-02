@@ -29,11 +29,10 @@ void redAuton() {
   runIntake(100);
   runWheel(15);
   turn(275, 125, "right");
-  strafe(1500, 200, "right");
+  strafe(1400, 200, "right");
   runWheel(0);
   runIntake(0);
   runIntake(0);
-  turn(50, 50, "left");
   drive(330, 70);
   // wait(450);
   // strafe(100, 50, "left");

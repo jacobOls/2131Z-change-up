@@ -17,24 +17,24 @@ void redAuton() {
   strafe(500, 140, "left");
   runIntake(200);
   // drive(100, 50);
-  turn(270, 160, "right");
+  turn(290, 160, "right");
   drive(540, 200);
   runIntake(0);
   runWheel(200);
   wait(800);
   runWheel(0);
-  runIntake(-35);
+  runIntake(-10);
   // runWheel(40);
   drive(125, -100);
-  runIntake(50);
-  runWheel(50);
+  runIntake(100);
+  runWheel(15);
   turn(275, 125, "right");
+  strafe(1500, 200, "right");
   runWheel(0);
   runIntake(0);
-  strafe(1500, 200, "right");
   runIntake(0);
-  turn(20, 10, "left");
-  drive(230, 70);
+  turn(50, 50, "left");
+  drive(330, 70);
   // wait(450);
   // strafe(100, 50, "left");
   runWheel(200);
@@ -43,7 +43,7 @@ void redAuton() {
   // drive(50, -100);
   drive(150, -70);
   strafe(1150, 200, "right");
-  turn(350, 150, "right");
+  turn(330, 150, "right");
   runIntake(200);
   runWheel(30);
   drive(875, 200);
@@ -204,7 +204,7 @@ void skills() {
 void testFunctions() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  turn(500, 100, "left");
+  turn(50, 10, "right");
   // strafe(800, 200, "left");
   // strafe(800, 200, "right");
 }

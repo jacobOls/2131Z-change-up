@@ -151,6 +151,7 @@ void turn(int turnAmount, int velocity, std::string direction) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
   int epsilon = velocity * 0.8;
+  reset();
   while (abs(drive::left_front.getPosition()) <= turnAmount - epsilon) {
     if (direction == "left") {
       drive::accelDrive.accelMath(accel, &drive::left_drive, -velocity);

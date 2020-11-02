@@ -11,9 +11,9 @@ extern okapi::MotorGroup left_drive;
 extern okapi::MotorGroup right_drive;
 extern okapi::MotorGroup left_strafe;
 extern okapi::MotorGroup right_strafe;
-
-extern ramping leftDrive;
-extern ramping rightDrive;
+extern okapi::MotorGroup driveGroup;
+extern ramping accelDrive;
+extern ramping deAccelDrive;
 } // namespace drive
 namespace intake {
 extern okapi::Motor left_motor;

@@ -27,22 +27,50 @@ void ramping::accelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
     vel = -abs(vel);
   }
 
+  // if (vel == requested) {
+  //   timesLooped = 0;
+  // }
   (*handler)(MotorGroup, vel);
   timesLooped++;
+  // if (vel == requested) {
+  //   timesLooped = 0;
+  // }
 }
-
+bool velTrue = false;
 void ramping::deAccelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
-                          int requested) {
-  double vel = MotorGroup->getActualVelocity();
-  if (abs(vel) < abs(requested)) {
+                          int requested, int startVel) {
+  if (!velTrue) {
+    vel = startVel;
+    velTrue = true;
+  }
+  if (startVel < 0) {
+    vel *= -1;
+  }
+  if (vel > .6 * abs(startVel)) {
+    vel -= changeValue * timesLooped;
+    if (vel < .6 * abs(startVel))
+      vel = .6 * abs(startVel);
+  } else if (vel > .32 * startVel && vel <= .6 * abs(startVel)) {
+    vel -= changeValue;
+  } else if (vel >= requested) {
+    vel *= 0.7;
+  }
+  if (startVel < 0) {
+    vel *= -1;
+  }
+  if (abs(drive::driveGroup.getActualVelocity()) < abs(requested)) {
     vel = requested;
   }
-  if (requested > 0) {
-    vel -= changeValue * 8;
-  }
+  // std::cout << vel << std::endl;
+  // cout<<timesLooped<<endl;
   (*handler)(MotorGroup, vel);
+  pros::delay(changeValue);
+  timesLooped++;
 }
-
+void reset() {
+  timesLooped = 0;
+  velTrue = false;
+}
 void accel(okapi::MotorGroup *MotorGroup, int vel) {
   MotorGroup->moveVelocity(vel);
 }

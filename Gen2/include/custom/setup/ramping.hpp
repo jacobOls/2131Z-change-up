@@ -2,7 +2,7 @@
 #define RAMPING_HPP
 #include "main.h"
 extern double timesLooped; // times looped
-
+void reset();
 class ramping {
 
   typedef void (*rampMotor)(okapi::MotorGroup *, int);
@@ -18,7 +18,7 @@ public:
                  int requested);
 
   void deAccelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
-                   int requested);
+                   int requested, int startVel);
 };
 void accel(okapi::MotorGroup *MotorGroup, int requested);
 

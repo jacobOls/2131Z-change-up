@@ -14,7 +14,7 @@ void redAuton() {
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  strafe(500, 160, "left");
+  strafe(500, 140, "left");
   runIntake(200);
   // drive(100, 50);
   turn(270, 160, "right");
@@ -26,14 +26,15 @@ void redAuton() {
   runIntake(-35);
   // runWheel(40);
   drive(125, -100);
-  runIntake(0);
-  turn(275, 125, "right");
-  // runWheel(30);
   runIntake(50);
+  runWheel(50);
+  turn(275, 125, "right");
+  runWheel(0);
+  runIntake(0);
   strafe(1500, 200, "right");
   runIntake(0);
   turn(20, 10, "left");
-  drive(250, 90);
+  drive(230, 70);
   // wait(450);
   // strafe(100, 50, "left");
   runWheel(200);

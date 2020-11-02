@@ -6,33 +6,37 @@ namespace drive {
 Left left = Left::NONE;
 Right right = Right::NONE;
 Brake brake = Brake::NONE;
-
+double leftF;
+double leftB;
+double rightF;
+double rightB;
 void userDrive() {
-  left_front.moveVelocity(
-      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,
-                       0.05) +
-       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX), -0.05,
-                       0.05)) *
-      200);
-  left_back.moveVelocity(
-      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,
-                       0.05) -
-       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX), -0.05,
-                       0.05)) *
-      200);
+  leftF = (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY),
+                           -0.05, 0.05) +
+           okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX),
+                           -0.05, 0.05)) *
+          12000;
+  leftB = (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY),
+                           -0.05, 0.05) -
+           okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX),
+                           -0.05, 0.05)) *
+          12000;
 
-  right_front.moveVelocity(
-      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY), -0.05,
-                       0.05) -
-       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightX), -0.05,
-                       0.05)) *
-      200);
-  right_back.moveVelocity(
-      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY), -0.05,
-                       0.05) +
-       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightX), -0.05,
-                       0.05)) *
-      200);
+  rightF = (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY),
+                            -0.05, 0.05) -
+            okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightX),
+                            -0.05, 0.05)) *
+           12000;
+  rightB = (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY),
+                            -0.05, 0.05) +
+            okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightX),
+                            -0.05, 0.05)) *
+           12000;
+
+  left_front.moveVelocity(pow(leftF, 1.725) / (pow(12000, (1.725 - 1))));
+  left_back.moveVelocity(pow(leftB, 1.725) / (pow(12000, (1.725 - 1))));
+  right_front.moveVelocity(pow(rightF, 1.725) / (pow(12000, (1.725 - 1))));
+  right_back.moveVelocity(pow(rightB, 1.725) / (pow(12000, (1.725 - 1))));
 }
 } // namespace drive
 

@@ -41,7 +41,7 @@ void opcontrol() {
     // wheel::init();
     // vision::execute();
     selection::colorSwap();
-    // drive::userDrive();
+    drive::userDrive();
     record::record();
     pros::delay(20);
   }

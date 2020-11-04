@@ -3,6 +3,7 @@
 #include "main.h"
 namespace drive {
 void userDrive(void);
+void brake();
 } // namespace drive
 namespace auton {
 void drive(int distance, int velocity);

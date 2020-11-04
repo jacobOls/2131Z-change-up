@@ -40,6 +40,7 @@ void opcontrol() {
     wheel::init();
     vision::execute();
     drive::userDrive();
+    drive::brake();
     record::record();
     pros::delay(20);
   }

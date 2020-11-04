@@ -3,6 +3,13 @@
 #include "custom/settup/motors.hpp"
 #include "main.h"
 namespace drive {
+void brake() {
+  if (BtnBrake.isPressed()) {
+    drive::driveGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+  } else {
+    drive::driveGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+  }
+}
 void userDrive() {
   left_front.moveVoltage(
       (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,

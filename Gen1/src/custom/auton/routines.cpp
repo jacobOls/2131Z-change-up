@@ -14,26 +14,26 @@ void redAuton() {
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  strafe(500, 140, "left");
+  strafe(650, 140, "left");
   runIntake(200);
   // drive(100, 50);
   turn(290, 160, "right");
-  drive(540, 200);
-  runIntake(0);
+  drive(680, 200);
+  runIntake(-120);
   runWheel(200);
   wait(800);
   runWheel(0);
-  runIntake(-10);
-  // runWheel(40);
+  runIntake(30);
+  // runWheel(80);
   drive(125, -100);
-  runIntake(100);
-  runWheel(15);
+  // runIntake(100);
+  runWheel(40);
   turn(275, 125, "right");
-  strafe(1400, 200, "right");
   runWheel(0);
+  strafe(1400, 200, "right");
   runIntake(0);
   runIntake(0);
-  drive(330, 70);
+  drive(150, 70);
   // wait(450);
   // strafe(100, 50, "left");
   runWheel(200);
@@ -42,15 +42,16 @@ void redAuton() {
   // drive(50, -100);
   drive(150, -70);
   strafe(1150, 200, "right");
-  turn(330, 150, "right");
+  turn(440, 200, "right");
   runIntake(200);
   runWheel(30);
-  drive(875, 200);
+  drive(800, 200);
   // drive(50, 20);
-  runIntake(0);
+  runIntake(-100);
   runWheel(200);
   wait(1100);
   runWheel(0);
+  runIntake(0);
   drive(200, -50);
 }
 void twoTowers() {

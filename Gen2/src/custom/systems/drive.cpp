@@ -30,6 +30,13 @@ void userDrive() {
                        0.05)) *
       12000);
 }
+void brake() {
+  if (BtnBrake.isPressed()) {
+    drive::driveGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+  } else {
+    drive::driveGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+  }
+}
 } // namespace drive
 
 namespace auton {

@@ -14,43 +14,44 @@ void redAuton() {
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  strafe(500, 140, "left");
-  runIntake(200);
+  strafe(650, 140, "left");
+  runIntake(12000);
   // drive(100, 50);
   turn(290, 160, "right");
-  drive(540, 200);
-  runIntake(0);
-  runElevator(200);
+  drive(680, 200);
+  runIntake(-8000);
+  runElevator(12000);
   wait(800);
   runElevator(0);
-  runIntake(-10);
-  // runElevator(40);
+  runIntake(4000);
+  // runElevator(80);
   drive(125, -100);
-  runIntake(100);
-  runElevator(15);
+  // runIntake(100);
+  runElevator(5000);
   turn(275, 125, "right");
-  strafe(1400, 200, "right");
   runElevator(0);
+  strafe(1400, 200, "right");
   runIntake(0);
   runIntake(0);
-  drive(330, 70);
+  drive(150, 70);
   // wait(450);
   // strafe(100, 50, "left");
-  runElevator(200);
+  runElevator(12000);
   wait(1000);
   runElevator(0);
   // drive(50, -100);
   drive(150, -70);
   strafe(1150, 200, "right");
-  turn(330, 150, "right");
-  runIntake(200);
-  runElevator(30);
-  drive(875, 200);
+  turn(440, 200, "right");
+  runIntake(12000);
+  runElevator(3000);
+  drive(800, 200);
   // drive(50, 20);
-  runIntake(0);
-  runElevator(200);
+  runIntake(-6000);
+  runElevator(12000);
   wait(1100);
   runElevator(0);
+  runIntake(0);
   drive(200, -50);
 }
 void twoTowers() {
@@ -59,32 +60,33 @@ void twoTowers() {
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  strafe(450, 125, "left");
-  runIntake(200);
+  strafe(650, 140, "left");
+  runIntake(12000);
   // drive(100, 50);
-  turn(260, 90, "right");
-  drive(475, 40);
-  runIntake(0);
-  runElevator(200);
-  wait(700);
-  runElevator(40);
-  // runIntake(-100);
-  drive(275, -100);
+  turn(290, 160, "right");
+  drive(680, 200);
+  runIntake(-8000);
+  runElevator(12000);
+  wait(800);
   runElevator(0);
+  runIntake(4000);
+  // runElevator(80);
+  drive(125, -100);
+  // runIntake(100);
+  runElevator(5000);
+  turn(275, 125, "right");
+  runElevator(0);
+  strafe(1400, 200, "right");
   runIntake(0);
-  turn(275, 100, "right");
-  runElevator(30);
-  runIntake(50);
-  strafe(1350, 200, "right");
   runIntake(0);
-  drive(40, 20);
-  runElevator(200);
-  wait(450);
+  drive(150, 70);
+  // wait(450);
   // strafe(100, 50, "left");
-  wait(1100);
+  runElevator(12000);
+  wait(1000);
   runElevator(0);
   // drive(50, -100);
-  drive(200, -20);
+  drive(150, -70);
 }
 
 void oneTower() {
@@ -93,17 +95,14 @@ void oneTower() {
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  strafe(450, 125, "left");
-  runIntake(200);
+  strafe(650, 140, "left");
+  runIntake(12000);
   // drive(100, 50);
-  turn(260, 90, "right");
-  drive(475, 40);
-  runIntake(0);
-  runElevator(200);
-  wait(700);
-  runElevator(40);
-  // runIntake(-100);
-  drive(275, -100);
+  turn(290, 160, "right");
+  drive(680, 200);
+  runIntake(-8000);
+  runElevator(12000);
+  wait(800);
   runElevator(0);
   runIntake(0);
 }
@@ -117,7 +116,7 @@ void blueHome() {
   runElevator(25);
   drive(600, 140);
   runIntake(0);
-  runElevator(200);
+  runElevator(12000);
   wait(700);
   runElevator(0);
   drive(150, -150);
@@ -127,7 +126,7 @@ void blueHome() {
   runIntake(200);
   drive(275, 150);
   runIntake(0);
-  runElevator(200);
+  runElevator(12000);
   wait(800);
   runElevator(0);
   runIntake(-100);
@@ -138,7 +137,7 @@ void blueHome() {
   runIntake(200);
   drive(800, 100);
   runIntake(0);
-  runElevator(200);
+  runElevator(12000);
   wait(1000);
   runElevator(0);
   drive(-200, -200);
@@ -158,7 +157,7 @@ void skills() {
   runIntake(140);
   runElevator(20);
   drive(700, 100);
-  runElevator(200);
+  runElevator(12000);
   wait(500);
   runElevator(-25);
   runIntake(-25);
@@ -171,7 +170,7 @@ void skills() {
   runIntake(200);
   drive(250, 150);
   runIntake(0);
-  runElevator(200);
+  runElevator(12000);
   wait(800);
   runElevator(0);
   runIntake(-100);
@@ -182,7 +181,7 @@ void skills() {
   runIntake(200);
   drive(800, 100);
   runIntake(0);
-  runElevator(200);
+  runElevator(12000);
   wait(1000);
   runElevator(0);
   drive(-200, -200);
@@ -195,7 +194,7 @@ void skills() {
   runIntake(0);
   runElevator(0);
   drive(500, 200);
-  runElevator(200);
+  runElevator(12000);
   wait(700);
   runElevator(0);
   */
@@ -208,9 +207,4 @@ void testFunctions() {
   // strafe(800, 200, "right");
 }
 
-void userGen() {
-  if (fail) {
-    dont();
-  }
-}
 } // namespace auton

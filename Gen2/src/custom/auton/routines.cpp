@@ -6,7 +6,7 @@
 #include "main.h"
 namespace auton {
 void wait(int time) { pros::delay(time); }
-bool fail = false;
+bool fail = true;
 void dont() { fail = false; }
 void redAuton() {
   if (fail) {

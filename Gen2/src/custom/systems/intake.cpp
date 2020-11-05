@@ -5,7 +5,7 @@
 
 namespace intake {
 pros::Vision visionSensor(10);
-void initSensor() {
+void initVision() {
   visionSensor.set_wifi_mode(0);
   pros::vision_signature_s_t RED_BALL = visionSensor.signature_from_utility(
       1, 4953, 6495, 5724, -303, 259, -22, 3.000, 0);

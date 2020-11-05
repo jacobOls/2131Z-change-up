@@ -60,32 +60,33 @@ void twoTowers() {
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  strafe(450, 125, "left");
+  strafe(650, 140, "left");
   runIntake(200);
   // drive(100, 50);
-  turn(260, 90, "right");
-  drive(475, 40);
-  runIntake(0);
+  turn(290, 160, "right");
+  drive(680, 200);
+  runIntake(-120);
   runWheel(200);
-  wait(700);
-  runWheel(40);
-  // runIntake(-100);
-  drive(275, -100);
+  wait(800);
   runWheel(0);
+  runIntake(30);
+  // runWheel(80);
+  drive(125, -100);
+  // runIntake(100);
+  runWheel(40);
+  turn(275, 125, "right");
+  runWheel(0);
+  strafe(1400, 200, "right");
   runIntake(0);
-  turn(275, 100, "right");
-  runWheel(30);
-  runIntake(50);
-  strafe(1350, 200, "right");
   runIntake(0);
-  drive(40, 20);
-  runWheel(200);
-  wait(450);
+  drive(150, 70);
+  // wait(450);
   // strafe(100, 50, "left");
-  wait(1100);
+  runWheel(200);
+  wait(1000);
   runWheel(0);
   // drive(50, -100);
-  drive(200, -20);
+  drive(150, -70);
 }
 
 void oneTower() {

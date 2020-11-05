@@ -5,7 +5,8 @@
 namespace drive {
 void brake() {
   if (BtnBrake.isPressed()) {
-    drive::driveGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
   } else {
     drive::driveGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   }

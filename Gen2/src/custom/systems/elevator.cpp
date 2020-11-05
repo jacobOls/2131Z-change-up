@@ -59,8 +59,8 @@ void execute() {
     break;
 
   case State::BACK: // moves wheel motors to eject ball out back
-    upperMotor.moveVoltage(12000);
-    lowerMotor.moveVelocity(-12000);
+    upperMotor.moveVoltage(-12000);
+    lowerMotor.moveVelocity(12000);
     break;
 
   case State::DOWN: // moves wheel alone downward

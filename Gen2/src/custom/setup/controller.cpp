@@ -15,7 +15,7 @@ okapi::ControllerButton BtnOut = master[okapi::ControllerDigital::R2];
 namespace elevator {
 okapi::ControllerButton BtnIn = master[okapi::ControllerDigital::L1];
 okapi::ControllerButton BtnOut = master[okapi::ControllerDigital::L2];
-okapi::ControllerButton BtnBack = master[okapi::ControllerDigital::down];
-okapi::ControllerButton Down = master[okapi::ControllerDigital::B];
-okapi::ControllerButton UpOnly = master[okapi::ControllerDigital::Y];
+okapi::ControllerButton BtnBack = master[okapi::ControllerDigital::Y];
+okapi::ControllerButton Down = master[okapi::ControllerDigital::down];
+okapi::ControllerButton UpOnly = master[okapi::ControllerDigital::B];
 } // namespace elevator

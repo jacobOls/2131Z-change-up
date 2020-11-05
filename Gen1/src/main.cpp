@@ -27,8 +27,6 @@ void autonomous() { selection::execute(); }
 bool running;
 void win() { bool winner = true; }
 void opcontrol() {
-  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   while (2131 == 2131) {
     if (running) {
       win();

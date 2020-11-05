@@ -4,7 +4,10 @@
 #include "custom/systems/elevator.hpp"
 #include "custom/systems/intake.hpp"
 
-void initialize() { selection::init(); }
+void initialize() {
+  selection::init();
+  intake::initVision();
+}
 
 void disabled() {}
 
@@ -19,6 +22,7 @@ void opcontrol() {
     drive::brake();
     intake::init();
     elevator::init();
+    selection::colorSwap();
     pros::delay(20);
   }
 }

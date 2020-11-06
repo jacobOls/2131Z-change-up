@@ -4,7 +4,7 @@
 #include "main.h"
 
 namespace intake {
-pros::Vision visionSensor(10);
+pros::Vision visionSensor(2);
 void initVision() {
   visionSensor.set_wifi_mode(0);
   pros::vision_signature_s_t RED_BALL = visionSensor.signature_from_utility(
@@ -32,6 +32,13 @@ void out() {
   if (BtnOut.isPressed()) {
     state = State::OUT;
   } else if (state == State::OUT) {
+    state = State::DEINIT;
+  }
+}
+void manIn() {
+  if (ManualIn.isPressed()) {
+    state = State::MANUAL;
+  } else if (state == State::MANUAL) {
     state = State::DEINIT;
   }
 }
@@ -82,6 +89,10 @@ void execute() {
     intakeGroup.moveVelocity(-12000);
     break;
 
+  case State::MANUAL:
+    intakeGroup.moveVelocity(200);
+    break;
+
   case State::DEINIT:
     intakeGroup.moveVoltage(0);
     elevator::elevGroup.moveVoltage(0);
@@ -96,6 +107,7 @@ void execute() {
 void init() {
   in();
   out();
+  manIn();
   execute();
 }
 

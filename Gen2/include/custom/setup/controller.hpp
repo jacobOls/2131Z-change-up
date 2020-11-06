@@ -11,6 +11,7 @@ extern okapi::ControllerButton BtnSwap;
 namespace intake {
 extern okapi::ControllerButton BtnIn;
 extern okapi::ControllerButton BtnOut;
+extern okapi::ControllerButton ManualIn;
 } // namespace intake
 namespace elevator {
 extern okapi::ControllerButton BtnIn;

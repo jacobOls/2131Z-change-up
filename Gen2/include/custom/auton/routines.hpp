@@ -1,10 +1,10 @@
 #ifndef ROUTINES_HPP
 #define ROUTINES_HPP
 namespace auton {
-void redAuton();
-void twoTowers();
-void oneTower();
-void blueHome();
+void rightAuton();
+void RtwoTowers();
+void RoneTower();
+void leftAuton();
 void testFunctions();
 void skills();
 

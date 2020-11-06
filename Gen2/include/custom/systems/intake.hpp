@@ -4,7 +4,6 @@
 namespace intake {
 enum class State { IN, OUT, DEINIT, MANUAL, NONE };
 void init(void);
-void initVision(void);
 } // namespace intake
 namespace auton {
 void runIntake(int velocity);

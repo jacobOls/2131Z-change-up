@@ -6,7 +6,7 @@
 
 void initialize() {
   selection::init();
-  intake::initVision();
+  elevator::initVision();
 }
 
 void disabled() {}
@@ -16,7 +16,7 @@ void competition_initialize() {}
 void autonomous() { selection::execute(); }
 
 void opcontrol() {
-  selection::execute();
+  // selection::execute();
   while (true) {
     drive::userDrive();
     drive::brake();

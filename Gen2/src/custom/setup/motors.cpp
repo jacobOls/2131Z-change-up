@@ -31,10 +31,10 @@ okapi::MotorGroup intakeGroup({left_motor, right_motor});
 } // end namespace intake
 
 namespace elevator {
-okapi::Motor upperMotor(5, false, okapi::AbstractMotor::gearset::green, // left
+okapi::Motor upperMotor(5, false, okapi::AbstractMotor::gearset::blue, // left
                         okapi::AbstractMotor::encoderUnits::degrees);
 okapi::Motor lowerMotor(4, false,
-                        okapi::AbstractMotor::gearset::green, // right
+                        okapi::AbstractMotor::gearset::blue, // right
                         okapi::AbstractMotor::encoderUnits::degrees);
 
 okapi::MotorGroup elevGroup({upperMotor, lowerMotor});

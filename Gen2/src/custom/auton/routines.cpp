@@ -14,38 +14,40 @@ void rightAuton() {
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  strafe(500, 140, "left");
+  strafe(520, 140, "left");
   runIntake(12000);
   // drive(100, 50);
-  turn(290, 160, "right");
-  drive(520, 200);
-  runIntake(-8000);
+  turn(220, 160, "right");
+  drive(520, 160);
+  // runIntake(-8000);
   runElevator(12000);
-  wait(400);
-  runElevator(0);
+  wait(500);
+  runElevator(-5000);
   runIntake(4000);
   // runElevator(80);
-  drive(125, -100);
+  drive(80, -25);
   // runIntake(100);
   // runElevator(8000);
-  turn(275, 125, "right");
+  turn(310, 90, "right");
   runElevator(0);
-  strafe(1350, 200, "right");
+  strafe(1600, 200, "right");
   runIntake(0);
-  drive(260, 100);
+  drive(100, 50);
   // wait(450);
   // strafe(100, 50, "left");
   runElevator(12000);
-  wait(400);
+  wait(500);
+  // turn(100, 25, "left");
   runElevator(0);
+  drive(-100, 40);
   // drive(50, -100);
-  drive(150, -70);
-  strafe(1250, 200, "right");
-  turn(300, 200, "right");
+  // drive(150, -70);
+  strafe(1450, 200, "right");
+  turn(235, 150, "right");
   runIntake(12000);
-  runElevator(5000);
   runElevator(12000);
-  drive(900, 200);
+  drive(550, 100);
+  wait(700);
   // drive(50, 20);
   // runIntake(-6000);
   // wait(1100);
@@ -59,30 +61,32 @@ void RtwoTowers() {
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  strafe(500, 140, "left");
+  strafe(520, 140, "left");
   runIntake(12000);
   // drive(100, 50);
-  turn(290, 160, "right");
-  drive(520, 200);
-  runIntake(-8000);
+  turn(220, 160, "right");
+  drive(520, 160);
+  // runIntake(-8000);
   runElevator(12000);
-  wait(400);
-  runElevator(0);
+  wait(500);
+  runElevator(-5000);
   runIntake(4000);
   // runElevator(80);
-  drive(125, -100);
+  drive(80, -25);
   // runIntake(100);
   // runElevator(8000);
-  turn(275, 125, "right");
+  turn(310, 90, "right");
   runElevator(0);
-  strafe(1350, 200, "right");
+  strafe(1600, 200, "right");
   runIntake(0);
-  drive(260, 100);
+  drive(100, 50);
   // wait(450);
   // strafe(100, 50, "left");
   runElevator(12000);
-  wait(400);
+  wait(500);
+  // turn(100, 25, "left");
   runElevator(0);
+  drive(-100, 40);
 }
 
 void RoneTower() {
@@ -91,18 +95,22 @@ void RoneTower() {
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  strafe(500, 140, "left");
+  strafe(520, 140, "left");
   runIntake(12000);
   // drive(100, 50);
-  turn(290, 160, "right");
-  drive(520, 200);
-  runIntake(-8000);
+  turn(220, 160, "right");
+  drive(520, 160);
+  // runIntake(-8000);
   runElevator(12000);
-  wait(400);
-  runElevator(0);
-  runIntake(0);
+  wait(500);
+  runElevator(-5000);
+  runIntake(4000);
   // runElevator(80);
-  drive(125, -100);
+  drive(80, -25);
+  // runIntake(100);
+  // runElevator(8000);
+  turn(310, 90, "right");
+  runElevator(0);
 }
 void leftAuton() {
   if (fail) {
@@ -150,61 +158,56 @@ void leftAuton() {
   drive(200, -50);
 }
 void skills() {
+  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   if (fail) {
     dont();
   }
-  runIntake(200);
-  runElevator(60);
-  drive(700, 100);
+  runIntake(12000);
+  drive(500, 100);
+  runIntake(0);
+  // runElevator(4000);
+  turn(770, 200, "right");
+  // runElevator(0);
+  // runIntake(12000);
+  drive(650, 150);
+  runElevator(12000);
+  wait(400);
   runElevator(0);
-  turn(450, 100, "right");
-  drive(540, 100);
-  drive(250, -100);
-  turn(270, 90, "right");
-  runIntake(140);
-  runElevator(20);
-  drive(700, 100);
+  drive(200, -80);
+  runElevator(0);
+  runIntake(0);
+  drive(80, -25);
+  turn(330, 90, "right");
+  // autoBack(600);
+  // tower 1
+  strafe(1200, 200, "right");
+  // drive(200, 100);
+  // wait(450);
+  // strafe(100, 50, "left");
+  runElevator(12000);
+  wait(300);
+  runElevator(0);
+  drive(50, -40);
+  runIntake(12000);
+  turn(550, 200, "right");
+  drive(1300, 140);
+  runIntake(0);
+  turn(220, 100, "left");
+  drive(500, 150);
+  runElevator(12000);
+  wait(650);
+  runElevator(0);
+  drive(300, -100);
+  turn(700, 100, "right");
+  runIntake(12000);
+  drive(1200, 200);
+  runIntake(0);
+  turn(520, 200, "left");
   runElevator(12000);
   wait(500);
-  runElevator(-25);
-  runIntake(-25);
-  drive(275, -100);
   runElevator(0);
-  runIntake(0);
-  turn(240, 100, "right");
-  strafe(625, 120, "left"); // reckoning
-  strafe(1800, 200, "right");
-  runIntake(200);
-  drive(250, 150);
-  runIntake(0);
-  runElevator(12000);
-  wait(800);
-  runElevator(0);
-  runIntake(-100);
-  drive(-100, -150);
-  runIntake(0);
-  strafe(1060, 200, "right");
-  turn(210, 100, "right");
-  runIntake(200);
-  drive(800, 100);
-  runIntake(0);
-  runElevator(12000);
-  wait(1000);
-  runElevator(0);
-  drive(-200, -200);
-  /*
-  turn(710, 100, "left");
-  strafe(1700, 100, "left");
-  runIntake(200);
-  runElevator(50);
-  drive(400, 100);
-  runIntake(0);
-  runElevator(0);
-  drive(500, 200);
-  runElevator(12000);
-  wait(700);
-  runElevator(0);
-  */
+  turn(550, 200, "right");
 }
 void testFunctions() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);

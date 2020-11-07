@@ -145,17 +145,17 @@ void autoBack(int delay) {
   int startTime = pros::millis();
   intake::intakeGroup.moveVelocity(200);
   while (pros::millis() - startTime < delay) {
-    pros::vision_object_s_t rtn = elevator::visionSensor.get_by_sig(0, 1);
-    pros::vision_object_s_t rtn2 = elevator::visionSensor.get_by_sig(0, 2);
-    elevator::n = elevator::visionSensor.get_object_count();
-    if (rtn.signature == 1) {
-      elevator::elevGroup.moveVelocity(200);
-    } else if (rtn2.signature == 2) {
-      elevator::lowerMotor.moveVelocity(200);
-      elevator::upperMotor.moveVelocity(-200);
-    } else {
-      elevator::elevGroup.moveVelocity(200);
-    }
+    // pros::vision_object_s_t rtn = elevator::visionSensor.get_by_sig(0, 1);
+    // pros::vision_object_s_t rtn2 = elevator::visionSensor.get_by_sig(0, 2);
+    // elevator::n = elevator::visionSensor.get_object_count();
+    // if (rtn.signature == 1) {
+    //   elevator::elevGroup.moveVelocity(200);
+    // } else if (rtn2.signature == 2) {
+    elevator::lowerMotor.moveVelocity(200);
+    elevator::upperMotor.moveVelocity(-200);
+    // } else {
+    //   elevator::elevGroup.moveVelocity(200);
+    // }
   }
   elevator::elevGroup.moveVelocity(0);
 }

@@ -18,7 +18,7 @@ void rightAuton() {
   runIntake(12000);
   // drive(100, 50);
   turn(220, 160, "right");
-  drive(520, 160);
+  drive(500, 160);
   // runIntake(-8000);
   runElevator(12000);
   wait(500);
@@ -36,17 +36,17 @@ void rightAuton() {
   // wait(450);
   // strafe(100, 50, "left");
   runElevator(12000);
-  wait(500);
+  wait(700);
   // turn(100, 25, "left");
   runElevator(0);
-  drive(-100, 40);
+  drive(150, -40);
   // drive(50, -100);
   // drive(150, -70);
-  strafe(1450, 200, "right");
+  strafe(1350, 200, "right");
   turn(235, 150, "right");
   runIntake(12000);
   runElevator(12000);
-  drive(550, 100);
+  drive(790, 100);
   wait(700);
   // drive(50, 20);
   // runIntake(-6000);
@@ -65,7 +65,7 @@ void RtwoTowers() {
   runIntake(12000);
   // drive(100, 50);
   turn(220, 160, "right");
-  drive(520, 160);
+  drive(500, 160);
   // runIntake(-8000);
   runElevator(12000);
   wait(500);
@@ -83,7 +83,7 @@ void RtwoTowers() {
   // wait(450);
   // strafe(100, 50, "left");
   runElevator(12000);
-  wait(500);
+  wait(900);
   // turn(100, 25, "left");
   runElevator(0);
   drive(-100, 40);
@@ -182,13 +182,13 @@ void skills() {
   // autoBack(600);
   // tower 1
   strafe(1200, 200, "right");
-  // drive(200, 100);
+  drive(125, 60);
   // wait(450);
   // strafe(100, 50, "left");
   runElevator(12000);
   wait(300);
   runElevator(0);
-  drive(50, -40);
+  drive(150, -60);
   runIntake(12000);
   turn(550, 200, "right");
   drive(1300, 140);
@@ -201,7 +201,7 @@ void skills() {
   drive(300, -100);
   turn(700, 100, "right");
   runIntake(12000);
-  drive(1200, 200);
+  drive(1300, 200);
   runIntake(0);
   turn(520, 200, "left");
   runElevator(12000);

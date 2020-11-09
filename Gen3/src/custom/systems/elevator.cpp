@@ -54,7 +54,7 @@ void up() {
 }
 bool red = true;
 
-int n = visionSensor.get_object_count();
+// int n = visionSensor.get_object_count();
 void toggle() {
   if (selection::BtnSwap.changedToReleased()) {
     if (red)
@@ -67,61 +67,61 @@ int curTime = pros::millis();
 void execute() {
   switch (state) {
   case State::IN: {
-    // pros::vision_object_s_t rtn = visionSensor.get_by_sig(0, 1);
-    // pros::vision_object_s_t rtn2 = visionSensor.get_by_sig(0, 2);
+    pros::vision_object_s_t rtn = visionSensor.get_by_sig(0, 1);
+    pros::vision_object_s_t rtn2 = visionSensor.get_by_sig(0, 2);
     // n = visionSensor.get_object_count();
-    // if (red) {
-    //   intake::intakeGroup.moveVelocity(200);
-    //   elevator::elevGroup.moveVelocity(600);
-    //   if (rtn2.signature == 2 && rtn.signature != 2) {
-    //     curTime = pros::millis() + 350;
-    //     elevator::lowerMotor.moveVelocity(600);
-    //     elevator::upperMotor.moveVelocity(-600);
-    //   } else {
-    //     if (curTime - pros::millis() < 200)
-    //       elevator::elevGroup.moveVelocity(600);
-    //   }
-    // } else if (!red) {
-    //   intake::intakeGroup.moveVelocity(200);
-    //   elevator::elevGroup.moveVelocity(600);
-    //   if (rtn.signature == 1 && rtn2.signature != 2) {
-    //     elevator::lowerMotor.moveVelocity(600);
-    //     elevator::upperMotor.moveVelocity(-600);
-    //     curTime = pros::millis() + 350;
-    //   } else {
-    //     if (curTime - pros::millis() < 200)
-    //       elevator::elevGroup.moveVelocity(600);
-    //   }
-    // } else {
-    //   intake::intakeGroup.moveVelocity(200);
-    //   elevator::elevGroup.moveVelocity(600);
-    // }
-    elevGroup.moveVelocity(600);
-    intake::intakeGroup.moveVelocity(600);
+    if (red) {
+      intake::intakeGroup.moveVoltage(12000);
+      elevator::elevGroup.moveVoltage(12000);
+      if (rtn2.signature == 2 && rtn.signature != 2) {
+        curTime = pros::millis() + 350;
+        elevator::lowerMotor.moveVoltage(12000);
+        elevator::upperMotor.moveVelocity(-12000);
+      } else {
+        if (curTime - pros::millis() < 12000)
+          elevator::elevGroup.moveVoltage(12000);
+      }
+    } else if (!red) {
+      intake::intakeGroup.moveVoltage(12000);
+      elevator::elevGroup.moveVoltage(12000);
+      if (rtn.signature == 1 && rtn2.signature != 2) {
+        elevator::lowerMotor.moveVoltage(12000);
+        elevator::upperMotor.moveVelocity(-12000);
+        curTime = pros::millis() + 350;
+      } else {
+        if (curTime - pros::millis() < 12000)
+          elevator::elevGroup.moveVoltage(12000);
+      }
+    } else {
+      intake::intakeGroup.moveVoltage(12000);
+      elevator::elevGroup.moveVoltage(12000);
+    }
+    elevGroup.moveVoltage(12000);
+    intake::intakeGroup.moveVoltage(12000);
     break;
   }
 
   case State::OUT:
-    elevGroup.moveVelocity(-600);
-    intake::intakeGroup.moveVelocity(-600);
+    elevGroup.moveVelocity(-12000);
+    intake::intakeGroup.moveVelocity(-12000);
     break;
 
   case State::BACK: // moves wheel motors to eject ball out back
-    upperMotor.moveVelocity(-600);
-    lowerMotor.moveVelocity(600);
+    upperMotor.moveVelocity(-12000);
+    lowerMotor.moveVoltage(12000);
     break;
 
   case State::DOWN: // moves wheel alone downward
-    elevGroup.moveVelocity(-600);
+    elevGroup.moveVelocity(-12000);
     break;
 
   case State::UP:
-    elevGroup.moveVelocity(600);
+    elevGroup.moveVoltage(12000);
     break;
 
   case State::DEINIT:
-    elevGroup.moveVelocity(0);
-    intake::intakeGroup.moveVelocity(0);
+    elevGroup.moveVoltage(0);
+    intake::intakeGroup.moveVoltage(0);
     state = State::NONE;
     break;
 
@@ -148,21 +148,21 @@ namespace auton {
 void runElevator(int velocity) { elevator::elevGroup.moveVoltage(velocity); }
 void autoBack(int delay) {
   int startTime = pros::millis();
-  intake::intakeGroup.moveVelocity(200);
+  intake::intakeGroup.moveVoltage(12000);
   while (pros::millis() - startTime < delay) {
-    // pros::vision_object_s_t rtn = elevator::visionSensor.get_by_sig(0, 1);
-    // pros::vision_object_s_t rtn2 = elevator::visionSensor.get_by_sig(0, 2);
+    pros::vision_object_s_t rtn = elevator::visionSensor.get_by_sig(0, 1);
+    pros::vision_object_s_t rtn2 = elevator::visionSensor.get_by_sig(0, 2);
     // elevator::n = elevator::visionSensor.get_object_count();
-    // if (rtn.signature == 1) {
-    //   elevator::elevGroup.moveVelocity(200);
-    // } else if (rtn2.signature == 2) {
-    elevator::lowerMotor.moveVelocity(200);
-    elevator::upperMotor.moveVelocity(-200);
-    // } else {
-    //   elevator::elevGroup.moveVelocity(200);
-    // }
+    if (rtn.signature == 1) {
+      elevator::elevGroup.moveVoltage(12000);
+    } else if (rtn2.signature == 2) {
+      elevator::lowerMotor.moveVoltage(12000);
+      elevator::upperMotor.moveVelocity(-12000);
+    } else {
+      elevator::elevGroup.moveVoltage(12000);
+    }
   }
-  elevator::elevGroup.moveVelocity(0);
+  elevator::elevGroup.moveVoltage(0);
 }
 
 } // namespace auton

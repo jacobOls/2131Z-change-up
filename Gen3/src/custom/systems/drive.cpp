@@ -3,6 +3,15 @@
 #include "custom/setup/motors.hpp"
 #include "main.h"
 namespace drive {
+pros::Vision lineSet(4);
+void initVision() {
+  pros::Vision lineSet(4, pros::E_VISION_ZERO_CENTER);
+  lineSet.set_wifi_mode(0);
+  pros::vision_signature_s_t RED_BALL = lineSet.signature_from_utility(
+      1, 4953, 6495, 5724, -303, 259, -22, 3.000, 0);
+  pros::vision_signature_s_t BLUE_BALL = lineSet.signature_from_utility(
+      2, -3551, -2285, -2918, 7295, 15009, 11152, 1.500, 0);
+}
 void userDrive() {
   leftFront.moveVoltage(
       (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,
@@ -125,6 +134,30 @@ void strafe(int distance, int velocity, std::string direction) {
   drive::right_strafe.moveVelocity(0);
   drive::left_strafe.tarePosition();
   drive::right_strafe.tarePosition();
+}
+void lineUp() {
+  pros::vision_object_s_t vert = drive::lineSet.get_by_sig(0, 1);
+  pros::vision_object_s_t hori = drive::lineSet.get_by_sig(0, 1);
+  int y = vert.top_coord;
+  int x = hori.left_coord;
+  while (y > 5) {
+    drive::driveGroup.moveVelocity(-10);
+  }
+  drive::driveGroup.moveVelocity(0);
+  while (y < -5) {
+    drive::driveGroup.moveVelocity(10);
+  }
+  drive::driveGroup.moveVelocity(0);
+  while (x > 5) {
+    drive::left_strafe.moveVelocity(-10);
+    drive::right_strafe.moveVelocity(10);
+  }
+  drive::driveGroup.moveVelocity(0);
+  while (x < -5) {
+    drive::left_strafe.moveVelocity(10);
+    drive::right_strafe.moveVelocity(-10);
+  }
+  drive::driveGroup.moveVelocity(0);
 }
 
 void timeStrafe(int voltage, int time, std::string direction) {

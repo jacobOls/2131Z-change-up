@@ -141,21 +141,21 @@ void lineUp() {
   int y = vert.top_coord;
   int x = hori.left_coord;
   while (y > 5) {
-    drive::driveGroup.moveVelocity(-10);
+    drive::driveGroup.moveVelocity(-y);
   }
   drive::driveGroup.moveVelocity(0);
   while (y < -5) {
-    drive::driveGroup.moveVelocity(10);
+    drive::driveGroup.moveVelocity(y);
   }
   drive::driveGroup.moveVelocity(0);
   while (x > 5) {
-    drive::left_strafe.moveVelocity(-10);
-    drive::right_strafe.moveVelocity(10);
+    drive::left_strafe.moveVelocity(-x);
+    drive::right_strafe.moveVelocity(x);
   }
   drive::driveGroup.moveVelocity(0);
   while (x < -5) {
-    drive::left_strafe.moveVelocity(10);
-    drive::right_strafe.moveVelocity(-10);
+    drive::left_strafe.moveVelocity(x);
+    drive::right_strafe.moveVelocity(-x);
   }
   drive::driveGroup.moveVelocity(0);
 }

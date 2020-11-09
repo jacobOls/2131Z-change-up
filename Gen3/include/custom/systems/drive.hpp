@@ -6,6 +6,7 @@ void brake(void);
 void userDrive(void);
 } // namespace drive
 namespace auton {
+void lineUp();
 void drive(int distance, int velocity);
 void driveNE(int distance, int velocity);
 void strafe(int distance, int velocity, std::string direction);

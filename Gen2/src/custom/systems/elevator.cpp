@@ -63,6 +63,7 @@ void toggle() {
       red = true;
   }
 }
+int curTime = pros::millis();
 void execute() {
   switch (state) {
   case State::IN: {
@@ -71,26 +72,28 @@ void execute() {
     // n = visionSensor.get_object_count();
     // if (red) {
     //   intake::intakeGroup.moveVelocity(200);
-    //   if (rtn.signature == 1 && rtn2.signature != 2) {
-    //     elevator::elevGroup.moveVelocity(200);
-    //   } else if (rtn2.signature == 2 && rtn.signature != 1) {
+    //   elevator::elevGroup.moveVelocity(600);
+    //   if (rtn2.signature == 2 && rtn.signature != 2) {
+    //     curTime = pros::millis() + 350;
     //     elevator::lowerMotor.moveVelocity(600);
     //     elevator::upperMotor.moveVelocity(-600);
     //   } else {
-    //     elevator::elevGroup.moveVelocity(600);
+    //     if (curTime - pros::millis() < 200)
+    //       elevator::elevGroup.moveVelocity(600);
     //   }
     // } else if (!red) {
-    //   intake::intakeGroup.moveVelocity(600);
-    //   if (rtn2.signature == 2 && rtn.signature != 1) {
-    //     elevator::elevGroup.moveVelocity(600);
-    //   } else if (rtn.signature == 1 && rtn2.signature != 2) {
+    //   intake::intakeGroup.moveVelocity(200);
+    //   elevator::elevGroup.moveVelocity(600);
+    //   if (rtn.signature == 1 && rtn2.signature != 2) {
     //     elevator::lowerMotor.moveVelocity(600);
     //     elevator::upperMotor.moveVelocity(-600);
+    //     curTime = pros::millis() + 350;
     //   } else {
-    //     elevator::elevGroup.moveVelocity(600);
+    //     if (curTime - pros::millis() < 200)
+    //       elevator::elevGroup.moveVelocity(600);
     //   }
     // } else {
-    //   intake::intakeGroup.moveVelocity(600);
+    //   intake::intakeGroup.moveVelocity(200);
     //   elevator::elevGroup.moveVelocity(600);
     // }
     elevGroup.moveVelocity(600);
@@ -135,6 +138,8 @@ void init() {
   out();
   execute();
   toggle();
+  // pros::vision_object_s_t rtn = visionSensor.get_by_sig(0, 1);
+  // std::cout << rtn.signature << std::endl;
 }
 
 } // namespace elevator

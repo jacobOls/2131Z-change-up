@@ -135,29 +135,36 @@ void strafe(int distance, int velocity, std::string direction) {
   drive::left_strafe.tarePosition();
   drive::right_strafe.tarePosition();
 }
+
+bool inRangeX(int x) { return (x > -5) && (x < 5); };
+
+bool inRangeY(int y) { return (y > -5) && (y < 5); };
+pros::vision_object_s_t vert = drive::lineSet.get_by_sig(0, 1);
+pros::vision_object_s_t hori = drive::lineSet.get_by_sig(0, 1);
+int y() { return vert.top_coord; };
+int x() { return hori.left_coord; };
+
 void lineUp() {
-  pros::vision_object_s_t vert = drive::lineSet.get_by_sig(0, 1);
-  pros::vision_object_s_t hori = drive::lineSet.get_by_sig(0, 1);
-  int y = vert.top_coord;
-  int x = hori.left_coord;
-  while (y > 5) {
-    drive::driveGroup.moveVelocity(-y);
+  while (!inRangeX(x()) && !inRangeY(y())) {
+    while (y() > 5) {
+      drive::driveGroup.moveVelocity(-y());
+    }
+    drive::driveGroup.moveVelocity(0);
+    while (y() < -5) {
+      drive::driveGroup.moveVelocity(y());
+    }
+    drive::driveGroup.moveVelocity(0);
+    while (x() > 5) {
+      drive::left_strafe.moveVelocity(-x());
+      drive::right_strafe.moveVelocity(x());
+    }
+    drive::driveGroup.moveVelocity(0);
+    while (x() < -5) {
+      drive::left_strafe.moveVelocity(x());
+      drive::right_strafe.moveVelocity(-x());
+    }
+    drive::driveGroup.moveVelocity(0);
   }
-  drive::driveGroup.moveVelocity(0);
-  while (y < -5) {
-    drive::driveGroup.moveVelocity(y);
-  }
-  drive::driveGroup.moveVelocity(0);
-  while (x > 5) {
-    drive::left_strafe.moveVelocity(-x);
-    drive::right_strafe.moveVelocity(x);
-  }
-  drive::driveGroup.moveVelocity(0);
-  while (x < -5) {
-    drive::left_strafe.moveVelocity(x);
-    drive::right_strafe.moveVelocity(-x);
-  }
-  drive::driveGroup.moveVelocity(0);
 }
 
 void timeStrafe(int voltage, int time, std::string direction) {

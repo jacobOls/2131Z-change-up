@@ -59,20 +59,21 @@ int frVal() {
   }
 };
 // sets motor velocity
+int dz = 5; // dead zone
 void userDrive() {
-  if (abs(flVal()) > 5) {
+  if (abs(flVal()) > dz) {
     leftFront.moveVelocity(flVal());
   } else
     leftFront.moveVelocity(0);
-  if (abs(blVal()) > 5) {
+  if (abs(blVal()) > dz) {
     leftBack.moveVelocity(blVal());
   } else
     leftBack.moveVelocity(0);
-  if (abs(frVal()) > 5) {
+  if (abs(frVal()) > dz) {
     rightFront.moveVelocity(frVal());
   } else
     rightFront.moveVelocity(0);
-  if (abs(brVal()) > 5) {
+  if (abs(brVal()) > dz) {
     rightBack.moveVelocity(brVal());
   } else
     rightBack.moveVelocity(0);

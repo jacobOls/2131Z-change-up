@@ -12,32 +12,70 @@ void initVision() {
   pros::vision_signature_s_t BLUE_BALL = lineSet.signature_from_utility(
       2, -3551, -2285, -2918, 7295, 15009, 11152, 1.500, 0);
 }
+// retrieve and transform input values of analogs
+int flX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
+int flY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 100; };
+int blX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
+int blY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 100; };
+int frX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
+int frY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 100; };
+int brX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
+int brY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 100; };
+// decides what to return for motors velocity
+int flVal() {
+  if (abs(flX()) > abs(flY()) * 2) {
+    return flX();
+  } else if (abs(brY()) > abs(brX()) && abs(flX()) < abs(flY()) * 2) {
+    return flY() + brY();
+  } else {
+    return flY();
+  }
+};
+int blVal() {
+  if (abs(blX()) > abs(blY()) * 2) {
+    return blX();
+  } else if (abs(frY()) > abs(frX()) && abs(blX()) < abs(blY()) * 2) {
+    return blY() - frY();
+  } else {
+    return blY();
+  }
+};
+int brVal() {
+  if (abs(brX()) > abs(brY()) * 2) {
+    return brX();
+  } else if (abs(flY()) > abs(flX()) && abs(brX()) < abs(brY()) * 2) {
+    return flY() + brY();
+  } else {
+    return brY();
+  }
+};
+int frVal() {
+  if (abs(frX()) > abs(frY()) * 2) {
+    return frX();
+  } else if (abs(blY()) > abs(blX()) && abs(frX()) < abs(frY()) * 2) {
+    return blY() - frY();
+  } else {
+    return frY();
+  }
+};
+// sets motor velocity
 void userDrive() {
-  leftFront.moveVoltage(
-      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,
-                       0.05) +
-       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX), -0.05,
-                       0.05)) *
-      12000);
-  leftBack.moveVoltage(
-      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,
-                       0.05) -
-       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX), -0.05,
-                       0.05)) *
-      12000);
-
-  rightFront.moveVoltage(
-      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY), -0.05,
-                       0.05) -
-       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightX), -0.05,
-                       0.05)) *
-      12000);
-  rightBack.moveVoltage(
-      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY), -0.05,
-                       0.05) +
-       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightX), -0.05,
-                       0.05)) *
-      12000);
+  if (abs(flVal()) > 5) {
+    leftFront.moveVelocity(flVal());
+  } else
+    leftFront.moveVelocity(0);
+  if (abs(blVal()) > 5) {
+    leftBack.moveVelocity(blVal());
+  } else
+    leftBack.moveVelocity(0);
+  if (abs(frVal()) > 5) {
+    rightFront.moveVelocity(frVal());
+  } else
+    rightFront.moveVelocity(0);
+  if (abs(brVal()) > 5) {
+    rightBack.moveVelocity(brVal());
+  } else
+    rightBack.moveVelocity(0);
 }
 void brake() {
   if (BtnBrake.isPressed()) {

@@ -14,52 +14,40 @@ void initVision() {
 }
 // retrieve and transform input values of analogs
 int flX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
-int flY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 100; };
+int flY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 200; };
 
 int blX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
-int blY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 100; };
+int blY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 200; };
 
 int frX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
-int frY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 100; };
+int frY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 200; };
 
 int brX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
-int brY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 100; };
+int brY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 200; };
 // decides what to return for motors velocity
 int flVal() {
-  if (abs(flX()) > abs(flY()) * 2) {
-    return flX();
-  } else if (abs(brY()) > abs(brX()) && abs(flX()) < abs(flY()) * 2) {
-    return flY() + brY();
-  } else {
+  if (abs(flY()) > abs(flX()) * 2) {
     return flY();
-  }
+  } else
+    return (flX() + brX() / 2);
 };
 int blVal() {
-  if (abs(blX()) > abs(blY()) * 2) {
-    return blX();
-  } else if (abs(frY()) > abs(frX()) && abs(blX()) < abs(blY()) * 2) {
-    return blY() - frY();
-  } else {
+  if (abs(blY()) > abs(blX()) * 2) {
     return blY();
-  }
+  } else
+    return (blX() - frX()) / 2;
 };
 int brVal() {
-  if (abs(brX()) > abs(brY()) * 2) {
-    return brX();
-  } else if (abs(flY()) > abs(flX()) && abs(brX()) < abs(brY()) * 2) {
-    return flY() + brY();
-  } else {
+  if (abs(brY()) > abs(brX()) * 2) {
     return brY();
-  }
+  } else
+    return (brX() + flX()) / 2;
 };
 int frVal() {
-  if (abs(frX()) > abs(frY()) * 2) {
-    return frX();
-  } else if (abs(blY()) > abs(blX()) && abs(frX()) < abs(frY()) * 2) {
-    return blY() - frY();
-  } else {
+  if (abs(frY()) > abs(frX()) * 2) {
     return frY();
-  }
+  } else
+    return (frX() - blX()) / 2;
 };
 // sets motor velocity
 int dz = 5; // dead zone

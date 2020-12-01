@@ -15,10 +15,13 @@ void initVision() {
 // retrieve and transform input values of analogs
 int flX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
 int flY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 100; };
+
 int blX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
 int blY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 100; };
+
 int frX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
 int frY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 100; };
+
 int brX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
 int brY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 100; };
 // decides what to return for motors velocity

@@ -10,32 +10,62 @@ void initVision() {
   pros::vision_signature_s_t GREEN = lineSet.signature_from_utility(
       1, -4251, -3855, -4052, -4209, -3639, -3924, 4.400, 0);
 }
-void userDrive() {
-  leftFront.moveVoltage(
-      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,
-                       0.05) +
-       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX), -0.05,
-                       0.05)) *
-      12000);
-  leftBack.moveVoltage(
-      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,
-                       0.05) -
-       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX), -0.05,
-                       0.05)) *
-      12000);
+// retrieve and transform input values of analogs
+int flX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
+int flY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 200; };
 
-  rightFront.moveVoltage(
-      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY), -0.05,
-                       0.05) -
-       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightX), -0.05,
-                       0.05)) *
-      12000);
-  rightBack.moveVoltage(
-      (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY), -0.05,
-                       0.05) +
-       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightX), -0.05,
-                       0.05)) *
-      12000);
+int blX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
+int blY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 200; };
+
+int frX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
+int frY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 200; };
+
+int brX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
+int brY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 200; };
+// decides what to return for motors velocity
+int flVal() {
+  if (abs(flY()) > abs(flX()) * 2) {
+    return flY();
+  } else
+    return (flX() + brX() / 2);
+};
+int blVal() {
+  if (abs(blY()) > abs(blX()) * 2) {
+    return blY();
+  } else
+    return (blX() - frX()) / 2;
+};
+int brVal() {
+  if (abs(brY()) > abs(brX()) * 2) {
+    return brY();
+  } else
+    return (brX() + flX()) / 2;
+};
+int frVal() {
+  if (abs(frY()) > abs(frX()) * 2) {
+    return frY();
+  } else
+    return (frX() - blX()) / 2;
+};
+// sets motor velocity
+int dz = 10; // dead zone
+void userDrive() {
+  if (abs(flVal()) > dz) {
+    leftFront.moveVelocity(flVal());
+  } else
+    leftFront.moveVelocity(0);
+  if (abs(blVal()) > dz) {
+    leftBack.moveVelocity(blVal());
+  } else
+    leftBack.moveVelocity(0);
+  if (abs(frVal()) > dz) {
+    rightFront.moveVelocity(frVal());
+  } else
+    rightFront.moveVelocity(0);
+  if (abs(brVal()) > dz) {
+    rightBack.moveVelocity(brVal());
+  } else
+    rightBack.moveVelocity(0);
 }
 void brake() {
   if (BtnBrake.isPressed()) {

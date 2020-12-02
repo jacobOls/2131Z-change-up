@@ -295,8 +295,8 @@
         "upload_options": {
             "compress_bin": true,
             "description": "plz work",
-            "remote_name": "vision",
-            "slot": 2
+            "remote_name": "test",
+            "slot": 3
         }
     }
 }

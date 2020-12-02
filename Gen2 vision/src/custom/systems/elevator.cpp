@@ -67,37 +67,37 @@ int curTime = pros::millis();
 void execute() {
   switch (state) {
   case State::IN: {
-    pros::vision_object_s_t rtn = visionSensor.get_by_sig(0, 1);
-    pros::vision_object_s_t rtn2 = visionSensor.get_by_sig(0, 2);
-    n = visionSensor.get_object_count();
-    if (red) {
-      intake::intakeGroup.moveVelocity(200);
-      elevator::elevGroup.moveVelocity(600);
-      if (rtn2.signature == 2 && rtn.signature != 2) {
-        curTime = pros::millis() + 350;
-        elevator::lowerMotor.moveVelocity(600);
-        elevator::upperMotor.moveVelocity(-600);
-      } else {
-        if (curTime - pros::millis() < 200)
-          elevator::elevGroup.moveVelocity(600);
-      }
-    } else if (!red) {
-      intake::intakeGroup.moveVelocity(200);
-      elevator::elevGroup.moveVelocity(600);
-      if (rtn.signature == 1 && rtn2.signature != 2) {
-        elevator::lowerMotor.moveVelocity(600);
-        elevator::upperMotor.moveVelocity(-600);
-        curTime = pros::millis() + 350;
-      } else {
-        if (curTime - pros::millis() < 200)
-          elevator::elevGroup.moveVelocity(600);
-      }
-    } else {
-      intake::intakeGroup.moveVelocity(200);
-      elevator::elevGroup.moveVelocity(600);
-    }
-    // elevGroup.moveVelocity(600);
-    // intake::intakeGroup.moveVelocity(600);
+    //   pros::vision_object_s_t rtn = visionSensor.get_by_sig(0, 1);
+    //   pros::vision_object_s_t rtn2 = visionSensor.get_by_sig(0, 2);
+    //   n = visionSensor.get_object_count();
+    //   if (red) {
+    //     intake::intakeGroup.moveVelocity(200);
+    //     elevator::elevGroup.moveVelocity(600);
+    //     if (rtn2.signature == 2 && rtn.signature != 2) {
+    //       curTime = pros::millis() + 350;
+    //       elevator::lowerMotor.moveVelocity(600);
+    //       elevator::upperMotor.moveVelocity(-600);
+    //     } else {
+    //       if (curTime - pros::millis() < 200)
+    //         elevator::elevGroup.moveVelocity(600);
+    //     }
+    //   } else if (!red) {
+    //     intake::intakeGroup.moveVelocity(200);
+    //     elevator::elevGroup.moveVelocity(600);
+    //     if (rtn.signature == 1 && rtn2.signature != 2) {
+    //       elevator::lowerMotor.moveVelocity(600);
+    //       elevator::upperMotor.moveVelocity(-600);
+    //       curTime = pros::millis() + 350;
+    //     } else {
+    //       if (curTime - pros::millis() < 200)
+    //         elevator::elevGroup.moveVelocity(600);
+    //     }
+    //   } else {
+    //     intake::intakeGroup.moveVelocity(200);
+    //     elevator::elevGroup.moveVelocity(600);
+    //   }
+    elevGroup.moveVelocity(600);
+    intake::intakeGroup.moveVelocity(600);
     break;
   }
 

@@ -11,44 +11,45 @@ void initVision() {
       1, -4251, -3855, -4052, -4209, -3639, -3924, 4.400, 0);
 }
 // retrieve and transform input values of analogs
-int flX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
-int flY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 200; };
 
-int blX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
-int blY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 200; };
+int rY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 200; };
+int lY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 200; };
 
-int frX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
-int frY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 200; };
+int lX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 100; };
+int rX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 100; };
 
-int brX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
-int brY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 200; };
-// decides what to return for motors velocity
 int flVal() {
-  if (abs(flY()) > abs(flX()) * 2) {
-    return flY();
-  } else
-    return (flX() + brX() / 2);
+  if (abs(lY()) > abs(lX())) {
+    return lY();
+  } else {
+    return lX() + rX();
+  }
 };
+
 int blVal() {
-  if (abs(blY()) > abs(blX()) * 2) {
-    return blY();
-  } else
-    return (blX() - frX()) / 2;
+  if (abs(lY()) > abs(lX())) {
+    return lY();
+  } else {
+    return (lX() + rX()) * -1;
+  }
 };
+
 int brVal() {
-  if (abs(brY()) > abs(brX()) * 2) {
-    return brY();
-  } else
-    return (brX() + flX()) / 2;
+  if (abs(rY()) > abs(rX())) {
+    return rY();
+  } else {
+    return lX() + rX();
+  }
 };
 int frVal() {
-  if (abs(frY()) > abs(frX()) * 2) {
-    return frY();
-  } else
-    return (frX() - blX()) / 2;
+  if (abs(rY()) > abs(rX())) {
+    return rY();
+  } else {
+    return (lX() + rX()) * -1;
+  }
 };
 // sets motor velocity
-int dz = 10; // dead zone
+int dz = .05 * 200; // dead zone
 void userDrive() {
   if (abs(flVal()) > dz) {
     leftFront.moveVelocity(flVal());

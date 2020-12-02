@@ -295,8 +295,8 @@
         "upload_options": {
             "compress_bin": true,
             "description": "plz work",
-            "remote_name": "test",
-            "slot": 3
+            "remote_name": "mecaTestJosh",
+            "slot": 2
         }
     }
 }

@@ -6,7 +6,10 @@ void brake(void);
 void userDrive(void);
 } // namespace drive
 namespace auton {
-void lineUp();
+extern pros::Rotation sTracker;
+extern pros::Rotation rTracker;
+extern pros::Rotation lTracker;
+void sCorrect(int reqAng);
 void drive(int distance, int velocity);
 void driveNE(int distance, int velocity);
 void strafe(int distance, int velocity, std::string direction);

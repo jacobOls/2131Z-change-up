@@ -67,35 +67,35 @@ int curTime = pros::millis();
 void execute() {
   switch (state) {
   case State::IN: {
-    pros::vision_object_s_t rtn = visionSensor.get_by_sig(0, 1);
-    pros::vision_object_s_t rtn2 = visionSensor.get_by_sig(0, 2);
-    // n = visionSensor.get_object_count();
-    if (red) {
-      intake::intakeGroup.moveVoltage(12000);
-      elevator::elevGroup.moveVoltage(12000);
-      if (rtn2.signature == 2 && rtn.signature != 2) {
-        curTime = pros::millis() + 350;
-        elevator::lowerMotor.moveVoltage(12000);
-        elevator::upperMotor.moveVelocity(-12000);
-      } else {
-        if (curTime - pros::millis() < 12000)
-          elevator::elevGroup.moveVoltage(12000);
-      }
-    } else if (!red) {
-      intake::intakeGroup.moveVoltage(12000);
-      elevator::elevGroup.moveVoltage(12000);
-      if (rtn.signature == 1 && rtn2.signature != 2) {
-        elevator::lowerMotor.moveVoltage(12000);
-        elevator::upperMotor.moveVelocity(-12000);
-        curTime = pros::millis() + 350;
-      } else {
-        if (curTime - pros::millis() < 12000)
-          elevator::elevGroup.moveVoltage(12000);
-      }
-    } else {
-      intake::intakeGroup.moveVoltage(12000);
-      elevator::elevGroup.moveVoltage(12000);
-    }
+    // pros::vision_object_s_t rtn = visionSensor.get_by_sig(0, 1);
+    // pros::vision_object_s_t rtn2 = visionSensor.get_by_sig(0, 2);
+    // // n = visionSensor.get_object_count();
+    // if (red) {
+    //   intake::intakeGroup.moveVoltage(12000);
+    //   elevator::elevGroup.moveVoltage(12000);
+    //   if (rtn2.signature == 2 && rtn.signature != 2) {
+    //     curTime = pros::millis() + 350;
+    //     elevator::lowerMotor.moveVoltage(12000);
+    //     elevator::upperMotor.moveVelocity(-12000);
+    //   } else {
+    //     if (curTime - pros::millis() < 12000)
+    //       elevator::elevGroup.moveVoltage(12000);
+    //   }
+    // } else if (!red) {
+    //   intake::intakeGroup.moveVoltage(12000);
+    //   elevator::elevGroup.moveVoltage(12000);
+    //   if (rtn.signature == 1 && rtn2.signature != 2) {
+    //     elevator::lowerMotor.moveVoltage(12000);
+    //     elevator::upperMotor.moveVelocity(-12000);
+    //     curTime = pros::millis() + 350;
+    //   } else {
+    //     if (curTime - pros::millis() < 12000)
+    //       elevator::elevGroup.moveVoltage(12000);
+    //   }
+    // } else {
+    //   intake::intakeGroup.moveVoltage(12000);
+    //   elevator::elevGroup.moveVoltage(12000);
+    // }
     elevGroup.moveVoltage(12000);
     intake::intakeGroup.moveVoltage(12000);
     break;
@@ -107,8 +107,8 @@ void execute() {
     break;
 
   case State::BACK: // moves wheel motors to eject ball out back
-    upperMotor.moveVelocity(-12000);
-    lowerMotor.moveVoltage(12000);
+    elevMotor.moveVelocity(12000);
+    ratchetMotor.moveVoltage(-12000);
     break;
 
   case State::DOWN: // moves wheel alone downward
@@ -156,8 +156,8 @@ void autoBack(int delay) {
     if (rtn.signature == 1) {
       elevator::elevGroup.moveVoltage(12000);
     } else if (rtn2.signature == 2) {
-      elevator::lowerMotor.moveVoltage(12000);
-      elevator::upperMotor.moveVelocity(-12000);
+      elevator::elevMotor.moveVoltage(12000);
+      elevator::ratchetMotor.moveVelocity(-12000);
     } else {
       elevator::elevGroup.moveVoltage(12000);
     }

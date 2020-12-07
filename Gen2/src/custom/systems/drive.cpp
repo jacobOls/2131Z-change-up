@@ -6,22 +6,22 @@ namespace drive {
 void userDrive() {
   leftFront.moveVoltage(
       (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,
-                       0.05)) +
-      okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX), -0.05,
-                      0.05) *
-          12000);
+                       0.05) +
+       okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX), -0.05,
+                       0.05)) *
+      12000);
   leftBack.moveVoltage(
       (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftY), -0.05,
-                       0.05)) -
+                       0.05) -
        okapi::deadband(master.getAnalog(okapi::ControllerAnalog::leftX), -0.05,
-                       0.05) *
+                       0.05)) *
       12000);
 
   rightFront.moveVoltage(
       (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY), -0.05,
-                       0.05)) -
+                       0.05) -
        okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightX), -0.05,
-                       0.05) *
+                       0.05)) *
       12000);
   rightBack.moveVoltage(
       (okapi::deadband(master.getAnalog(okapi::ControllerAnalog::rightY), -0.05,

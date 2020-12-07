@@ -21,8 +21,8 @@ extern okapi::Motor right_motor;
 extern okapi::MotorGroup intakeGroup;
 } // namespace intake
 namespace elevator {
-extern okapi::Motor upperMotor;
-extern okapi::Motor lowerMotor;
+extern okapi::Motor elevMotor;
+extern okapi::Motor ratchetMotor;
 extern okapi::MotorGroup elevGroup;
 } // namespace elevator
 #endif /* end of include guard: MOTORS_HPP */

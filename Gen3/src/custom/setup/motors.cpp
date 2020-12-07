@@ -31,12 +31,12 @@ okapi::MotorGroup intakeGroup({left_motor, right_motor});
 } // end namespace intake
 
 namespace elevator {
-okapi::Motor upperMotor(5, false, okapi::AbstractMotor::gearset::blue, // left
-                        okapi::AbstractMotor::encoderUnits::degrees);
-okapi::Motor lowerMotor(4, false,
-                        okapi::AbstractMotor::gearset::blue, // right
-                        okapi::AbstractMotor::encoderUnits::degrees);
+okapi::Motor elevMotor(5, false, okapi::AbstractMotor::gearset::blue, // left
+                       okapi::AbstractMotor::encoderUnits::degrees);
+okapi::Motor ratchetMotor(4, true,
+                          okapi::AbstractMotor::gearset::blue, // right
+                          okapi::AbstractMotor::encoderUnits::degrees);
 
-okapi::MotorGroup elevGroup({upperMotor, lowerMotor});
+okapi::MotorGroup elevGroup({elevMotor, ratchetMotor});
 
 } // namespace elevator

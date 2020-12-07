@@ -109,6 +109,7 @@ void execute() {
   case State::BACK: // moves wheel motors to eject ball out back
     upperMotor.moveVelocity(-600);
     lowerMotor.moveVelocity(600);
+    intake::intakeGroup.moveVelocity(200);
     break;
 
   case State::DOWN: // moves wheel alone downward

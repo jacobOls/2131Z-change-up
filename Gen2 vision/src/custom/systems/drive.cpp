@@ -15,39 +15,14 @@ void initVision() {
 int rY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 200; };
 int lY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 200; };
 
-int lX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 100; };
-int rX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 100; };
+int lX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
+int rX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
+int stVal() { return ((lX() + rX()) / 2); };
 
-int flVal() {
-  if (abs(lY()) > abs(lX())) {
-    return lY();
-  } else {
-    return lX() + rX();
-  }
-};
-
-int blVal() {
-  if (abs(lY()) > abs(lX())) {
-    return lY();
-  } else {
-    return (lX() + rX()) * -1;
-  }
-};
-
-int brVal() {
-  if (abs(rY()) > abs(rX())) {
-    return rY();
-  } else {
-    return lX() + rX();
-  }
-};
-int frVal() {
-  if (abs(rY()) > abs(rX())) {
-    return rY();
-  } else {
-    return (lX() + rX()) * -1;
-  }
-};
+int flVal() { return lY() + stVal(); };
+int blVal() { return lY() - stVal(); };
+int brVal() { return rY() + stVal(); };
+int frVal() { return rY() - stVal(); };
 // sets motor velocity
 int dz = .05 * 200; // dead zone
 void userDrive() {

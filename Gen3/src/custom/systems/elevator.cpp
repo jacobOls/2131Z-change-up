@@ -65,7 +65,7 @@ void toggle() {
 }
 int curTime = pros::millis();
 void execute() {
-  if (state != State::OUT) {
+  if (state != State::OUT && state != State::NONE) {
     intake::intakeGroup.tarePosition();
     intake::intakeGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   }

@@ -101,7 +101,7 @@ void execute() {
     //   elevator::elevGroup.moveVoltage(12000);
     // }
     elevGroup.moveVoltage(12000);
-    intake::intakeGroup.moveVoltage(12000);
+    intake::intakeGroup.moveVelocity(200);
     break;
   }
 
@@ -122,13 +122,13 @@ void execute() {
     break;
 
   case State::BACK: // moves wheel motors to eject ball out back
-    elevMotor.moveVelocity(12000);
+    elevMotor.moveVoltage(12000);
     ratchetMotor.moveVoltage(-12000);
     intake::intakeGroup.moveVelocity(200);
     break;
 
   case State::DOWN: // moves wheel alone downward
-    elevGroup.moveVelocity(-12000);
+    elevGroup.moveVoltage(-12000);
     break;
 
   case State::UP:
@@ -137,7 +137,7 @@ void execute() {
 
   case State::DEINIT:
     elevGroup.moveVoltage(0);
-    intake::intakeGroup.moveVoltage(0);
+    intake::intakeGroup.moveVelocity(0);
     state = State::NONE;
     break;
 

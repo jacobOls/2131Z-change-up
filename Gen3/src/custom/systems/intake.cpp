@@ -37,14 +37,11 @@ void manIn() {
 }
 int curTime;
 void execute() {
-  // if (abs(intakeGroup.getPosition()) > 60 && state == State::OUT) {
-  // intakeGroup.moveVelocity(0);
-  // }
+
   if (state != State::OUT) {
     intakeGroup.tarePosition();
     intakeGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   }
-
   switch (state) {
   case State::IN: {
     intakeGroup.moveVelocity(200);

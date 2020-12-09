@@ -55,22 +55,18 @@ void brake() {
 } // namespace drive
 
 namespace auton {
-pros::Rotation lTracker(7);
-pros::Rotation rTracker(8);
-pros::Rotation sTracker(9);
 /*
 IME (Integrated motor Encoder) torque: 627.2
 IME speed: 392
 IME turbo: 261.333
 */
-int sPos() { return sTracker.get_position(); };
-int pos() { return (lTracker.get_position() + rTracker.get_position()) / 2; };
+pros::Rotation sTracker(11);
 void drive(int distance, int velocity) {
-  lTracker.reset_position();
-  rTracker.reset_position();
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
   int epsilon = velocity * 1.725;
   int req = 5;
-  while (abs(pos()) <= abs((distance)) - epsilon) {
+  while (abs(drive::driveGroup.getPosition()) <= abs((distance)) - epsilon) {
     if (abs(drive::driveGroup.getPosition()) >= distance - epsilon) {
       break;
     }
@@ -80,7 +76,7 @@ void drive(int distance, int velocity) {
     drive::driveGroup.moveVelocity(velocity);
     pros::delay(10);
   }
-  std::cout << "stopping " << pos() << std::endl;
+  std::cout << "stopping " << drive::driveGroup.getPosition() << std::endl;
   reset();
   while (abs(drive::leftFront.getActualVelocity()) != 5000) {
     if (velocity < 0 && req > 0) {
@@ -89,38 +85,26 @@ void drive(int distance, int velocity) {
     // std::cout << drive::left_drive.getPosition() << std::endl;
     drive::deAccelDrive.deAccelMath(accel, &drive::driveGroup, req, velocity);
     if (abs(drive::driveGroup.getPosition()) >= distance) {
-      std::cout << " break early " << pos() << std::endl;
+      std::cout << " break early " << drive::driveGroup.getPosition()
+                << std::endl;
       break;
     }
     pros::delay(drive::deAccelDrive.rateOfChange);
   }
-  std::cout << "end " << pos() << std::endl;
+  std::cout << "end " << drive::driveGroup.getPosition() << std::endl;
   std::cout << "vel " << drive::leftFront.getActualVelocity() << std::endl;
   reset();
   drive::driveGroup.moveVelocity(0);
-  lTracker.reset_position();
-  rTracker.reset_position();
+  drive::driveGroup.tarePosition();
 }
 
-void sCorrect(int reqAng) {
-  while (lTracker.get_angle() < reqAng || rTracker.get_angle() > reqAng) {
-    drive::left_drive.moveVelocity(20);
-    drive::right_drive.moveVelocity(-20);
-  }
-  while (lTracker.get_angle() > reqAng || rTracker.get_angle() < reqAng) {
-    drive::left_drive.moveVelocity(-20);
-    drive::right_drive.moveVelocity(20);
-  }
-  lTracker.reset_position();
-  rTracker.reset_position();
-  sTracker.reset_position();
-}
 void strafe(int distance, int velocity, std::string direction) {
   bool velDir = false;
-  sTracker.reset_position();
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
   int epsilon = velocity * 0.625;
   int request = 10;
-  while (abs(sPos()) <= distance - epsilon) {
+  while (abs(sTracker.get_position()) <= distance - epsilon) {
     if (!velDir && direction == "left") {
       request *= -1;
       velocity *= -1;
@@ -144,17 +128,19 @@ void strafe(int distance, int velocity, std::string direction) {
     drive::accelDrive.deAccelMath(accel, &drive::right_strafe, -request,
                                   velocity * .5);
 
-    if (abs(sPos()) >= distance) {
-      std::cout << " break early " << sPos() << std::endl;
+    if (abs(sTracker.get_position()) >= distance) {
+      std::cout << " break early " << sTracker.get_position() << std::endl;
       break;
     }
     pros::delay(drive::deAccelDrive.rateOfChange);
   }
   reset();
-  std::cout << sPos() << std::endl;
+  std::cout << sTracker.get_position() << std::endl;
   drive::left_strafe.moveVelocity(0);
   drive::right_strafe.moveVelocity(0);
   sTracker.reset_position();
+  drive::left_strafe.tarePosition();
+  drive::right_strafe.tarePosition();
 }
 
 void timeStrafe(int voltage, int time, std::string direction) {
@@ -217,5 +203,4 @@ void turn(int turnAmount, int velocity, std::string direction) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
 }
-
 } // namespace auton

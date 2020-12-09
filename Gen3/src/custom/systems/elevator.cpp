@@ -65,6 +65,10 @@ void toggle() {
 }
 int curTime = pros::millis();
 void execute() {
+  if (state != State::OUT) {
+    intake::intakeGroup.tarePosition();
+    intake::intakeGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+  }
   switch (state) {
   case State::IN: {
     // pros::vision_object_s_t rtn = visionSensor.get_by_sig(0, 1);
@@ -103,12 +107,24 @@ void execute() {
 
   case State::OUT:
     elevGroup.moveVelocity(-12000);
-    intake::intakeGroup.moveVelocity(-12000);
+    if (abs(intake::left_motor.getPosition()) < 60) {
+      intake::left_motor.moveVelocity(-200);
+    } else {
+      intake::left_motor.moveVelocity(0);
+      intake::left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    }
+    if (abs(intake::right_motor.getPosition()) < 60) {
+      intake::right_motor.moveVelocity(-200);
+    } else {
+      intake::right_motor.moveVelocity(0);
+      intake::right_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    }
     break;
 
   case State::BACK: // moves wheel motors to eject ball out back
     elevMotor.moveVelocity(12000);
     ratchetMotor.moveVoltage(-12000);
+    intake::intakeGroup.moveVelocity(200);
     break;
 
   case State::DOWN: // moves wheel alone downward

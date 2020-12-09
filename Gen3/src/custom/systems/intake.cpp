@@ -35,27 +35,47 @@ void manIn() {
     state = State::DEINIT;
   }
 }
-
+int curTime;
 void execute() {
+  // if (abs(intakeGroup.getPosition()) > 60 && state == State::OUT) {
+  // intakeGroup.moveVelocity(0);
+  // }
+  if (state != State::OUT) {
+    intakeGroup.tarePosition();
+    intakeGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+  }
 
   switch (state) {
   case State::IN: {
-    intakeGroup.moveVoltage(12000);
-
+    intakeGroup.moveVelocity(200);
+    curTime = pros::millis();
     break;
   }
 
   case State::OUT:
-    intakeGroup.moveVoltage(-12000);
+    if (abs(left_motor.getPosition()) < 60) {
+      left_motor.moveVelocity(-200);
+    } else {
+      left_motor.moveVelocity(0);
+      left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    }
+    if (abs(right_motor.getPosition()) < 60) {
+      right_motor.moveVelocity(-200);
+    } else {
+      right_motor.moveVelocity(0);
+      right_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    }
+
+    // intakeGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
     break;
 
   case State::MANUAL:
-    intakeGroup.moveVoltage(12000);
+    intakeGroup.moveVelocity(200);
     break;
 
   case State::DEINIT:
-    intakeGroup.moveVoltage(0);
-    elevator::elevGroup.moveVoltage(0);
+    intakeGroup.moveVelocity(0);
+    elevator::elevGroup.moveVelocity(0);
     state = State::NONE;
     break;
 
@@ -65,10 +85,13 @@ void execute() {
 }
 
 void init() {
+  // int yeet = right_motor.getPosition();
+  // std::string str = std::to_string(yeet);
   in();
   out();
   // manIn();
   execute();
+  // master.setText(1, 1, str);
 }
 
 } // namespace intake

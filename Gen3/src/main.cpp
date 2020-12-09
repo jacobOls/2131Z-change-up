@@ -8,6 +8,7 @@
 void initialize() {
   selection::init();
   elevator::initVision();
+  intake::intakeGroup.tarePosition();
 }
 
 void disabled() {

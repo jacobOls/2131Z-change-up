@@ -297,9 +297,9 @@
         },
         "upload_options": {
             "compress_bin": true,
-            "description": "Created with PROS",
-            "remote_name": "mec test",
-            "slot": 3
+            "description": "",
+            "remote_name": "gen 3 also",
+            "slot": 2
         }
     }
 }

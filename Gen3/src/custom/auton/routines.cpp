@@ -214,11 +214,16 @@ void skills() {
   drive(200, -100);
   // end home row
   turn(700, 100, "right");
-  runIntake(12000);
+  // runIntake(12000);
+  open();
+  runElevator(-max / 4);
   drive(1300, 200);
-  runIntake(0);
+  release();
+  runElevator(max / 4);
+  runIntake(max);
   turn(520, 200, "left");
   runElevator(12000);
+  runIntake(0);
   wait(500);
   runElevator(0);
   turn(550, 200, "right");

@@ -159,64 +159,24 @@ void timeStrafe(int voltage, int time, std::string direction) {
 }
 bool reversed = false;
 int turnReq = 10;
-void leftTurn(int turnAmount, int velocity) {
-  drive::left_drive.tarePosition();
-  drive::right_drive.tarePosition();
-  int epsilon = velocity * 0.8;
-  reset();
-  while (abs(drive::rightFront.getPosition()) <= turnAmount - epsilon) {
-
-    drive::accelDrive.accelMath(accel, &drive::left_drive, -velocity);
-    drive::accelDrive.accelMath(accel, &drive::right_drive, velocity);
-    pros::delay(drive::accelDrive.rateOfChange);
-  }
-  // std::cout << "accelFinish<<" << std::endl;
-  reset();
-  if (abs(drive::driveGroup.getActualVelocity()) < abs(velocity)) {
-    drive::left_drive.moveVelocity(velocity);
-    drive::right_drive.moveVelocity(-velocity);
-    pros::delay(10);
-  }
-  // std::cout << "slowing<<" << std::endl;
-  while (abs(drive::rightFront.getActualVelocity()) != 12349) {
-
-    drive::accelDrive.deAccelMath(accel, &drive::left_drive, -turnReq / 2,
-                                  velocity * .4);
-    drive::accelDrive.deAccelMath(accel, &drive::right_drive, turnReq / 2,
-                                  velocity * .4);
-    if (abs(drive::rightFront.getPosition()) >= turnAmount) {
-      std::cout << " break early " << drive::rightFront.getPosition()
-                << std::endl;
-      break;
-    }
-    pros::delay(drive::accelDrive.rateOfChange);
-  }
-  reset();
-  std::cout << drive::left_drive.getPosition() << std::endl;
-  drive::left_drive.moveVelocity(0);
-  drive::right_drive.moveVelocity(0);
-  drive::left_drive.tarePosition();
-  drive::right_drive.tarePosition();
-}
 
 void turn(int turnAmount, int velocity, std::string direction) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
   int epsilon = velocity * 0.8;
   reset();
+  if (direction == "left") {
+    velocity *= -1;
+    turnReq *= -1;
+  }
   while (abs(drive::leftFront.getPosition()) <= turnAmount - epsilon) {
-    if (direction == "left" && !reversed) {
-      velocity *= -1;
-      turnReq *= -1;
-      reversed = true;
-    }
     drive::accelDrive.accelMath(accel, &drive::left_drive, velocity);
     drive::accelDrive.accelMath(accel, &drive::right_drive, -velocity);
     pros::delay(drive::accelDrive.rateOfChange);
   }
   // std::cout << "accelFinish<<" << std::endl;
   reset();
-  reversed = false;
+
   if (abs(drive::driveGroup.getActualVelocity()) < abs(velocity)) {
     drive::left_drive.moveVelocity(-velocity);
     drive::right_drive.moveVelocity(velocity);
@@ -237,6 +197,9 @@ void turn(int turnAmount, int velocity, std::string direction) {
     pros::delay(drive::accelDrive.rateOfChange);
   }
   reset();
+  if (direction == "left") {
+    turnReq *= -1;
+  }
   std::cout << drive::left_drive.getPosition() << std::endl;
   drive::left_drive.moveVelocity(0);
   drive::right_drive.moveVelocity(0);

@@ -131,7 +131,7 @@ void leftAuton() {
   drive(200, -75);
   // runIntake(100);
   // runElevator(8000);
-  leftTurn(280, 90);
+  turn(280, 90, "left");
   runElevator(0);
   strafe(1500, 200, "left");
   runIntake(0);

@@ -13,5 +13,6 @@ void driveNE(int distance, int velocity);
 void strafe(int distance, int velocity, std::string direction);
 void timeStrafe(int voltage, int time, std::string direction);
 void turn(int turnAmount, int velocity, std::string direction);
+void leftTurn(int turnAmount, int velocity);
 } // namespace auton
 #endif /* end of include guard: DRIVE_HPP */

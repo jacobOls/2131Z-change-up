@@ -11,7 +11,7 @@ pros::ADIAnalogIn highElevator(5);
 bool inIntake = false;
 bool inVision = false;
 void in() {
-  if (BtnIn.isPressed()) {
+  if (BtnIn.isPressed() /*|| elevator::BtnBack.isPressed()*/) {
     state = State::IN;
   } else if (state == State::IN) {
     state = State::DEINIT;
@@ -22,7 +22,7 @@ int high() { return intakeSense.get_value(); }
 int lThresh;
 int hThresh;
 void out() {
-  if (BtnOut.isPressed()) {
+  if (BtnOut.isPressed() || elevator::BtnOut.isPressed()) {
     state = State::OUT;
   } else if (state == State::OUT) {
     state = State::DEINIT;
@@ -96,5 +96,14 @@ void init() {
 namespace auton {
 
 void runIntake(int velocity) { intake::intakeGroup.moveVoltage(velocity); }
+void open() {
+  intake::intakeGroup.tarePosition();
+  intake::intakeGroup.moveAbsolute(-60, -200);
+  intake::intakeGroup.setBrakeMode(AbstractMotor::brakeMode::hold);
+}
+void release() {
+  intake::intakeGroup.moveAbsolute(0, 200);
+  intake::intakeGroup.setBrakeMode(AbstractMotor::brakeMode::coast);
+}
 
 } // namespace auton

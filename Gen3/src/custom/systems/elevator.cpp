@@ -107,24 +107,12 @@ void execute() {
 
   case State::OUT:
     elevGroup.moveVelocity(-12000);
-    if (abs(intake::left_motor.getPosition()) < 60) {
-      intake::left_motor.moveVelocity(-200);
-    } else {
-      intake::left_motor.moveVelocity(0);
-      intake::left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
-    }
-    if (abs(intake::right_motor.getPosition()) < 60) {
-      intake::right_motor.moveVelocity(-200);
-    } else {
-      intake::right_motor.moveVelocity(0);
-      intake::right_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
-    }
     break;
 
   case State::BACK: // moves wheel motors to eject ball out back
     elevMotor.moveVoltage(12000);
     ratchetMotor.moveVoltage(-12000);
-    intake::intakeGroup.moveVelocity(200);
+    //  intake::intakeGroup.moveVelocity(200);
     break;
 
   case State::DOWN: // moves wheel alone downward

@@ -98,11 +98,11 @@ namespace auton {
 void runIntake(int velocity) { intake::intakeGroup.moveVoltage(velocity); }
 void open() {
   intake::intakeGroup.tarePosition();
-  intake::intakeGroup.moveAbsolute(-60, -200);
+  intake::left_motor.moveAbsolute(-60, -200);
+  intake::right_motor.moveAbsolute(-60, -200);
   intake::intakeGroup.setBrakeMode(AbstractMotor::brakeMode::hold);
 }
 void release() {
-  intake::intakeGroup.moveAbsolute(0, 200);
   intake::intakeGroup.setBrakeMode(AbstractMotor::brakeMode::coast);
 }
 

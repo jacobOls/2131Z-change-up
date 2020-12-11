@@ -9,6 +9,7 @@ const int max = 12000;
 void wait(int time) { pros::delay(time); }
 bool fail = true;
 void dont() { fail = false; }
+
 void rightAuton() {
   if (fail) {
     dont();
@@ -31,9 +32,9 @@ void rightAuton() {
   // runElevator(8000);
   turn(310, 90, "right");
   runElevator(0);
-  strafe(1400, 200, "right");
+  strafe(1425, 200, "right");
   runIntake(0);
-  drive(100, 50);
+  drive(220, 80);
   // wait(450);
   // strafe(100, 50, "left");
   runElevator(12000);
@@ -47,7 +48,7 @@ void rightAuton() {
   turn(235, 150, "right");
   runIntake(12000);
   runElevator(12000);
-  drive(720, 100);
+  drive(820, 150);
   runIntake(0);
   wait(700);
   // drive(50, 20);
@@ -79,15 +80,16 @@ void RtwoTowers() {
   // runElevator(8000);
   turn(310, 90, "right");
   runElevator(0);
-  strafe(1400, 200, "right");
+  strafe(1425, 200, "right");
   runIntake(0);
-  drive(100, 50);
+  drive(220, 80);
   // wait(450);
   // strafe(100, 50, "left");
   runElevator(12000);
-  wait(1500);
+  wait(700);
   // turn(100, 25, "left");
   runElevator(0);
+  drive(150, -40);
 }
 
 void RoneTower() {
@@ -108,8 +110,6 @@ void RoneTower() {
   runIntake(4000);
   // runElevator(80);
   drive(200, -75);
-  runIntake(0);
-  runElevator(0);
 }
 void leftAuton() {
   if (fail) {
@@ -131,28 +131,28 @@ void leftAuton() {
   drive(200, -75);
   // runIntake(100);
   // runElevator(8000);
-  turn(280, 90, "left");
+  turn(310, 90, "left");
   runElevator(0);
-  strafe(1600, 200, "left");
+  strafe(1475, 200, "left");
   runIntake(0);
   // turn(55, 30, "right");
-  drive(240, 100);
+  drive(220, 80);
   // wait(450);
   // strafe(100, 50, "left");
   runElevator(12000);
   wait(700);
   // turn(100, 25, "left");
   runElevator(0);
-  drive(150, -40);
+  drive(300, -140);
   // drive(50, -100);
   // drive(150, -70);
-  strafe(1500, 200, "left");
-  turn(235, 150, "left");
+  strafe(1275, 200, "left");
+  turn(250, 150, "left");
   runIntake(12000);
   runElevator(12000);
-  drive(720, 100);
+  drive(920, 100);
+  wait(1100);
   runIntake(0);
-  wait(900);
   // drive(50, 20);
   // runIntake(-6000);
   // wait(1100);
@@ -180,16 +180,19 @@ void lTwoTowers() {
   drive(200, -75);
   // runIntake(100);
   // runElevator(8000);
-  turn(280, 90, "left");
+  turn(310, 90, "left");
   runElevator(0);
-  strafe(1600, 200, "left");
+  strafe(1475, 200, "left");
   runIntake(0);
   // turn(55, 30, "right");
-  drive(240, 100);
+  drive(220, 80);
   // wait(450);
   // strafe(100, 50, "left");
   runElevator(12000);
-  wait(1500);
+  wait(700);
+  // turn(100, 25, "left");
+  runElevator(0);
+  drive(300, -140);
 }
 void lOneTower() {
   if (fail) {
@@ -204,9 +207,11 @@ void lOneTower() {
   drive(510, 160);
   // runIntake(-8000);
   runElevator(12000);
-  wait(1200);
+  wait(500);
   runElevator(0);
-  runIntake(0);
+  runIntake(4000);
+  // runElevator(80);
+  drive(200, -75);
 }
 void skills() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);

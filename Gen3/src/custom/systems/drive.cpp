@@ -60,6 +60,16 @@ IME (Integrated motor Encoder) torque: 627.2
 IME speed: 392
 IME turbo: 261.333
 */
+int vel;
+std::string velocity;
+void velCheck() {
+  vel = drive::rightBack.getActualVelocity();
+  std::string velocity = std::to_string(vel);
+  pros::lcd::set_text(1, velocity);
+  pros::delay(20);
+  // pros::lcd::clear_line(1);
+  // pros::lcd::clear_line(2);
+}
 pros::Rotation sTracker(11);
 void drive(int distance, int velocity) {
   drive::left_drive.tarePosition();
@@ -110,8 +120,8 @@ void strafe(int distance, int velocity, std::string direction) {
       velocity *= -1;
       velDir = true;
     }
-    drive::accelDrive.accelMath(accel, &drive::left_strafe, velocity);
-    drive::accelDrive.accelMath(accel, &drive::right_strafe, -velocity);
+    drive::accelDrive.strafeAccel(accel, &drive::left_strafe, velocity);
+    drive::accelDrive.strafeAccel(accel, &drive::right_strafe, -velocity);
     pros::delay(drive::accelDrive.rateOfChange);
   }
   reset();

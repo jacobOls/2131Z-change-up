@@ -60,6 +60,8 @@ void up() {
 }
 bool red = true;
 
+ADIButton ejectSwitch('a');
+
 // int n = visionSensor.get_object_count();
 void toggle() {
   if (selection::BtnSwap.changedToReleased()) {
@@ -121,9 +123,14 @@ void execute() {
     break;
 
   case State::BACK: // moves wheel motors to eject ball out back
+                    // if (ejectSwitch.isPressed()) {
     elevMotor.moveVoltage(12000);
     ratchetMotor.moveVoltage(-12000);
-    //  intake::intakeGroup.moveVelocity(200);
+    // curTime = pros::millis() + 350;
+    // } else if (curTime - pros::millis() < 200) {
+    // elevGroup.moveVoltage(12000);
+    // }
+    // intake::intakeGroup.moveVelocity(200);
     break;
 
   case State::DOWN: // moves wheel alone downward

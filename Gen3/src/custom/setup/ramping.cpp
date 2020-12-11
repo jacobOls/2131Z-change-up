@@ -36,6 +36,22 @@ void ramping::accelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
   //   timesLooped = 0;
   // }
 }
+void ramping::strafeAccel(rampMotor handler, okapi::MotorGroup *MotorGroup,
+                          int requested) {
+
+  vel = pow(changeValue, timesLooped / 10);
+
+  if (abs(vel) > abs(requested)) {
+    vel = requested;
+  }
+
+  if (requested < 0) {
+    vel = -abs(vel);
+  }
+
+  (*handler)(MotorGroup, vel);
+  timesLooped++;
+}
 bool velTrue = false;
 void ramping::deAccelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
                           int requested, int startVel) {
@@ -47,7 +63,7 @@ void ramping::deAccelMath(rampMotor handler, okapi::MotorGroup *MotorGroup,
     vel *= -1;
   }
   if (vel > .35 * abs(startVel)) {
-    vel -= changeValue * timesLooped / 5;
+    vel -= changeValue * timesLooped / 7;
     if (vel < .35 * abs(startVel))
       vel = .6 * abs(startVel);
   } else if (vel > .1 * startVel && vel <= .35 * abs(startVel)) {

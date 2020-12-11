@@ -20,7 +20,13 @@ void in() {
     state = State::DEINIT;
   }
 }
-
+void middle() {
+  if (mid.isPressed()) {
+    state = State::MID;
+  } else if (state == State::MID) {
+    state = State::DEINIT;
+  }
+}
 void out() {
   if (BtnOut.isPressed()) {
     state = State::OUT;
@@ -100,13 +106,18 @@ void execute() {
     //   intake::intakeGroup.moveVoltage(12000);
     //   elevator::elevGroup.moveVoltage(12000);
     // }
+    if (abs(drive::driveGroup.getActualVelocity()) > 15) {
+      elevGroup.moveVoltage(9000);
+    }
     elevGroup.moveVoltage(12000);
     intake::intakeGroup.moveVelocity(200);
     break;
   }
-
+  case State::MID:
+    elevGroup.moveVoltage(9000);
+    break;
   case State::OUT:
-    elevGroup.moveVelocity(-12000);
+    elevGroup.moveVoltage(-12000);
     break;
 
   case State::BACK: // moves wheel motors to eject ball out back
@@ -142,6 +153,7 @@ void init() {
   out();
   execute();
   toggle();
+  middle();
   // pros::vision_object_s_t rtn = visionSensor.get_by_sig(0, 1);
   // std::cout << rtn.signature << std::endl;
 }

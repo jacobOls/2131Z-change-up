@@ -135,6 +135,10 @@ void strafe(int distance, int velocity, std::string direction) {
     pros::delay(drive::deAccelDrive.rateOfChange);
   }
   reset();
+  if (direction == "left") {
+    request *= -1;
+    velDir = false;
+  }
   std::cout << drive::leftFront.getPosition() << std::endl;
   drive::left_strafe.moveVelocity(0);
   drive::right_strafe.moveVelocity(0);

@@ -48,7 +48,7 @@ autonFnPtr autonHandlers[BUTTON_COUNT] = {
     auton::RtwoTowers, auton::RoneTower, autonOne,
 
     auton::leftAuton, // tbd
-    autonOne,          autonOne,         autonOne,
+    auton::lTwoTowers, auton::lOneTower, autonOne,
 
     auton::skills, // tbd
     autonOne,          autonOne,         autonOne,

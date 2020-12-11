@@ -44,19 +44,19 @@ void execute() {
   }
   switch (state) {
   case State::IN: {
-    intakeGroup.moveVelocity(200);
+    intakeGroup.moveVoltage(12000);
     curTime = pros::millis();
     break;
   }
 
   case State::OUT:
-    if (abs(left_motor.getPosition()) < 60) {
+    if (abs(left_motor.getPosition()) < 75) {
       left_motor.moveVelocity(-200);
     } else {
       left_motor.moveVelocity(0);
       left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
     }
-    if (abs(right_motor.getPosition()) < 60) {
+    if (abs(right_motor.getPosition()) < 75) {
       right_motor.moveVelocity(-200);
     } else {
       right_motor.moveVelocity(0);
@@ -72,6 +72,7 @@ void execute() {
 
   case State::DEINIT:
     intakeGroup.moveVelocity(0);
+    intakeGroup.moveVoltage(0);
     elevator::elevGroup.moveVelocity(0);
     state = State::NONE;
     break;

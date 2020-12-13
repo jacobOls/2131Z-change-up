@@ -1,6 +1,7 @@
 #include "custom/systems/drive.hpp"
 #include "custom/setup/controller.hpp"
 #include "custom/setup/motors.hpp"
+#include "custom/systems/intake.hpp"
 #include "main.h"
 namespace drive {
 pros::Vision lineSet(4);
@@ -104,6 +105,49 @@ void drive(int distance, int velocity) {
   std::cout << "end " << drive::driveGroup.getPosition() << std::endl;
   std::cout << "vel " << drive::leftFront.getActualVelocity() << std::endl;
   reset();
+  drive::driveGroup.moveVelocity(0);
+  drive::driveGroup.tarePosition();
+}
+bool released = false;
+void clampDrive(int distance, int clampDistance, int velocity) {
+  open();
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
+  int epsilon = velocity * 1.725;
+  int req = 5;
+  while (abs(drive::driveGroup.getPosition()) <= abs((distance)) - epsilon) {
+    if (drive::driveGroup.getPosition() >= clampDistance && released == false) {
+      release();
+      released = true;
+    }
+    if (abs(drive::driveGroup.getPosition()) >= distance - epsilon) {
+      break;
+    }
+    drive::accelDrive.accelMath(accel, &drive::driveGroup, velocity);
+  }
+  if (drive::driveGroup.getActualVelocity() < velocity) {
+    drive::driveGroup.moveVelocity(velocity);
+    pros::delay(10);
+  }
+  std::cout << "stopping " << drive::driveGroup.getPosition() << std::endl;
+  reset();
+  while (abs(drive::leftFront.getActualVelocity()) != 5000) {
+    if (velocity < 0 && req > 0) {
+      req *= 1;
+    }
+    // std::cout << drive::left_drive.getPosition() << std::endl;
+    drive::deAccelDrive.deAccelMath(accel, &drive::driveGroup, req, velocity);
+    if (abs(drive::driveGroup.getPosition()) >= distance) {
+      std::cout << " break early " << drive::driveGroup.getPosition()
+                << std::endl;
+      break;
+    }
+    pros::delay(drive::deAccelDrive.rateOfChange);
+  }
+  std::cout << "end " << drive::driveGroup.getPosition() << std::endl;
+  std::cout << "vel " << drive::leftFront.getActualVelocity() << std::endl;
+  reset();
+  released = false;
   drive::driveGroup.moveVelocity(0);
   drive::driveGroup.tarePosition();
 }

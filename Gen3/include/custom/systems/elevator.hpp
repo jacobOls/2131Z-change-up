@@ -10,5 +10,6 @@ void initVision(void);
 namespace auton {
 void runElevator(int velocity);
 void autoBack(int delay);
+void eject();
 } // namespace auton
 #endif /* end of include guard: ELEVATOR_HPP */

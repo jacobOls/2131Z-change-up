@@ -25,16 +25,16 @@ void autonTwo() { std::cout << "running auton two" << std::endl; }
 void autonThree() { std::cout << "3" << std::endl; }
 std::string buttonLabels[BUTTON_COUNT] = {
     "right 3", // right red, left blue
-    "right 2", "right 1 ", "nothing ",
+    "right 2",      "right 1 ", "nothing ",
 
     "left 3", // left red, right blue
-    "left 2 ", "left 1  ", "Nothing ",
+    "left 2 ",      "left 1  ", "Nothing ",
 
     "skills", // combo autons
-    "ඞ ",      "ඞ ",       "ඞ ",
+    "right cycle ", "ඞ ",       "ඞ ",
 
     "test ", // too many rows
-    "ඞ ",      "ඞ  ",      "ඞ ",
+    "ඞ ",           "ඞ  ",      "ඞ ",
 
     "}(*)", // miscellaneous      "skills ",    "skills",   "also skills",
 };
@@ -51,7 +51,7 @@ autonFnPtr autonHandlers[BUTTON_COUNT] = {
     auton::lTwoTowers, auton::lOneTower, autonOne,
 
     auton::skills, // tbd
-    autonOne,          autonOne,         autonOne,
+    auton::rOneCycle,  auton::imadick,   autonOne,
 
     autonOne, // tbd
     autonOne,          autonOne,         autonOne,
@@ -138,7 +138,7 @@ void clearBtns(lv_obj_t *toggledButton = NULL) {
 
 void execute() {
   std::cout << "executing" << std::endl;
-  autonFnPtr defaultAuton = auton::leftAuton;
+  autonFnPtr defaultAuton = auton::rOneCycle;
   defaultThing = "Things work and not";
   // inAuton = true;
 

@@ -9,6 +9,8 @@ void lOneTower();
 void lTwoTowers();
 void testFunctions();
 void skills();
+void rOneCycle();
+void imadick();
 
 } // namespace auton
 

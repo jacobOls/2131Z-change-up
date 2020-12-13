@@ -169,6 +169,10 @@ void init() {
 
 namespace auton {
 void runElevator(int velocity) { elevator::elevGroup.moveVoltage(velocity); }
+void eject() {
+  elevator::elevMotor.moveVoltage(12000);
+  elevator::ratchetMotor.moveVoltage(-12000);
+}
 void autoBack(int delay) {
   int startTime = pros::millis();
   intake::intakeGroup.moveVoltage(12000);

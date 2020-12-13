@@ -95,15 +95,17 @@ void init() {
 } // namespace intake
 
 namespace auton {
-
+int timer = pros::millis();
 void runIntake(int velocity) { intake::intakeGroup.moveVoltage(velocity); }
 void open() {
   intake::intakeGroup.tarePosition();
-  intake::left_motor.moveAbsolute(-60, -200);
-  intake::right_motor.moveAbsolute(-60, -200);
+  intake::left_motor.moveRelative(-70, -100);
+  intake::right_motor.moveRelative(-70, -100);
   intake::intakeGroup.setBrakeMode(AbstractMotor::brakeMode::hold);
 }
 void release() {
+  intake::intakeGroup.setBrakeMode(AbstractMotor::brakeMode::coast);
+  intake::intakeGroup.moveRelative(70, 200);
   intake::intakeGroup.setBrakeMode(AbstractMotor::brakeMode::coast);
 }
 

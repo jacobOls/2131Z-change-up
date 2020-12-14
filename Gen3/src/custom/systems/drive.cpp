@@ -21,7 +21,6 @@ int lY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 200; };
 int lX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
 int rX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
 int stVal() { return ((lX() + rX()) / 2); };
-
 int flVal() { return lY() + stVal(); };
 int blVal() { return lY() - stVal(); };
 int brVal() { return rY() + stVal(); };
@@ -70,6 +69,29 @@ void velCheck() {
   pros::delay(20);
   // pros::lcd::clear_line(1);
   // pros::lcd::clear_line(2);
+}
+pros::Distance disSense(4);
+// 250 corner towers
+// 350 middle towers
+void straightLineup(int distance) {
+  int vel = disSense.get() / 8;
+  std::cout << disSense.get() << std::endl;
+
+  if (disSense.get() + 15 < distance) {
+    while (disSense.get() + 15 < distance) {
+      vel = disSense.get() / 8;
+      drive::driveGroup.moveVelocity(-vel);
+      pros::delay(10);
+    }
+  }
+  if (disSense.get() - 15 > distance) {
+    while (disSense.get() - 15 > distance) {
+      vel = disSense.get() / 8;
+      drive::driveGroup.moveVelocity(vel);
+      pros::delay(10);
+    }
+  }
+  drive::driveGroup.moveVelocity(0);
 }
 pros::Rotation sTracker(11);
 void drive(int distance, int velocity) {

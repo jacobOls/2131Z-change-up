@@ -14,5 +14,6 @@ void clampDrive(int distance, int clampDistance, int velocity);
 void strafe(int distance, int velocity, std::string direction);
 void timeStrafe(int voltage, int time, std::string direction);
 void turn(int turnAmount, int velocity, std::string direction);
+void straightLineup(int distance);
 } // namespace auton
 #endif /* end of include guard: DRIVE_HPP */

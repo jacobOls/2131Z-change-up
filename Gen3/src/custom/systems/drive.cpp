@@ -76,7 +76,6 @@ pros::Distance disSense(4);
 void straightLineup(int distance) {
   int vel = disSense.get() / 8;
   std::cout << disSense.get() << std::endl;
-
   if (disSense.get() + 15 < distance) {
     while (disSense.get() + 15 < distance) {
       vel = disSense.get() / 8;
@@ -93,7 +92,7 @@ void straightLineup(int distance) {
   }
   drive::driveGroup.moveVelocity(0);
 }
-pros::Rotation sTracker(11);
+pros::Rotation sTracker(2);
 void drive(int distance, int velocity) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
@@ -243,13 +242,14 @@ int turnReq = 10;
 void turn(int turnAmount, int velocity, std::string direction) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
+  sTracker.reset();
   int epsilon = velocity * 0.8;
   reset();
   if (direction == "left") {
     velocity *= -1;
     turnReq *= -1;
   }
-  while (abs(drive::leftFront.getPosition()) <= turnAmount - epsilon) {
+  while (abs(sTracker.get_position()) <= turnAmount - epsilon) {
     drive::accelDrive.accelMath(accel, &drive::left_drive, velocity);
     drive::accelDrive.accelMath(accel, &drive::right_drive, -velocity);
     pros::delay(drive::accelDrive.rateOfChange);
@@ -269,7 +269,7 @@ void turn(int turnAmount, int velocity, std::string direction) {
                                   velocity * .4);
     drive::accelDrive.deAccelMath(accel, &drive::right_drive, -turnReq,
                                   velocity * .4);
-    if (abs(drive::leftFront.getPosition()) >= turnAmount) {
+    if (abs(sTracker.get_position()) >= turnAmount) {
       std::cout << " break early " << drive::leftFront.getPosition()
                 << std::endl;
       break;
@@ -277,6 +277,7 @@ void turn(int turnAmount, int velocity, std::string direction) {
     pros::delay(drive::accelDrive.rateOfChange);
   }
   reset();
+  sTracker.reset();
   if (direction == "left") {
     turnReq *= -1;
   }

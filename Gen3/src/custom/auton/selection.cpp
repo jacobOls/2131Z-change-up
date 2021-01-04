@@ -43,7 +43,7 @@ std::string defaultThing = "default";
 // auton function returns void and takes no args
 typedef void (*autonFnPtr)(void);
 
-autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::rightAuton, // tbd
+autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::rightThree, // tbd
                                           auton::RtwoTowers,
                                           auton::RoneTower,
                                           autonOne,

@@ -346,6 +346,15 @@ void skills() {
   drive(600, 150);
   runElevator(12000);
 }
+void rightThree() {
+  if (fail) {
+    dont();
+  }
+  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive(465, 100);
+  turn(780, 200, "right");
+}
 void testFunctions() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);

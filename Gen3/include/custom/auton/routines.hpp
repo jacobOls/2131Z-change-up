@@ -11,6 +11,7 @@ void testFunctions();
 void skills();
 void rOneCycle();
 void imadick();
+void rightThree();
 
 } // namespace auton
 

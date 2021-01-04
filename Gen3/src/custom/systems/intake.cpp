@@ -8,6 +8,9 @@ namespace intake {
 State state = State::NONE;
 pros::ADIAnalogIn intakeSense(8);
 pros::ADIAnalogIn highElevator(5);
+ADIButton leftIntake('a');
+ADIButton rightIntake('b');
+
 bool inIntake = false;
 bool inVision = false;
 void in() {
@@ -50,15 +53,15 @@ void execute() {
   }
 
   case State::OUT:
-    if (abs(left_motor.getPosition()) < 75) {
+    if (!leftIntake.isPressed()) {
       left_motor.moveVelocity(-200);
-    } else {
+    } else if (leftIntake.isPressed()) {
       left_motor.moveVelocity(0);
       left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
     }
-    if (abs(right_motor.getPosition()) < 75) {
+    if (!rightIntake.isPressed()) {
       right_motor.moveVelocity(-200);
-    } else {
+    } else if (rightIntake.isPressed()) {
       right_motor.moveVelocity(0);
       right_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
     }

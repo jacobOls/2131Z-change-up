@@ -358,7 +358,11 @@ void rightThree() {
 void testFunctions() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  straightLineup(350);
+  // drive::rightFront.moveVelocity(-50);
+  // drive::leftBack.moveVelocity(-50);
+  drive::leftFront.moveVelocity(150);
+  drive::rightBack.moveVelocity(150);
+
   // strafe(800, 200, "left");
   // strafe(800, 200, "right");
 }

@@ -8,9 +8,10 @@ namespace intake {
 State state = State::NONE;
 pros::ADIAnalogIn intakeSense(8);
 pros::ADIAnalogIn highElevator(5);
-ADIButton leftIntake('a');
-ADIButton rightIntake('b');
-
+ADIButton leftIntake('b');
+ADIButton rightIntake('a');
+bool leftOpened = false;
+bool rightOpened = false;
 bool inIntake = false;
 bool inVision = false;
 void in() {
@@ -38,35 +39,44 @@ void manIn() {
     state = State::DEINIT;
   }
 }
-int curTime;
 void execute() {
 
   if (state != State::OUT) {
-    intakeGroup.tarePosition();
     intakeGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+    leftOpened = false;
+    rightOpened = false;
   }
   switch (state) {
   case State::IN: {
     intakeGroup.moveVoltage(12000);
-    curTime = pros::millis();
     break;
   }
 
   case State::OUT:
-    if (!leftIntake.isPressed()) {
+    if (leftOpened == false) {
       left_motor.moveVelocity(-200);
     } else if (leftIntake.isPressed()) {
+      leftOpened = true;
       left_motor.moveVelocity(0);
       left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
     }
-    if (!rightIntake.isPressed()) {
+    if (leftOpened == true) {
+      left_motor.moveVelocity(0);
+      left_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    }
+    if (rightOpened == false) {
       right_motor.moveVelocity(-200);
     } else if (rightIntake.isPressed()) {
+      leftOpened = true;
       right_motor.moveVelocity(0);
       right_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
     }
-
-    // intakeGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    if (rightOpened == true) {
+      right_motor.moveVelocity(0);
+      right_motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    }
+    // std::cout << leftOpened << std::endl;
+    intakeGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
     break;
 
   case State::MANUAL:

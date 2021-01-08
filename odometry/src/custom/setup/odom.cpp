@@ -53,8 +53,8 @@ void posCalc() {
   // pos variables
   curLeftEnc = (left.get_position());
   curRightEnc = (right.get_position());
-  curBackEnc = (back.get_position());
-  setCurR(back.get_position());
+  curBackEnc = (back.get_position() * (M_PI / 180));
+  setCurR(curBackEnc);
   deltaLeft = wheelCirc * (curLeftEnc - prevLeft) / 360;
   deltaRight = wheelCirc * (curRightEnc - prevRight) / 360;
   deltaBack = wheelCirc * (curBackEnc - prevBack) / 360;

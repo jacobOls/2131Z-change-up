@@ -10,7 +10,7 @@ void initialize() {
   elevator::initVision();
   intake::intakeGroup.tarePosition();
 }
-pros::Task trackPosition(odom::posCalc);
+// pros::Task trackPosition(posCalc);
 
 void disabled() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
@@ -25,7 +25,7 @@ void opcontrol() {
   // selection::execute();
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  trackPosition.remove();
+  // trackPosition.remove();
   while (true) {
     drive::userDrive();
     drive::brake();

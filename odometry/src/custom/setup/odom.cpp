@@ -2,8 +2,8 @@
 #include "custom/setup/motors.hpp"
 #include "main.h"
 #include <cmath>
-namespace odom {
 // vars
+#define MUT_DELAY 666;
 volatile const double wheelCirc = M_PI * 2;
 volatile const double robotDiameter{hypot(9, 15)};
 volatile const double robotCircumference{M_PI * robotDiameter};
@@ -49,28 +49,30 @@ void travel() {
 double absoluteX{0}, absoluteY{0};
 double curLeftEnc, curRightEnc, curBackEnc, deltaLeft, deltaRight, deltaBack,
     prevLeft, prevRight, prevBack, avgDelta, deltaX, deltaY, changeR;
-void posCalc() {
-  // pos variables
-  curLeftEnc = (left.get_position());
-  curRightEnc = (right.get_position());
-  curBackEnc = (back.get_position() * (M_PI / 180));
-  setCurR(curBackEnc);
-  deltaLeft = wheelCirc * (curLeftEnc - prevLeft) / 360;
-  deltaRight = wheelCirc * (curRightEnc - prevRight) / 360;
-  deltaBack = wheelCirc * (curBackEnc - prevBack) / 360;
+// void posCalc() {
+//   // pos variables
+//   curLeftEnc = (left.get_position());
+//   curRightEnc = (right.get_position());
+//   curBackEnc = (back.get_position() * (M_PI / 180));
+//   setCurR(curBackEnc);
+//   deltaLeft = wheelCirc * (curLeftEnc - prevLeft) / 360;
+//   deltaRight = wheelCirc * (curRightEnc - prevRight) / 360;
+//   deltaBack = wheelCirc * (curBackEnc - prevBack) / 360;
+//
+//   avgDelta = (deltaLeft + deltaRight) / 2;
+//
+//   prevLeft = curLeftEnc;
+//   prevRight = curRightEnc;
+//   prevBack = curBackEnc;
+//
+//   deltaX = avgDelta * cos(deltaR + (changeR / 2));
+//   deltaY = avgDelta * sin(deltaR + (changeR / 2));
+//
+//   absoluteX += deltaX;
+//   absoluteY += deltaY;
+//
+//   pros::delay(10);
+// }
 
-  avgDelta = (deltaLeft + deltaRight) / 2;
-
-  prevLeft = curLeftEnc;
-  prevRight = curRightEnc;
-  prevBack = curBackEnc;
-
-  deltaX = avgDelta * cos(deltaR + (changeR / 2));
-  deltaY = avgDelta * sin(deltaR + (changeR / 2));
-
-  absoluteX += deltaX;
-  absoluteY += deltaY;
-
-  pros::delay(10);
-}
-} // namespace odom
+// auto pos = PosTracking::strict_pos();
+// namespace odom

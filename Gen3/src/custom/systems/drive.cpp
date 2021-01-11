@@ -92,7 +92,7 @@ void straightLineup(int distance) {
   }
   drive::driveGroup.moveVelocity(0);
 }
-pros::Rotation sTracker(2);
+pros::Rotation sTracker(7);
 void drive(int distance, int velocity) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
@@ -243,7 +243,7 @@ void turn(int turnAmount, int velocity, std::string direction) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
   sTracker.reset();
-  int epsilon = velocity * 0.8;
+  int epsilon = velocity * 80;
   reset();
   if (direction == "left") {
     velocity *= -1;

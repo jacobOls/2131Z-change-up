@@ -355,14 +355,25 @@ void rightThree() {
   drive(465, 100);
   turn(780, 200, "right");
 }
+pros::Rotation rTracker(7);
 void testFunctions() {
+  rTracker.set_reversed(true);
+  rTracker.set_position(0);
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  // drive::rightFront.moveVelocity(-50);
-  // drive::leftBack.moveVelocity(-50);
-  drive::leftFront.moveVelocity(150);
-  drive::rightBack.moveVelocity(150);
-
+  turn((3.5 * 36000) * 1, 50, "right");
+  // while (abs(rTracker.get_position()) < (3.15 * 36000) * 5) {
+  //   drive::left_drive.moveVelocity(200);
+  //   drive::right_drive.moveVelocity(-200);
+  // }
+  // drive::driveGroup.moveVelocity(0);
+  // while (true) {
+  //   std::cout << "degrees " << rTracker.get_position() << "\tangle "
+  //             << rTracker.get_angle() << std::endl;
+  //   int foo = ((rTracker.get_position() / 100) * M_PI / 180);
+  //   std::cout << foo << std::endl;
+  //   pros::delay(10);
+  // }
   // strafe(800, 200, "left");
   // strafe(800, 200, "right");
 }

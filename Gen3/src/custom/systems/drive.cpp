@@ -243,7 +243,7 @@ void turn(int turnAmount, int velocity, std::string direction) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
   sTracker.reset();
-  int epsilon = velocity * 80;
+  int epsilon = velocity * 65;
   reset();
   if (direction == "left") {
     velocity *= -1;

@@ -11,7 +11,7 @@ struct Pos {
   double &r;
 };
 
-class PosGuard {
+class PosGuard { // guards the mutex from breaking
 private:
   pros::Mutex mtx;
 
@@ -27,6 +27,8 @@ public:
 };
 
 class PosTracking {
+private: // strict vars will constantly update, lazy vars will only updated when
+         // needed
   static pros::Mutex mtx;
   static double lazyX;
   static double lazyY;

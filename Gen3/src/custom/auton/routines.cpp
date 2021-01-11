@@ -356,9 +356,10 @@ void rightThree() {
   turn(780, 200, "right");
 }
 pros::Rotation rTracker(7);
-
+int reqY = 1;
+int reqX = 0;
 void testFunctions() {
-  double turnAngle = atan2(1, 0);
+  double turnAngle = atan2(reqY, reqX);
   turnAngle = turnAngle * 180 / M_PI;
   turnAngle *= 100;
   rTracker.set_reversed(true);
@@ -370,10 +371,10 @@ void testFunctions() {
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   // turn((3.8 * 36000) * 1, 50, "right");
   // pi*36000 is 1 full turn, precise at 65 vel and lower when setting position
-  // when generating turn, it must multiply by 3
-  while (abs(rTracker.get_position()) < (3 * turnAngle) * 1) {
-    drive::left_drive.moveVelocity(65);
-    drive::right_drive.moveVelocity(-65);
+  // when generating turn, it must multiply by M_PI as well
+  while (abs(rTracker.get_position()) < (M_PI * turnAngle)) {
+    drive::left_drive.moveVelocity(-65);
+    drive::right_drive.moveVelocity(65);
   }
   drive::driveGroup.moveVelocity(0);
   // while (true) {

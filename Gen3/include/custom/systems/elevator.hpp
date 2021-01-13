@@ -11,5 +11,6 @@ namespace auton {
 void runElevator(int velocity);
 void autoBack(int delay);
 void eject();
+void score(void);
 } // namespace auton
 #endif /* end of include guard: ELEVATOR_HPP */

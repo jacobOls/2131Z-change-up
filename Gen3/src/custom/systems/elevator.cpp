@@ -168,6 +168,18 @@ void init() {
 } // namespace elevator
 
 namespace auton {
+pros::Distance disSense(18);
+void score() {
+  int curTime = pros::millis();
+  while (disSense.get() > 175) {
+    // if (pros::millis() - curTime > 650) {
+    // break;
+    // }
+    elevator::elevGroup.moveVelocity(600);
+  }
+  pros::delay(500);
+  elevator::elevGroup.moveVelocity(0);
+}
 void runElevator(int velocity) { elevator::elevGroup.moveVoltage(velocity); }
 void eject() {
   elevator::elevMotor.moveVoltage(12000);

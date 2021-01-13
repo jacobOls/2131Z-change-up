@@ -108,6 +108,7 @@ void init() {
 } // namespace intake
 
 namespace auton {
+
 int timer = pros::millis();
 void runIntake(int velocity) { intake::intakeGroup.moveVoltage(velocity); }
 void open() {

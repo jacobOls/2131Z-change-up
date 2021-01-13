@@ -4,7 +4,6 @@
 #include <cmath>
 #include <mutex>
 void posCalc();
-
 struct Pos {
   double &x;
   double &y;

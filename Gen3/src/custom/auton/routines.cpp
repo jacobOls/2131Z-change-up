@@ -9,7 +9,25 @@ const int max = 12000;
 void wait(int time) { pros::delay(time); }
 bool fail = true;
 void dont() { fail = false; }
-
+void jankTurn(int turnAngle) {
+  sTracker.set_position(0);
+  sTracker.set_position(0);
+  turnAngle = turnAngle * 100;
+  wait(15);
+  if (turnAngle < 0) {
+    turnAngle += 30;
+    while (abs(sTracker.get_position()) < abs(turnAngle * 2.925)) {
+      drive::left_drive.moveVelocity(-60);
+      drive::right_drive.moveVelocity(60);
+    }
+  } else if (turnAngle > 0) {
+    while (abs(sTracker.get_position()) < abs(turnAngle * 2.925)) {
+      drive::left_drive.moveVelocity(60);
+      drive::right_drive.moveVelocity(-60);
+    }
+  }
+  drive::driveGroup.moveVelocity(0);
+}
 void rightAuton() {
   if (fail) {
     dont();
@@ -177,48 +195,13 @@ void leftAuton() {
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  strafe(520, 140, "right");
-  runIntake(12000);
-  // drive(100, 50);
-  turn(240, 160, "left");
-  drive(510, 160);
-  // runIntake(-8000);
-  runElevator(12000);
-  wait(700);
-  runElevator(0);
-  runIntake(4000);
-  // runElevator(80);
-  drive(200, -75);
-  // runIntake(100);
-  // runElevator(8000);
-  turn(310, 90, "left");
-  runElevator(0);
-  strafe(1475, 200, "left");
+  drive(30, 155);
+  jankTurn(-110);
+  runIntake(200);
+  drive(30, 150);
   runIntake(0);
-  // turn(55, 30, "right");
-  drive(220, 80);
-  // wait(450);
-  // strafe(100, 50, "left");
-  runElevator(12000);
-  wait(700);
-  // turn(100, 25, "left");
-  runElevator(0);
-  drive(300, -140);
-  // drive(50, -100);
-  // drive(150, -70);
-  strafe(1350, 200, "left");
-  turn(265, 150, "left");
-  runIntake(12000);
-  runElevator(12000);
-  drive(1050, 100);
-  wait(2000);
-  runIntake(0);
-  // drive(50, 20);
-  // runIntake(-6000);
-  // wait(1100);
-  runElevator(0);
-  runIntake(0);
-  drive(200, -50);
+  score();
+  drive(10, -150);
 }
 void lTwoTowers() {
   if (fail) {
@@ -355,37 +338,39 @@ void rightThree() {
   drive(465, 100);
   turn(780, 200, "right");
 }
-pros::Rotation rTracker(7);
-int reqY = 1;
-int reqX = 0;
-void testFunctions() {
+
+volatile const double wheelCirc = M_PI * 2.75;
+double driveInches() {
+  return (abs(leftTracker.get_position() + rightTracker.get_position()) / 2) /
+         360 * wheelCirc;
+}
+void toPoint(int reqY, int reqX) {
   double turnAngle = atan2(reqY, reqX);
   turnAngle = turnAngle * 180 / M_PI;
   turnAngle *= 100;
-  rTracker.set_reversed(true);
-  rTracker.set_position(0);
+  double driveDistance = hypot(reqY, reqX) * 10;
+  rightTracker.set_reversed(true);
+  leftTracker.set_reversed(false);
+  rightTracker.set_reversed(true);
+  rightTracker.set_position(0);
+  leftTracker.set_position(0);
+  rightTracker.set_position(0);
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  rTracker.set_position(0);
-  rTracker.set_position(0);
-  rTracker.set_position(0);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  // turn((3.8 * 36000) * 1, 50, "right");
-  // pi*36000 is 1 full turn, precise at 65 vel and lower when setting position
-  // when generating turn, it must multiply by M_PI as well
-  while (abs(rTracker.get_position()) < (M_PI * turnAngle)) {
+  // pi*36000 is 1 full turn, precise at 65 vel and lower
+  // when generating turn, it must multiply by M_PI to be accurate
+  while (abs(rightTracker.get_position()) < (3.14 * turnAngle)) {
     drive::left_drive.moveVelocity(-65);
     drive::right_drive.moveVelocity(65);
   }
   drive::driveGroup.moveVelocity(0);
-  // while (true) {
-  //   std::cout << "degrees " << rTracker.get_position() << "\tangle "
-  //             << rTracker.get_angle() << std::endl;
-  //   int foo = ((rTracker.get_position() / 100) * M_PI / 180);
-  //   std::cout << foo << std::endl;
-  //   pros::delay(10);
-  // }
-  // strafe(800, 200, "left");
-  // strafe(800, 200, "right");
+  while (driveInches() < driveDistance) {
+    drive::left_drive.moveVelocity(65);
+    drive::right_drive.moveVelocity(65);
+  }
+  drive::driveGroup.moveVelocity(0);
 }
+
+void testFunctions() { score(); }
 
 } // namespace auton

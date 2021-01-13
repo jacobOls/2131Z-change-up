@@ -70,41 +70,36 @@ void velCheck() {
   // pros::lcd::clear_line(1);
   // pros::lcd::clear_line(2);
 }
-pros::Distance disSense(4);
 // 250 corner towers
 // 350 middle towers
-void straightLineup(int distance) {
-  int vel = disSense.get() / 8;
-  std::cout << disSense.get() << std::endl;
-  if (disSense.get() + 15 < distance) {
-    while (disSense.get() + 15 < distance) {
-      vel = disSense.get() / 8;
-      drive::driveGroup.moveVelocity(-vel);
-      pros::delay(10);
-    }
-  }
-  if (disSense.get() - 15 > distance) {
-    while (disSense.get() - 15 > distance) {
-      vel = disSense.get() / 8;
-      drive::driveGroup.moveVelocity(vel);
-      pros::delay(10);
-    }
-  }
-  drive::driveGroup.moveVelocity(0);
+pros::Rotation sTracker(19); // rotation sensors
+pros::Rotation leftTracker(17);
+pros::Rotation rightTracker(8);
+double lEnc2Inch() { // conversion 2 inches
+  return (leftTracker.get_position() / 36000) * (M_PI * 2.75);
 }
-pros::Rotation sTracker(7);
+double rEnc2Inch() {
+  return (rightTracker.get_position() / 36000) * (M_PI * 2.75);
+}
+double avg2Inch() { return (lEnc2Inch() + rEnc2Inch()) / 2; }
 void drive(int distance, int velocity) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
-  int epsilon = velocity * 1.725;
+  leftTracker.reset();
+  rightTracker.reset();
+  int epsilon = (velocity * 1.725) / 86;
   int req = 5;
-  while (abs(drive::driveGroup.getPosition()) <= abs((distance)) - epsilon) {
-    if (abs(drive::driveGroup.getPosition()) >= distance - epsilon) {
+  while (abs(rightTracker.get_position() / 36000 * (M_PI * 2.75)) <=
+         abs((distance)) - epsilon) {
+    if (abs(rightTracker.get_position() / 36000 * (M_PI * 2.75)) >=
+        distance - epsilon) {
       break;
     }
+    std::cout << rightTracker.get_position() / 36000 * (M_PI * 2.75)
+              << std::endl;
     drive::accelDrive.accelMath(accel, &drive::driveGroup, velocity);
   }
-  if (drive::driveGroup.getActualVelocity() < velocity) {
+  if (abs(drive::driveGroup.getActualVelocity()) < abs(velocity)) {
     drive::driveGroup.moveVelocity(velocity);
     pros::delay(10);
   }
@@ -114,9 +109,11 @@ void drive(int distance, int velocity) {
     if (velocity < 0 && req > 0) {
       req *= 1;
     }
+    // std::cout << rightTracker.get_position() / 36000 * (M_PI * 2.75)
+    // << std::endl;
     // std::cout << drive::left_drive.getPosition() << std::endl;
     drive::deAccelDrive.deAccelMath(accel, &drive::driveGroup, req, velocity);
-    if (abs(drive::driveGroup.getPosition()) >= distance) {
+    if (abs(rightTracker.get_position()) >= distance) {
       std::cout << " break early " << drive::driveGroup.getPosition()
                 << std::endl;
       break;
@@ -126,6 +123,8 @@ void drive(int distance, int velocity) {
   std::cout << "end " << drive::driveGroup.getPosition() << std::endl;
   std::cout << "vel " << drive::leftFront.getActualVelocity() << std::endl;
   reset();
+  leftTracker.reset();
+  rightTracker.reset();
   drive::driveGroup.moveVelocity(0);
   drive::driveGroup.tarePosition();
 }

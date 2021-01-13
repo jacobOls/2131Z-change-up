@@ -20,19 +20,31 @@ void disabled() {
 }
 
 void competition_initialize() {}
-
+okapi::ControllerButton autosdf = master[okapi::ControllerDigital::X];
+bool asdf = false;
+void foo() {
+  if (autosdf.changedToPressed()) {
+    if (asdf == true)
+      asdf = false;
+    else if (asdf == false)
+      asdf = true;
+    // selection::execute();
+    // std::cout << "sadlfj" << std::endl;
+    if (asdf == true) {
+      elevator::elevGroup.moveVelocity(600);
+      intake::intakeGroup.moveVelocity(600);
+    } else if (asdf == false) {
+      elevator::elevGroup.moveVelocity(0);
+      intake::intakeGroup.moveVelocity(0);
+    }
+  }
+}
 void autonomous() { selection::execute(); }
-// okapi::ControllerButton autosdf = master[okapi::ControllerDigital::X];
-
 void opcontrol() {
-  // selection::execute();
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   while (true) {
-    // if (autosdf.isPressed()) {
-    // selection::execute();
-    // std::cout << "sadlfj" << std::endl;
-    // }
+    // foo();
     drive::userDrive();
     drive::brake();
     intake::init();

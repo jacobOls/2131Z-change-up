@@ -14,6 +14,8 @@ void clampDrive(int distance, int clampDistance, int velocity);
 void strafe(int distance, int velocity, std::string direction);
 void timeStrafe(int voltage, int time, std::string direction);
 void turn(int turnAmount, int velocity, std::string direction);
-void straightLineup(int distance);
+extern pros::Rotation sTracker; // rotation sensors
+extern pros::Rotation leftTracker;
+extern pros::Rotation rightTracker;
 } // namespace auton
 #endif /* end of include guard: DRIVE_HPP */

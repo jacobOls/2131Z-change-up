@@ -171,13 +171,13 @@ namespace auton {
 pros::Distance disSense(18);
 void score() {
   int curTime = pros::millis();
-  while (disSense.get() > 175) {
-    // if (pros::millis() - curTime > 650) {
-    // break;
-    // }
-    elevator::elevGroup.moveVelocity(600);
+  elevator::elevGroup.moveVelocity(600);
+  while (disSense.get() > 90) {
+    if (pros::millis() - curTime > 1000) {
+      break;
+    }
   }
-  pros::delay(500);
+  pros::delay(350);
   elevator::elevGroup.moveVelocity(0);
 }
 void runElevator(int velocity) { elevator::elevGroup.moveVoltage(velocity); }

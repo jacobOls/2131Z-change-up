@@ -39,12 +39,16 @@ void foo() {
     }
   }
 }
+void foo2() {
+  if (autosdf.changedToPressed())
+    selection::execute();
+}
 void autonomous() { selection::execute(); }
 void opcontrol() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   while (true) {
-    // foo();
+    // foo2();
     drive::userDrive();
     drive::brake();
     intake::init();

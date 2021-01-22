@@ -8,12 +8,14 @@ void userDrive(void);
 namespace auton {
 extern pros::Rotation sTracker;
 void sCorrect(int reqAng);
-void drive(int distance, int velocity);
+void drive(double distance, int velocity);
 void driveNE(int distance, int velocity);
-void clampDrive(int distance, int clampDistance, int velocity);
+void clampDrive(double distance, double clampDistance, int velocity);
 void strafe(int distance, int velocity, std::string direction);
 void timeStrafe(int voltage, int time, std::string direction);
 void turn(int turnAmount, int velocity, std::string direction);
+void driveNoRamp(double distance, int velocity);
+void swingTurn(int turnAmount, int velocity, std::string direction);
 extern pros::Rotation sTracker; // rotation sensors
 extern pros::Rotation leftTracker;
 extern pros::Rotation rightTracker;

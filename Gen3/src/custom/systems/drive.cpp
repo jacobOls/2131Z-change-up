@@ -1,6 +1,7 @@
 #include "custom/systems/drive.hpp"
 #include "custom/setup/controller.hpp"
 #include "custom/setup/motors.hpp"
+#include "custom/setup/ramping.hpp"
 #include "custom/systems/intake.hpp"
 #include "main.h"
 namespace drive {
@@ -82,82 +83,107 @@ double rEnc2Inch() {
   return (rightTracker.get_position() / 36000) * (M_PI * 2.75);
 }
 double avg2Inch() { return (lEnc2Inch() + rEnc2Inch()) / 2; }
-void drive(int distance, int velocity) {
+int track() { return abs(rightTracker.get_position()); }
+void driveNoRamp(double distance, int velocity) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
-  leftTracker.reset();
-  rightTracker.reset();
-  int epsilon = (velocity * 1.725) / 86;
+  leftTracker.set_reversed(true);
+  leftTracker.set_position(0);
+  rightTracker.set_position(0);
   int req = 5;
-  while (abs(rightTracker.get_position() / 36000 * (M_PI * 2.75)) <=
-         abs((distance)) - epsilon) {
-    if (abs(rightTracker.get_position() / 36000 * (M_PI * 2.75)) >=
-        distance - epsilon) {
+  while (track() <= abs((distance))) {
+    drive::driveGroup.moveVelocity(velocity);
+    if (track() >= distance) {
       break;
     }
-    std::cout << rightTracker.get_position() / 36000 * (M_PI * 2.75)
-              << std::endl;
+  }
+  std::cout << "end " << drive::driveGroup.getPosition() << std::endl;
+  std::cout << "vel " << drive::leftFront.getActualVelocity() << std::endl;
+  reset();
+  drive::driveGroup.moveVelocity(0);
+  drive::driveGroup.moveVelocity(0);
+  leftTracker.reset();
+  rightTracker.reset();
+  drive::driveGroup.tarePosition();
+}
+void drive(double distance, int velocity) {
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
+  leftTracker.set_position(0);
+  rightTracker.set_position(0);
+  distance = (distance * 36000) / (M_PI * 2.75);
+  double multiplier = velocity > 0 ? 242.1 : 242.2;
+  double epsilon = abs(velocity) * multiplier;
+  int req = 10;
+  while (track() <= abs((distance)) - epsilon) {
+    if (track() >= distance - epsilon) {
+      break;
+    }
+    std::cout << track() << std::endl;
     drive::accelDrive.accelMath(accel, &drive::driveGroup, velocity);
   }
-  if (abs(drive::driveGroup.getActualVelocity()) < abs(velocity)) {
-    drive::driveGroup.moveVelocity(velocity);
-    pros::delay(10);
-  }
-  std::cout << "stopping " << drive::driveGroup.getPosition() << std::endl;
+  std::cout << "stopping " << track() << std::endl;
   reset();
-  while (abs(drive::leftFront.getActualVelocity()) != 5000) {
+  while (track() <= distance) {
     if (velocity < 0 && req > 0) {
-      req *= 1;
+      req *= -1;
     }
-    // std::cout << rightTracker.get_position() / 36000 * (M_PI * 2.75)
-    // << std::endl;
-    // std::cout << drive::left_drive.getPosition() << std::endl;
-    drive::deAccelDrive.deAccelMath(accel, &drive::driveGroup, req, velocity);
-    if (abs(rightTracker.get_position()) >= distance) {
+    drive::deAccelDrive.deAccelMath(accel, &drive::driveGroup, req,
+                                    drive::driveGroup.getActualVelocity());
+
+    if (track() >= distance) {
       std::cout << " break early " << drive::driveGroup.getPosition()
                 << std::endl;
       break;
     }
     pros::delay(drive::deAccelDrive.rateOfChange);
+    if (track() >= distance) {
+      std::cout << " break early " << drive::driveGroup.getPosition()
+                << std::endl;
+      break;
+    }
   }
   std::cout << "end " << drive::driveGroup.getPosition() << std::endl;
   std::cout << "vel " << drive::leftFront.getActualVelocity() << std::endl;
   reset();
-  leftTracker.reset();
-  rightTracker.reset();
   drive::driveGroup.moveVelocity(0);
   drive::driveGroup.tarePosition();
 }
-bool released = false;
-void clampDrive(int distance, int clampDistance, int velocity) {
+void clampDrive(double distance, double clampDistance, int velocity) {
   open();
+  bool released = false;
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
-  int epsilon = velocity * 1.725;
-  int req = 5;
-  while (abs(drive::driveGroup.getPosition()) <= abs((distance)) - epsilon) {
-    if (drive::driveGroup.getPosition() >= clampDistance && released == false) {
+  rightTracker.set_position(0);
+  distance = (distance * 36000) / (M_PI * 2.75);
+  clampDistance = (clampDistance * 36000) / (M_PI * 2.75);
+  double multiplier = velocity > 0 ? 242.1 : 242.2;
+  double epsilon = abs(velocity) * multiplier;
+  int req = 10;
+  while (track() <= abs((distance)) - epsilon) {
+    if (track() >= clampDistance && released == false) {
       release();
       released = true;
     }
-    if (abs(drive::driveGroup.getPosition()) >= distance - epsilon) {
+    if (track() >= distance - epsilon) {
       break;
     }
     drive::accelDrive.accelMath(accel, &drive::driveGroup, velocity);
   }
-  if (drive::driveGroup.getActualVelocity() < velocity) {
-    drive::driveGroup.moveVelocity(velocity);
-    pros::delay(10);
-  }
+
   std::cout << "stopping " << drive::driveGroup.getPosition() << std::endl;
   reset();
-  while (abs(drive::leftFront.getActualVelocity()) != 5000) {
+  while (drive::driveGroup.getActualVelocity() != 5000) {
     if (velocity < 0 && req > 0) {
       req *= 1;
     }
-    // std::cout << drive::left_drive.getPosition() << std::endl;
-    drive::deAccelDrive.deAccelMath(accel, &drive::driveGroup, req, velocity);
-    if (abs(drive::driveGroup.getPosition()) >= distance) {
+    if (track() >= clampDistance && released == false) {
+      release();
+      released = true;
+    }
+    drive::deAccelDrive.deAccelMath(accel, &drive::driveGroup, req,
+                                    drive::driveGroup.getActualVelocity());
+    if (track() >= distance) {
       std::cout << " break early " << drive::driveGroup.getPosition()
                 << std::endl;
       break;
@@ -241,8 +267,9 @@ int turnReq = 10;
 void turn(int turnAmount, int velocity, std::string direction) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
-  sTracker.reset();
-  int epsilon = velocity * 65;
+  sTracker.set_position(0);
+  int epsilon = velocity * 40;
+  turnAmount = (turnAmount * 100) * 3.16;
   reset();
   if (direction == "left") {
     velocity *= -1;
@@ -277,6 +304,56 @@ void turn(int turnAmount, int velocity, std::string direction) {
   }
   reset();
   sTracker.reset();
+  if (direction == "left") {
+    turnReq *= -1;
+  }
+  std::cout << drive::left_drive.getPosition() << std::endl;
+  drive::left_drive.moveVelocity(0);
+  drive::right_drive.moveVelocity(0);
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
+}
+
+void swingTurn(int turnAmount, int velocity, std::string direction) {
+  drive::left_drive.tarePosition();
+  drive::right_drive.tarePosition();
+  sTracker.set_position(0);
+  int epsilon = velocity * 40;
+  turnAmount = (turnAmount * 100) * 3.16;
+  reset();
+  if (direction == "left") {
+    velocity *= -1;
+    turnReq *= -1;
+  }
+  while (abs(sTracker.get_position()) <= turnAmount - epsilon) {
+    drive::accelDrive.accelMath(accel, &drive::left_drive, velocity);
+    // drive::accelDrive.accelMath(accel, &drive::right_drive, -velocity);
+    pros::delay(drive::accelDrive.rateOfChange);
+  }
+  // std::cout << "accelFinish<<" << std::endl;
+  reset();
+
+  if (abs(drive::driveGroup.getActualVelocity()) < abs(velocity)) {
+    // drive::left_drive.moveVelocity(-velocity);
+    drive::right_drive.moveVelocity(velocity);
+    pros::delay(10);
+  }
+  // std::cout << "slowing<<" << std::endl;
+  while (abs(drive::leftFront.getActualVelocity()) != 12349) {
+
+    drive::accelDrive.deAccelMath(accel, &drive::left_drive, turnReq,
+                                  velocity * .4);
+    drive::accelDrive.deAccelMath(accel, &drive::right_drive, -turnReq,
+                                  velocity * .4);
+    if (abs(sTracker.get_position()) >= turnAmount) {
+      std::cout << " break early " << drive::leftFront.getPosition()
+                << std::endl;
+      break;
+    }
+    pros::delay(drive::accelDrive.rateOfChange);
+  }
+  reset();
+  sTracker.set_position(0);
   if (direction == "left") {
     turnReq *= -1;
   }

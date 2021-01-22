@@ -119,7 +119,8 @@ void open() {
 }
 void release() {
   intake::intakeGroup.setBrakeMode(AbstractMotor::brakeMode::coast);
-  intake::intakeGroup.moveRelative(70, 200);
+  intake::intakeGroup.moveRelative(2000, 200);
+  elevator::elevGroup.moveRelative(200, 100);
   intake::intakeGroup.setBrakeMode(AbstractMotor::brakeMode::coast);
 }
 

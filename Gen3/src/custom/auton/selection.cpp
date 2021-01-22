@@ -66,7 +66,7 @@ autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::rightThree, // tbd
                                           autonOne, // tbd
                                           autonOne,
                                           autonOne,
-                                          autonOne};
+                                          auton::fastOne};
 
 static lv_res_t btn_click_action(lv_obj_t *btn) {
   clearBtns(btn);
@@ -147,7 +147,7 @@ void clearBtns(lv_obj_t *toggledButton = NULL) {
 
 void execute() {
   std::cout << "executing" << std::endl;
-  autonFnPtr defaultAuton = auton::leftAuton;
+  autonFnPtr defaultAuton = auton::skills;
   defaultThing = "Things work and not";
   // inAuton = true;
 

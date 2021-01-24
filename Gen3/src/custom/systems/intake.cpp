@@ -114,7 +114,7 @@ void runIntake(int velocity) { intake::intakeGroup.moveVoltage(velocity); }
 void open() {
   intake::intakeGroup.tarePosition();
   intake::left_motor.moveRelative(-70, -100);
-  intake::right_motor.moveRelative(-70, -100);
+  intake::right_motor.moveRelative(-150, -100);
   intake::intakeGroup.setBrakeMode(AbstractMotor::brakeMode::hold);
 }
 void release() {

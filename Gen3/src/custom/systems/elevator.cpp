@@ -173,11 +173,11 @@ void score() {
   int curTime = pros::millis();
   elevator::elevGroup.moveVelocity(600);
   while (disSense.get() > 90) {
-    if (pros::millis() - curTime > 1000) {
+    if (pros::millis() - curTime > 1500) {
       break;
     }
   }
-  pros::delay(350);
+  pros::delay(400);
   elevator::elevGroup.moveVelocity(0);
 }
 void runElevator(int velocity) { elevator::elevGroup.moveVoltage(velocity); }

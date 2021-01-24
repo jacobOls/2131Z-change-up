@@ -83,7 +83,10 @@ double rEnc2Inch() {
   return (rightTracker.get_position() / 36000) * (M_PI * 2.75);
 }
 double avg2Inch() { return (lEnc2Inch() + rEnc2Inch()) / 2; }
-int track() { return abs(rightTracker.get_position()); }
+int track() {
+  return abs((rightTracker.get_position()) +
+             abs(leftTracker.get_position()) / 2);
+}
 void driveNoRamp(double distance, int velocity) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
@@ -112,7 +115,7 @@ void drive(double distance, int velocity) {
   leftTracker.set_position(0);
   rightTracker.set_position(0);
   distance = (distance * 36000) / (M_PI * 2.75);
-  double multiplier = velocity > 0 ? 242.1 : 242.2;
+  double multiplier = velocity > 0 ? 282.1 : 110;
   double epsilon = abs(velocity) * multiplier;
   int req = 10;
   while (track() <= abs((distance)) - epsilon) {
@@ -150,17 +153,26 @@ void drive(double distance, int velocity) {
   drive::driveGroup.tarePosition();
 }
 void clampDrive(double distance, double clampDistance, int velocity) {
-  open();
+  // open();
   bool released = false;
+  intake::intakeGroup.setBrakeMode(AbstractMotor::brakeMode::hold);
+  intake::intakeGroup.moveVelocity(-200);
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
   rightTracker.set_position(0);
+  leftTracker.set_position(0);
   distance = (distance * 36000) / (M_PI * 2.75);
   clampDistance = (clampDistance * 36000) / (M_PI * 2.75);
   double multiplier = velocity > 0 ? 242.1 : 242.2;
   double epsilon = abs(velocity) * multiplier;
   int req = 10;
   while (track() <= abs((distance)) - epsilon) {
+    if (intake::leftIntake.isPressed()) {
+      intake::left_motor.moveVelocity(0);
+    }
+    if (intake::rightIntake.isPressed()) {
+      intake::right_motor.moveVelocity(0);
+    }
     if (track() >= clampDistance && released == false) {
       release();
       released = true;
@@ -341,8 +353,8 @@ void swingTurn(int turnAmount, int velocity, std::string direction) {
   // std::cout << "slowing<<" << std::endl;
   while (abs(drive::leftFront.getActualVelocity()) != 12349) {
 
-    drive::accelDrive.deAccelMath(accel, &drive::left_drive, turnReq,
-                                  velocity * .4);
+    // drive::accelDrive.deAccelMath(accel, &drive::left_drive, turnReq,
+    // velocity * .4);
     drive::accelDrive.deAccelMath(accel, &drive::right_drive, -turnReq,
                                   velocity * .4);
     if (abs(sTracker.get_position()) >= turnAmount) {

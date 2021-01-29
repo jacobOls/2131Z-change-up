@@ -88,20 +88,20 @@ void RtwoTowers() {
   if (fail) {
     dont();
   }
-  rightTracker.set_position(0);
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  runIntake(max);
-  swingTurn(32, 90, "right");
-  score();
-  runElevator(-max / 4);
-  drive(28, -200);
+  runElevator(max);
+  wait(100);
   runElevator(0);
-  runIntake(0);
-  turn(52, 60, "right");
-  drive(32, 150);
+  drive(45, 150);
+  turn(155, 50, "left");
+  runIntake(max);
+  drive(50, 100);
   score();
-  drive(5, -80);
+  wait(100);
+  runIntake(0);
+  score();
+  drive(5, -50);
 }
 
 void RoneTower() {
@@ -216,33 +216,18 @@ void lTwoTowers() {
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  strafe(520, 140, "right");
-  runIntake(12000);
-  // drive(100, 50);
-  turn(240, 160, "left");
-  drive(510, 160);
-  // runIntake(-8000);
-  runElevator(12000);
-  wait(500);
+  runElevator(max);
+  wait(100);
   runElevator(0);
-  runIntake(4000);
-  // runElevator(80);
-  drive(200, -75);
-  // runIntake(100);
-  // runElevator(8000);
-  turn(310, 90, "left");
-  runElevator(0);
-  strafe(1475, 200, "left");
+  drive(45, 150);
+  turn(190, 50, "right");
+  runIntake(max);
+  drive(45, 100);
+  score();
+  wait(100);
   runIntake(0);
-  // turn(55, 30, "right");
-  drive(220, 80);
-  // wait(450);
-  // strafe(100, 50, "left");
-  runElevator(12000);
-  wait(700);
-  // turn(100, 25, "left");
-  runElevator(0);
-  drive(300, -140);
+  score();
+  drive(5, -50);
 }
 void lOneTower() {
   if (fail) {

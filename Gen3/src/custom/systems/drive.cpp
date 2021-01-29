@@ -87,6 +87,9 @@ int track() {
   return abs((rightTracker.get_position()) +
              abs(leftTracker.get_position()) / 2);
 }
+int turnTrack() {
+  return abs(rightTracker.get_position()) + abs(leftTracker.get_position()) / 2;
+};
 void driveNoRamp(double distance, int velocity) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
@@ -279,7 +282,8 @@ int turnReq = 10;
 void turn(int turnAmount, int velocity, std::string direction) {
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
-  sTracker.set_position(0);
+  rightTracker.set_position(0);
+  leftTracker.set_position(0);
   int epsilon = velocity * 40;
   turnAmount = (turnAmount * 100) * 3.16;
   reset();
@@ -287,7 +291,7 @@ void turn(int turnAmount, int velocity, std::string direction) {
     velocity *= -1;
     turnReq *= -1;
   }
-  while (abs(sTracker.get_position()) <= turnAmount - epsilon) {
+  while (turnTrack() <= turnAmount - epsilon) {
     drive::accelDrive.accelMath(accel, &drive::left_drive, velocity);
     drive::accelDrive.accelMath(accel, &drive::right_drive, -velocity);
     pros::delay(drive::accelDrive.rateOfChange);
@@ -295,19 +299,14 @@ void turn(int turnAmount, int velocity, std::string direction) {
   // std::cout << "accelFinish<<" << std::endl;
   reset();
 
-  if (abs(drive::driveGroup.getActualVelocity()) < abs(velocity)) {
-    drive::left_drive.moveVelocity(-velocity);
-    drive::right_drive.moveVelocity(velocity);
-    pros::delay(10);
-  }
   // std::cout << "slowing<<" << std::endl;
   while (abs(drive::leftFront.getActualVelocity()) != 12349) {
 
     drive::accelDrive.deAccelMath(accel, &drive::left_drive, turnReq,
-                                  velocity * .4);
+                                  drive::left_drive.getActualVelocity() * .4);
     drive::accelDrive.deAccelMath(accel, &drive::right_drive, -turnReq,
-                                  velocity * .4);
-    if (abs(sTracker.get_position()) >= turnAmount) {
+                                  drive::right_drive.getActualVelocity() * .4);
+    if (turnTrack() >= turnAmount) {
       std::cout << " break early " << drive::leftFront.getPosition()
                 << std::endl;
       break;

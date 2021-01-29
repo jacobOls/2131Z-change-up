@@ -298,8 +298,8 @@
         "upload_options": {
             "compress_bin": true,
             "description": "",
-            "remote_name": "fpickup",
-            "slot": 2
+            "remote_name": "posTracking",
+            "slot": 3
         }
     }
 }

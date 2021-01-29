@@ -42,16 +42,13 @@ void posCalc() {
   left.set_position(0);
   back.set_position(0);
   while (true) {
-    // set current position of encoders
-    if (left.get_velocity() != 0 && right.get_velocity() != 0) {
+    if (abs(left.get_velocity()) +
+            abs(right.get_velocity() + abs(back.get_velocity())) !=
+        0) {
+      // set current position of encoders
       curLeft = retLeft();
       curRight = retRight();
       curBack = retBack();
-      // else {
-      // curLeft = 0;
-      // curRight = 0;
-      // curBack = 0;
-      // }
       // find the change in distance of the encoders from last check
       deltaLeft = (curLeft - storedLeft) / 36000 * wheelCirc;
       deltaRight = curRight - storedRight / 36000 * wheelCirc;

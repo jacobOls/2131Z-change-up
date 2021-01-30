@@ -1,9 +1,12 @@
 #ifndef ODOM_HPP
 #define ODOM_HPP
+#include "custom/vec2.hpp"
 #include "main.h"
 #include <cmath>
 #include <mutex>
 void posCalc();
+extern Vec2 pos;
+extern double theta1;
 struct Pos {
   double &x;
   double &y;

@@ -24,35 +24,36 @@ double clampAngle(double foo) {
   }
   return foo;
 }
-double d0, theta0, thetaR, theta1, deltaTheta, curLeft, curRight, curBack,
-    storedLeft, storedRight, storedBack, deltaLeft, deltaRight, deltaBack,
-    globalDeltaLeft, globalDeltaRight, globalDeltaBack, storedGlobalLeft,
-    storedGlobalRight, storedGlobalBack, thetaM;
+double d0, theta0, thetaR = 0, theta1, deltaTheta, curLeft, curRight, curBack,
+                   storedLeft, storedRight, storedBack, deltaLeft, deltaRight,
+                   deltaBack, globalDeltaLeft, globalDeltaRight,
+                   globalDeltaBack, storedGlobalLeft = 0, storedGlobalRight = 0,
+                   storedGlobalBack = 0, thetaM;
 Vec2 offset = {0, 0};
 Vec2 pos = {0, 0};
 Vec2 prevPos = pos;
 Vec2 offsetPolar = offset;
 Vec2 globalOffset = offset;
 double reconvert;
-double retLeft() { return left.get_position(); }
-double retRight() { return right.get_position(); }
-double retBack() { return back.get_position(); }
 void posCalc() {
+  left.set_reversed(true);
+  back.set_reversed(false);
+  right.set_reversed(false);
   right.set_position(0);
   left.set_position(0);
   back.set_position(0);
   while (true) {
-    if (abs(left.get_velocity()) +
-            abs(right.get_velocity() + abs(back.get_velocity())) !=
+
+    if (abs(right.get_velocity() + abs(back.get_velocity())) !=
         0) {
       // set current position of encoders
-      curLeft = retLeft();
-      curRight = retRight();
-      curBack = retBack();
+      curLeft = left.get_position();
+      curRight = right.get_position();
+      curBack = back.get_position();
       // find the change in distance of the encoders from last check
       deltaLeft = (curLeft - storedLeft) / 36000 * wheelCirc;
-      deltaRight = curRight - storedRight / 36000 * wheelCirc;
-      deltaBack = curBack - storedBack / 36000 * wheelCirc;
+      deltaRight = (curRight - storedRight) / 36000 * wheelCirc;
+      deltaBack = (curBack - storedBack) / 36000 * wheelCirc;
       // store previous values
       storedLeft = curLeft;
       storedRight = curRight;
@@ -70,8 +71,12 @@ void posCalc() {
       if (deltaTheta == 0) {
         offset = {deltaBack, deltaRight};
       } else if (deltaTheta != 0) {
-        offset = {(((deltaBack) / deltaTheta) + sS),
-                  (((deltaRight) / deltaTheta) + sR)};
+        // offset = {(deltaBack / deltaTheta) + sS,
+        //           (deltaRight / deltaTheta) + sR};
+                  double yee = (deltaBack/deltaTheta) + sS;
+                  double yee2 = (deltaRight/deltaTheta + sR);
+
+        offset =  {yee,yee2};
         offset = offset * (2 * sin(theta1 / 2));
       }
       // calculate average orientation
@@ -83,14 +88,18 @@ void posCalc() {
       globalOffset = {offset.x, reconvert};
       pos = globalOffset + prevPos;
       prevPos = pos;
-      printCords();
-      pros::delay(100);
+    } else{
+      left.set_position(curLeft);
+    }
+    printCords();
+    pros::delay(100);
     }
   }
-}
+
+
 void printCords() {
   std::cout << "x " << pos.x << "\t"
             << "y " << pos.y << "\t"
-            << "theta " << theta1 << std::endl;
+            << "theta " << theta1 << "\tdelta left " << deltaLeft << "\tdelta right " << deltaRight << std::endl;
 }
 // void pointTurn() {}

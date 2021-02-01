@@ -7,6 +7,8 @@
 void posCalc();
 extern Vec2 pos;
 extern double theta1;
+extern double theta0;
+extern double thetaM;
 struct Pos {
   double &x;
   double &y;

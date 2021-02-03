@@ -25,4 +25,5 @@ extern okapi::Motor elevMotor;
 extern okapi::Motor ratchetMotor;
 extern okapi::MotorGroup elevGroup;
 } // namespace elevator
+extern pros::Optical opt;
 #endif /* end of include guard: MOTORS_HPP */

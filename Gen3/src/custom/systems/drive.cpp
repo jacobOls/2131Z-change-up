@@ -21,7 +21,8 @@ int lY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 200; };
 
 int lX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
 int rX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
-int stVal() { return ((lX() + rX()) / 2); };
+int stVal() {
+   return ((lX() + rX()) / 2); };
 int flVal() { return lY() + stVal(); };
 int blVal() { return lY() - stVal(); };
 int brVal() { return rY() + stVal(); };
@@ -29,22 +30,28 @@ int frVal() { return rY() - stVal(); };
 // sets motor velocity
 int dz = .05 * 200; // dead zone
 void userDrive() {
-  if (abs(flVal()) > dz) {
-    leftFront.moveVelocity(flVal());
-  } else
-    leftFront.moveVelocity(0);
-  if (abs(blVal()) > dz) {
-    leftBack.moveVelocity(blVal());
-  } else
-    leftBack.moveVelocity(0);
-  if (abs(frVal()) > dz) {
-    rightFront.moveVelocity(frVal());
-  } else
-    rightFront.moveVelocity(0);
-  if (abs(brVal()) > dz) {
-    rightBack.moveVelocity(brVal());
-  } else
-    rightBack.moveVelocity(0);
+  // if (abs(flVal()) > dz) {
+  //   leftFront.moveVelocity(flVal());
+  // } else
+  //   leftFront.moveVelocity(0);
+  // if (abs(blVal()) > dz) {
+  //   leftBack.moveVelocity(blVal());
+  // } else
+  //   leftBack.moveVelocity(0);
+  // if (abs(frVal()) > dz) {
+  //   rightFront.moveVelocity(frVal());
+  // } else
+  //   rightFront.moveVelocity(0);
+  // if (abs(brVal()) > dz) {
+  //   rightBack.moveVelocity(brVal());
+  // } else
+  //   rightBack.moveVelocity(0);
+  if(abs(lY()) > dz){
+    left_drive.moveVelocity(lY());
+  } else{ left_drive.moveVelocity(0);}
+  if(abs(rY()) > dz){
+    right_drive.moveVelocity(rY());
+  } else{right_drive.moveVelocity(0);}
 }
 void brake() {
   if (BtnBrake.isPressed()) {

@@ -60,7 +60,13 @@ void up() {
 }
 bool red = true;
 
-ADIButton ejectSwitch('a');
+void autoRatchet(){
+  if(autoElev.isPressed()){
+    state = State::AUTO;
+  } else if (state == State::AUTO){
+    state = State::DEINIT;
+  }
+}
 
 // int n = visionSensor.get_object_count();
 void toggle() {
@@ -72,6 +78,8 @@ void toggle() {
   }
 }
 int curTime = pros::millis();
+int redTol = 55;
+int blueTol = 70;
 void execute() {
   if (state != State::OUT && state != State::NONE) {
     intake::intakeGroup.tarePosition();
@@ -79,35 +87,7 @@ void execute() {
   }
   switch (state) {
   case State::IN: {
-    // pros::vision_object_s_t rtn = visionSensor.get_by_sig(0, 1);
-    // pros::vision_object_s_t rtn2 = visionSensor.get_by_sig(0, 2);
-    // // n = visionSensor.get_object_count();
-    // if (red) {
-    //   intake::intakeGroup.moveVoltage(12000);
-    //   elevator::elevGroup.moveVoltage(12000);
-    //   if (rtn2.signature == 2 && rtn.signature != 2) {
-    //     curTime = pros::millis() + 350;
-    //     elevator::lowerMotor.moveVoltage(12000);
-    //     elevator::upperMotor.moveVelocity(-12000);
-    //   } else {
-    //     if (curTime - pros::millis() < 12000)
-    //       elevator::elevGroup.moveVoltage(12000);
-    //   }
-    // } else if (!red) {
-    //   intake::intakeGroup.moveVoltage(12000);
-    //   elevator::elevGroup.moveVoltage(12000);
-    //   if (rtn.signature == 1 && rtn2.signature != 2) {
-    //     elevator::lowerMotor.moveVoltage(12000);
-    //     elevator::upperMotor.moveVelocity(-12000);
-    //     curTime = pros::millis() + 350;
-    //   } else {
-    //     if (curTime - pros::millis() < 12000)
-    //       elevator::elevGroup.moveVoltage(12000);
-    //   }
-    // } else {
-    //   intake::intakeGroup.moveVoltage(12000);
-    //   elevator::elevGroup.moveVoltage(12000);
-    // }
+
     if (abs(drive::driveGroup.getActualVelocity()) > 15) {
       elevGroup.moveVoltage(9000);
     }
@@ -123,14 +103,9 @@ void execute() {
     break;
 
   case State::BACK: // moves wheel motors to eject ball out back
-                    // if (ejectSwitch.isPressed()) {
+  intake::intakeGroup.moveVelocity(200);
     elevMotor.moveVoltage(12000);
     ratchetMotor.moveVoltage(-12000);
-    // curTime = pros::millis() + 350;
-    // } else if (curTime - pros::millis() < 200) {
-    // elevGroup.moveVoltage(12000);
-    // }
-    // intake::intakeGroup.moveVelocity(200);
     break;
 
   case State::DOWN: // moves wheel alone downward
@@ -149,6 +124,20 @@ void execute() {
 
   case State::NONE:
     break;
+
+    case State::AUTO:
+    elevMotor.moveVoltage(12000);
+    int vel = red ? 12000 : -12000;
+    if(opt.get_hue() < redTol){
+      ratchetMotor.moveVoltage(vel);
+      pros::delay(100);
+    } else if(opt.get_hue() > blueTol){
+      ratchetMotor.moveVoltage(-vel);
+      pros::delay(100);
+    } else{
+      ratchetMotor.moveVoltage(12000);
+    }
+    break;
   }
 }
 
@@ -161,8 +150,8 @@ void init() {
   execute();
   toggle();
   middle();
-  // pros::vision_object_s_t rtn = visionSensor.get_by_sig(0, 1);
-  // std::cout << rtn.signature << std::endl;
+  autoRatchet();
+  pros::delay(3);
 }
 
 } // namespace elevator

@@ -83,6 +83,7 @@ void execute() {
     intakeGroup.moveVelocity(200);
     break;
 
+    
   case State::DEINIT:
     intakeGroup.moveVelocity(0);
     intakeGroup.moveVoltage(0);

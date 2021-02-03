@@ -20,6 +20,6 @@ extern okapi::ControllerButton BtnBack;
 extern okapi::ControllerButton Down;
 extern okapi::ControllerButton UpOnly;
 extern okapi::ControllerButton mid;
-
+extern okapi::ControllerButton autoElev;
 } // namespace elevator
 #endif /* end of include guard: CONTROLLER_HPP */

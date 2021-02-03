@@ -2,9 +2,10 @@
 #define ELEVATOR_HPP
 
 namespace elevator {
-enum class State { IN, OUT, DOWN, UP, BACK, DEINIT, MID, NONE };
+enum class State { IN, OUT, DOWN, UP, BACK, DEINIT, MID, AUTO, NONE };
 void init(void);
 void initVision(void);
+void autoRatchet(void);
 // void runWheel(int velocity);
 } // namespace elevator
 namespace auton {

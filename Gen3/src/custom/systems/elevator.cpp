@@ -5,14 +5,6 @@
 
 namespace elevator {
 State state = State::NONE;
-pros::Vision visionSensor(2);
-void initVision() {
-  visionSensor.set_wifi_mode(0);
-  pros::vision_signature_s_t RED_BALL = visionSensor.signature_from_utility(
-      1, 4953, 6495, 5724, -303, 259, -22, 3.000, 0);
-  pros::vision_signature_s_t BLUE_BALL = visionSensor.signature_from_utility(
-      2, -3551, -2285, -2918, 7295, 15009, 11152, 1.500, 0);
-}
 void in() {
   if (BtnIn.isPressed()) {
     state = State::IN;
@@ -174,23 +166,6 @@ void eject() {
   elevator::elevMotor.moveVoltage(12000);
   elevator::ratchetMotor.moveVoltage(-12000);
 }
-void autoBack(int delay) {
-  int startTime = pros::millis();
-  intake::intakeGroup.moveVoltage(12000);
-  while (pros::millis() - startTime < delay) {
-    pros::vision_object_s_t rtn = elevator::visionSensor.get_by_sig(0, 1);
-    pros::vision_object_s_t rtn2 = elevator::visionSensor.get_by_sig(0, 2);
-    // elevator::n = elevator::visionSensor.get_object_count();
-    if (rtn.signature == 1) {
-      elevator::elevGroup.moveVoltage(12000);
-    } else if (rtn2.signature == 2) {
-      elevator::elevMotor.moveVoltage(12000);
-      elevator::ratchetMotor.moveVelocity(-12000);
-    } else {
-      elevator::elevGroup.moveVoltage(12000);
-    }
-  }
-  elevator::elevGroup.moveVoltage(0);
-}
+
 
 } // namespace auton

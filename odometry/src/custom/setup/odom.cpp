@@ -24,7 +24,10 @@ double clampAngle(double foo) {
   }
   return foo;
 }
-double d0, theta0, thetaR = 0, theta1, deltaTheta, curLeft, curRight, curBack,
+
+
+
+double d0, theta0, thetaR = 0, theta1, deltaTheta, curLeft = 0, curRight = 0, curBack = 0,
                    storedLeft, storedRight, storedBack, deltaLeft, deltaRight,
                    deltaBack, globalDeltaLeft, globalDeltaRight,
                    globalDeltaBack, storedGlobalLeft = 0, storedGlobalRight = 0,
@@ -37,15 +40,15 @@ Vec2 globalOffset = offset;
 double reconvert;
 void posCalc() {
   left.set_reversed(true);
-  back.set_reversed(false);
+  back.set_reversed(true);
   right.set_reversed(false);
-  right.set_position(0);
-  left.set_position(0);
-  back.set_position(0);
+  right.set_position(curRight);
+  left.set_position(curLeft);
+  back.set_position(curBack);
   while (true) {
 
-    if (abs(right.get_velocity() + abs(back.get_velocity())) !=
-        0) {
+    if (abs(right.get_velocity() + abs(back.get_velocity())) >=
+        6) {
       // set current position of encoders
       curLeft = left.get_position();
       curRight = right.get_position();
@@ -59,40 +62,42 @@ void posCalc() {
       storedRight = curRight;
       storedBack = curBack;
       // get global delta
-      globalDeltaLeft = curLeft - storedGlobalLeft;
-      globalDeltaRight = curRight - storedGlobalRight;
-      globalDeltaBack = curBack - storedGlobalBack;
+      globalDeltaLeft = ((curLeft - storedGlobalLeft) / 36000) * wheelCirc;
+      globalDeltaRight = ((curRight - storedGlobalRight) / 36000) * wheelCirc;
       // calculate absolute theta
       theta1 =
-          thetaR + ((globalDeltaLeft + globalDeltaRight) / ((sL + sR) * 100));
+          thetaR + ((globalDeltaLeft - globalDeltaRight) / (sL + sR));
       // change in angle
       deltaTheta = theta1 - theta0;
       // calculate offset (how off this equation is from accuracy)
       if (deltaTheta == 0) {
         offset = {deltaBack, deltaRight};
       } else if (deltaTheta != 0) {
-        // offset = {(deltaBack / deltaTheta) + sS,
-        //           (deltaRight / deltaTheta) + sR};
-                  double yee = (deltaBack/deltaTheta) + sS;
-                  double yee2 = (deltaRight/deltaTheta + sR);
-
-        offset =  {yee,yee2};
-        offset = offset * (2 * sin(theta1 / 2));
+        // double foo = 2 * sin(theta1/2) * (deltaBack / deltaTheta) + sS;
+        // double foo2 = 2 * sin(theta1/2) * (deltaRight/deltaTheta) + sR;
+        offset = {(deltaBack / deltaTheta + sS), (deltaRight/deltaTheta) + sR};
+        offset = 2 * sin(theta1/2) * offset;
       }
       // calculate average orientation
       thetaM = theta0 + (deltaTheta / 2);
       // calculate global offset
       offsetPolar = {sqrt(pow(offset.x, 2) + pow(offset.y, 2)),
-                     atan2(offset.y, offset.x)};
+                     atan(offset.y/offset.x)};
       reconvert = offsetPolar.y * sin(theta1 - thetaM);
       globalOffset = {offset.x, reconvert};
       pos = globalOffset + prevPos;
       prevPos = pos;
-    } else{
+      theta0 = theta1;
+      // storedGlobalLeft = curLeft;
+      // storedGlobalRight = curRight;
+      // storedGlobalBack = curBack;
+       } else{
       left.set_position(curLeft);
+      right.set_position(curRight);
+      back.set_position(curBack);
     }
     printCords();
-    pros::delay(100);
+    pros::delay(3);
     }
   }
 

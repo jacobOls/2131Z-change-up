@@ -1,0 +1,4 @@
+C:\Users\sword\Desktop\robotics\git\odometry\src\custom\setup\odom.cpp:1:10: fatal error: custom/setup/odom.hpp: No such file or directory
+    1 | #include "custom/setup/odom.hpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.

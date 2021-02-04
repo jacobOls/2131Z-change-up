@@ -5,6 +5,9 @@
 #include <cmath>
 #include <mutex>
 void posCalc();
+extern pros::Rotation right;
+extern pros::Rotation left;
+extern pros::Rotation back;
 extern Vec2 pos;
 extern double theta1;
 extern double theta0;

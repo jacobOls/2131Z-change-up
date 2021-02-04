@@ -53,9 +53,9 @@ void up() {
 bool red = true;
 
 void autoRatchet(){
-  if(autoElev.isPressed()){
+  if(autoElev.isPressed() && state != State::FOO){
     state = State::AUTO;
-  } else if (state == State::AUTO){
+  } else if (state == State::AUTO && state != State::FOO){
     state = State::DEINIT;
   }
 }
@@ -69,10 +69,11 @@ void toggle() {
       red = true;
   }
 }
-int curTime = pros::millis();
+int curTime;
 int redTol = 55;
 int blueTol = 70;
 void execute() {
+  // while(true){
   if (state != State::OUT && state != State::NONE) {
     intake::intakeGroup.tarePosition();
     intake::intakeGroup.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
@@ -117,21 +118,31 @@ void execute() {
   case State::NONE:
     break;
 
+    case State::FOO:
+    if(pros::millis() - curTime > 100){
+      state = State::AUTO;
+    }
+    break;
+
     case State::AUTO:
+    int curTime = pros::millis();
     elevMotor.moveVoltage(12000);
+    intake::intakeGroup.moveVelocity(200);
     int vel = red ? 12000 : -12000;
     if(opt.get_hue() < redTol){
       ratchetMotor.moveVoltage(vel);
-      pros::delay(100);
+      state = State::FOO;
     } else if(opt.get_hue() > blueTol){
       ratchetMotor.moveVoltage(-vel);
-      pros::delay(100);
+      state = State::FOO;
     } else{
       ratchetMotor.moveVoltage(12000);
     }
     break;
+
   }
 }
+// }
 
 void init() {
   eject();
@@ -143,7 +154,7 @@ void init() {
   toggle();
   middle();
   autoRatchet();
-  pros::delay(3);
+  // pros::delay(10);
 }
 
 } // namespace elevator
@@ -158,7 +169,7 @@ void score() {
       break;
     }
   }
-  pros::delay(400);
+  pros::delay(350);
   elevator::elevGroup.moveVelocity(0);
 }
 void runElevator(int velocity) { elevator::elevGroup.moveVoltage(velocity); }

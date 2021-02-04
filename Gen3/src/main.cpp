@@ -8,18 +8,17 @@
 pros::Rotation rTracker(7);
 void initialize() {
   selection::init();
-  elevator::initVision();
   intake::intakeGroup.tarePosition();
   rTracker.set_position(0);
   opt.set_led_pwm(75);
 }
-pros::Task elevatorRatchet(elevator::init); // run elevator independetly of other systems
+// pros::Task elevatorRatchet(elevator::init); // run elevator independetly of other systems
 
 void disabled() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   rTracker.set_position(0);
-  pros::c::taskSuspend(elevatorRatchet);
+  // pros::c::taskSuspend(elevatorRatchet);
 }
 
 void competition_initialize() {}
@@ -50,13 +49,13 @@ void autonomous() { selection::execute(); }
 void opcontrol() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  pros::c::task_resume(elevatorRatchet);
+  // pros::c::task_resume(elevatorRatchet);
   while (true) {
-    // foo2();
+    foo2();
     drive::userDrive();
     drive::brake();
     intake::init();
-    // elevator::init();
+    elevator::init();
     selection::colorSwap();
     pros::delay(20);
   }

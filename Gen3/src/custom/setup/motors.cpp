@@ -38,4 +38,4 @@ okapi::Motor ratchetMotor(10, true,
 okapi::MotorGroup elevGroup({elevMotor, ratchetMotor});
 
 } // namespace elevator
-  pros::Optical opt(12);
+  pros::Optical opt(9);

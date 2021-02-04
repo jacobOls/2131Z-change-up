@@ -94,7 +94,7 @@ void RtwoTowers() {
   wait(100);
   runElevator(0);
   drive(45, 150);
-  turn(155, 50, "left");
+  turn(155, 50, "right");
   runIntake(max);
   drive(50, 100);
   score();
@@ -111,10 +111,10 @@ void RoneTower() {
   rightTracker.set_position(0);
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  drive(32, 100);
-  turn(127, 50, "right");
+  drive(35, 100);
+  turn(240, 50, "right");
   runIntake(12000);
-  drive(40, 100);
+  drive(42, 120);
   score();
   wait(450);
   score();
@@ -220,9 +220,9 @@ void lTwoTowers() {
   wait(100);
   runElevator(0);
   drive(45, 150);
-  turn(190, 50, "right");
+  turn(173, 50, "left");
   runIntake(max);
-  drive(45, 100);
+  drive(53.3, 120);
   score();
   wait(100);
   runIntake(0);
@@ -236,10 +236,10 @@ void lOneTower() {
   rightTracker.set_position(0);
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  drive(32, 100);
-  turn(132, 50, "left");
+  drive(35, 100);
+  turn(240, 50, "left");
   runIntake(12000);
-  drive(40, 100);
+  drive(42, 120);
   score();
   wait(450);
   score();

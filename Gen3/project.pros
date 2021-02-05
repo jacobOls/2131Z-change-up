@@ -298,8 +298,8 @@
         "upload_options": {
             "compress_bin": true,
             "description": "",
-            "remote_name": "optical",
-            "slot": 4
+            "remote_name": "skills",
+            "slot": 2
         }
     }
 }

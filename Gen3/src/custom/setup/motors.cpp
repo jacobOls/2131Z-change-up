@@ -3,7 +3,7 @@
 namespace drive {
 okapi::Motor leftBack(1, false, okapi::AbstractMotor::gearset::green,
                       okapi::AbstractMotor::encoderUnits::degrees);
-okapi::Motor leftFront(7, false, okapi::AbstractMotor::gearset::green,
+okapi::Motor leftFront(21, false, okapi::AbstractMotor::gearset::green,
                        okapi::AbstractMotor::encoderUnits::degrees);
 okapi::Motor rightBack(3, true, okapi::AbstractMotor::gearset::green,
                        okapi::AbstractMotor::encoderUnits::degrees);
@@ -39,3 +39,4 @@ okapi::MotorGroup elevGroup({elevMotor, ratchetMotor});
 
 } // namespace elevator
   pros::Optical opt(9);
+  pros::Imu gyro(7);

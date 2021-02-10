@@ -2,7 +2,8 @@
 #define NEWAUTON_HPP
 namespace auton{
 
-  
+  void unity2();
+  void unityStraight(int distance, bool waity, bool correct);
 }
 
 

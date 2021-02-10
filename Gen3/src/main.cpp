@@ -49,7 +49,6 @@ void autonomous() { selection::execute(); }
 void opcontrol() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  // pros::c::task_resume(elevatorRatchet);
   while (true) {
     foo2();
     drive::userDrive();

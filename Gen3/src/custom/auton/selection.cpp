@@ -1,6 +1,7 @@
 #include "custom/auton/selection.hpp"
 #include "custom/auton/routines.hpp"
 #include "custom/setup/controller.hpp"
+#include "custom/systems/elevator.hpp"
 #include "display/lvgl.h"
 #include "main.h"
 
@@ -43,19 +44,19 @@ std::string defaultThing = "default";
 // auton function returns void and takes no args
 typedef void (*autonFnPtr)(void);
 
-autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::rightThree, // tbd
-                                          auton::RtwoTowers,
-                                          auton::RoneTower,
+autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::rThree, // tbd
+                                          auton::rTwo,
+                                          auton::rOne,
                                           autonOne,
 
-                                          auton::leftAuton, // tbd
-                                          auton::lTwoTowers,
-                                          auton::lOneTower,
+                                          auton::lThree, // tbd
+                                          auton::lTwo,
+                                          auton::lOne,
                                           autonOne,
 
                                           auton::skills, // tbd
-                                          auton::rOneCycle,
-                                          auton::imadick,
+                                          autonOne,
+                                          autonOne,
                                           autonOne,
 
                                           auton::testFunctions, // tbd
@@ -66,7 +67,7 @@ autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::rightThree, // tbd
                                           autonOne, // tbd
                                           autonOne,
                                           autonOne,
-                                          auton::fastOne};
+                                          autonOne};
 
 static lv_res_t btn_click_action(lv_obj_t *btn) {
   clearBtns(btn);
@@ -147,7 +148,7 @@ void clearBtns(lv_obj_t *toggledButton = NULL) {
 
 void execute() {
   std::cout << "executing" << std::endl;
-  autonFnPtr defaultAuton = auton::lTwoTowers;
+  autonFnPtr defaultAuton = auton::rThree;
   defaultThing = "Things work and not";
   // inAuton = true;
 
@@ -176,14 +177,14 @@ void init() {
 
 bool blue = false;
 void colorSwap() {
-  if (BtnSwap.changedToPressed()) {
-    if (blue) {
+  if (BtnSwap.changedToReleased()) {
+    if (blue == true) {
       for (int i = 0; i < BUTTON_COUNT; i++) {
         lv_btn_set_style(allButtons[i], LV_BTN_STYLE_REL,
                          &redRelStyle); // set the relesed style
       }
       blue = false;
-    } else if (!blue) {
+    } else if (blue == false) {
       for (int i = 0; i < BUTTON_COUNT; i++) {
         lv_btn_set_style(allButtons[i], LV_BTN_STYLE_REL,
                          &relStyle); // set the relesed style

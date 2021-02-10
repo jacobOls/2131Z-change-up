@@ -62,7 +62,7 @@ void autoRatchet(){
 
 // int n = visionSensor.get_object_count();
 void toggle() {
-  if (selection::BtnSwap.changedToReleased()) {
+  if (selection::BtnSwap.changedToPressed()) {
     if (red)
       red = false;
     else if (!red)
@@ -150,8 +150,8 @@ void init() {
   up();
   in();
   out();
-  execute();
   toggle();
+  execute();
   middle();
   autoRatchet();
   // pros::delay(10);
@@ -161,6 +161,24 @@ void init() {
 
 namespace auton {
 pros::Distance disSense(18);
+void scoreUntil(){
+  int curTime = pros::millis();
+  elevator::elevGroup.moveVelocity(600);
+  if(elevator::red == true){ while(opt.get_hue() > 45){
+    if (pros::millis() - curTime > 2000) {
+      break;
+    }
+    }
+  if(elevator::red == false){ while(opt.get_hue() < 85){
+    if (pros::millis() - curTime > 2000) {
+      break;
+    }
+    }
+  }
+  pros::delay(80);
+   elevator::elevGroup.moveVelocity(0);
+    }
+}
 void score() {
   int curTime = pros::millis();
   elevator::elevGroup.moveVelocity(600);

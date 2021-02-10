@@ -5,19 +5,19 @@ pros::Imu gyro(5);
 namespace auton{
 
   	//miscellaneous values
-  	#define wheelDiameter 4
+  	#define wheelDiameter 2.75
   	#define dontHog 25
   	#define stopError 17
   	#define stopTime 200
 
   	//Encoder PID Values
-  	#define lEnc_Kp 0.8
-  	#define lEnc_Ki 0.000001// if you dont want an i keep it 0
-  	#define lEnc_Kd 0.03
+  	#define lEnc_Kp  1.1
+    #define lEnc_Ki  0.0001// if you dont want an i keep it 0
+  	#define lEnc_Kd  0.02
 
-  	#define rEnc_Kp 0.8
-  	#define rEnc_Ki 0.000001// if you dont want an i keep it 0
-  	#define rEnc_Kd 0.03
+  	#define rEnc_Kp  1.1
+  	#define rEnc_Ki  0.0001// if you dont want an i keep it 0
+  	#define rEnc_Kd 0.02
 
   	//Gyro PID Values
   	float gyro_Kp=0.2;
@@ -27,7 +27,7 @@ namespace auton{
   	//Drive ramp values
   	int rampInterval = 3;
   	int RampingChange = 10;
-  	int initalRamp = 20;
+  	int initalRamp = 5;
   	int lEncRampBias = 0;
   	int rEncRampBias = 0;
   	int RP;
@@ -35,7 +35,9 @@ namespace auton{
   	int lEncPrevPower;
   	int rEncPrevPower;
   	//#endregion
-
+    double sgn(int foo){
+      return (foo > 0) ? 1 : ((foo < 0) ? -1 : 0);
+    }
   	//#region System Variables
   	int driveMode = 0; //0 is drivestraight, 1 is turn
   	int direction = 0; //0 is stopped, 1 is forward/right, -1 is backward/left
@@ -172,7 +174,7 @@ namespace auton{
   	 lEncPrevTime = pros::millis();
   	 if (fabs(lEncCurrentValue)>fabs(right.get_position()))
   	 {
-  	 lEncOutput = lEncOutput-((fabs(lEncCurrentValue) - fabs(right.get_position())/2*sgn(lEncCurrentValue));
+  	 lEncOutput = lEncOutput-((fabs(lEncCurrentValue) - fabs(right.get_position())/2*sgn(lEncCurrentValue)));
   	 }
   	 lEncPrevPower = driveRamp(lEncOutput,lEncPrevPower,lEncRampBias);
   	 setLDriveMotors(lEncPrevPower);
@@ -239,7 +241,7 @@ namespace auton{
   	 {
   	 lEncController();
   	 rEncController();
-  	 pros::delay(25);
+  	 pros::delay(3);
   	 }
   	 else if(driveMode == 1)
   	 {

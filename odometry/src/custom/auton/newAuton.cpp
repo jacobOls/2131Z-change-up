@@ -11,11 +11,11 @@ namespace auton{
   	#define stopTime 200
 
   	//Encoder PID Values
-  	#define lEnc_Kp  0.4
+  	#define lEnc_Kp  0.6
     #define lEnc_Ki  0// if you dont want an i keep it 0
   	#define lEnc_Kd  0.0
 
-  	#define rEnc_Kp  0.9
+  	#define rEnc_Kp  1
   	#define rEnc_Ki  0// if you dont want an i keep it 0
   	#define rEnc_Kd 0.0
 
@@ -27,7 +27,7 @@ namespace auton{
   	//Drive ramp values
   	int rampInterval = 3;
   	int RampingChange = 10;
-  	int initalRamp = 5;
+  	int initalRamp = 10;
   	int lEncRampBias = 0;
   	int rEncRampBias = 0;
   	int RP;

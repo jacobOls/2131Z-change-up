@@ -12,6 +12,7 @@ void initialize() {
   intake::intakeGroup.tarePosition();
   pros::Task trackPosition(posCalc);
 }
+pros::Task pid(auton::unity2);
 
 void disabled() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
@@ -21,21 +22,14 @@ void disabled() {
 void competition_initialize() {}
 
 void autonomous() {
-  // pros::Task pid(auton::unity2);
-  // drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  // drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  // auton::unityStraight(25,true,true);
+  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  auton::unityStraight(25,true,false);
   // selection::execute();
 }
 
 void opcontrol() {
-  // selection::execute();
-  // pros::Task taskSuspend(pid);
-  // trackPosition.
-  pros::Task pid(auton::unity2);
-  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  auton::unityStraight(25,false,false);
+ pros::c::taskSuspend(pid);
   while (true) {
     // drive::userDrive();
     // drive::brake();

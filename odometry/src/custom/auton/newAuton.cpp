@@ -11,13 +11,13 @@ namespace auton{
   	#define stopTime 200
 
   	//Encoder PID Values
-  	#define lEnc_Kp  1.1
-    #define lEnc_Ki  0.0001// if you dont want an i keep it 0
-  	#define lEnc_Kd  0.02
+  	#define lEnc_Kp  0.4
+    #define lEnc_Ki  0// if you dont want an i keep it 0
+  	#define lEnc_Kd  0.0
 
-  	#define rEnc_Kp  1.1
-  	#define rEnc_Ki  0.0001// if you dont want an i keep it 0
-  	#define rEnc_Kd 0.02
+  	#define rEnc_Kp  0.9
+  	#define rEnc_Ki  0// if you dont want an i keep it 0
+  	#define rEnc_Kd 0.0
 
   	//Gyro PID Values
   	float gyro_Kp=0.2;
@@ -44,7 +44,7 @@ namespace auton{
   	int distance = 0; //drivestraight distance or turn angle
   	int countsToInches(float value) //converts drive encoder counts into inches
   	{
-  	 return (value * 36000)/(PI * wheelDiameter);
+  	 return (value * 360)/(PI * wheelDiameter);
   	}
 
   	//Encoder PID Values
@@ -85,7 +85,7 @@ namespace auton{
   	void driveWaity(int distance)
   	{
   	 int ticks = fabs(countsToInches(distance));
-  	 while(fabs(left.get_position()) <= ticks - stopError){}
+  	 while(fabs(left.get_position() / 100) <= ticks - stopError){}
   	 pros::delay(stopTime);
   	 ticks = 0;
   	}
@@ -159,7 +159,7 @@ namespace auton{
   	//#region PID Functions
   	 void lEncController()
   	 {
-  	 lEncCurrentValue = left.get_position();
+  	 lEncCurrentValue = left.get_position() / 100;
 
   	 lEncErr = lEncRequestedValue - lEncCurrentValue;
   	 lEncInt = lEncInt + lEncErr;
@@ -172,9 +172,9 @@ namespace auton{
 
   	 lEncPrevErr = lEncErr;
   	 lEncPrevTime = pros::millis();
-  	 if (fabs(lEncCurrentValue)>fabs(right.get_position()))
+  	 if (fabs(lEncCurrentValue)>fabs(right.get_position() / 100))
   	 {
-  	 lEncOutput = lEncOutput-((fabs(lEncCurrentValue) - fabs(right.get_position())/2*sgn(lEncCurrentValue)));
+  	 lEncOutput = lEncOutput-((fabs(lEncCurrentValue) - fabs(right.get_position() / 100)/2*sgn(lEncCurrentValue)));
   	 }
   	 lEncPrevPower = driveRamp(lEncOutput,lEncPrevPower,lEncRampBias);
   	 setLDriveMotors(lEncPrevPower);
@@ -182,7 +182,7 @@ namespace auton{
   	// lEncDt
   	 void rEncController()
   	 {
-  	 rEncCurrentValue = right.get_position();
+  	 rEncCurrentValue = right.get_position() / 100;
 
   	 rEncErr = rEncRequestedValue - rEncCurrentValue;
   	 rEncInt = rEncInt + rEncErr;
@@ -195,9 +195,9 @@ namespace auton{
 
   	 rEncPrevErr = rEncErr;
   	 rEncPrevTime = pros::millis();
-  	 if (fabs(rEncCurrentValue)>fabs(left.get_position()))
+  	 if (fabs(rEncCurrentValue)>fabs(left.get_position() / 100))
   	 {
-  	 rEncOutput = rEncOutput-((fabs(rEncCurrentValue) - fabs(left.get_position()))/2*sgn(rEncCurrentValue));
+  	 rEncOutput = rEncOutput-((fabs(rEncCurrentValue) - fabs(left.get_position() / 100))/2*sgn(rEncCurrentValue));
   	 }
   	 rEncPrevPower = driveRamp(rEncOutput,rEncPrevPower,rEncRampBias);
   	 setRDriveMotors(rEncPrevPower);

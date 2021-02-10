@@ -175,6 +175,7 @@ void scoreUntil(){
     }
     }
   }
+  intake::intakeGroup.moveVoltage(0);
   pros::delay(80);
    elevator::elevGroup.moveVelocity(0);
     }

@@ -25,8 +25,8 @@ void autonTwo() { std::cout << "running auton two" << std::endl; }
 
 void autonThree() { std::cout << "3" << std::endl; }
 std::string buttonLabels[BUTTON_COUNT] = {
-    "right 3", // right red, left blue
-    "right 2",      "right 1 ", "nothing ",
+    "right 2 red", // right red, left blue
+    "right 2 blue",      "right 1 red", "right 1 blue",
 
     "left 3", // left red, right blue
     "left 2 ",      "left 1  ", "Nothing ",
@@ -45,9 +45,9 @@ std::string defaultThing = "default";
 typedef void (*autonFnPtr)(void);
 
 autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::rThree, // tbd
-                                          auton::rTwo,
+                                          auton::brThree,
                                           auton::rOne,
-                                          autonOne,
+                                          auton::brOne,
 
                                           auton::lThree, // tbd
                                           auton::lTwo,

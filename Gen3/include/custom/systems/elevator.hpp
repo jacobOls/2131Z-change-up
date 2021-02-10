@@ -15,6 +15,6 @@ void runElevator(int velocity);
 void autoBack(int delay);
 void eject();
 void score(void);
-void scoreUntil();
+void scoreUntil(char color);
 } // namespace auton
 #endif /* end of include guard: ELEVATOR_HPP */

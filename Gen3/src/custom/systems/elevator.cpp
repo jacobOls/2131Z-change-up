@@ -161,15 +161,15 @@ void init() {
 
 namespace auton {
 pros::Distance disSense(18);
-void scoreUntil(){
+void scoreUntil(char color){
   int curTime = pros::millis();
   elevator::elevGroup.moveVelocity(600);
-  if(elevator::red == true){ while(opt.get_hue() > 45){
+  if(color == 'r'){ while(opt.get_hue() > 45){
     if (pros::millis() - curTime > 2000) {
       break;
     }
     }
-  if(elevator::red == false){ while(opt.get_hue() < 85){
+  if(color != 'r'){ while(opt.get_hue() < 85){
     if (pros::millis() - curTime > 2000) {
       break;
     }

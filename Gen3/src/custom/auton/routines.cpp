@@ -20,17 +20,42 @@ void rThree() {
   turn(225,60,"right");
   runIntake(10000);
   drive(19,140);
-  scoreUntil();
+  scoreUntil('r');
   runIntake(0);
   drive(15, -110);
   turn(325, 110, "right");
   eject();
   drive(34, 150);
   runElevator(0);
-  turn(190,50,"left");
+  turn(195,50,"left");
   runIntake(max);
-  drive(9,75);
-  scoreUntil();
+  drive(12,75);
+  scoreUntil('r');
+  runIntake(0);
+  drive(8,-60);
+}
+
+void brThree() {
+  if (fail) {
+    dont();
+  }
+  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive(17,130);
+  turn(225,60,"right");
+  runIntake(10000);
+  drive(19,140);
+  scoreUntil('b');
+  runIntake(0);
+  drive(15, -110);
+  turn(325, 110, "right");
+  eject();
+  drive(34, 150);
+  runElevator(0);
+  turn(195,50,"left");
+  runIntake(max);
+  drive(12,75);
+  scoreUntil('b');
   runIntake(0);
   drive(8,-60);
 }
@@ -41,39 +66,53 @@ void rTwo() {
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  runElevator(max);
-  wait(100);
-  runElevator(0);
-  drive(45, 150);
-  turn(175, 50, "right");
-  runIntake(max);
-  drive(55, 100);
-  score();
-  wait(100);
+  drive(17,130);
+  turn(225,60,"right");
+  runIntake(10000);
+  drive(19,140);
+  scoreUntil('r');
   runIntake(0);
-  score();
-  drive(5, -50);
+  drive(15, -110);
+  turn(325, 110, "right");
+  eject();
+  drive(34, 150);
+  runElevator(0);
+  turn(190,50,"left");
+  runIntake(max);
+  drive(10,75);
+  scoreUntil('r');
+  runIntake(0);
+  drive(8,-60);
 }
 
 void rOne() {
-  if (fail) {
-    dont();
-  }
-  rightTracker.set_position(0);
-  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  drive(35, 100);
-  turn(260, 50, "right");
-  runIntake(12000);
-  drive(42, 120);
-  score();
-  wait(450);
-  score();
-  wait(200);
-  runIntake(0);
-  wait(250);
-  score();
-  drive(5, -50);
+    if (fail) {
+      dont();
+    }
+    drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+    drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+    drive(17,130);
+    turn(225,60,"right");
+    runIntake(10000);
+    drive(19,140);
+    scoreUntil('r');
+    runIntake(0);
+    drive(15, -110);
+}
+
+void brOne() {
+    if (fail) {
+      dont();
+    }
+    drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+    drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+    drive(17,130);
+    turn(225,60,"right");
+    runIntake(10000);
+    drive(19,140);
+    scoreUntil('b');
+    runIntake(0);
+    drive(15, -110);
 }
 
 void lThree() {

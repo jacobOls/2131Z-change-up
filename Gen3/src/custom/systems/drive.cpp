@@ -99,7 +99,7 @@ void drive(double distance, int velocity) {
   drive::right_drive.tarePosition();
   leftTracker.set_position(0);
   rightTracker.set_position(0);
-  double multiplier = velocity > 0 ? 242.1 : 242.2;
+  double multiplier = velocity > 0 ? 243.1 : 242.2;
   double epsilon = unitsToInch(abs(velocity) * multiplier);
   int req = 10;
   while (track() <= abs((distance)) - epsilon) {

@@ -2,8 +2,10 @@
 #define ROUTINES_HPP
 namespace auton {
 void rThree();
+void brThree();
 void rTwo();
 void rOne();
+void brOne();
 void lThree();
 void lTwo();
 void lOne();

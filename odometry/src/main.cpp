@@ -10,7 +10,8 @@ void initialize() {
   selection::init();
   elevator::initVision();
   intake::intakeGroup.tarePosition();
-  pros::Task trackPosition(posCalc);
+  left.set_reversed(true);
+  // pros::Task trackPosition(posCalc);
 }
 pros::Task pid(auton::unity2);
 
@@ -22,17 +23,21 @@ void disabled() {
 void competition_initialize() {}
 
 void autonomous() {
+  // pros::Task taskResume(pid);
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  auton::unityStraight(25,true,false);
+  auton::unityStraight(25,true);
+  auton::unityTurn(1400,true);
+  // pros::delay(10000);
+  auton::unityStraight(25,true);
   // selection::execute();
 }
 
 void opcontrol() {
- pros::c::taskSuspend(pid);
+  // pros::Task taskSuspend(pid);
   while (true) {
-    // drive::userDrive();
-    // drive::brake();
+    drive::userDrive();
+    drive::brake();
     intake::init();
     elevator::init();
     selection::colorSwap();

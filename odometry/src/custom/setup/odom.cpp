@@ -47,26 +47,24 @@ void posCalc() {
   back.set_position(curBack);
   while (true) {
 
-    if (abs(right.get_velocity() + abs(back.get_velocity())) >=
-        6) {
+    if (abs(right.get_velocity() + abs(back.get_velocity())) != 0) {
       // set current position of encoders
-      curLeft = left.get_position();
-      curRight = right.get_position();
-      curBack = back.get_position();
+      curLeft = left.get_position() / 100;
+      curRight = right.get_position() / 100;
+      curBack = back.get_position() / 100;
       // find the change in distance of the encoders from last check
-      deltaLeft = (curLeft - storedLeft) / 36000 * wheelCirc;
-      deltaRight = (curRight - storedRight) / 36000 * wheelCirc;
-      deltaBack = (curBack - storedBack) / 36000 * wheelCirc;
+      deltaLeft = (curLeft - storedLeft) / 360 * wheelCirc;
+      deltaRight = (curRight - storedRight) / 360 * wheelCirc;
+      deltaBack = (curBack - storedBack) / 360 * wheelCirc;
       // store previous values
       storedLeft = curLeft;
       storedRight = curRight;
       storedBack = curBack;
       // get global delta
-      globalDeltaLeft = ((curLeft - storedGlobalLeft) / 36000) * wheelCirc;
-      globalDeltaRight = ((curRight - storedGlobalRight) / 36000) * wheelCirc;
+      globalDeltaLeft = ((curLeft - storedGlobalLeft) / 360) * wheelCirc;
+      globalDeltaRight = ((curRight - storedGlobalRight) / 360) * wheelCirc;
       // calculate absolute theta
-      theta1 =
-          thetaR + ((globalDeltaLeft - globalDeltaRight) / (sL + sR));
+      theta1 = thetaR + ((globalDeltaLeft - globalDeltaRight) / (sL + sR));
       // change in angle
       deltaTheta = theta1 - theta0;
       // calculate offset (how off this equation is from accuracy)
@@ -91,11 +89,7 @@ void posCalc() {
       // storedGlobalLeft = curLeft;
       // storedGlobalRight = curRight;
       // storedGlobalBack = curBack;
-       } else{
-      left.set_position(curLeft);
-      right.set_position(curRight);
-      back.set_position(curBack);
-    }
+       }
     printCords();
     pros::delay(3);
     }

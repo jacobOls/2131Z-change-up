@@ -161,24 +161,24 @@ void init() {
 
 namespace auton {
 pros::Distance disSense(18);
-void scoreUntil(char color){
+void scoreUntil(bool color){
   int curTime = pros::millis();
   elevator::elevGroup.moveVelocity(600);
-  if(color == 'r'){ while(opt.get_hue() > 45){
+  if(color == false){ while(opt.get_hue() > 45){ // false keeps red
     if (pros::millis() - curTime > 2000) {
       break;
     }
     }
-  if(color != 'r'){ while(opt.get_hue() < 85){
+  }
+  if(color == true){ while(opt.get_hue() < 95){ // true keeps blue
     if (pros::millis() - curTime > 2000) {
       break;
     }
     }
   }
   intake::intakeGroup.moveVoltage(0);
-  pros::delay(80);
+  pros::delay(100);
    elevator::elevGroup.moveVelocity(0);
-    }
 }
 void score() {
   int curTime = pros::millis();

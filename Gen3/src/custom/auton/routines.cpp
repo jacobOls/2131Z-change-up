@@ -5,22 +5,29 @@
 #include "custom/systems/intake.hpp"
 #include "main.h"
 namespace auton {
+  #define RED true
+  #define BLUE false
 const int max = 12000;
 void wait(int time) { pros::delay(time); }
 bool fail = true;
 void dont() { fail = false; }
-
+void deploy(){
+  runElevator(max);
+  wait(100);
+  runElevator(0);
+}
 void rThree() {
   if (fail) {
     dont();
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  deploy();
   drive(17,130);
   turn(225,60,"right");
   runIntake(10000);
   drive(19,140);
-  scoreUntil('r');
+  scoreUntil(RED);
   runIntake(0);
   drive(15, -110);
   turn(325, 110, "right");
@@ -29,8 +36,8 @@ void rThree() {
   runElevator(0);
   turn(195,50,"left");
   runIntake(max);
-  drive(12,75);
-  scoreUntil('r');
+  drive(13,85);
+  scoreUntil(RED);
   runIntake(0);
   drive(8,-60);
 }
@@ -41,11 +48,12 @@ void brThree() {
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  deploy();
   drive(17,130);
   turn(225,60,"right");
   runIntake(10000);
   drive(19,140);
-  scoreUntil('b');
+  scoreUntil(BLUE);
   runIntake(0);
   drive(15, -110);
   turn(325, 110, "right");
@@ -54,8 +62,8 @@ void brThree() {
   runElevator(0);
   turn(195,50,"left");
   runIntake(max);
-  drive(12,75);
-  scoreUntil('b');
+  drive(13,85);
+  scoreUntil(BLUE);
   runIntake(0);
   drive(8,-60);
 }
@@ -66,11 +74,12 @@ void rTwo() {
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  deploy();
   drive(17,130);
   turn(225,60,"right");
   runIntake(10000);
   drive(19,140);
-  scoreUntil('r');
+  scoreUntil(RED);
   runIntake(0);
   drive(15, -110);
   turn(325, 110, "right");
@@ -80,7 +89,7 @@ void rTwo() {
   turn(190,50,"left");
   runIntake(max);
   drive(10,75);
-  scoreUntil('r');
+  scoreUntil(RED);
   runIntake(0);
   drive(8,-60);
 }
@@ -91,11 +100,12 @@ void rOne() {
     }
     drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
     drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+    deploy();
     drive(17,130);
     turn(225,60,"right");
     runIntake(10000);
     drive(19,140);
-    scoreUntil('r');
+    scoreUntil(RED);
     runIntake(0);
     drive(15, -110);
 }
@@ -106,11 +116,12 @@ void brOne() {
     }
     drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
     drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+    deploy();
     drive(17,130);
     turn(225,60,"right");
     runIntake(10000);
     drive(19,140);
-    scoreUntil('b');
+    scoreUntil(BLUE);
     runIntake(0);
     drive(15, -110);
 }

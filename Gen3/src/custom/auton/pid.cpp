@@ -1,26 +1,26 @@
 #include "custom/setup/motors.hpp"
 #include "main.h"
-#include "custom/setup/odom.hpp"
-pros::Imu gyro(5);
+#include "custom/systems/drive.hpp"
+// pros::Imu gyro(5);
 namespace auton{
   	//miscellaneous values
   	#define wheelDiameter 2.75
   	#define dontHog 25
   	#define stopError 60
-  	#define stopTime 250
+  	#define stopTime 300
 
   	//Encoder PID Values
-  	#define lEnc_Kp  0.39
+  	#define lEnc_Kp  0.35
     #define lEnc_Ki  0// if you dont want an i keep it 0
-  	#define lEnc_Kd  0.41
+  	#define lEnc_Kd  0.43
 
-  	#define rEnc_Kp  0.43
+  	#define rEnc_Kp  0.39
   	#define rEnc_Ki  0// if you dont want an i keep it 0
-  	#define rEnc_Kd 0.45
+  	#define rEnc_Kd 0.47
 
-    #define turn_Kp .009
+    #define turn_Kp .008
     #define turn_Ki 0.0
-    #define turn_Kd .015
+    #define turn_Kd .017
   	//Gyro PID Values
   	float gyro_Kp=0.2;
   	float gyro_ki=0.000001;// if you dont want an i keep it 0
@@ -98,27 +98,29 @@ namespace auton{
   	void driveWaity(int distance)
   	{
   	 int ticks = fabs(countsToInches(distance));
-  	 while(fabs(left.get_position() / 100) <= ticks - stopError){}
+  	 while(fabs(leftTracker.get_position() / 100) <= ticks - stopError){}
   	 pros::delay(stopTime);
   	 ticks = 0;
   	}
   	void turnwaity(int degrees)
   	 {
-  	 // while(fabs((left.get_position())-degrees) > 50){
+  	 // while(fabs((leftTracker.get_position())-degrees) > 50){
 
      // }
       pros::delay(10);
-     while(left.get_velocity() != 0){
+     while(leftTracker.get_velocity() != 0){
      }
-     pros::delay(stopTime);
+     pros::delay(stopTime - 75);
   	 }
+
   	void unityStraight(int distance, bool waity = false) //for correction to work properly waity must be true
   	{
   	 driveMode = 2;
 
-  	 left.set_position(0);
-  	 right.set_position(0);
+  	 leftTracker.set_position(0);
+  	 rightTracker.set_position(0);
   	 int ticks = fabs(countsToInches(distance));
+
   	 lEncRequestedValue = ticks;
   	 rEncRequestedValue = ticks;
   	 driveMode = 0;
@@ -128,13 +130,27 @@ namespace auton{
 
   	}
   	}
+void unityBack(int distance, bool waity = false){
+  driveMode = 2;
 
+  leftTracker.set_position(0);
+  rightTracker.set_position(0);
+  int ticks = fabs(countsToInches(distance));
+
+  lEncRequestedValue = -ticks;
+  rEncRequestedValue = -ticks;
+  driveMode = 0;
+  if(waity) {
+  pros::delay(stopTime);
+  driveWaity(distance);
+}
+}
   	void unityTurn(int degrees,bool waity=false)
   	{
       driveMode = 2;
 
-      left.set_position(0);
-      right.set_position(0);
+      leftTracker.set_position(0);
+      rightTracker.set_position(0);
       int ticks = fabs(countsToInches(degrees));
       if(degrees < 0){
         ticks = -ticks;
@@ -191,7 +207,7 @@ namespace auton{
   	//#region PID Functions
   	 void lEncController()
   	 {
-       lEncCurrentValue = left.get_position() / 100;
+       lEncCurrentValue = leftTracker.get_position() / 100;
 
     	 lEncErr = lEncRequestedValue - lEncCurrentValue;
     	 lEncInt = lEncInt + lEncErr;
@@ -204,18 +220,19 @@ namespace auton{
 
     	 lEncPrevErr = lEncErr;
     	 lEncPrevTime = pros::millis();
-    	 if (fabs(lEncCurrentValue)>fabs(right.get_position() / 100))
+    	 if (fabs(lEncCurrentValue)>fabs(rightTracker.get_position() / 100))
     	 {
-    	 lEncOutput = lEncOutput-((fabs(lEncCurrentValue) - fabs(right.get_position() / 100))/2*sgn(lEncCurrentValue));
+    	 lEncOutput = lEncOutput-((fabs(lEncCurrentValue) - fabs(rightTracker.get_position() / 100))/2*sgn(lEncCurrentValue));
     	 }
     	 lEncPrevPower = driveRamp(lEncOutput,lEncPrevPower,lEncRampBias);
+
     	 setLDriveMotors(lEncPrevPower);
 
   	 }
   	// lEncDt
   	 void rEncController()
   	 {
-  	 rEncCurrentValue = right.get_position() / 100;
+  	 rEncCurrentValue = rightTracker.get_position() / 100;
 
   	 rEncErr = rEncRequestedValue - rEncCurrentValue;
   	 rEncInt = rEncInt + rEncErr;
@@ -228,18 +245,19 @@ namespace auton{
 
   	 rEncPrevErr = rEncErr;
   	 rEncPrevTime = pros::millis();
-  	 if (fabs(rEncCurrentValue)>fabs(left.get_position() / 100))
+  	 if (fabs(rEncCurrentValue)>fabs(leftTracker.get_position() / 100))
   	 {
-  	 rEncOutput = rEncOutput-((fabs(rEncCurrentValue) - fabs(left.get_position() / 100))/2*sgn(rEncCurrentValue));
+  	 rEncOutput = rEncOutput-((fabs(rEncCurrentValue) - fabs(leftTracker.get_position() / 100))/2*sgn(rEncCurrentValue));
   	 }
   	 rEncPrevPower = rightDriveRamp(rEncOutput,rEncPrevPower,rEncRampBias);
+
   	 setRDriveMotors(rEncPrevPower);
 
   	 }
   	// rEncDt
     void turnController()
     {
-      turnCurrentValue = right.get_position();
+      turnCurrentValue = rightTracker.get_position();
 
       turnErr = turnRequestedValue - turnCurrentValue;
       turnInt = turnInt + turnErr;
@@ -260,7 +278,6 @@ namespace auton{
 
   	 void gyroController()
   	 {
-  	 gyroCurrentValue = gyro.get_rotation();
 
   	 gyroErr = gyroRequestedValue - gyroCurrentValue;
   	 gyroInt = gyroInt + gyroErr;
@@ -288,9 +305,8 @@ namespace auton{
   	//#region Tasks
   	void unity2(void *param)
   	{
-  	 left.set_position(0);
-  	 right.set_position(0);
-  	 gyro.reset();
+  	 leftTracker.set_position(0);
+  	 rightTracker.set_position(0);
   	 pros::delay(25);
   	 while(true)
   	 {

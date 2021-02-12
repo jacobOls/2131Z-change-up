@@ -5,13 +5,16 @@
 #include "custom/systems/drive.hpp"
 #include "custom/systems/elevator.hpp"
 #include "custom/systems/intake.hpp"
+#include "custom/auton/pid.hpp"
 pros::Rotation rTracker(7);
 void initialize() {
   selection::init();
   intake::intakeGroup.tarePosition();
   rTracker.set_position(0);
   opt.set_led_pwm(75);
+  auton::leftTracker.set_reversed(true);
 }
+// pros::Task pid(auton::unity2);
 // pros::Task elevatorRatchet(elevator::init); // run elevator independetly of other systems
 
 void disabled() {
@@ -49,8 +52,9 @@ void autonomous() { selection::execute(); }
 void opcontrol() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  auton::unityStop();
   while (true) {
-    foo2();
+    // foo2();
     drive::userDrive();
     drive::brake();
     intake::init();

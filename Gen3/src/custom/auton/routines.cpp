@@ -3,6 +3,7 @@
 #include "custom/systems/drive.hpp"
 #include "custom/systems/elevator.hpp"
 #include "custom/systems/intake.hpp"
+#include "custom/auton/pid.hpp"
 #include "main.h"
 namespace auton {
   #define RED true
@@ -16,6 +17,24 @@ void deploy(){
   wait(100);
   runElevator(0);
 }
+
+void redCyclePID(){
+  if (fail) {
+    dont();
+  }
+  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  deploy();
+unityStraight(23,true);
+unityTurn(-1370,true);
+runIntake(10000);
+unityStraight(26,true);
+scoreUntil(RED);
+runIntake(0);
+open();
+unityBack(10,true);
+}
+
 void rThree() {
   if (fail) {
     dont();
@@ -75,39 +94,44 @@ void rTwo() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   deploy();
-  drive(17,130);
-  turn(225,60,"right");
-  runIntake(10000);
-  drive(19,140);
-  scoreUntil(RED);
-  runIntake(0);
-  drive(15, -110);
-  turn(325, 110, "right");
-  eject();
-  drive(34, 150);
-  runElevator(0);
-  turn(190,50,"left");
-  runIntake(max);
-  drive(10,75);
-  scoreUntil(RED);
-  runIntake(0);
-  drive(8,-60);
+unityStraight(23,true);
+unityTurn(-1315,true);
+runIntake(10000);
+unityStraight(26,true);
+scoreUntil(RED);
+runIntake(0);
+unityBack(15,true);
+unityTurn(-1500,true);
+eject();
+unityStraight(46,true);
+runElevator(0);
+unityTurn(1075,true);
+runIntake(max);
+unityStraight(9,true);
+scoreUntil(RED);
+open();
+unityBack(5,true);
+}
+
+void brTwo(){
+
 }
 
 void rOne() {
-    if (fail) {
-      dont();
-    }
-    drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-    drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-    deploy();
-    drive(17,130);
-    turn(225,60,"right");
-    runIntake(10000);
-    drive(19,140);
-    scoreUntil(RED);
-    runIntake(0);
-    drive(15, -110);
+  if (fail) {
+    dont();
+  }
+  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  deploy();
+unityStraight(23,true);
+unityTurn(-1370,true);
+runIntake(10000);
+unityStraight(26,true);
+scoreUntil(RED);
+runIntake(0);
+open();
+unityBack(10,true);
 }
 
 void brOne() {

@@ -26,15 +26,17 @@ void autonomous() {
   // pros::Task taskResume(pid);
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  auton::unityStraight(23,true);
+  auton::unityTurn(-1360,true);
   auton::unityStraight(25,true);
-  auton::unityTurn(1400,true);
+
   // pros::delay(10000);
-  auton::unityStraight(25,true);
   // selection::execute();
 }
 
 void opcontrol() {
   // pros::Task taskSuspend(pid);
+  auton::unityStop();
   while (true) {
     drive::userDrive();
     drive::brake();

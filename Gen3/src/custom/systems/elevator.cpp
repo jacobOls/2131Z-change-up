@@ -163,7 +163,7 @@ namespace auton {
 pros::Distance disSense(18);
 void scoreUntil(bool color){
   int curTime = pros::millis();
-  elevator::elevGroup.moveVelocity(600);
+  elevator::elevGroup.moveVelocity(525);
   if(color == false){ while(opt.get_hue() > 45){ // false keeps red
     if (pros::millis() - curTime > 2000) {
       break;

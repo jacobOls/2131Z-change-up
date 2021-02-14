@@ -25,14 +25,14 @@ void autonTwo() { std::cout << "running auton two" << std::endl; }
 
 void autonThree() { std::cout << "3" << std::endl; }
 std::string buttonLabels[BUTTON_COUNT] = {
-    "right 3 re", // right red, left blue
-    "right 2 blue",      "right 1 red", "right 1 blue",
+    "right 3 red", // right red, left blue
+    "right 3 blue",      "left 3 red", " left 3 blue",
 
     "right 2 red", // left red, right blue
-    "left 2 ",      "left 1  ", "Nothing ",
+    "right 2 blue",      "left 2 red", "left 2 blue ",
 
     "right 1 red", // combo autons
-    "right cycle ", "ඞ ",       "ඞ ",
+    "right 1 blue ", "left 1 red ",       "left 1 blue ",
 
     "test ", // too many rows
     "ඞ ",           "ඞ  ",      "ඞ ",
@@ -46,18 +46,18 @@ typedef void (*autonFnPtr)(void);
 
 autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::rThree, // tbd
                                           auton::brThree,
-                                          auton::rOne,
-                                          auton::brOne,
+                                          auton::lThree,
+                                          auton::lThree,
 
                                           auton::rTwo, // tbd
                                           auton::brTwo,
-                                          auton::brOne,
-                                          autonOne,
+                                          auton::lTwo,
+                                          auton::blTwo,
 
                                           auton::rOne, // tbd
-                                          auton::brOne,
-                                          autonOne,
-                                          autonOne,
+                                          auton::lOne,
+                                          auton::lOne,
+                                          auton::blOne,
 
                                           auton::testFunctions, // tbd
                                           autonOne,
@@ -148,7 +148,7 @@ void clearBtns(lv_obj_t *toggledButton = NULL) {
 
 void execute() {
   std::cout << "executing" << std::endl;
-  autonFnPtr defaultAuton = auton::rTwo;
+  autonFnPtr defaultAuton = auton::skills;
   defaultThing = "Things work and not";
   // inAuton = true;
 

@@ -146,12 +146,10 @@ void clampDrive(double distance, double clampDistance, int velocity) {
   intake::intakeGroup.moveVelocity(-200);
   drive::left_drive.tarePosition();
   drive::right_drive.tarePosition();
-  rightTracker.set_position(0);
   leftTracker.set_position(0);
-  distance = (distance * 36000) / (M_PI * 2.75);
-  clampDistance = (clampDistance * 36000) / (M_PI * 2.75);
-  double multiplier = velocity > 0 ? 242.1 : 242.2;
-  double epsilon = abs(velocity) * multiplier;
+  rightTracker.set_position(0);
+  double multiplier = velocity > 0 ? 243.1 : 242.2;
+  double epsilon = unitsToInch(abs(velocity) * multiplier);
   int req = 10;
   while (track() <= abs((distance)) - epsilon) {
     if (intake::leftIntake.isPressed()) {

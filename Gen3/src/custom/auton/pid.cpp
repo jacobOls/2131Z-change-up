@@ -8,17 +8,17 @@ namespace auton{
   	#define dontHog 25
   	#define stopError 60
   	#define stopTime 300
-
+    #define turnError 250
   	//Encoder PID Values
-  	#define lEnc_Kp  0.35
+  	#define lEnc_Kp  0.29
     #define lEnc_Ki  0// if you dont want an i keep it 0
-  	#define lEnc_Kd  0.43
+  	#define lEnc_Kd  0.31
 
-  	#define rEnc_Kp  0.39
+  	#define rEnc_Kp  0.41
   	#define rEnc_Ki  0// if you dont want an i keep it 0
-  	#define rEnc_Kd 0.47
+  	#define rEnc_Kd 0.48
 
-    #define turn_Kp .008
+    #define turn_Kp .009
     #define turn_Ki 0.0
     #define turn_Kd .017
   	//Gyro PID Values
@@ -104,12 +104,16 @@ namespace auton{
   	}
   	void turnwaity(int degrees)
   	 {
-  	 // while(fabs((leftTracker.get_position())-degrees) > 50){
-
-     // }
-      pros::delay(10);
-     while(leftTracker.get_velocity() != 0){
+       int curTime = pros::millis();
+       int ticks = fabs(countsToInches(degrees));
+  	 while(fabs((leftTracker.get_position()) / 100) <= ticks - turnError){
+       if(leftTracker.get_velocity() != 0 && pros::millis() - curTime > 450){
+         break;
+       }
      }
+      // pros::delay(10);
+     // while(leftTracker.get_velocity() != 0){
+     // }
      pros::delay(stopTime - 75);
   	 }
 
@@ -272,8 +276,8 @@ void unityBack(int distance, bool waity = false){
       turnPrevTime = pros::millis();
 
       turnPrevPower = driveRamp(turnOutput,turnPrevPower,turnRampBias);
-      setLDriveMotors(-turnPrevPower);
-      setRDriveMotors(turnPrevPower);
+      setLDriveMotors(-turnPrevPower/2);
+      setRDriveMotors(turnPrevPower/2);
     }
 
   	 void gyroController()

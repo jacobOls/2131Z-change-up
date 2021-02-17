@@ -21,6 +21,10 @@ void disabled() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   rTracker.set_position(0);
+  // gyro.reset();
+  // while(gyro.is_calibrating()){
+    // pros::delay(10);
+  // }
   // pros::c::taskSuspend(elevatorRatchet);
 }
 
@@ -54,6 +58,7 @@ void opcontrol() {
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   auton::unityStop();
   while (true) {
+
     foo2();
     drive::userDrive();
     drive::brake();

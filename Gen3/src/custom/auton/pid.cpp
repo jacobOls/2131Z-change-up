@@ -7,32 +7,38 @@ namespace auton{
   	#define wheelDiameter 2.75
   	#define dontHog 25
   	#define stopError 60
-  	#define stopTime 300
-    #define turnError 250
+  	#define stopTime 250
+    #define turnStopTime 375
+    #define turnError 5
   	//Encoder PID Values
-  	#define lEnc_Kp  0.29
+  	#define lEnc_Kp  0.257//0.33
     #define lEnc_Ki  0// if you dont want an i keep it 0
-  	#define lEnc_Kd  0.31
+  	#define lEnc_Kd  0.6 //0.31
 
-  	#define rEnc_Kp  0.41
-  	#define rEnc_Ki  0// if you dont want an i keep it 0
-  	#define rEnc_Kd 0.48
+  	#define rEnc_Kp  0.257//0.41
+  	#define rEnc_Ki  0 //if you dont want an i keep it 0
+  	#define rEnc_Kd  0.6 //0.48
 
-    #define turn_Kp .009
+    #define turn_Kp .425
     #define turn_Ki 0.0
-    #define turn_Kd .017
+    #define turn_Kd 0.1
+
+    #define strafe_Kp .425
+    #define strafe_Ki 0.0
+    #define strafe_Kd 0.1
+
   	//Gyro PID Values
-  	float gyro_Kp=0.2;
+  	float gyro_Kp=0.3;
   	float gyro_ki=0.000001;// if you dont want an i keep it 0
-  	float gyro_Kd=8;
+  	float gyro_Kd=4;
 
   	//Drive ramp values
   	int rampInterval = 3;
-  	int RampingChange = 7;
-    double rightRampingChange = 22;
+  	int RampingChange = 9;
   	int initalRamp = 10;
   	int lEncRampBias = 0;
-  	int rEncRampBias = 0;
+  	int rEncRampBias = 6;
+    int bEncRampBias = 0;
     int turnRampBias = 0;
   	double RP;
   	double P;
@@ -73,6 +79,17 @@ namespace auton{
   	float rEncCurrentValue;
   	int rEncOutput;
 
+    int bEncRequestedValue;
+    int bEncPrevPower;
+    float bEncErr;//proportional error
+    float bEncPrevErr; //prop error from previous loop
+    float bEncInt;//integral error
+    float bEncDer;//derivative error
+    long bEncPrevTime;
+    float bEncDt; //difference in time
+    float bEncCurrentValue;
+    int bEncOutput;
+
   	//Gyro PID values
   	int gyroRequestedValue;
   	float gyroErr;//proportional error
@@ -102,6 +119,14 @@ namespace auton{
   	 pros::delay(stopTime);
   	 ticks = 0;
   	}
+
+    void strafeWaity(int distance){
+      int ticks = fabs(countsToInches(distance));
+      while(fabs(sTracker.get_position() / 100) <= ticks - stopError){}
+      pros::delay(stopTime);
+      ticks = 0;
+    }
+
   	void turnwaity(int degrees)
   	 {
        int curTime = pros::millis();
@@ -114,7 +139,7 @@ namespace auton{
       // pros::delay(10);
      // while(leftTracker.get_velocity() != 0){
      // }
-     pros::delay(stopTime - 75);
+     pros::delay(turnStopTime);
   	 }
 
   	void unityStraight(int distance, bool waity = false) //for correction to work properly waity must be true
@@ -134,7 +159,25 @@ namespace auton{
 
   	}
   	}
-void unityBack(int distance, bool waity = false){
+
+  void unityStrafe(int distance, bool waity = false){
+    driveMode = 2;
+
+    leftTracker.set_position(0);
+    rightTracker.set_position(0);
+    sTracker.set_position(0);
+    int ticks = fabs(countsToInches(distance));
+
+    bEncRequestedValue = ticks;
+    driveMode = 0;
+    if(waity) {
+    pros::delay(stopTime);
+    driveWaity(distance);
+
+  }
+}
+
+  void unityBack(int distance, bool waity = false){
   driveMode = 2;
 
   leftTracker.set_position(0);
@@ -152,21 +195,20 @@ void unityBack(int distance, bool waity = false){
   	void unityTurn(int degrees,bool waity=false)
   	{
       driveMode = 2;
+      // if(gyro.get_rotation() - degrees < 0){
+        // degrees = -degrees;
+      // }
+      // degrees = degrees + 5;
+   	 gyroRequestedValue = degrees;
 
-      leftTracker.set_position(0);
-      rightTracker.set_position(0);
-      int ticks = fabs(countsToInches(degrees));
-      if(degrees < 0){
-        ticks = -ticks;
-      }
-      turnRequestedValue = ticks;
-      driveMode = 1;
-      if(waity) {
-      pros::delay(stopTime);
-      turnwaity(degrees);
+   	 driveMode = 1;
+   	 if(waity)
+   	 {
+   	 turnwaity(degrees);
+   	 }
 
    	}
-  	}
+
   	int driveRamp(int RequestedPower,int Power,int sidebias=0 )
   	{
   	 RP = RequestedPower;
@@ -182,20 +224,6 @@ void unityBack(int distance, bool waity = false){
   		// pros::delay(rampInterval);
   	}
 
-    double rightDriveRamp(double RequestedPower,double Power,double sidebias=0 )
-    {
-     RP = RequestedPower;
-     P = Power;
-      if (abs(RP)>abs(P) && RP!=0)
-      {
-      if(abs(P)<initalRamp)	P=initalRamp;
-      else P = abs(P) + rightRampingChange + sidebias;
-      P = abs(P) * sgn(RP);
-      }
-      else	P=RP;
-     return P;
-      // pros::delay(rampInterval);
-    }
   	void setLDriveMotors(int power)
   	{
   		drive::leftFront.moveVelocity(power);
@@ -253,7 +281,7 @@ void unityBack(int distance, bool waity = false){
   	 {
   	 rEncOutput = rEncOutput-((fabs(rEncCurrentValue) - fabs(leftTracker.get_position() / 100))/2*sgn(rEncCurrentValue));
   	 }
-  	 rEncPrevPower = rightDriveRamp(rEncOutput,rEncPrevPower,rEncRampBias);
+  	 rEncPrevPower = driveRamp(rEncOutput,rEncPrevPower,rEncRampBias);
 
   	 setRDriveMotors(rEncPrevPower);
 
@@ -282,21 +310,53 @@ void unityBack(int distance, bool waity = false){
 
   	 void gyroController()
   	 {
+       gyroCurrentValue = gyro.get_heading();
 
-  	 gyroErr = gyroRequestedValue - gyroCurrentValue;
-  	 gyroInt = gyroInt + gyroErr;
-  	 gyroDer = gyroErr - gyroPrevErr;
-  	 gyroDt = pros::millis() - gyroPrevTime;
-  	 if(gyroDt < 1)
-  	 gyroDt = 1;
+    	 gyroErr = gyroRequestedValue - gyroCurrentValue;
+    	 gyroInt = gyroInt + gyroErr;
+    	 gyroDer = gyroErr - gyroPrevErr;
+    	 gyroDt = pros::millis() - gyroPrevTime;
+    	 if(gyroDt < 1)
+    	 gyroDt = 1;
 
-  	 gyroOutput = (gyro_Kp * gyroErr) + (gyro_ki * gyroInt * gyroDt) + (gyro_Kd * gyroDer / gyroDt );
+    	 gyroOutput = ((gyro_Kp * gyroErr) + (gyro_ki * gyroInt * gyroDt) + (gyro_Kd * gyroDer / gyroDt )) * 20;
 
-  	 gyroPrevErr = gyroErr;
-  	 gyroPrevTime = pros::millis();
-  	 setLDriveMotors(-gyroOutput);
-  	 setRDriveMotors(gyroOutput);
+    	 gyroPrevErr = gyroErr;
+    	 gyroPrevTime = pros::millis();
+       if(gyroRequestedValue > 185 && gyroCurrentValue < 5){
+         gyroOutput = -gyroOutput;
+              }
+    	 setLDriveMotors(gyroOutput);
+    	 setRDriveMotors(-gyroOutput);
   	 }
+
+     void strafeController()
+     {
+        bEncCurrentValue = sTracker.get_position() / 100;
+
+       bEncErr = bEncRequestedValue - bEncCurrentValue;
+       bEncInt = bEncInt + bEncErr;
+       bEncDer = bEncErr - bEncPrevErr;
+       bEncDt = pros::millis() - bEncPrevTime;
+       if(bEncDt < 1)
+       bEncDt = 1;
+
+       bEncOutput = (strafe_Kp * bEncErr) + (strafe_Ki * bEncInt * bEncDt) + (strafe_Kd * bEncDer / bEncDt );
+
+       bEncPrevErr = bEncErr;
+       bEncPrevTime = pros::millis();
+       if (fabs(leftTracker.get_position()/100)>fabs(rightTracker.get_position() / 100) + 20)
+       {
+       bEncOutput = bEncOutput-((fabs(bEncCurrentValue) - fabs(sTracker.get_position() / 100))/2*sgn(lEncCurrentValue));
+       }
+       bEncPrevPower = driveRamp(bEncOutput,bEncPrevPower,bEncRampBias);
+
+       drive::leftFront.moveVelocity(bEncPrevPower);
+       drive::leftBack.moveVelocity(-bEncPrevPower);
+       drive::rightBack.moveVelocity(bEncPrevPower);
+       drive::rightFront.moveVelocity(-bEncPrevPower);
+
+     }
   	// gyroDt
 
 
@@ -323,9 +383,13 @@ void unityBack(int distance, bool waity = false){
   	 }
   	 else if(driveMode == 1)
   	 {
-    turnController();
+    gyroController();
   	 pros::delay(6);
-   } else if(driveMode == 5){
+   }
+   else if (driveMode == 3){
+
+   }
+    else if(driveMode == 5){
 
    }
   	 else

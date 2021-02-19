@@ -7,7 +7,7 @@ namespace auton{
   	#define wheelDiameter 2.75
   	#define dontHog 25
   	#define stopError 60
-  	#define stopTime 250
+  	#define stopTime 275
     #define turnStopTime 375
     #define turnError 5
   	//Encoder PID Values
@@ -30,7 +30,7 @@ namespace auton{
   	//Gyro PID Values
   	float gyro_Kp=0.3;
   	float gyro_ki=0.000001;// if you dont want an i keep it 0
-  	float gyro_Kd=4;
+  	float gyro_Kd= 0.75;
 
   	//Drive ramp values
   	int rampInterval = 3;
@@ -326,6 +326,9 @@ namespace auton{
        if(gyroRequestedValue > 185 && gyroCurrentValue < 5){
          gyroOutput = -gyroOutput;
               }
+      if(gyroRequestedValue < 180 && gyroCurrentValue > 350){
+        gyroOutput = -gyroOutput;
+      }
     	 setLDriveMotors(gyroOutput);
     	 setRDriveMotors(-gyroOutput);
   	 }

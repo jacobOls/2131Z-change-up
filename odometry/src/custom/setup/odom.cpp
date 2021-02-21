@@ -74,7 +74,7 @@ void posCalc() {
   thetaMe = prevTheta + (deltaTheta / 2);
 
   double polarTheta = atan2(yPos, xPos) - thetaMe;
-  double polarR = hypot(xPos,yPos);
+  double polarR = hypot(xPos,yPos) - thetaMe;
   xPos = polarR * cos(polarTheta);
   yPos = polarR * sin(polarTheta);
 

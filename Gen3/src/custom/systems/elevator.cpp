@@ -180,6 +180,26 @@ void scoreUntil(bool color){
   pros::delay(100);
    elevator::elevGroup.moveVelocity(0);
 }
+void ratchetUntil(bool color){
+  int curTime = pros::millis();
+  intake::intakeGroup.moveVelocity(200);
+    elevator::elevMotor.moveVoltage(12000);
+    elevator::ratchetMotor.moveVoltage(-12000);  if(color == true){ while(opt.get_hue() > 45){ // false keeps red
+    if (pros::millis() - curTime > 600) {
+      break;
+    }
+    }
+  }
+  if(color == false){ while(opt.get_hue() < 95){ // true keeps blue
+    if (pros::millis() - curTime > 600) {
+      break;
+    }
+    }
+  }
+  intake::intakeGroup.moveVoltage(0);
+  pros::delay(100);
+   elevator::elevGroup.moveVelocity(0);
+}
 void score() {
   int curTime = pros::millis();
   elevator::elevGroup.moveVelocity(600);

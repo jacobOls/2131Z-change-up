@@ -16,5 +16,6 @@ void autoBack(int delay);
 void eject();
 void score(void);
 void scoreUntil(bool color);
+void ratchetUntil(bool color);
 } // namespace auton
 #endif /* end of include guard: ELEVATOR_HPP */

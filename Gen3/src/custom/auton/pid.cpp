@@ -7,8 +7,8 @@ namespace auton{
   	#define wheelDiameter 2.75
   	#define dontHog 25
   	#define stopError 60
-  	#define stopTime 275
-    #define turnStopTime 375
+  	#define stopTime 150
+    #define turnStopTime 150
     #define turnError 5
   	//Encoder PID Values
   	#define lEnc_Kp  0.257//0.33
@@ -34,8 +34,8 @@ namespace auton{
 
   	//Drive ramp values
   	int rampInterval = 3;
-  	int RampingChange = 9;
-  	int initalRamp = 10;
+  	int RampingChange = 12;
+  	int initalRamp = 25;
   	int lEncRampBias = 0;
   	int rEncRampBias = 6;
     int bEncRampBias = 0;
@@ -129,18 +129,21 @@ namespace auton{
 
   	void turnwaity(int degrees)
   	 {
-       int curTime = pros::millis();
-       int ticks = fabs(countsToInches(degrees));
-  	 while(fabs((leftTracker.get_position()) / 100) <= ticks - turnError){
-       if(leftTracker.get_velocity() != 0 && pros::millis() - curTime > 450){
-         break;
-       }
-     }
+       while(fabs(gyro.get_heading() - degrees) > 25){}
+       pros::delay(stopTime);
+}
+     //   int curTime = pros::millis();
+     //   int ticks = fabs(countsToInches(degrees));
+  	 // while(fabs((leftTracker.get_position()) / 100) <= ticks - turnError){
+     //   if(leftTracker.get_velocity() != 0 && pros::millis() - curTime > 450){
+     //     break;
+     //   }
+
       // pros::delay(10);
      // while(leftTracker.get_velocity() != 0){
      // }
-     pros::delay(turnStopTime);
-  	 }
+     // pros::delay(turnStopTime);
+
 
   	void unityStraight(int distance, bool waity = false) //for correction to work properly waity must be true
   	{

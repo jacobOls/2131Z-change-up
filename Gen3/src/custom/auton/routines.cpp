@@ -191,6 +191,7 @@ unityBack(10,true);
 }
 
 void lThree() {
+  int startAngle = 45;
   if (fail) {
     dont();
   }
@@ -198,7 +199,7 @@ void lThree() {
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   deploy();
   unityStraight(35,true);
-  unityTurn(1250,true);
+  unityTurn(280,true);
   open();
   unityStraight(35,false);
   wait(1150);
@@ -271,13 +272,13 @@ wait(50);
 runIntake(0);
 unityBack(20,true);
 unityTurn(90,true);
-eject();
-unityStraight(40,true);
-runElevator(0);
+unityStraight(40,false);
+ratchetUntil(BLUE);
+wait(1200);
 unityTurn(180,true);
 runIntake(max);
-unityStraight(11,false);
-wait(1000);
+unityStraight(10,false);
+wait(900);
 scoreUntil(BLUE);
 open();
 runElevator(0);

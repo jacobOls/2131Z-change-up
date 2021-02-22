@@ -11,12 +11,11 @@ int lY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 200; };
 
 int lX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
 int rX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
-int stVal() {
-   return ((lX() + rX()) / 2); };
+int stVal() { return ((lX() + rX()) / 2); };
 int flVal() { return abs(lY()) > abs(lX() + .3) ? lY() : lY() + stVal(); };
-int blVal() { return abs(lY()) > abs(lX() + .3) ? lY() :  lY() - stVal(); };
-int brVal() { return abs(rY()) > abs(rX() + .3) ? rY() :  rY() + stVal(); };
-int frVal() { return abs(rY()) > abs(rX() + .3) ? rY() :  rY() - stVal(); };
+int blVal() { return abs(lY()) > abs(lX() + .3) ? lY() : lY() - stVal(); };
+int brVal() { return abs(rY()) > abs(rX() + .3) ? rY() : rY() + stVal(); };
+int frVal() { return abs(rY()) > abs(rX() + .3) ? rY() : rY() - stVal(); };
 // sets motor voltage
 int dz = .05 * 200; // dead zone
 void userDrive() {
@@ -62,11 +61,10 @@ pros::Rotation rightTracker(8);
 
 int track() {
   return (abs(((rightTracker.get_position() / 36000) * (2.75 * M_PI))) +
-             abs(((leftTracker.get_position()) / 36000) * (2.75 * M_PI))) / 2;
+          abs(((leftTracker.get_position()) / 36000) * (2.75 * M_PI))) /
+         2;
 }
-double unitsToInch(double foo){
-  return (foo/36000) * (2.75 * M_PI);
-}
+double unitsToInch(double foo) { return (foo / 36000) * (2.75 * M_PI); }
 int turnTrack() {
   return abs(rightTracker.get_position()) + abs(leftTracker.get_position()) / 2;
 };
@@ -91,7 +89,7 @@ void drive(double distance, int velocity) {
     if (velocity < 0 && req > 0) {
       req *= -1;
     }
-    if(leftTracker.get_velocity() == 0){
+    if (leftTracker.get_velocity() == 0) {
       break;
     }
     drive::deAccelDrive.deAccelMath(accel, &drive::driveGroup, req,
@@ -170,9 +168,7 @@ void clampDrive(double distance, double clampDistance, int velocity) {
   drive::driveGroup.moveVelocity(0);
   drive::driveGroup.tarePosition();
 }
-double back(){
-  return (sTracker.get_position() / 36000) * (2.75 * M_PI);
-}
+double back() { return (sTracker.get_position() / 36000) * (2.75 * M_PI); }
 void strafe(int distance, int velocity, std::string direction) {
   bool velDir = false;
   drive::left_drive.tarePosition();

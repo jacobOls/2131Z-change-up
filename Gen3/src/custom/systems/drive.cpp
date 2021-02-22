@@ -6,11 +6,11 @@
 #include "main.h"
 namespace drive {
 // retrieve and transform input values of analogs
-int rY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 200; };
-int lY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 200; };
+int rY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 12000; };
+int lY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 12000; };
 
-int lX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
-int rX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
+int lX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 12000; };
+int rX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 12000; };
 int stVal() {
    return ((lX() + rX()) / 2); };
 int flVal() { return abs(lY()) > abs(lX() + .3) ? lY() : lY() + stVal(); };
@@ -21,21 +21,21 @@ int frVal() { return abs(rY()) > abs(rX() + .3) ? rY() :  rY() - stVal(); };
 int dz = .05 * 200; // dead zone
 void userDrive() {
   if (abs(flVal()) > dz) {
-    leftFront.moveVelocity(flVal());
+    leftFront.moveVoltage(flVal());
   } else
-    leftFront.moveVelocity(0);
+    leftFront.moveVoltage(0);
   if (abs(blVal()) > dz) {
-    leftBack.moveVelocity(blVal());
+    leftBack.moveVoltage(blVal());
   } else
-    leftBack.moveVelocity(0);
+    leftBack.moveVoltage(0);
   if (abs(frVal()) > dz) {
-    rightFront.moveVelocity(frVal());
+    rightFront.moveVoltage(frVal());
   } else
-    rightFront.moveVelocity(0);
+    rightFront.moveVoltage(0);
   if (abs(brVal()) > dz) {
-    rightBack.moveVelocity(brVal());
+    rightBack.moveVoltage(brVal());
   } else
-    rightBack.moveVelocity(0);
+    rightBack.moveVoltage(0);
 //   if(abs(lY()) > dz){
 //     left_drive.moveVelocity(lY());
 //   } else{ left_drive.moveVelocity(0);}

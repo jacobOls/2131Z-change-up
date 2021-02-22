@@ -6,42 +6,36 @@
 #include "main.h"
 namespace drive {
 // retrieve and transform input values of analogs
-int rY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 12000; };
-int lY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 12000; };
+int rY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 200; };
+int lY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 200; };
 
-int lX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 12000; };
-int rX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 12000; };
+int lX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
+int rX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
 int stVal() {
    return ((lX() + rX()) / 2); };
 int flVal() { return abs(lY()) > abs(lX() + .3) ? lY() : lY() + stVal(); };
 int blVal() { return abs(lY()) > abs(lX() + .3) ? lY() :  lY() - stVal(); };
 int brVal() { return abs(rY()) > abs(rX() + .3) ? rY() :  rY() + stVal(); };
 int frVal() { return abs(rY()) > abs(rX() + .3) ? rY() :  rY() - stVal(); };
-// sets motor velocity
+// sets motor voltage
 int dz = .05 * 200; // dead zone
 void userDrive() {
   if (abs(flVal()) > dz) {
-    leftFront.moveVoltage(flVal());
+    leftFront.moveVelocity(flVal());
   } else
     leftFront.moveVoltage(0);
   if (abs(blVal()) > dz) {
-    leftBack.moveVoltage(blVal());
+    leftBack.moveVelocity(blVal());
   } else
-    leftBack.moveVoltage(0);
+    leftBack.moveVelocity(0);
   if (abs(frVal()) > dz) {
-    rightFront.moveVoltage(frVal());
+    rightFront.moveVelocity(frVal());
   } else
-    rightFront.moveVoltage(0);
+    rightFront.moveVelocity(0);
   if (abs(brVal()) > dz) {
-    rightBack.moveVoltage(brVal());
+    rightBack.moveVelocity(brVal());
   } else
-    rightBack.moveVoltage(0);
-//   if(abs(lY()) > dz){
-//     left_drive.moveVelocity(lY());
-//   } else{ left_drive.moveVelocity(0);}
-//   if(abs(rY()) > dz){
-//     right_drive.moveVelocity(rY());
-//   } else{right_drive.moveVelocity(0);}
+    rightBack.moveVelocity(0);
 }
 void brake() {
   if (BtnBrake.isPressed()) {
@@ -53,11 +47,7 @@ void brake() {
 } // namespace drive
 
 namespace auton {
-/*
-IME (Integrated motor Encoder) torque: 627.2
-IME speed: 392
-IME turbo: 261.333
-*/
+
 int vel;
 std::string velocity;
 void velCheck() {
@@ -65,11 +55,7 @@ void velCheck() {
   std::string velocity = std::to_string(vel);
   pros::lcd::set_text(1, velocity);
   pros::delay(20);
-  // pros::lcd::clear_line(1);
-  // pros::lcd::clear_line(2);
 }
-// 250 corner towers
-// 350 middle towers
 pros::Rotation sTracker(19); // rotation sensors
 pros::Rotation leftTracker(17);
 pros::Rotation rightTracker(8);

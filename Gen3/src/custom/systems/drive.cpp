@@ -5,15 +5,6 @@
 #include "custom/systems/intake.hpp"
 #include "main.h"
 namespace drive {
-pros::Vision lineSet(4);
-void initVision() {
-  pros::Vision lineSet(4, pros::E_VISION_ZERO_CENTER);
-  lineSet.set_wifi_mode(0);
-  pros::vision_signature_s_t RED_BALL = lineSet.signature_from_utility(
-      1, 4953, 6495, 5724, -303, 259, -22, 3.000, 0);
-  pros::vision_signature_s_t BLUE_BALL = lineSet.signature_from_utility(
-      2, -3551, -2285, -2918, 7295, 15009, 11152, 1.500, 0);
-}
 
 // retrieve and transform input values of analogs
 double rY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)); };

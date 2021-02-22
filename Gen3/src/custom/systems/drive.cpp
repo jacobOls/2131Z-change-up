@@ -16,42 +16,36 @@ void initVision() {
 }
 
 // retrieve and transform input values of analogs
-int rY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)) * 200; };
-int lY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)) * 200; };
+double rY() { return (master.getAnalog(okapi::ControllerAnalog::rightY)); };
+double lY() { return (master.getAnalog(okapi::ControllerAnalog::leftY)); };
 
-int lX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)) * 200; };
-int rX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)) * 200; };
-int stVal() {
+double lX() { return (master.getAnalog(okapi::ControllerAnalog::leftX)); };
+double rX() { return (master.getAnalog(okapi::ControllerAnalog::rightX)); };
+double stVal() {
    return ((lX() + rX()) / 2); };
-int flVal() { return abs(lY()) > abs(lX() + .3) ? lY() : lY() + stVal(); };
-int blVal() { return abs(lY()) > abs(lX() + .3) ? lY() :  lY() - stVal(); };
-int brVal() { return abs(rY()) > abs(rX() + .3) ? rY() :  rY() + stVal(); };
-int frVal() { return abs(rY()) > abs(rX() + .3) ? rY() :  rY() - stVal(); };
+double flVal() { return abs(lY()) > abs(lX() + .3) ? lY() : lY() + stVal(); };
+double blVal() { return abs(lY()) > abs(lX() + .3) ? lY() :  lY() - stVal(); };
+double brVal() { return abs(rY()) > abs(rX() + .3) ? rY() :  rY() + stVal(); };
+double frVal() { return abs(rY()) > abs(rX() + .3) ? rY() :  rY() - stVal(); };
 // sets motor velocity
-int dz = .05 * 200; // dead zone
+double dz = .05; // dead zone
 void userDrive() {
   if (abs(flVal()) > dz) {
-    leftFront.moveVelocity(flVal());
+    leftFront.moveVoltage(flVal() * 12000);
   } else
-    leftFront.moveVelocity(0);
+    leftFront.moveVoltage(0);
   if (abs(blVal()) > dz) {
-    leftBack.moveVelocity(blVal());
+    leftBack.moveVoltage(blVal() * 12000);
   } else
-    leftBack.moveVelocity(0);
+    leftBack.moveVoltage(0);
   if (abs(frVal()) > dz) {
-    rightFront.moveVelocity(frVal());
+    rightFront.moveVoltage(frVal() * 12000);
   } else
-    rightFront.moveVelocity(0);
+    rightFront.moveVoltage(0);
   if (abs(brVal()) > dz) {
-    rightBack.moveVelocity(brVal());
+    rightBack.moveVoltage(brVal() * 12000);
   } else
-    rightBack.moveVelocity(0);
-//   if(abs(lY()) > dz){
-//     left_drive.moveVelocity(lY());
-//   } else{ left_drive.moveVelocity(0);}
-//   if(abs(rY()) > dz){
-//     right_drive.moveVelocity(rY());
-//   } else{right_drive.moveVelocity(0);}
+    rightBack.moveVoltage(0);
 }
 void brake() {
   if (BtnBrake.isPressed()) {

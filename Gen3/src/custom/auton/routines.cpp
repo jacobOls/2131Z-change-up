@@ -191,7 +191,6 @@ unityBack(10,true);
 }
 
 void lThree() {
-  int startAngle = 45;
   if (fail) {
     dont();
   }

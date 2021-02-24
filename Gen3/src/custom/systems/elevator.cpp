@@ -52,10 +52,10 @@ void up() {
 }
 bool red = true;
 
-void autoRatchet(){
-  if(autoElev.isPressed() && state != State::FOO){
+void autoRatchet() {
+  if (autoElev.isPressed() && state != State::FOO) {
     state = State::AUTO;
-  } else if (state == State::AUTO && state != State::FOO){
+  } else if (state == State::AUTO && state != State::FOO) {
     state = State::DEINIT;
   }
 }
@@ -96,7 +96,7 @@ void execute() {
     break;
 
   case State::BACK: // moves wheel motors to eject ball out back
-  intake::intakeGroup.moveVelocity(200);
+    intake::intakeGroup.moveVelocity(200);
     elevMotor.moveVoltage(12000);
     ratchetMotor.moveVoltage(-12000);
     break;
@@ -118,28 +118,27 @@ void execute() {
   case State::NONE:
     break;
 
-    case State::FOO:
-    if(pros::millis() - curTime > 100){
+  case State::FOO:
+    if (pros::millis() - curTime > 100) {
       state = State::AUTO;
     }
     break;
 
-    case State::AUTO:
+  case State::AUTO:
     int curTime = pros::millis();
     elevMotor.moveVoltage(12000);
     intake::intakeGroup.moveVelocity(200);
     int vel = red ? 12000 : -12000;
-    if(opt.get_hue() < redTol){
+    if (opt.get_hue() < redTol) {
       ratchetMotor.moveVoltage(vel);
       state = State::FOO;
-    } else if(opt.get_hue() > blueTol){
+    } else if (opt.get_hue() > blueTol) {
       ratchetMotor.moveVoltage(-vel);
       state = State::FOO;
-    } else{
+    } else {
       ratchetMotor.moveVoltage(12000);
     }
     break;
-
   }
 }
 // }
@@ -161,44 +160,49 @@ void init() {
 
 namespace auton {
 pros::Distance disSense(18);
-void scoreUntil(bool color){
+void scoreUntil(bool color) {
   int curTime = pros::millis();
   elevator::elevGroup.moveVelocity(525);
-  if(color == false){ while(opt.get_hue() > 45){ // false keeps red
-    if (pros::millis() - curTime > 2000) {
-      break;
-    }
+  if (color == false) {
+    while (opt.get_hue() > 45) { // false keeps red
+      if (pros::millis() - curTime > 2000) {
+        break;
+      }
     }
   }
-  if(color == true){ while(opt.get_hue() < 95){ // true keeps blue
-    if (pros::millis() - curTime > 2000) {
-      break;
-    }
+  if (color == true) {
+    while (opt.get_hue() < 95) { // true keeps blue
+      if (pros::millis() - curTime > 2000) {
+        break;
+      }
     }
   }
   intake::intakeGroup.moveVoltage(0);
   pros::delay(100);
-   elevator::elevGroup.moveVelocity(0);
+  elevator::elevGroup.moveVelocity(0);
 }
-void ratchetUntil(bool color){
+void ratchetUntil(bool color) {
   int curTime = pros::millis();
   intake::intakeGroup.moveVelocity(200);
-    elevator::elevMotor.moveVoltage(12000);
-    elevator::ratchetMotor.moveVoltage(-12000);  if(color == true){ while(opt.get_hue() > 45){ // false keeps red
-    if (pros::millis() - curTime > 600) {
-      break;
-    }
+  elevator::elevMotor.moveVoltage(12000);
+  elevator::ratchetMotor.moveVoltage(-12000);
+  if (color == true) {
+    while (opt.get_hue() > 45) { // false keeps red
+      if (pros::millis() - curTime > 600) {
+        break;
+      }
     }
   }
-  if(color == false){ while(opt.get_hue() < 95){ // true keeps blue
-    if (pros::millis() - curTime > 600) {
-      break;
-    }
+  if (color == false) {
+    while (opt.get_hue() < 95) { // true keeps blue
+      if (pros::millis() - curTime > 600) {
+        break;
+      }
     }
   }
   intake::intakeGroup.moveVoltage(0);
   pros::delay(100);
-   elevator::elevGroup.moveVelocity(0);
+  elevator::elevGroup.moveVelocity(0);
 }
 void score() {
   int curTime = pros::millis();
@@ -208,7 +212,7 @@ void score() {
       break;
     }
   }
-  pros::delay(350);
+  pros::delay(375);
   elevator::elevGroup.moveVelocity(0);
 }
 void runElevator(int velocity) { elevator::elevGroup.moveVoltage(velocity); }
@@ -216,6 +220,15 @@ void eject() {
   elevator::elevMotor.moveVoltage(12000);
   elevator::ratchetMotor.moveVoltage(-12000);
 }
-
+void load() {
+  int curTime = pros::millis();
+  elevator::elevGroup.moveVelocity(600);
+  while (disSense.get() > 90) {
+    if (pros::millis() - curTime > 1500) {
+      break;
+    }
+  }
+  elevator::elevGroup.moveVelocity(0);
+}
 
 } // namespace auton

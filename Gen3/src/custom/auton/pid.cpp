@@ -77,17 +77,49 @@ float rEncDt; // difference in time
 float rEncCurrentValue;
 int rEncOutput;
 
-int bEncRequestedValue;
-int bEncPrevPower;
-float bEncErr;     // proportional error
-float bEncPrevErr; // prop error from previous loop
-float bEncInt;     // integral error
-float bEncDer;     // derivative error
-long bEncPrevTime;
-float bEncDt; // difference in time
-float bEncCurrentValue;
-int bEncOutput;
+int rbEncRequestedValue;
+int rbEncPrevPower;
+float rbEncErr;     // proportional error
+float rbEncPrevErr; // prop error from previous loop
+float rbEncInt;     // integral error
+float rbEncDer;     // derivative error
+long rbEncPrevTime;
+float rbEncDt; // difference in time
+float rbEncCurrentValue;
+int rbEncOutput;
 
+int lbEncRequestedValue;
+int lbEncPrevPower;
+float lbEncErr;     // proportional error
+float lbEncPrevErr; // prop error from previous loop
+float lbEncInt;     // integral error
+float lbEncDer;     // derivative error
+long lbEncPrevTime;
+float lbEncDt; // difference in time
+float lbEncCurrentValue;
+int lbEncOutput;
+
+int lfEncRequestedValue;
+int lfEncPrevPower;
+float lfEncErr;     // proportional error
+float lfEncPrevErr; // prop error from previous loop
+float lfEncInt;     // integral error
+float lfEncDer;     // derivative error
+long lfEncPrevTime;
+float lfEncDt; // difference in time
+float lfEncCurrentValue;
+int lfEncOutput;
+
+int rfEncRequestedValue;
+int rfEncPrevPower;
+float rfEncErr;     // proportional error
+float rfEncPrevErr; // prop error from previous loop
+float rfEncInt;     // integral error
+float rfEncDer;     // derivative error
+long rfEncPrevTime;
+float rfEncDt; // difference in time
+float rfEncCurrentValue;
+int rfEncOutput;
 // Gyro PID values
 int gyroRequestedValue;
 float gyroErr;     // proportional error
@@ -170,8 +202,12 @@ void unityStrafe(int distance, bool waity = false) {
   sTracker.set_position(0);
   int ticks = fabs(countsToInches(distance));
 
-  bEncRequestedValue = ticks;
-  driveMode = 0;
+  rbEncRequestedValue = ticks;
+  lbEncRequestedValue = ticks;
+  rfEncRequestedValue = ticks;
+  lfEncRequestedValue = ticks;
+
+  driveMode = 3;
   if (waity) {
     pros::delay(stopTime);
     driveWaity(distance);
@@ -243,12 +279,16 @@ void lEncController() {
   if (lEncDt < 1)
     lEncDt = 1;
 
-  lEncOutput = (lEnc_Kp * lEncErr) + (lEnc_Ki * lEncInt * lEncDt) + (lEnc_Kd * lEncDer / lEncDt);
+  lEncOutput = (lEnc_Kp * lEncErr) + (lEnc_Ki * lEncInt * lEncDt) +
+               (lEnc_Kd * lEncDer / lEncDt);
 
   lEncPrevErr = lEncErr;
   lEncPrevTime = pros::millis();
   if (fabs(lEncCurrentValue) > fabs(rightTracker.get_position() / 100)) {
-    lEncOutput = lEncOutput - ((fabs(lEncCurrentValue) - fabs(rightTracker.get_position() / 100)) / 2 * sgn(lEncCurrentValue));
+    lEncOutput =
+        lEncOutput -
+        ((fabs(lEncCurrentValue) - fabs(rightTracker.get_position() / 100)) /
+         2 * sgn(lEncCurrentValue));
   }
   lEncPrevPower = driveRamp(lEncOutput, lEncPrevPower, lEncRampBias);
 
@@ -265,12 +305,16 @@ void rEncController() {
   if (rEncDt < 1)
     rEncDt = 1;
 
-  rEncOutput = (rEnc_Kp * rEncErr) + (rEnc_Ki * rEncInt * rEncDt) + (rEnc_Kd * rEncDer / rEncDt);
+  rEncOutput = (rEnc_Kp * rEncErr) + (rEnc_Ki * rEncInt * rEncDt) +
+               (rEnc_Kd * rEncDer / rEncDt);
 
   rEncPrevErr = rEncErr;
   rEncPrevTime = pros::millis();
   if (fabs(rEncCurrentValue) > fabs(leftTracker.get_position() / 100)) {
-    rEncOutput = rEncOutput - ((fabs(rEncCurrentValue) - fabs(leftTracker.get_position() / 100)) / 2 * sgn(rEncCurrentValue));
+    rEncOutput =
+        rEncOutput -
+        ((fabs(rEncCurrentValue) - fabs(leftTracker.get_position() / 100)) / 2 *
+         sgn(rEncCurrentValue));
   }
   rEncPrevPower = driveRamp(rEncOutput, rEncPrevPower, rEncRampBias);
 
@@ -288,7 +332,9 @@ void gyroController() {
   if (gyroDt < 1)
     gyroDt = 1;
 
-  gyroOutput = ((gyro_Kp * gyroErr) + ( gyro_ki * gyroInt * gyroDt) +(gyro_Kd * gyroDer / gyroDt)) * 20;
+  gyroOutput = ((gyro_Kp * gyroErr) + (gyro_ki * gyroInt * gyroDt) +
+                (gyro_Kd * gyroDer / gyroDt)) *
+               20;
 
   gyroPrevErr = gyroErr;
   gyroPrevTime = pros::millis();
@@ -303,28 +349,83 @@ void gyroController() {
 }
 
 void strafeController() {
-  bEncCurrentValue = sTracker.get_position() / 100;
+  rbEncCurrentValue = sTracker.get_position() / 100;
+  lbEncCurrentValue = sTracker.get_position() / 100;
+  rfEncCurrentValue = sTracker.get_position() / 100;
+  lfEncCurrentValue = sTracker.get_position() / 100;
 
-  bEncErr = bEncRequestedValue - bEncCurrentValue;
-  bEncInt = bEncInt + bEncErr;
-  bEncDer = bEncErr - bEncPrevErr;
-  bEncDt = pros::millis() - bEncPrevTime;
-  if (bEncDt < 1)
-    bEncDt = 1;
+  rbEncErr = rbEncRequestedValue - rbEncCurrentValue;
+  rbEncInt = rbEncInt + rbEncErr;
+  rbEncDer = rbEncErr - rbEncPrevErr;
+  rbEncDt = pros::millis() - rbEncPrevTime;
+  if (rbEncDt < 1)
+    rbEncDt = 1;
 
-  bEncOutput = (strafe_Kp * bEncErr) + (strafe_Ki * bEncInt * bEncDt) + (strafe_Kd * bEncDer / bEncDt);
+  rbEncPrevErr = rbEncErr;
+  rbEncPrevTime = pros::millis();
 
-  bEncPrevErr = bEncErr;
-  bEncPrevTime = pros::millis();
-  if (fabs(leftTracker.get_position() / 100) > fabs(rightTracker.get_position() / 100) + 20) {
-    bEncOutput = bEncOutput - ((fabs(bEncCurrentValue) - fabs(sTracker.get_position() / 100)) / 2 * sgn(lEncCurrentValue));
+  lbEncErr = lbEncRequestedValue - lbEncCurrentValue;
+  lbEncInt = lbEncInt + lbEncErr;
+  lbEncDer = lbEncErr - lbEncPrevErr;
+  lbEncDt = pros::millis() - lbEncPrevTime;
+  if (lbEncDt < 1)
+    lbEncDt = 1;
+
+  rfEncErr = rfEncRequestedValue - rfEncCurrentValue;
+  rfEncInt = rfEncInt + rfEncErr;
+  rfEncDer = rfEncErr - rfEncPrevErr;
+  rfEncDt = pros::millis() - rfEncPrevTime;
+  if (rfEncDt < 1)
+    rfEncDt = 1;
+
+  rfEncPrevErr = rfEncErr;
+  rfEncPrevTime = pros::millis();
+
+  lfEncErr = lfEncRequestedValue - lfEncCurrentValue;
+  lfEncInt = lfEncInt + lfEncErr;
+  lfEncDer = lfEncErr - lfEncPrevErr;
+  lfEncDt = pros::millis() - lfEncPrevTime;
+  if (lfEncDt < 1)
+    lfEncDt = 1;
+
+  lbEncOutput = (strafe_Kp * lbEncErr) + (strafe_Ki * lbEncInt * lbEncDt) +
+                (strafe_Kd * lbEncDer / lbEncDt);
+  rbEncOutput = (strafe_Kp * rbEncErr) + (strafe_Ki * rbEncInt * rbEncDt) +
+                (strafe_Kd * rbEncDer / rbEncDt);
+  lfEncOutput = (strafe_Kp * lfEncErr) + (strafe_Ki * lfEncInt * lfEncDt) +
+                (strafe_Kd * lfEncDer / lfEncDt);
+  rfEncOutput = (strafe_Kp * rfEncErr) + (strafe_Ki * rfEncInt * rfEncDt) +
+                (strafe_Kd * rfEncDer / rfEncDt);
+
+  rbEncPrevErr = rbEncErr;
+  rbEncPrevTime = pros::millis();
+  if (fabs(leftTracker.get_position() / 100) >
+      fabs(rightTracker.get_position() / 100) + 20) {
+    rbEncOutput = rbEncOutput - ((fabs(leftTracker.get_position() / 100) -
+                                  fabs(rightTracker.get_position() / 100)) /
+                                 2 * sgn(leftTracker.get_position() / 100));
+    rfEncOutput = rfEncOutput - ((fabs(leftTracker.get_position() / 100) -
+                                  fabs(rightTracker.get_position() / 100)) /
+                                 2 * sgn(leftTracker.get_position() / 100));
   }
-  bEncPrevPower = driveRamp(bEncOutput, bEncPrevPower, bEncRampBias);
+  if (fabs(leftTracker.get_position() / 100) >
+      fabs(rightTracker.get_position() / 100) + 20) {
+    lbEncOutput = lbEncOutput - ((fabs(rightTracker.get_position() / 100) -
+                                  fabs(leftTracker.get_position() / 100)) /
+                                 2 * sgn(rightTracker.get_position() / 100));
+    lfEncOutput = lfEncOutput - ((fabs(rightTracker.get_position() / 100) -
+                                  fabs(leftTracker.get_position() / 100)) /
+                                 2 * sgn(rightTracker.get_position() / 100));
+  }
+  rbEncPrevPower = driveRamp(rbEncOutput, rbEncPrevPower, rEncRampBias);
+  lbEncPrevPower = driveRamp(lbEncOutput, lbEncPrevPower, lEncRampBias);
+  rfEncPrevPower = driveRamp(rfEncOutput, rfEncPrevPower, rEncRampBias);
+  lfEncPrevPower = driveRamp(lfEncOutput, lfEncPrevPower, lEncRampBias);
 
-  drive::leftFront.moveVelocity(bEncPrevPower);
-  drive::leftBack.moveVelocity(-bEncPrevPower);
-  drive::rightBack.moveVelocity(bEncPrevPower);
-  drive::rightFront.moveVelocity(-bEncPrevPower);
+  drive::leftFront.moveVelocity(lfEncPrevPower);
+  drive::leftBack.moveVelocity(-lbEncPrevPower);
+  drive::rightBack.moveVelocity(rbEncPrevPower);
+  drive::rightFront.moveVelocity(-rfEncPrevPower);
 }
 // gyroDt
 
@@ -347,6 +448,7 @@ void unity2(void *param) {
       gyroController();
       pros::delay(6);
     } else if (driveMode == 3) {
+      strafeController();
 
     } else if (driveMode == 5) {
 

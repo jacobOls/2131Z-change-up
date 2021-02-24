@@ -8,13 +8,14 @@ void brTwo();
 void rOne();
 void brOne();
 void lThree();
+void blThree();
 void lTwo();
 void blTwo();
 void lOne();
 void blOne();
 void testFunctions();
 void skills();
-void redCyclePID();
+void speciality();
 } // namespace auton
 
 #endif /* end of include guard: ROUTINES_HPP */

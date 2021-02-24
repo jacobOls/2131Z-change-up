@@ -60,8 +60,8 @@ void opcontrol() {
   while (true) {
 
     foo2();
-    // drive::userDrive();
-    // drive::brake();
+    drive::userDrive();
+    drive::brake();
     intake::init();
     elevator::init();
     selection::colorSwap();

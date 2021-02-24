@@ -38,5 +38,5 @@ okapi::Motor ratchetMotor(10, true,
 okapi::MotorGroup elevGroup({elevMotor, ratchetMotor});
 
 } // namespace elevator
-  pros::Optical opt(9);
-  pros::Imu gyro(7);
+pros::Optical opt(9);
+pros::Imu gyro(7);

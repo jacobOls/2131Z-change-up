@@ -47,7 +47,7 @@ typedef void (*autonFnPtr)(void);
 autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::rThree, // tbd
                                           auton::brThree,
                                           auton::lThree,
-                                          auton::lThree,
+                                          auton::blThree,
 
                                           auton::rTwo, // tbd
                                           auton::brTwo,
@@ -148,7 +148,7 @@ void clearBtns(lv_obj_t *toggledButton = NULL) {
 
 void execute() {
   std::cout << "executing" << std::endl;
-  autonFnPtr defaultAuton = auton::lThree;
+  autonFnPtr defaultAuton = auton::speciality;
   defaultThing = "Things work and not";
   // inAuton = true;
 

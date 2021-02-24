@@ -17,5 +17,6 @@ void eject();
 void score(void);
 void scoreUntil(bool color);
 void ratchetUntil(bool color);
+void load();
 } // namespace auton
 #endif /* end of include guard: ELEVATOR_HPP */

@@ -101,7 +101,7 @@ void rTwo() {
   runElevator(0);
   unityTurn(180, true);
   runIntake(max);
-  unityStraight(11, false);
+  unityStraight(12, false);
   wait(1000);
   scoreUntil(RED);
   open();
@@ -133,7 +133,7 @@ void brTwo() {
   runElevator(0);
   unityTurn(180, true);
   runIntake(max);
-  unityStraight(11, false);
+  unityStraight(12, false);
   wait(1000);
   scoreUntil(BLUE);
   open();
@@ -423,29 +423,40 @@ void skills() {
   unityStraight(25, true);
   score();
   // sixth tower
-  unityBack(20, true);
+  unityBack(25, true);
   unityTurn(100, true);
-  unityStraight(41, true);
+  unityStraight(35, true);
   runElevator(0);
-  unityTurn(1, true);
+  unityTurn(15, true);
   unityStraight(11, false);
   wait(1000);
   score();
-  // 7th tower (center)
-  unityBack(10, true);
-  unityTurn(180, true);
+  // seventh tower
+  unityBack(15, true);
+  unityTurn(95, true);
   open();
-  unityStraight(45, true);
+  unityStraight(43, false);
+  wait(900);
   release();
-  runIntake(max);
-  wait(350);
-  score();
-
-  eject();
   wait(1000);
-  runElevator(0);
+  unityTurn(60, true);
+  unityStraight(20, true);
+  score();
+  // eigth tower
+  unityBack(15, true);
+  unityTurn(190, true);
+  unityStraight(55, false);
   open();
-  unityBack(45, true);
+  wait(1200);
+  release();
+  unityTurn(95, true);
+  unityStraight(10, true);
+  score();
+  // ninth tower (center)
+  unityBack(10, true);
+  unityTurn(277, true);
+  open();
+  unityStraight(12, true);
   release();
 }
 

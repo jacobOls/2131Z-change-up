@@ -212,7 +212,7 @@ void score() {
       break;
     }
   }
-  pros::delay(375);
+  pros::delay(400);
   elevator::elevGroup.moveVelocity(0);
 }
 void runElevator(int velocity) { elevator::elevGroup.moveVoltage(velocity); }

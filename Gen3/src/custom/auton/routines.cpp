@@ -506,31 +506,17 @@ void speciality() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   deploy();
-  unityStraight(22, true);
-  unityTurn(127, true);
   open();
-  unityStraight(28, false);
-  wait(1000);
-  runIntake(7000);
-  scoreUntil(RED);
-  runIntake(0);
-  open();
-  open();
-  wait(150);
-  unityBack(10, true);
+  unityStraight(60, true);
   release();
-  unityTurn(180, true);
-  runElevator(max);
-  wait(400);
-  runElevator(0);
-  unityTurn(2, true);
-  unityStraight(15, true);
+  // wait(150);
+  // unityBack(15, true);
 }
 
 void testFunctions() {
   rightTracker.set_position(0);
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  ratchetUntil(RED);
+  // unityLeft(2, true);
 }
 } // namespace auton

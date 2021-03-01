@@ -1,11 +1,11 @@
 #include "main.h"
+#include "custom/auton/pid.hpp"
 #include "custom/auton/selection.hpp"
 #include "custom/setup/controller.hpp"
 #include "custom/setup/motors.hpp"
 #include "custom/systems/drive.hpp"
 #include "custom/systems/elevator.hpp"
 #include "custom/systems/intake.hpp"
-#include "custom/auton/pid.hpp"
 pros::Rotation rTracker(7);
 void initialize() {
   selection::init();
@@ -15,14 +15,15 @@ void initialize() {
   auton::leftTracker.set_reversed(true);
 }
 pros::Task pid(auton::unity2);
-// pros::Task elevatorRatchet(elevator::init); // run elevator independetly of other systems
+// pros::Task elevatorRatchet(elevator::init); // run elevator independetly of
+// other systems
 
 void disabled() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   rTracker.set_position(0);
   gyro.reset();
-  while(gyro.is_calibrating()){
+  while (gyro.is_calibrating()) {
     pros::delay(10);
   }
   // pros::c::taskSuspend(elevatorRatchet);

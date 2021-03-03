@@ -102,7 +102,6 @@ void init() {
   out();
   // manIn();
   execute();
-  // master.setText(1, 1, str);
 }
 
 } // namespace intake

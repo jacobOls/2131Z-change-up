@@ -15,7 +15,8 @@ void lOne();
 void blOne();
 void testFunctions();
 void skills();
-void speciality();
+void specialty();
+void bSpecialty();
 } // namespace auton
 
 #endif /* end of include guard: ROUTINES_HPP */

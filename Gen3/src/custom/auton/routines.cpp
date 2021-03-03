@@ -102,7 +102,7 @@ void rTwo() {
   runElevator(0);
   unityTurn(180, true);
   runIntake(max);
-  unityStraight(15, false);
+  unityStraight(14, false);
   wait(1000);
   scoreUntil(RED);
   open();
@@ -135,7 +135,7 @@ void brTwo() {
   runElevator(0);
   unityTurn(180, true);
   runIntake(max);
-  unityStraight(15, false);
+  unityStraight(14, false);
   wait(1000);
   scoreUntil(BLUE);
   open();
@@ -267,9 +267,9 @@ void lTwo() {
   wait(1200);
   unityTurn(173, true);
   runIntake(max);
-  unityStraight(15, false);
+  unityStraight(10, false);
   wait(900);
-  scoreUntil(BLUE);
+  scoreUntil(RED);
   open();
   runElevator(0);
   unityBack(15, true);
@@ -299,7 +299,7 @@ void blTwo() {
   wait(1200);
   unityTurn(173, true);
   runIntake(max);
-  unityStraight(15, false);
+  unityStraight(12, false);
   wait(900);
   scoreUntil(BLUE);
   open();
@@ -499,24 +499,94 @@ void skills() {
   wait(5000);
 }
 
-void speciality() {
+void specialty() {
   if (fail) {
     dont();
   }
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  deploy();
+  // deploy();
+  unityStraight(30, true);
+  unityTurn(0, true);
   open();
-  unityStraight(60, true);
+  unityStraight(26, true);
+  unityTurn(0, true);
   release();
   // wait(150);
-  // unityBack(15, true);
+  unityBack(15, true);
+  unityStrafe(10, false);
+  wait(800);
+  unityTurn(2, true);
+  wait(100);
+  open();
+  unityStraight(15, false);
+  wait(1000);
+  unityBack(5, true);
+  release();
+  unityTurn(45, true);
+  unityStraight(5, true);
+  score();
+  runElevator(max / 2);
+  unityBack(30, true);
+  runElevator(0);
+  unityTurn(140, true);
+  open();
+  unityStraight(32, false);
+  wait(900);
+  runIntake(max);
+  wait(400);
+  scoreUntil(RED);
+  open();
+  unityBack(10, true);
+  release();
+}
+
+void bSpecialty() {
+  if (fail) {
+    dont();
+  }
+  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  // deploy();
+  unityStraight(30, true);
+  unityTurn(0, true);
+  open();
+  unityStraight(26, true);
+  unityTurn(0, true);
+  release();
+  // wait(150);
+  unityBack(15, true);
+  unityStrafe(10, false);
+  wait(800);
+  unityTurn(2, true);
+  wait(100);
+  open();
+  unityStraight(15, false);
+  wait(1000);
+  unityBack(5, true);
+  release();
+  unityTurn(45, true);
+  unityStraight(5, true);
+  score();
+  runElevator(max / 2);
+  unityBack(30, true);
+  runElevator(0);
+  unityTurn(140, true);
+  open();
+  unityStraight(32, false);
+  wait(900);
+  runIntake(max);
+  wait(400);
+  scoreUntil(RED);
+  open();
+  unityBack(10, true);
+  release();
 }
 
 void testFunctions() {
   rightTracker.set_position(0);
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  // unityLeft(2, true);
+  unityTurn(150, true);
 }
 } // namespace auton

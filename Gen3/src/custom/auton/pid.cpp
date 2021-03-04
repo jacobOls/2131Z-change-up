@@ -344,7 +344,7 @@ void gyroController() {
   if (inertialRequestedValue > 230 && inertialCurrentValue < 80) {
     inertialOutput = -inertialOutput;
   }
-  if (inertialRequestedValue < 180 && inertialCurrentValue > 220) {
+  if (inertialRequestedValue < 160 && inertialCurrentValue > 240) {
     inertialOutput = -inertialOutput;
   }
   // if(inertialCurrentValue - inertialRequestedValue < inertialRequestedValue -

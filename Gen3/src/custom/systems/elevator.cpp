@@ -89,7 +89,7 @@ void execute() {
     break;
   }
   case State::MID:
-    elevGroup.moveVoltage(9000);
+    elevGroup.moveVoltage(12000 * .6);
     break;
   case State::OUT:
     elevGroup.moveVoltage(-12000);

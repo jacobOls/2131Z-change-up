@@ -10,7 +10,6 @@ const double sL = 6.5;
 const double sR = 6.5;
 const double sS = 4;
 volatile const double robotDiameter{hypot(9, 15)};
-volatile const double robotCircumference{M_PI * robotDiameter};
 pros::Rotation right(8);
 pros::Rotation left(17);
 pros::Rotation back(19);
@@ -24,71 +23,70 @@ double clampAngle(double foo) {
   }
   return foo;
 }
-static double curLeft = 0, curRight = 0, curBack = 0, deltaLeft = 0, deltaRight = 0, deltaBack = 0;
-static double storedLeft = 0, storedRight = 0, storedBack = 0, globalLeft = 0, globalRight = 0, globalBack = 0;
-static double startingLeft = 0, startingRight = 0, startingBack = 0;
-static double xOffset = 0, yOffset = 0, thetaMe = 0;;
-static double curTheta = 0, startingTheta = 0, prevTheta = 0, deltaTheta = 0, dlX = 0, dlY = 0;
-static double polarOffsetX = 0, polarOffsetY = 0, globalXOffset = 0, globalYOffset = 0, yPos = 0, xPos = 0, prevX = 0, prevY = 0;
-#define wheelCirc (M_PI * 2.75)
-#define sL 6.5
-#define sR 6.5
-#define sS 4
 
- void printCoords() {
-  std::cout << "x " << xPos << "\t"
-            << "y " << yPos << "\t"
-            << "theta " << curTheta << "\tdelta left " << deltaLeft << "\tdelta right " << deltaRight << std::endl;
-}
+double curLeft{0}, curRight{0}, curBack{0}, prevLeft{0}, prevRight{0},
+    prevBack{0}, curTheta{0}, xPos{0}, yPos{0};
+
 void posCalc() {
-  while(true){
-    if(fabs(left.get_velocity() + right.get_velocity() + back.get_velocity()) > 2){
-  curLeft = left.get_position()/100;
-  curRight = right.get_position()/100;
-  curBack = back.get_position()/100;
+  while (true) {
+    if (fabs(left.get_velocity() + right.get_velocity() + back.get_velocity()) >
+        15) {
+      curLeft = left.get_position();
+      curRight = right.get_position();
+      curBack = back.get_position();
 
-  deltaLeft = ((curLeft - storedLeft) / 360) * wheelCirc;
-  deltaRight = ((curRight - storedRight) / 360) * wheelCirc;
-  deltaBack = ((curBack - storedBack) / 360) * wheelCirc;
+      const double deltaR = (curRight - prevRight) / 36000 * (M_PI * 2.75);
+      const double deltaL = (curLeft - prevLeft) / 36000 * (M_PI * 2.75);
+      const double deltaM = (curBack - prevBack) / (36000 * (M_PI * 2.75));
+      // -((deltaTheta / (2 * M_PI)) * M_PI * 4 * 2);
 
-  storedLeft = curLeft;
-  storedRight = curRight;
-  storedBack = curBack;
+      double deltaTheta = (deltaL - deltaR) / 13;
+      double localOffX, localOffY;
+      curTheta += deltaTheta;
 
-  globalLeft = ((curLeft / 360)* wheelCirc) - startingLeft;
-  globalRight = ((curRight / 360) * wheelCirc) - startingRight;
-  globalBack = ((curBack / 360) * wheelCirc) - startingBack;
+      prevLeft = curLeft;
+      prevRight = curRight;
+      prevBack = curBack;
 
-  curTheta = startingTheta + ((globalLeft - globalRight) / (sL + sR));
+      if (deltaL == deltaR) {
+        localOffX = deltaM;
+        localOffY = deltaR;
+      } else {
+        localOffX =
+            2 * std::sin(deltaTheta / 2) * (deltaM / deltaTheta + 4 * 2);
+        localOffY =
+            2 * std::sin(deltaTheta / 2) * (deltaR / deltaTheta + 13 / 2);
+      }
 
-  deltaTheta = curTheta - prevTheta;
+      double avgA = curTheta + (deltaTheta / 2);
 
-  if(deltaTheta == 0){
-    xOffset = deltaBack;
-    yOffset = deltaRight;
-  } else{
-    xOffset = (2 * sin(deltaTheta / 2)) * ((deltaBack / deltaTheta) + sS);
-    yOffset = (2 * sin(deltaTheta / 2)) * ((deltaRight / deltaTheta) + sR);
+      double polarR = sqrt((localOffX * localOffX) + (localOffY * localOffY));
+      double polarA = atan2(localOffY, localOffX) - avgA;
+
+      double dX = cos(polarA) * polarR;
+      double dY = sin(polarA) * polarR;
+
+      if (isnan(dX)) {
+        dX = 0;
+      }
+
+      if (isnan(dY)) {
+        dY = 0;
+      }
+
+      if (isnan(deltaTheta)) {
+        deltaTheta = 0;
+      }
+
+      xPos += dX;
+      yPos += dY;
+      std::cout << "x " << xPos << "\t"
+                << "y " << yPos << "\t"
+                << "theta " << curTheta << "\tdelta left " << deltaL
+                << "\tdelta right " << deltaR << "\tdeltaX " << dX
+                << "\tdeltaY " << dY << std::endl;
+    }
+    pros::delay(3);
   }
-
-  thetaMe = prevTheta + (deltaTheta / 2);
-
-  double polarTheta = atan2(yPos, xPos) - thetaMe;
-  double polarR = hypot(xPos,yPos) - thetaMe;
-  xPos = polarR * cos(polarTheta);
-  yPos = polarR * sin(polarTheta);
-
-  xPos = xPos + xOffset;
-  yPos = yPos + yOffset;
-
-}
-    printCoords();
-    pros::delay(10);
-  }
-}
-void printCords() {
-  std::cout << "x " << pos.x << "\t"
-            << "y " << pos.y << "\t"
-            << "theta " << theta1 << "\tdelta left " << deltaLeft << "\tdelta right " << deltaRight << std::endl;
 }
 // void pointTurn() {}

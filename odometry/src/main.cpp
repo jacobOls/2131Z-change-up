@@ -1,11 +1,11 @@
 #include "main.h"
+#include "custom/auton/newAuton.hpp"
 #include "custom/auton/selection.hpp"
 #include "custom/setup/motors.hpp"
 #include "custom/setup/odom.hpp"
 #include "custom/systems/drive.hpp"
 #include "custom/systems/elevator.hpp"
 #include "custom/systems/intake.hpp"
-#include "custom/auton/newAuton.hpp"
 void initialize() {
   selection::init();
   elevator::initVision();

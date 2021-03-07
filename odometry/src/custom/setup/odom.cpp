@@ -41,8 +41,9 @@ void posCalc() {
     double deltaTheta = (deltaL - deltaR) / 13;
     double localOffX, localOffY;
     curTheta += deltaTheta;
-    const double deltaM = (curBack - prevBack) / (36000 * (M_PI * 2.75)) -
-                          ((deltaTheta / (2 * M_PI)) * M_PI * 4 * 2);
+    const auto deltaM = static_cast<const double>(
+        ((curBack - prevBack) / 36000) * (M_PI * 2.75) -
+        ((deltaTheta / (2 * M_PI)) * M_PI * 4 * 2));
 
     prevLeft = curLeft;
     prevRight = curRight;

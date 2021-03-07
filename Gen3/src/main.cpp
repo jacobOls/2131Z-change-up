@@ -1,5 +1,6 @@
 #include "main.h"
 #include "custom/auton/pid.hpp"
+#include "custom/auton/posTracking.hpp"
 #include "custom/auton/selection.hpp"
 #include "custom/setup/controller.hpp"
 #include "custom/setup/motors.hpp"
@@ -10,11 +11,16 @@ pros::Rotation rTracker(7);
 void initialize() {
   selection::init();
   intake::intakeGroup.tarePosition();
+  auton::rightTracker.set_position(0);
+  auton::leftTracker.set_position(0);
+  auton::sTracker.set_position(0);
   rTracker.set_position(0);
+
   opt.set_led_pwm(75);
   auton::leftTracker.set_reversed(true);
 }
-pros::Task pid(auton::unity2);
+// pros::Task pid(auton::unity2);
+pros::Task position(posCalc);
 // pros::Task elevatorRatchet(elevator::init); // run elevator independetly of
 // other systems
 
@@ -62,7 +68,7 @@ void opcontrol() {
 
     foo2();
     drive::userDrive();
-    drive::brake();
+    // drive::brake();
     intake::init();
     elevator::init();
     selection::colorSwap();

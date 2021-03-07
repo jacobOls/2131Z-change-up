@@ -1,4 +1,6 @@
 #include "custom/auton/routines.hpp"
+#include "custom/auton/motionProfile.hpp"
+#include "custom/auton/newAuton.hpp"
 #include "custom/setup/motors.hpp"
 #include "custom/systems/drive.hpp"
 #include "custom/systems/elevator.hpp"
@@ -349,9 +351,7 @@ void skills() {
 void testFunctions() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  straightLineup(350);
-  // strafe(800, 200, "left");
-  // strafe(800, 200, "right");
+  toPoint(5, 0);
 }
 
 } // namespace auton

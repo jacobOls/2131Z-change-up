@@ -1,5 +1,6 @@
 #include "custom/auton/routines.hpp"
 #include "custom/auton/pid.hpp"
+#include "custom/auton/posTracking.hpp"
 #include "custom/setup/motors.hpp"
 #include "custom/systems/drive.hpp"
 #include "custom/systems/elevator.hpp"
@@ -584,9 +585,10 @@ void bSpecialty() {
 }
 
 void testFunctions() {
-  rightTracker.set_position(0);
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  unityTurn(150, true);
+  toPoint(10, 0);
+  wait(1000);
+  toPoint(0, 0);
 }
 } // namespace auton

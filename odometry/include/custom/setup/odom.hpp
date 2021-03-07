@@ -8,10 +8,9 @@ void posCalc();
 extern pros::Rotation right;
 extern pros::Rotation left;
 extern pros::Rotation back;
-extern Vec2 pos;
-extern double theta1;
-extern double theta0;
-extern double thetaM;
+extern double curTheta;
+extern double yPos;
+extern double xPos;
 struct Pos {
   double &x;
   double &y;

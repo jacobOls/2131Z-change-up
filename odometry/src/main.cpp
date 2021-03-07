@@ -1,6 +1,7 @@
 #include "main.h"
 #include "custom/auton/newAuton.hpp"
 #include "custom/auton/selection.hpp"
+#include "custom/setup/controller.hpp"
 #include "custom/setup/motors.hpp"
 #include "custom/setup/odom.hpp"
 #include "custom/systems/drive.hpp"
@@ -17,7 +18,7 @@ void initialize() {
   back.set_reversed(true);
   pros::Task trackPosition(posCalc);
 }
-// pros::Task pid(auton::unity2);
+pros::Task pid(auton::unity2);
 
 void disabled() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
@@ -26,24 +27,21 @@ void disabled() {
 
 void competition_initialize() {}
 
-void autonomous() {
-  // pros::Task taskResume(pid);
-  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  // auton::unityStraight(23,true);
-  // auton::unityTurn(-1360,true);
-  // auton::unityStraight(25,true);
-
-  // pros::delay(10000);
-  // selection::execute();
+void autonomous() { selection::execute(); }
+okapi::ControllerButton autosdf = master[okapi::ControllerDigital::X];
+void foo2() {
+  if (autosdf.changedToPressed())
+    selection::execute();
 }
 
 void opcontrol() {
   // pros::Task taskSuspend(pid);
   // auton::unityStop();
   while (true) {
-    drive::userDrive();
-    drive::brake();
+    foo2();
+    // drive::userDrive();
+    // drive::brake();
+
     intake::init();
     elevator::init();
     selection::colorSwap();

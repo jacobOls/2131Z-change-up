@@ -181,11 +181,11 @@ void scoreUntil(bool color) {
   pros::delay(100);
   elevator::elevGroup.moveVelocity(0);
 }
-void ratchetUntil(bool color) {
+void ratchetUntil(bool color, int vel) {
   int curTime = pros::millis();
   intake::intakeGroup.moveVelocity(200);
-  elevator::elevMotor.moveVoltage(12000);
-  elevator::ratchetMotor.moveVoltage(-12000);
+  elevator::elevMotor.moveVoltage(vel);
+  elevator::ratchetMotor.moveVoltage(-vel);
   if (color == true) {
     while (opt.get_hue() > 45) { // false keeps red
       if (pros::millis() - curTime > 600) {
@@ -207,6 +207,17 @@ void ratchetUntil(bool color) {
 void score() {
   int curTime = pros::millis();
   elevator::elevGroup.moveVelocity(600);
+  while (disSense.get() > 90) {
+    if (pros::millis() - curTime > 1500) {
+      break;
+    }
+  }
+  pros::delay(300);
+  elevator::elevGroup.moveVelocity(0);
+}
+void scoreControlled(int vel) {
+  int curTime = pros::millis();
+  elevator::elevGroup.moveVelocity(vel);
   while (disSense.get() > 90) {
     if (pros::millis() - curTime > 1500) {
       break;

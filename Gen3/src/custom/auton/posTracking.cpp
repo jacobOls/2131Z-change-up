@@ -13,7 +13,7 @@ const double sS = 4;
 volatile const double robotDiameter{hypot(9, 15)};
 double d2r(int degrees) { return degrees * (M_PI / 180); }
 double r2d(int radians) { return radians * (180 / M_PI); }
-
+double sgn(double foo) { return (foo > 0) ? 1 : ((foo < 0) ? -1 : 0); }
 void printCords();
 double clampAngle(double foo) {
   while (foo > M_PI) {
@@ -36,19 +36,34 @@ void posCalc() {
     curRight = auton::rightTracker.get_position();
     curBack = auton::sTracker.get_position();
 
-    const double deltaR = (curRight - prevRight) / 36000 * (M_PI * 2.75);
-    const double deltaL = (curLeft - prevLeft) / 36000 * (M_PI * 2.75);
+    double deltaR = (curRight - prevRight) / 36000 * (M_PI * 2.75);
+    double deltaL = (curLeft - prevLeft) / 36000 * (M_PI * 2.75);
 
     double deltaTheta = (deltaL - deltaR) / 14;
     double localOffX, localOffY;
 
-    const auto deltaM = static_cast<const double>(
+    double driftLeft = ((9.6 * deltaTheta * 2.5) / 2.75);
+    double driftRight = ((9.6 * deltaTheta * 2.5) / 2.75);
+    double unchangedR = deltaR;
+    deltaR = (abs(deltaR) - driftRight) * sgn(deltaR);
+    deltaL = (abs(deltaL) - driftLeft) * sgn(deltaL);
+
+    auto deltaM = static_cast<const double>(
         ((curBack - prevBack) / 36000) * (M_PI * 2.75) -
         ((deltaTheta / (2_pi)) * M_PI * 3 * 2));
+
+    double driftM = (11 * deltaTheta) / 2.75;
+    double unchangedM = deltaM;
+
+    deltaM = (abs(deltaM) - driftM) * sgn(deltaM);
 
     prevLeft = curLeft;
     prevRight = curRight;
     prevBack = curBack;
+
+    deltaR = abs(deltaR) > 0.012 ? deltaR : 0;
+    deltaL = abs(deltaL) > 0.012 ? deltaL : 0;
+    deltaM = abs(deltaM) > 0.03 ? deltaM : 0;
 
     if (deltaL == deltaR) {
       localOffX = deltaM;
@@ -81,11 +96,13 @@ void posCalc() {
     xPos += dX;
     yPos += dY;
     curTheta += deltaTheta;
-    std::cout << "x " << xPos << "\t"
-              << "y " << yPos << "\t"
-              << "theta " << curTheta << "\tdelta left " << deltaL
-              << "\tdelta right " << deltaR << "\tdeltaX " << dX << "\tdeltaY "
-              << dY << std::endl;
+    if (deltaM != 0)
+      std::cout << deltaM << "\t" << driftM << "\t" << unchangedM << std::endl;
+    // std::cout << "x " << xPos << "\t"
+    // << "y " << yPos << "\t"
+    // << "theta " << curTheta << "\tdelta left " << deltaL
+    // << "\tdelta right " << deltaR << "\tdeltaM " << deltaM
+    // << "\tdeltaX " << dX << "\tdeltaY " << dY << std::endl;
     // }
     pros::delay(3);
   }

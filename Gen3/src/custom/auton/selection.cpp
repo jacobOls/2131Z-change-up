@@ -37,38 +37,29 @@ std::string buttonLabels[BUTTON_COUNT] = {
     "test ", // too many rows
     "skills ",       "r specialty  ", "b specialty ",
 
-    "}(*)", // miscellaneous
-    "blank ",        "blank",         "also blank",
+    "r hoodtwo", // miscellaneous
+    "br hoodtwo ",   "l hoodtwo",     "bl hoodTwo",
 };
 std::string defaultThing = "default";
 
 // auton function returns void and takes no args
 typedef void (*autonFnPtr)(void);
 
-autonFnPtr autonHandlers[BUTTON_COUNT] = {auton::rThree, // tbd
-                                          auton::brThree,
-                                          auton::lThree,
-                                          auton::blThree,
+autonFnPtr autonHandlers[BUTTON_COUNT] = {
+    auton::rThree, // tbd
+    auton::brThree,       auton::lThree,    auton::blThree,
 
-                                          auton::rTwo, // tbd
-                                          auton::brTwo,
-                                          auton::lTwo,
-                                          auton::blTwo,
+    auton::rTwo, // tbd
+    auton::brTwo,         auton::lTwo,      auton::blTwo,
 
-                                          auton::rOne, // tbd
-                                          auton::lOne,
-                                          auton::lOne,
-                                          auton::blOne,
+    auton::rOne, // tbd
+    auton::brOne,         auton::lOne,      auton::blOne,
 
-                                          auton::testFunctions, // tbd
-                                          auton::skills,
-                                          auton::specialty,
-                                          auton::bSpecialty,
+    auton::testFunctions, // tbd
+    auton::skills,        auton::specialty, auton::bSpecialty,
 
-                                          autonOne, // tbd
-                                          autonOne,
-                                          autonOne,
-                                          autonOne};
+    auton::hoodTwo, // tbd
+    auton::bhoodTwo,      auton::lhoodTwo,  auton::blhoodTwo};
 
 static lv_res_t btn_click_action(lv_obj_t *btn) {
   clearBtns(btn);
@@ -149,7 +140,7 @@ void clearBtns(lv_obj_t *toggledButton = NULL) {
 
 void execute() {
   std::cout << "executing" << std::endl;
-  autonFnPtr defaultAuton = auton::skills;
+  autonFnPtr defaultAuton = auton::rTwo;
   defaultThing = "Things work and not";
   // inAuton = true;
 

@@ -103,7 +103,7 @@ void rTwo() {
   runElevator(0);
   unityTurn(178, true);
   runIntake(max);
-  unityStraight(14, false);
+  unityStraight(16, false);
   wait(1000);
   scoreUntil(RED);
   open();
@@ -153,11 +153,12 @@ void rOne() {
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   deploy();
   unityStraight(22, true);
-  unityTurn(127, true);
+  unityTurn(125, true);
   open();
-  unityStraight(28, false);
-  wait(1000);
+  unityStraight(26, false);
+  wait(800);
   runIntake(12000);
+  wait(200);
   scoreUntil(RED);
   runIntake(0);
   open();
@@ -172,17 +173,96 @@ void brOne() {
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   deploy();
   unityStraight(22, true);
-  unityTurn(127, true);
+  unityTurn(125, true);
   open();
-  unityStraight(28, false);
-  wait(1000);
+  unityStraight(26, false);
+  wait(800);
   runIntake(12000);
+  wait(200);
   scoreUntil(BLUE);
   runIntake(0);
   open();
   unityBack(10, true);
 }
+void hoodTwo() {
+  if (fail) {
+    dont();
+  }
+  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  deploy();
+  unityStraight(35, true);
+  unityTurn(92, true);
+  open();
+  unityStraight(37, false);
+  wait(1150);
+  runIntake(max);
+  wait(500);
+  scoreControlled(400);
+  wait(200);
+  runElevator(max / 2);
+  scoreUntil(RED);
+  runIntake(0);
+  runElevator(-max / 4);
+  unityBack(6, true);
+}
+void bhoodTwo() {
+  if (fail) {
+    dont();
+  }
+  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  deploy();
+  unityStraight(35, true);
+  unityTurn(92, true);
+  open();
+  unityStraight(37, false);
+  wait(1150);
+  runIntake(max);
+  wait(500);
+  scoreControlled(400);
+  wait(200);
+  runElevator(max / 2);
+  scoreUntil(BLUE);
+  runIntake(0);
+  runElevator(-max / 4);
+  unityBack(6, true);
+}
 
+void lhoodTwo() {
+  if (fail) {
+    dont();
+  }
+  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  deploy();
+  unityStraight(35, true);
+  unityTurn(269, true);
+  open();
+  unityStraight(39, false);
+  wait(1150);
+  runIntake(max);
+  scoreUntil(RED);
+  open();
+  unityBack(30, true);
+}
+void blhoodTwo() {
+  if (fail) {
+    dont();
+  }
+  drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  deploy();
+  unityStraight(35, true);
+  unityTurn(269, true);
+  open();
+  unityStraight(39, false);
+  wait(1150);
+  runIntake(max);
+  scoreUntil(BLUE);
+  open();
+  unityBack(30, true);
+}
 void lThree() {
   if (fail) {
     dont();
@@ -191,19 +271,19 @@ void lThree() {
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   deploy();
   unityStraight(35, true);
-  unityTurn(270, true);
+  unityTurn(269, true);
   open();
-  unityStraight(38, false);
+  unityStraight(39, false);
   wait(1150);
   runIntake(max);
   scoreUntil(RED);
   open();
   unityBack(30, true);
   // release();
-  unityTurn(140, true);
-  unityStraight(78, false);
+  unityTurn(128, true);
+  unityStraight(80, false);
   ratchetUntil(RED, max);
-  wait(2200);
+  wait(2500);
   unityTurn(180, true);
   runIntake(max);
   unityStraight(23, false);
@@ -231,13 +311,13 @@ void blThree() {
   open();
   unityBack(30, true);
   // release();
-  unityTurn(140, true);
+  unityTurn(128, true);
   unityStraight(80, false);
   ratchetUntil(BLUE, max);
   wait(2500);
   unityTurn(180, true);
   runIntake(max);
-  unityStraight(22, false);
+  unityStraight(23, false);
   wait(1150);
   scoreUntil(BLUE);
   runIntake(0);
@@ -360,7 +440,7 @@ void skills() {
   wait(400);
   release();
   wait(800);
-  unityTurn(123, true);
+  unityTurn(128, true);
   unityStraight(25, false);
   // runElevator(max);
   // wait(10);
@@ -374,123 +454,118 @@ void skills() {
   unityBack(20, true);
   unityTurn(265, true);
   unityStraight(41, true);
-  runElevator(0);
   unityTurn(180, true);
-  runIntake(max);
-  unityStraight(11, true);
+  // runIntake(max);
+  unityStraight(8, true);
   score();
   // third tower
-  // open();
   unityBack(7, true);
-  // release();
-  unityTurn(264, true);
-  eject();
-  runIntake(0);
-  open();
-  unityStraight(40, false);
+  unityTurn(265, true);
+  openSkills();
+  unityStraight(44, false);
   wait(850);
-  runElevator(0);
   release();
   wait(1250);
-  unityTurn(230, true);
-  unityStraight(17, true);
+  unityTurn(234, true);
+  unityStraight(14, true);
   score();
   // fourth tower
-  unityBack(12, true);
-  unityTurn(357, true);
-  unityBack(20, false);
-  wait(1200);
-  unityStraight(62, false);
-  open();
-  wait(1500);
+  unityBack(14, true);
+  unityTurn(352, true);
+  unityStraight(49, false);
+  openSkills();
+  wait(900);
   release();
-  wait(1900);
+  wait(1600);
   unityTurn(272, true);
-  unityStraight(10, false);
+  unityStraight(7, false);
   wait(700);
   score();
   // fifth tower
-  unityBack(10, true);
+  unityBack(8, true);
   unityTurn(88, true);
-  open();
-  unityStraight(15, false);
-  wait(800);
+  openSkills();
+  unityStraight(18, false);
+  wait(500);
   release();
-  wait(250);
+  wait(450);
   runIntake(max);
   runElevator(8000);
-  wait(500);
+  wait(300);
   runIntake(0);
   runElevator(0);
-  unityBack(5, true);
-  unityTurn(3, true);
-  unityStraight(50, false);
-  open();
-  wait(1250);
+  unityBack(7, true);
+  unityTurn(352, true);
+  unityStraight(44, false);
+  openSkills();
+  wait(750);
   release();
-  wait(1250);
-  unityBack(10, true);
-  unityTurn(310, true);
-  unityStraight(32, true);
+  wait(850);
+  unityBack(8, true);
+  unityTurn(305, true);
+  unityStraight(30, true);
+  // runIntake(max / 2);
   score();
-  //   // sixth tower
-  //   unityBack(25, true);
-  //   unityTurn(100, true);
-  //   unityStraight(38, true);
-  //   runElevator(0);
-  //   unityTurn(8, true);
-  //   unityStraight(12, false);
-  //   wait(1000);
-  //   score();
-  //   // seventh tower
-  //   unityBack(13, true);
-  //   unityTurn(95, true);
-  //   open();
-  //   unityStraight(47, false);
-  //   wait(900);
-  //   release();
-  //   wait(1100);
-  //   unityTurn(53, true);
-  //   unityStraight(18, false);
-  //   wait(800);
-  //   score();
-  //   // eigth tower
-  //   unityBack(16, true);
-  //   unityTurn(190, true);
-  //   unityBack(17, false);
-  //   wait(1400);
-  //   unityStraight(64, false);
-  //   open();
-  //   wait(1450);
-  //   release();
-  //   wait(600);
-  //   unityTurn(95, true);
-  //   unityStraight(13, false);
-  //   wait(600);
-  //   score();
-  //   // ninth tower (center)
-  //   unityBack(10, true);
-  //   unityTurn(277, true);
-  //   open();
-  //   open();
-  //   unityStraight(15, true);
-  //   release();
-  //   runIntake(max);
-  //   runElevator(max);
-  //   wait(700);
-  //   runIntake(0);
-  //   runElevator(0);
-  //   unityStraight(15, true);
-  //   unityStraight(7, true);
-  //   unityTurn(250, true);
-  //   // unityStraight(6, true);
-  //   unityBack(8, true);
-  //   unityTurn(277, true);
-  //   wait(250);
-  //   unityStraight(8, false);
-  //   wait(150);
-  //   runElevator(9500);
-  //   wait(5000);
+  // sixth tower
+  // runIntake(0);
+  unityBack(51, true);
+  runElevator(-max / 4);
+  unityTurn(82, true);
+  runElevator(0);
+  unityStraight(17, false);
+  openSkills();
+  wait(300);
+  release();
+  wait(800);
+  runElevator(0);
+  unityTurn(345, true);
+  unityBack(13, false);
+  wait(1200);
+  // unityTurn(330, true);
+  unityStraight(43, false);
+  wait(1500);
+  // unityTurn(352, true);
+  // unityStraight(31, true);
+  score();
+  //  seventh tower
+  unityBack(10, true);
+  unityTurn(80, true);
+  openSkills();
+  unityStraight(48, false);
+  wait(900);
+  release();
+  wait(1100);
+  unityTurn(29, true);
+  unityStraight(16, true);
+  score();
+  // eigth tower
+  unityBack(25, true);
+  unityTurn(190, true);
+  unityStraight(40, false);
+  openSkills();
+  wait(900);
+  release();
+  runIntake(max);
+  runElevator(max / 4);
+  wait(1500);
+  runIntake(0);
+  unityTurn(255, true);
+  openSkills();
+  unityStraight(14, true);
+  runElevator(7500);
+  wait(900);
+  runElevator(0);
+  // ninth tower
+  unityBack(10, true);
+  release();
+  unityTurn(70, true);
+  unityStraight(35, false);
+  openSkills();
+  wait(600);
+  release();
+  wait(800);
+  score();
+  unityBack(8, true);
 }
 
 void specialty() {
@@ -501,29 +576,34 @@ void specialty() {
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   deploy();
   unityStraight(35, true);
-  unityTurn(88, true);
+  unityTurn(92, true);
   open();
-  unityStraight(36, false);
+  unityStraight(37, false);
   wait(1150);
   runIntake(max);
   wait(500);
   scoreControlled(400);
   wait(200);
   runElevator(max / 2);
+  int foo = pros::millis();
   while (opt.get_hue() < 95) {
+    if (pros::millis() - foo > 1500) {
+      break;
+    }
     if (disSense.get() < 175) {
       runElevator(0);
     }
     runIntake(max * .8);
   }
   runIntake(0);
+  runElevator(-max / 4);
+  unityBack(6, true);
   runElevator(0);
-  unityBack(7, true);
   // runElevator(0);
   unityTurn(0, true);
   unityTurn(320, true);
   // open();
-  unityStraight(38, true);
+  unityStraight(36, true);
   unityTurn(325, true);
   open();
   wait(250);
@@ -533,14 +613,13 @@ void specialty() {
   runIntake(max);
   wait(100);
   runIntake(0);
-  unityBack(5, true);
-  unityTurn(358, true);
+  unityBack(6, true);
+  unityTurn(359, true);
   unityStraight(3, true);
   score();
   score();
   wait(200);
   unityBack(5, true);
-  // release();
 }
 
 void bSpecialty() {
@@ -551,29 +630,34 @@ void bSpecialty() {
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   deploy();
   unityStraight(35, true);
-  unityTurn(88, true);
+  unityTurn(92, true);
   open();
-  unityStraight(36, false);
+  unityStraight(37, false);
   wait(1150);
   runIntake(max);
   wait(500);
   scoreControlled(400);
   wait(200);
   runElevator(max / 2);
+  int foo = pros::millis();
   while (opt.get_hue() > 45) {
+    if (pros::millis() - foo > 1500) {
+      break;
+    }
     if (disSense.get() < 175) {
       runElevator(0);
     }
     runIntake(max * .8);
   }
   runIntake(0);
+  runElevator(-max / 4);
+  unityBack(6, true);
   runElevator(0);
-  unityBack(7, true);
   // runElevator(0);
   unityTurn(0, true);
   unityTurn(320, true);
   // open();
-  unityStraight(38, true);
+  unityStraight(36, true);
   unityTurn(325, true);
   open();
   wait(250);
@@ -583,8 +667,8 @@ void bSpecialty() {
   runIntake(max);
   wait(100);
   runIntake(0);
-  unityBack(5, true);
-  unityTurn(358, true);
+  unityBack(6, true);
+  unityTurn(359, true);
   unityStraight(3, true);
   score();
   score();
@@ -595,8 +679,9 @@ void bSpecialty() {
 void testFunctions() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  toPoint(10, 0);
-  wait(1000);
-  toPoint(0, 0);
+  unityTurn(90, true);
+  unityStraight(70, true);
+  unityBack(30, true);
+  unityStraight(30, true);
 }
 } // namespace auton

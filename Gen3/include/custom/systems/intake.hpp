@@ -10,6 +10,7 @@ extern ADIButton rightIntake;
 namespace auton {
 void runIntake(int velocity);
 void open(void);
+void openSkills(void);
 void release(void);
 } // namespace auton
 #endif /* end of include guard: INTAKE_HPP */

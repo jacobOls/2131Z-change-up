@@ -111,8 +111,17 @@ namespace auton {
 int timer = pros::millis();
 void runIntake(int velocity) { intake::intakeGroup.moveVoltage(velocity); }
 void open() {
+  intake::intakeGroup.tarePosition();
+  intake::left_motor.moveRelative(-150, -100);
+  intake::right_motor.moveRelative(-150, -100);
+}
+void openSkills() {
+  int curTime = pros::millis();
   intake::intakeGroup.moveVelocity(-200);
-  while (!intake::leftIntake.isPressed() || !intake::rightIntake.isPressed()) {
+  while (!intake::leftIntake.isPressed() && !intake::rightIntake.isPressed()) {
+    if (pros::millis() - curTime > 500) {
+      break;
+    }
   }
   intake::intakeGroup.moveVelocity(0);
   intake::intakeGroup.setBrakeMode(AbstractMotor::brakeMode::hold);

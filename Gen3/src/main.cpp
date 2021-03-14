@@ -73,7 +73,6 @@ void opcontrol() {
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   auton::unityStop();
   while (true) {
-
     // foo3();
     drive::userDrive();
     drive::brake();

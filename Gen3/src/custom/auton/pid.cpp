@@ -8,7 +8,7 @@ namespace auton {
 #define dontHog 25
 #define stopError 60
 #define stopTime 150
-#define turnStopTime 150
+#define turnStopTime 200
 #define turnError 5
 // Encoder PID Values
 #define lEnc_Kp 0.257 // 0.33
@@ -284,13 +284,14 @@ void lEncController() {
 
   lEncPrevErr = lEncErr;
   lEncPrevTime = pros::millis();
-  if (fabs(lEncCurrentValue) > fabs(rightTracker.get_position() / 100)) {
-    lEncOutput =
-        lEncOutput -
-        (((fabs(lEncCurrentValue) - fabs(rightTracker.get_position() / 100)) /
-          2) *
-         2 * sgn(lEncCurrentValue));
-  }
+  // if (fabs(lEncCurrentValue) > fabs(rightTracker.get_position() / 100)) {
+  //   lEncOutput =
+  //       lEncOutput -
+  //       (((fabs(lEncCurrentValue) - fabs(rightTracker.get_position() / 100))
+  //       /
+  //         2) *
+  //        2 * sgn(lEncCurrentValue));
+  // }
   lEncPrevPower = driveRamp(lEncOutput, lEncPrevPower, lEncRampBias);
 
   setLDriveMotors(lEncPrevPower);
@@ -311,13 +312,13 @@ void rEncController() {
 
   rEncPrevErr = rEncErr;
   rEncPrevTime = pros::millis();
-  if (fabs(rEncCurrentValue) > fabs(leftTracker.get_position() / 100)) {
-    rEncOutput =
-        rEncOutput -
-        (((fabs(rEncCurrentValue) - fabs(leftTracker.get_position() / 100)) /
-          2) *
-         2 * sgn(rEncCurrentValue));
-  }
+  // if (fabs(rEncCurrentValue) > fabs(leftTracker.get_position() / 100)) {
+  //   rEncOutput =
+  //       rEncOutput -
+  //       (((fabs(rEncCurrentValue) - fabs(leftTracker.get_position() / 100)) /
+  //         2) *
+  //        2 * sgn(rEncCurrentValue));
+  // }
   rEncPrevPower = driveRamp(rEncOutput, rEncPrevPower, rEncRampBias);
 
   setRDriveMotors(rEncPrevPower);

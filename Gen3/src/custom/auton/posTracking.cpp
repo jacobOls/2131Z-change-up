@@ -9,7 +9,7 @@
 volatile const double wheelCirc = M_PI * 2.75;
 const double sL = 7;
 const double sR = 7;
-const double sS = 4;
+const double sS = 3;
 volatile const double robotDiameter{hypot(9, 15)};
 double d2r(int degrees) { return degrees * (M_PI / 180); }
 double r2d(int radians) { return radians * (180 / M_PI); }
@@ -26,85 +26,114 @@ double clampAngle(double foo) {
 }
 
 double curLeft{0}, curRight{0}, curBack{0}, prevLeft{0}, prevRight{0},
-    prevBack{0}, curTheta{0}, xPos{0}, yPos{0};
-
+    prevBack{0}, curTheta{0}, xPos{0}, yPos{0}, deltaL{0}, deltaR{0};
+double highestM = 0;
 void posCalc() {
   while (true) {
-    // if (fabs(left.get_velocity() + right.get_velocity() +
-    // back.get_velocity()) > 15) {
     curLeft = auton::leftTracker.get_position();
     curRight = auton::rightTracker.get_position();
     curBack = auton::sTracker.get_position();
+    if ((curLeft - prevLeft && curRight - prevRight) != 0 ||
+        curBack - prevBack != 0) {
+      double deltaR2 = (curRight - prevRight) / 36000 * (M_PI * 2.75);
+      double deltaL2 = (curLeft - prevLeft) / 36000 * (M_PI * 2.75);
 
-    double deltaR = (curRight - prevRight) / 36000 * (M_PI * 2.75);
-    double deltaL = (curLeft - prevLeft) / 36000 * (M_PI * 2.75);
+      double deltaTheta = (deltaL2 - deltaR2) / (sL + sR);
 
-    double deltaTheta = (deltaL - deltaR) / 14;
-    double localOffX, localOffY;
+      double driftL = (((((deltaTheta * 180 / M_PI) * 7 / 2.75) * 1000) / 5) /
+                       36000 * (2.75 * M_PI)) *
+                      sgn(deltaL2);
+      double driftR = (((((deltaTheta * 180 / M_PI) * 7 / 2.75) * 1000) / 5) /
+                       36000 * (2.75 * M_PI)) *
+                      sgn(deltaR2);
 
-    double driftLeft = ((9.6 * deltaTheta * 2.5) / 2.75);
-    double driftRight = ((9.6 * deltaTheta * 2.5) / 2.75);
-    double unchangedR = deltaR;
-    deltaR = (abs(deltaR) - driftRight) * sgn(deltaR);
-    deltaL = (abs(deltaL) - driftLeft) * sgn(deltaL);
+      deltaR = ((curRight - prevRight) / 36000 * (M_PI * 2.75)) - driftR;
+      deltaL = ((curLeft - prevLeft) / 36000 * (M_PI * 2.75)) - driftL;
 
-    auto deltaM = static_cast<const double>(
-        ((curBack - prevBack) / 36000) * (M_PI * 2.75) -
-        ((deltaTheta / (2_pi)) * M_PI * 3 * 2));
+      double localOffX, localOffY;
 
-    double driftM = (11 * deltaTheta) / 2.75;
-    double unchangedM = deltaM;
+      // double deltaM2 = static_cast<const double>(
+      //     ((curBack - prevBack) / 36000) * (M_PI * 2.75) -
+      //     ((deltaTheta / (2_pi)) * M_PI * sS * 2));
+      double deltaM2 = ((curBack - prevBack) / 36000) * (M_PI * 2.75);
+      double driftM = (((((deltaTheta * 180 / M_PI) * 3 / 2.75) * 1000) / 3) /
+                       36000 * (2.75 * M_PI)) *
+                      sgn(deltaM2);
 
-    deltaM = (abs(deltaM) - driftM) * sgn(deltaM);
+      // double deltaM = static_cast<const double>(
+      //     (((curBack - prevBack) / 36000) * (M_PI * 2.75) -
+      //      ((deltaTheta / (2_pi)) * M_PI * sS * 2)) -
+      //     driftM);
+      double deltaM = (((curBack - prevBack) / 36000) * (M_PI * 2.75)) - driftM;
+      // std::cout << curRight - prevRight << "\t" << driftR << std::endl;
 
-    prevLeft = curLeft;
-    prevRight = curRight;
-    prevBack = curBack;
+      prevLeft = curLeft;
+      prevRight = curRight;
+      prevBack = curBack;
+      deltaR = abs(deltaR) > .04 ? deltaR : 0;
+      deltaL = abs(deltaL) > .05 ? deltaL : 0;
+      double deltaMTol =
+          sgn(deltaL) == sgn(deltaR) && deltaR != 0 ? 0.0001 : .25;
+      deltaM = abs(deltaM) > deltaMTol ? deltaM : 0;
+      // if (deltaM > highestM) {
+      highestM += deltaM;
+      // }
+      // std::cout << deltaM << "\t" << deltaM2 << "\t" << driftM << "\t"
+      //           << highestM << std::endl;
 
-    deltaR = abs(deltaR) > 0.012 ? deltaR : 0;
-    deltaL = abs(deltaL) > 0.012 ? deltaL : 0;
-    deltaM = abs(deltaM) > 0.03 ? deltaM : 0;
+      if (deltaL == deltaR) {
+        localOffX = deltaM;
+        localOffY = deltaR;
+      } else {
+        localOffX = 2 * (std::sin(deltaTheta / 2) * (deltaM / deltaTheta + sS));
+        localOffY = 2 * (std::sin(deltaTheta / 2) *
+                         (deltaR / deltaTheta + (sL + sR) / 2));
+      }
 
-    if (deltaL == deltaR) {
-      localOffX = deltaM;
-      localOffY = deltaR;
-    } else {
-      localOffX = 2 * std::sin(deltaTheta / 2) * (deltaM / deltaTheta + 3 * 2);
-      localOffY = 2 * std::sin(deltaTheta / 2) * (deltaR / deltaTheta + 14 / 2);
+      // double avgA = (curTheta * 179 / M_PI) + (deltaTheta / 2);
+      double avgA = curTheta + deltaTheta / 2;
+      // avgA = abs(deltaTheta < .002) ? curTheta + (deltaTheta / 2)
+      // : (curTheta * 179 / M_PI) + (deltaTheta / 2);
+
+      double polarR = sqrt((localOffX * localOffX) + (localOffY * localOffY));
+      double polarA = atan2(localOffY, localOffX) - avgA;
+
+      double dX = sin(polarA) * polarR;
+      double dY = cos(polarA) * polarR;
+
+      double dXTol = sgn(deltaL2) == sgn(deltaR2) ? 0.00001 : .09;
+      double dYTol = sgn(deltaL2) == sgn(deltaR2) ? 0.00001 : .09;
+      // double dXTol = 0.01;
+      // double dYTol = 0.009;
+
+      if (isnan(dX)) {
+        dX = 0;
+      }
+
+      if (isnan(dY)) {
+        dY = 0;
+      }
+
+      if (isnan(deltaTheta)) {
+        deltaTheta = 0;
+      }
+      // std::cout << deltaL << "\t" << deltaR << std::endl;
+      dX = abs(dX) > dXTol ? dX : 0;
+      dY = abs(dY) > dYTol ? dY : 0;
+
+      xPos += dX;
+      yPos += dY;
+      xPos = abs(xPos) > 0.001 ? xPos : 0;
+      yPos = abs(yPos) > 0.001 ? yPos : 0;
+      curTheta += deltaTheta;
+      curTheta = clampAngle(curTheta);
+      std::cout << "x " << xPos << "\t"
+                << "y " << yPos << "\t"
+                << "theta " << curTheta << "\tdelta left " << deltaL
+                << "\tdelta right " << deltaR << "\tdeltaM " << deltaM
+                << "\tdeltaX " << dX << "\tdeltaY " << dY << std::endl;
     }
-
-    double avgA = curTheta + (deltaTheta / 2);
-
-    double polarR = sqrt((localOffX * localOffX) + (localOffY * localOffY));
-    double polarA = atan2(localOffY, localOffX) - avgA;
-
-    double dX = sin(polarA) * polarR;
-    double dY = cos(polarA) * polarR;
-
-    if (isnan(dX)) {
-      dX = 0;
-    }
-
-    if (isnan(dY)) {
-      dY = 0;
-    }
-
-    if (isnan(deltaTheta)) {
-      deltaTheta = 0;
-    }
-
-    xPos += dX;
-    yPos += dY;
-    curTheta += deltaTheta;
-    if (deltaM != 0)
-      std::cout << deltaM << "\t" << driftM << "\t" << unchangedM << std::endl;
-    // std::cout << "x " << xPos << "\t"
-    // << "y " << yPos << "\t"
-    // << "theta " << curTheta << "\tdelta left " << deltaL
-    // << "\tdelta right " << deltaR << "\tdeltaM " << deltaM
-    // << "\tdeltaX " << dX << "\tdeltaY " << dY << std::endl;
-    // }
-    pros::delay(3);
+    pros::delay(1);
   }
 }
 

@@ -19,8 +19,8 @@ void initialize() {
   opt.set_led_pwm(75);
   auton::leftTracker.set_reversed(true);
 }
-pros::Task pid(auton::unity2);
-// pros::Task position(posCalc);
+// pros::Task pid(auton::unity2);
+pros::Task position(posCalc);
 // pros::Task elevatorRatchet(elevator::init); // run elevator independetly of
 // other systems
 
@@ -61,8 +61,8 @@ void foo2() {
 }
 void foo3() {
   if (autosdf.isPressed()) {
-    drive::left_drive.moveVelocity(50);
-    drive::right_drive.moveVelocity(-50);
+    drive::left_drive.moveVelocity(125);
+    drive::right_drive.moveVelocity(-125);
   } else {
     drive::driveGroup.moveVelocity(0);
   }
@@ -73,8 +73,8 @@ void opcontrol() {
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   auton::unityStop();
   while (true) {
-    // foo3();
-    drive::userDrive();
+    foo3();
+    // drive::userDrive();
     drive::brake();
     intake::init();
     elevator::init();

@@ -52,14 +52,6 @@ void up() {
 }
 bool red = true;
 
-void autoRatchet() {
-  if (autoElev.isPressed() && state != State::FOO) {
-    state = State::AUTO;
-  } else if (state == State::AUTO && state != State::FOO) {
-    state = State::DEINIT;
-  }
-}
-
 // int n = visionSensor.get_object_count();
 void toggle() {
   if (selection::BtnSwap.changedToPressed()) {
@@ -97,7 +89,6 @@ void execute() {
     intake::intakeGroup.moveVelocity(200);
     elevMotor.moveVoltage(12000);
     elevMotor2.moveVoltage(12000);
-    ratchetMotor.moveVoltage(-12000);
     break;
 
   case State::DOWN: // moves wheel alone downward
@@ -137,7 +128,6 @@ void init() {
   toggle();
   execute();
   middle();
-  autoRatchet();
   // pros::delay(10);
 }
 

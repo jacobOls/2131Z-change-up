@@ -15,7 +15,6 @@ extern okapi::MotorGroup intakeGroup;
 } // namespace intake
 namespace elevator {
 extern okapi::Motor elevMotor;
-extern okapi::Motor ratchetMotor;
 extern okapi::MotorGroup elevGroup;
 
 extern okapi::Motor elevMotor2;

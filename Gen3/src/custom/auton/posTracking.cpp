@@ -13,7 +13,15 @@ const double sS = 3;
 volatile const double robotDiameter{hypot(9, 15)};
 double d2r(int degrees) { return degrees * (M_PI / 180); }
 double r2d(int radians) { return radians * (180 / M_PI); }
-double sgn(double foo) { return (foo > 0) ? 1 : ((foo < 0) ? -1 : 0); }
+double sgn(double foo) {
+  if (foo > 0) {
+    return 1;
+  } else if (foo < 0) {
+    return -1;
+  } else {
+    return 0;
+  }
+}
 void printCords();
 double clampAngle(double foo) {
   while (foo > M_PI) {
@@ -56,30 +64,30 @@ void posCalc() {
       //     ((curBack - prevBack) / 36000) * (M_PI * 2.75) -
       //     ((deltaTheta / (2_pi)) * M_PI * sS * 2));
       double deltaM2 = ((curBack - prevBack) / 36000) * (M_PI * 2.75);
-      double driftM = (((((deltaTheta * 180 / M_PI) * 3 / 2.75) * 1000) / 3) /
-                       36000 * (2.75 * M_PI)) *
+      double driftM = ((((deltaTheta * 180 / M_PI) * 3 / 2.75) * 330) / 36000 *
+                       (2.75 * M_PI)) *
                       sgn(deltaM2);
 
-      // double deltaM = static_cast<const double>(
-      //     (((curBack - prevBack) / 36000) * (M_PI * 2.75) -
-      //      ((deltaTheta / (2_pi)) * M_PI * sS * 2)) -
-      //     driftM);
       double deltaM = (((curBack - prevBack) / 36000) * (M_PI * 2.75)) - driftM;
-      // std::cout << curRight - prevRight << "\t" << driftR << std::endl;
+      if (abs(deltaM) > abs(highestM)) {
+        highestM = abs(deltaM);
+      }
+      // double deltaRTol =
+      // sgn(deltaL2) == sgn(deltaR2) && deltaR != 0 ? 0.0001 : .2;
+      // double deltaLTol =
+      //     sgn(deltaL2) == sgn(deltaR2) && deltaL != 0 ? 0.0001 : .2;
+      // double deltaMTol =
+      //     sgn(deltaL2) == sgn(deltaR2) && deltaR != 0 ? 0.0001 : .2;
+      // deltaR = abs(deltaR) > deltaRTol ? deltaR : 0;
+      // deltaL = abs(deltaL) > deltaLTol ? deltaL : 0;
+      // deltaM = abs(deltaM) > deltaMTol ? deltaM : 0;
+
+      // std::cout << deltaM << "\t" << deltaM2 << "\t" << driftM << "\t"
+      //           << highestM << std::endl;
 
       prevLeft = curLeft;
       prevRight = curRight;
       prevBack = curBack;
-      deltaR = abs(deltaR) > .04 ? deltaR : 0;
-      deltaL = abs(deltaL) > .05 ? deltaL : 0;
-      double deltaMTol =
-          sgn(deltaL) == sgn(deltaR) && deltaR != 0 ? 0.0001 : .25;
-      deltaM = abs(deltaM) > deltaMTol ? deltaM : 0;
-      // if (deltaM > highestM) {
-      highestM += deltaM;
-      // }
-      // std::cout << deltaM << "\t" << deltaM2 << "\t" << driftM << "\t"
-      //           << highestM << std::endl;
 
       if (deltaL == deltaR) {
         localOffX = deltaM;
@@ -101,8 +109,8 @@ void posCalc() {
       double dX = sin(polarA) * polarR;
       double dY = cos(polarA) * polarR;
 
-      double dXTol = sgn(deltaL2) == sgn(deltaR2) ? 0.00001 : .09;
-      double dYTol = sgn(deltaL2) == sgn(deltaR2) ? 0.00001 : .09;
+      double dXTol = sgn(deltaL2) == sgn(deltaR2) ? 0.00001 : .005;
+      double dYTol = sgn(deltaL2) == sgn(deltaR2) ? 0.00001 : .005;
       // double dXTol = 0.01;
       // double dYTol = 0.009;
 
@@ -117,7 +125,7 @@ void posCalc() {
       if (isnan(deltaTheta)) {
         deltaTheta = 0;
       }
-      // std::cout << deltaL << "\t" << deltaR << std::endl;
+      // std::cout << dXTol << "\t" << deltaMTol << std::endl;
       dX = abs(dX) > dXTol ? dX : 0;
       dY = abs(dY) > dYTol ? dY : 0;
 
@@ -187,7 +195,8 @@ double yPower() {
 }
 double turnPower() {
   int foo = (angleToPoint() + prefAngle) / d2r(30);
-  return std::clamp(foo, -1, 1) * (0);
+  // return std::clamp(foo, -1, 1) * (0);
+  return 0;
 }
 } // namespace foo
 double constrainVelocity(double foo) { return foo < 100 ? foo : 100; }

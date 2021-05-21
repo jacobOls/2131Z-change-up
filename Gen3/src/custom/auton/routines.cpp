@@ -679,9 +679,8 @@ void bSpecialty() {
 void testFunctions() {
   drive::left_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   drive::right_drive.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  unityTurn(90, true);
-  unityStraight(70, true);
-  unityBack(30, true);
-  unityStraight(30, true);
+  toPoint(10, 10);
+  wait(2000);
+  toPoint(0, 0);
 }
 } // namespace auton

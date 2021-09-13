@@ -1,2 +1,2 @@
 # 2131Z-change-up
-the day i make a real readme is the day i die, or have a real job
+my different projects and robot code from throughout the change up season for the 2131Z high school VEX team
